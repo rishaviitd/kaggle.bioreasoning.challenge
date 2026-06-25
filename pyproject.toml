@@ -10,7 +10,10 @@ description = "Helper package for the MLGenX PerturbPair competition"
 dependencies = [
     "pandas",
     "numpy",
+    "scikit-learn",
     "openai>=2.24.0",
+    "openrouter>=0.10.0",
+    "python-dotenv>=1.2.2",
     "dspy>=3.1.3",
 ]
 

@@ -5,13 +5,11 @@ from __future__ import annotations
 
 import json
 import os
-import sys
-import urllib.error
-import urllib.request
 from pathlib import Path
 
+from dotenv import load_dotenv
+from openrouter import OpenRouter
 
-API_BASE = "https://openrouter.ai/api/v1"
 MODEL = "openai/gpt-oss-120b"
 PROVIDER = "WandB"
 PERT = "Psmd4"
@@ -32,91 +30,49 @@ End with exactly one final answer tag:
 <answer>A</answer>, <answer>B</answer>, or <answer>C</answer>
 
 Answer:"""
-OUTPUT_PATH = Path("tests/openrouter_logprobs_train_psmd4_anxa2_response.json")
-
-
-def load_dotenv() -> None:
-    """Load OPENROUTER_API_KEY from .env without making the test fragile."""
-    try:
-        from dotenv import load_dotenv as _load_dotenv
-
-        _load_dotenv()
-        print("Loaded .env with python-dotenv.")
-        return
-    except ImportError:
-        pass
-
-    env_path = Path(".env")
-    if not env_path.exists():
-        print("No .env file found.")
-        return
-
-    print("Loaded .env with simple fallback parser.")
-    for line in env_path.read_text().splitlines():
-        line = line.strip()
-        if not line or line.startswith("#") or "=" not in line:
-            continue
-        key, value = line.split("=", 1)
-        key = key.strip()
-        value = value.strip().strip('"').strip("'")
-        os.environ.setdefault(key, value)
+OUTPUT_PATH = Path("tests/logs/openrouter_logprobs_train_psmd4_anxa2_response.json")
 
 
 def main() -> int:
     load_dotenv()
-
     api_key = os.environ.get("OPENROUTER_API_KEY")
     if not api_key:
         print("Missing OPENROUTER_API_KEY.")
-        print('Run: export OPENROUTER_API_KEY="your_key_here"')
         return 1
 
-    payload = {
-        "model": MODEL,
-        "messages": [{"role": "user", "content": PROMPT}],
-        "temperature": 1.0,
-        "top_p": 1.0,
-        "seed": 42,
-        "max_tokens": 65536,
-        "reasoning": {"effort": "medium"},
-        "logprobs": True,
-        "top_logprobs": 20,
-        "provider": {
-            "order": [PROVIDER],
-            "allow_fallbacks": False,
-            "require_parameters": True,
-        },
-    }
-
-    url = API_BASE.rstrip("/") + "/chat/completions"
+    client = OpenRouter(api_key=api_key)
     print("Starting OpenRouter logprobs smoke test...")
     print(f"Model: {MODEL}")
     print(f"Provider: {PROVIDER}")
     print(f"Track A row: {PERT}_{GENE}")
     print(f"Known train label: {TRUE_LABEL}")
-    print("Prompt loaded.")
     print("Sending request...")
 
-    req = urllib.request.Request(
-        url,
-        data=json.dumps(payload).encode("utf-8"),
-        method="POST",
-        headers={
-            "Content-Type": "application/json",
-            "Authorization": f"Bearer {api_key}",
-        },
-    )
-
     try:
-        with urllib.request.urlopen(req, timeout=240) as resp:
-            data = json.loads(resp.read().decode("utf-8"))
-    except urllib.error.HTTPError as exc:
-        body = exc.read().decode("utf-8", errors="replace")
-        print(f"Request failed with HTTP {exc.code}.")
-        print(body)
+        response = client.chat.send(
+            model=MODEL,
+            messages=[{"role": "user", "content": PROMPT}],
+            temperature=1.0,
+            top_p=1.0,
+            seed=42,
+            max_tokens=65536,
+            reasoning={"effort": "medium"},
+            logprobs=True,
+            top_logprobs=20,
+            provider={
+                "order": [PROVIDER],
+                "allow_fallbacks": False,
+                "require_parameters": True,
+            },
+            timeout_ms=240_000,
+        )
+    except Exception as exc:
+        print(f"Request failed: {exc}")
         return 1
 
+    data = response.model_dump(mode="json", exclude_unset=True)
     print("Response received.")
+    OUTPUT_PATH.parent.mkdir(parents=True, exist_ok=True)
     OUTPUT_PATH.write_text(json.dumps(data, indent=2), encoding="utf-8")
     print(f"Saved raw JSON response to {OUTPUT_PATH}")
 

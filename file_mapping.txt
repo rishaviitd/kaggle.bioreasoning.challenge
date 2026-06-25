@@ -222,9 +222,11 @@ metrics/kaggle_metric_track_c.py
 
 src/
 ----
-src/
-  Reserved as the main source folder for the Track A prompt-evaluation and
-  optimization work. It currently contains no files.
+src/track_one/research/dspy_skill.md
+  Research dictionary for DSPy GEPA prompt optimization documentation.
+
+src/track_one/research/oss_prompt_skill.md
+  Research dictionary for GPT-OSS prompting and instruction guidelines.
 
 Top-level configuration files
 -----------------------------
