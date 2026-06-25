@@ -30,7 +30,15 @@ docs/
   Static documentation website and image assets referenced by the README.
 
 examples/
-  Runnable scripts, prompts, and tools for Tracks A, B, and C.
+  Runnable scripts, prompts, serving helpers, and tools for Tracks A, B, and C.
+
+metrics/
+  Kaggle scoring implementations, including the shared metric and the
+  track-specific validation variants.
+
+src/
+  Main development area for the new Track A prompt-evaluation and optimization
+  workflow. This folder is currently empty.
 
 mlgenx/
   Small helper package for formatting prompts, parsing model answers, and
@@ -40,8 +48,8 @@ outputs/
   Generated prompts, response caches, submission CSVs, zips, and copied tools
   from previous example runs.
 
-Top-level metric/config/serve files
-  Kaggle metric implementations, package configuration, and vLLM serving patch.
+Top-level configuration files
+  Project package and dependency configuration.
 
 data/
 -----
@@ -71,7 +79,7 @@ data/sample_submission_track_c.csv
   Track C fine-tuning template. Includes final predictions, reasoning trace,
   generated-token count, and model_name.
 
-kaggle_data_description.md
+data/kaggle_data_description.md
   Full data documentation. Explains split design, row id format, label
   definitions, per-track submission columns, zip requirements, evaluation
   formula, leaderboard metadata, and biological context.
@@ -128,7 +136,12 @@ examples/track_a_logprobs.py
   Track A variant that asks the server for top logprobs and converts the
   A/B/C answer-token logprobs into continuous probabilities. Falls back to
   text parsing if logprobs are unavailable. Intended to be used with
-  serve_with_logprobs_fix.py.
+  examples/serve_with_logprobs_fix.py.
+
+examples/serve_with_logprobs_fix.py
+  Drop-in wrapper for vLLM serve. Patches Starlette JSON rendering so NaN or
+  infinite logprob values are converted to -9999.0 before serialization. Used
+  by examples/track_a_logprobs.py when requesting logprobs from GPT-OSS.
 
 examples/track_b_agentic.py
   Track B DSPy ReAct single-agent runner. Provides local train-data lookup,
@@ -186,37 +199,40 @@ mlgenx/parsing.py
   prediction_up/prediction_down pairs; batch-parses answers; and builds a
   minimal submission DataFrame/CSV.
 
-Top-level metric/config/serve files
------------------------------------
+metrics/
+--------
+metrics/kaggle_metric.py
+  General Kaggle metric implementation. Validates prediction_up and
+  prediction_down, then returns the average of DE AUROC and direction AUROC.
+  Does not enforce per-track metadata columns.
+
+metrics/kaggle_metric_track_a.py
+  Track A metric variant. Requires per-seed prediction/reasoning columns,
+  tokens_used, prompt_tokens, and model_name. Enforces max prompt tokens of
+  4,096, then computes the shared DE/DIR AUROC score.
+
+metrics/kaggle_metric_track_b.py
+  Track B metric variant. Requires reasoning_trace, token/tool metadata,
+  prompt_tokens, num_distinct_tools, and model_name. Enforces max 250 tool
+  calls per row, max 16,384 prompt tokens, and max 100 distinct tools.
+
+metrics/kaggle_metric_track_c.py
+  Track C metric variant. Requires reasoning_trace, tokens_used, and
+  model_name, then computes the shared DE/DIR AUROC score.
+
+src/
+----
+src/
+  Reserved as the main source folder for the Track A prompt-evaluation and
+  optimization work. It currently contains no files.
+
+Top-level configuration files
+-----------------------------
 pyproject.toml
   Python project configuration for package mlgenx. Defines core dependencies
   pandas, numpy, openai, and dspy. Defines optional train dependencies for
   LoRA fine-tuning and optional serve dependencies for vLLM, with uv conflicts
   between train and serve extras.
-
-kaggle_metric.py
-  General Kaggle metric implementation. Validates prediction_up and
-  prediction_down, then returns the average of DE AUROC and direction AUROC.
-  Does not enforce per-track metadata columns.
-
-kaggle_metric_track_a.py
-  Track A metric variant. Requires per-seed prediction/reasoning columns,
-  tokens_used, prompt_tokens, and model_name. Enforces max prompt tokens of
-  4,096, then computes the shared DE/DIR AUROC score.
-
-kaggle_metric_track_b.py
-  Track B metric variant. Requires reasoning_trace, token/tool metadata,
-  prompt_tokens, num_distinct_tools, and model_name. Enforces max 250 tool
-  calls per row, max 16,384 prompt tokens, and max 100 distinct tools.
-
-kaggle_metric_track_c.py
-  Track C metric variant. Requires reasoning_trace, tokens_used, and
-  model_name, then computes the shared DE/DIR AUROC score.
-
-serve_with_logprobs_fix.py
-  Drop-in wrapper for vLLM serve. Patches Starlette JSON rendering so NaN or
-  infinite logprob values are converted to -9999.0 before serialization. Used
-  by examples/track_a_logprobs.py when requesting logprobs from GPT-OSS.
 
 outputs/
 --------
