@@ -12,8 +12,8 @@ from typing import Any
 from sklearn.metrics import roc_auc_score
 
 
-DEFAULT_GENERATION = Path("src/track_one/generate/output/v0.json")
-DEFAULT_METRICS = Path("src/track_one/evaluate/metrics/v0.json")
+DEFAULT_GENERATION = Path("src/track_one/output/v0.json")
+DEFAULT_METRICS = Path("src/track_one/metrics/v0.json")
 TRAIN_DATA = Path("data/train.csv")
 LABELS = ("up", "down", "none")
 TOKEN_TO_LABEL = {"A": "up", "B": "down", "C": "none"}
@@ -143,7 +143,7 @@ def evaluate(
     generation_path: Path = DEFAULT_GENERATION,
     metrics_path: Path = DEFAULT_METRICS,
     train_path: Path = TRAIN_DATA,
-) -> Path:
+) -> tuple[dict[str, float | None], list[str], list[str]]:
     print(f"Loading generated responses from {generation_path}...")
     generation = json.loads(generation_path.read_text(encoding="utf-8"))
     labels = _load_labels(train_path)
@@ -210,6 +210,8 @@ def evaluate(
 
     print(f"Extracted probabilities for {len(evaluated_rows)} rows.")
     metrics = _calculate_metrics(evaluated_rows)
+    correct_ids = [row["id"] for row in evaluated_rows if row["correct"]]
+    incorrect_ids = [row["id"] for row in evaluated_rows if not row["correct"]]
 
     result = {
         "prompt_version": generation.get("prompt_version", "v0"),
@@ -224,6 +226,8 @@ def evaluate(
         "total_tokens": total_tokens,
         "total_cost": total_cost,
         "metrics": metrics,
+        "correct_prediction_ids": correct_ids,
+        "incorrect_prediction_ids": incorrect_ids,
         "failures": failures,
         "rows": evaluated_rows,
     }
@@ -231,4 +235,6 @@ def evaluate(
     metrics_path.parent.mkdir(parents=True, exist_ok=True)
     metrics_path.write_text(json.dumps(result, indent=2), encoding="utf-8")
     print(f"Saved prompt quality metrics to {metrics_path}")
-    return metrics_path
+    print(f"Correct predictions: {len(correct_ids)}")
+    print(f"Incorrect predictions: {len(incorrect_ids)}")
+    return metrics, correct_ids, incorrect_ids

@@ -6,10 +6,10 @@ import json
 from pathlib import Path
 
 from client.openrouter_client import run_prompt
-from src.track_one.prompt.v0.prompt import PROMPT_V0
+from src.track_one.prompts.prompt import PROMPT_V0
 
 
-DEFAULT_OUTPUT = Path("src/track_one/generate/output/v0.json")
+DEFAULT_OUTPUT = Path("src/track_one/output/v0.json")
 
 
 def generate(

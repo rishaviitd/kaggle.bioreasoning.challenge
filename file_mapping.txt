@@ -37,8 +37,10 @@ metrics/
   track-specific validation variants.
 
 src/
-  Main development area for the new Track A prompt-evaluation and optimization
-  workflow. This folder is currently empty.
+  Main Track A prompt generation, evaluation, and improvement workflow.
+
+client/
+  Shared fixed-parameter OpenRouter client used by Track A generation.
 
 mlgenx/
   Small helper package for formatting prompts, parsing model answers, and
@@ -222,11 +224,41 @@ metrics/kaggle_metric_track_c.py
 
 src/
 ----
+src/track_one/prompts/prompt.py
+  Stores versioned Track A prompt templates, beginning with PROMPT_V0.
+
+src/track_one/generate.py
+  Formats the selected prompt, runs the fixed OpenRouter client, and saves raw
+  three-seed responses under src/track_one/output/.
+
+src/track_one/evaluate.py
+  Extracts class probabilities from generated logprobs, compares them with
+  train labels, and saves Kaggle and correctness metrics under
+  src/track_one/metrics/.
+
+src/track_one/improve.py
+  Reserved for the GEPA prompt-improvement workflow.
+
+src/track_one/output/
+  Generated response JSON files named by prompt version, such as v0.json.
+
+src/track_one/metrics/
+  Evaluation JSON files named by prompt version, such as v0.json.
+
+src/track_one/research/domain_skill.md
+  Research dictionary for relevant biological domain references.
+
 src/track_one/research/dspy_skill.md
   Research dictionary for DSPy GEPA prompt optimization documentation.
 
 src/track_one/research/oss_prompt_skill.md
   Research dictionary for GPT-OSS prompting and instruction guidelines.
+
+client/
+-------
+client/openrouter_client.py
+  Loads the OpenRouter key, applies fixed Track A model/provider/decoding
+  settings, and runs prompts with seeds 42, 43, and 44.
 
 Top-level configuration files
 -----------------------------
