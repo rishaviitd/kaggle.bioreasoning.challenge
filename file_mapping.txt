@@ -1,0 +1,320 @@
+BioReasoning Challenge repository file map
+=========================================
+
+Purpose from README.md
+----------------------
+This repo is a starter kit for the BioReasoning Kaggle challenge. The task is
+to predict whether a CRISPRi perturbation in mouse BMDMs makes a target gene go
+up, down, or show no significant effect. The repo includes data templates,
+metric code, prompt/parsing helpers, example Track A/B/C pipelines, local tool
+examples, documentation assets, and previously generated output artifacts.
+
+Top-level files
+---------------
+README.md
+  Main project guide. Explains the competition goal, installation with uv,
+  dataset files, Track A/B/C rules, serving GPT-OSS-120B with vLLM, example
+  scripts, submission packaging, evaluation metric, and mlgenx helper APIs.
+
+file_mapping.txt
+  This navigation file. Use it to quickly locate relevant source, data,
+  examples, docs, metrics, and output artifacts without re-reading the whole
+  repository.
+
+Folders to inspect in order
+---------------------------
+data/
+  Competition CSV data and sample submission templates.
+
+docs/
+  Static documentation website and image assets referenced by the README.
+
+examples/
+  Runnable scripts, prompts, and tools for Tracks A, B, and C.
+
+mlgenx/
+  Small helper package for formatting prompts, parsing model answers, and
+  building submissions.
+
+outputs/
+  Generated prompts, response caches, submission CSVs, zips, and copied tools
+  from previous example runs.
+
+Top-level metric/config/serve files
+  Kaggle metric implementations, package configuration, and vLLM serving patch.
+
+data/
+-----
+data/train.csv
+  Labeled training data. Columns are id, pert, gene, label. Contains 7,705
+  examples plus the header. Labels are up, down, or none.
+
+data/test.csv
+  Unlabeled competition prediction rows. Columns are id, pert, gene. Contains
+  1,813 examples plus the header.
+
+data/sample_submission.csv
+  Minimal submission template with id, prediction_up, prediction_down. Useful
+  for basic scoring experiments or as a simple starting frame.
+
+data/sample_submission_track_a.csv
+  Track A prompt-only template. Includes final prediction columns, per-seed
+  prediction columns for seeds 42/43/44, per-seed reasoning traces, token
+  counts, prompt token count, and model_name.
+
+data/sample_submission_track_b.csv
+  Track B agentic tool-use template. Includes final predictions, reasoning
+  trace, token counts, tool-call counts, prompt token count, distinct-tool
+  count, and model_name.
+
+data/sample_submission_track_c.csv
+  Track C fine-tuning template. Includes final predictions, reasoning trace,
+  generated-token count, and model_name.
+
+kaggle_data_description.md
+  Full data documentation. Explains split design, row id format, label
+  definitions, per-track submission columns, zip requirements, evaluation
+  formula, leaderboard metadata, and biological context.
+
+docs/
+-----
+docs/index.html
+  Static website for the BioReasoning Challenge 2026. Contains overview,
+  track descriptions, Kaggle links, data details, evaluation, awards, rules,
+  references, and organizer information. References images from docs/img/.
+
+docs/img/challenge_overview.png
+  Overview figure used by README.md and the website. Shows the challenge flow
+  and track framing.
+
+docs/img/degs_per_pert.png
+  Website data figure about differential-expression genes per perturbation.
+
+docs/img/gene_sample_counts.png
+  Website data figure about gene sample counts.
+
+docs/img/leakage_check.png
+  Website data figure used to show split/leakage checks.
+
+docs/img/logfc_distributions.png
+  Website data figure showing log fold-change distributions.
+
+examples/
+---------
+examples/prompt_template.txt
+  Simple prompt template for Track A/C style inference. Uses {cell_desc},
+  {pert}, and {gene} placeholders and asks for A/B/C effect prediction.
+
+examples/example_prompts.csv
+  Tiny example of pre-written per-row prompts. Columns are id and prompt.
+  Useful with --prompts-csv in Track A scripts.
+
+examples/b_system_prompt.txt
+  Track B single-agent system prompt. Tells the model it is a molecular
+  biology expert with tools and must call submit_answer with A/B/C.
+
+examples/b_multiagent_system_prompt.txt
+  Track B multi-agent coordinator prompt. Defines biology_expert and
+  data_analyst specialists and requires final submit_answer.
+
+examples/track_a_prompt_only.py
+  Track A baseline runner. Reads data/test.csv, builds prompts from mlgenx,
+  a template, or a prompts CSV/JSONL, calls an OpenAI-compatible chat API
+  three times per row with seeds 42/43/44, parses A/B/C answers, averages
+  prediction_up and prediction_down, caches responses, writes submission.csv,
+  writes prompt.txt, and packages a Track A zip.
+
+examples/track_a_logprobs.py
+  Track A variant that asks the server for top logprobs and converts the
+  A/B/C answer-token logprobs into continuous probabilities. Falls back to
+  text parsing if logprobs are unavailable. Intended to be used with
+  serve_with_logprobs_fix.py.
+
+examples/track_b_agentic.py
+  Track B DSPy ReAct single-agent runner. Provides local train-data lookup,
+  mygene.info gene annotations, STRING protein interactions, and submit_answer
+  as tools. Runs over data/test.csv, records reasoning/tool traces, caches
+  results, writes Track B submission artifacts, and copies tool files.
+
+examples/track_b_multiagent.py
+  Track B DSPy multi-agent runner. A coordinator delegates to biology_expert
+  and data_analyst sub-agents, each with relevant tools, then submits A/B/C.
+  Tracks nested trajectories, token usage, and aggregated tool-call counts.
+
+examples/finetune.py
+  Track C training script. Converts data/train.csv into chat-format examples,
+  fine-tunes Qwen/Qwen3-4B-Thinking-2507 with LoRA using trl/peft, and saves
+  either merged model weights or adapter output under outputs/finetuned_model.
+  Includes dependency checks and progress print statements.
+
+examples/track_c_finetune.py
+  Track C inference script for a served fine-tuned model. Reads data/test.csv,
+  formats prompts, calls an OpenAI-compatible endpoint, parses A/B/C answers,
+  caches responses, writes Track C submission.csv/prompt.txt, and packages zip.
+
+examples/tools/
+---------------
+examples/tools/__init__.py
+  Exports the three Track B example tools and their OpenAI-style tool schemas.
+
+examples/tools/train_data_lookup.py
+  Local Track B tool that searches data/train.csv by perturbation and/or gene
+  and returns matching labeled rows in human-readable text. No network needed.
+
+examples/tools/gene_info.py
+  Network-backed Track B tool that queries mygene.info for mouse gene symbol,
+  full name, summary, GO biological process terms, and KEGG pathways.
+
+examples/tools/protein_interactions.py
+  Network-backed Track B tool that queries STRING DB for mouse protein
+  interaction partners and combined confidence scores.
+
+mlgenx/
+-------
+mlgenx/__init__.py
+  Public package exports: format_prompt, format_prompts_from_csv,
+  parse_answer, parse_answers, and build_submission.
+
+mlgenx/prompts.py
+  Prompt-generation helper module. Defines BMDM cell context, zero-shot and
+  few-shot A/B/C prompt templates, answer strings, format_prompt(), and
+  format_prompts_from_csv().
+
+mlgenx/parsing.py
+  Answer parsing and basic submission helper module. Uses regex patterns to
+  classify LLM text as up, down, none, or ambiguous; converts labels to
+  prediction_up/prediction_down pairs; batch-parses answers; and builds a
+  minimal submission DataFrame/CSV.
+
+Top-level metric/config/serve files
+-----------------------------------
+pyproject.toml
+  Python project configuration for package mlgenx. Defines core dependencies
+  pandas, numpy, openai, and dspy. Defines optional train dependencies for
+  LoRA fine-tuning and optional serve dependencies for vLLM, with uv conflicts
+  between train and serve extras.
+
+kaggle_metric.py
+  General Kaggle metric implementation. Validates prediction_up and
+  prediction_down, then returns the average of DE AUROC and direction AUROC.
+  Does not enforce per-track metadata columns.
+
+kaggle_metric_track_a.py
+  Track A metric variant. Requires per-seed prediction/reasoning columns,
+  tokens_used, prompt_tokens, and model_name. Enforces max prompt tokens of
+  4,096, then computes the shared DE/DIR AUROC score.
+
+kaggle_metric_track_b.py
+  Track B metric variant. Requires reasoning_trace, token/tool metadata,
+  prompt_tokens, num_distinct_tools, and model_name. Enforces max 250 tool
+  calls per row, max 16,384 prompt tokens, and max 100 distinct tools.
+
+kaggle_metric_track_c.py
+  Track C metric variant. Requires reasoning_trace, tokens_used, and
+  model_name, then computes the shared DE/DIR AUROC score.
+
+serve_with_logprobs_fix.py
+  Drop-in wrapper for vLLM serve. Patches Starlette JSON rendering so NaN or
+  infinite logprob values are converted to -9999.0 before serialization. Used
+  by examples/track_a_logprobs.py when requesting logprobs from GPT-OSS.
+
+outputs/
+--------
+outputs/track_a/default/prompt.txt
+  Prompt template recorded for a default Track A run. It is the mlgenx
+  zero-shot ternary prompt with {pert} and {gene} placeholders.
+
+outputs/track_a/default/responses_cache.json
+  Cached Track A model responses keyed by row id. Stores per-seed predictions,
+  per-seed reasoning traces, per-seed token counts, total tokens, and averaged
+  final predictions.
+
+outputs/track_a/default/submission.csv
+  Generated Track A submission CSV with the required Track A columns. Contains
+  final predictions, per-seed predictions/reasoning, token counts, prompt token
+  count, and model name.
+
+outputs/track_a/default/submission_track_a.zip
+  Generated Track A Kaggle upload archive. Contains submission.csv and
+  prompt.txt.
+
+outputs/track_b/default/prompt.txt
+  Prompt record for the default Track B single-agent run. Combines the Track B
+  DSPy ReAct system prompt and the zero-shot user prompt template.
+
+outputs/track_b/default/responses_cache.json
+  Cached Track B single-agent responses keyed by row id. Stores final
+  predictions, serialized reasoning/tool traces, token usage, tool-call count,
+  and model name.
+
+outputs/track_b/default/submission.csv
+  Generated Track B single-agent submission CSV with predictions, reasoning
+  trace, token counts, tool-call metadata, prompt token count, distinct-tool
+  count, and model name.
+
+outputs/track_b/default/submission_track_b.zip
+  Generated Track B single-agent Kaggle upload archive. Contains submission,
+  prompt.txt, and copied tools. The archive currently also contains Python
+  __pycache__ entries, so inspect before submitting if Kaggle packaging must
+  be clean.
+
+outputs/track_b/default/tools/__init__.py
+  Copied Track B tool package initializer, identical to examples/tools/__init__.py.
+
+outputs/track_b/default/tools/gene_info.py
+  Copied mygene.info tool, identical to examples/tools/gene_info.py.
+
+outputs/track_b/default/tools/protein_interactions.py
+  Copied STRING DB interaction tool, identical to examples/tools/protein_interactions.py.
+
+outputs/track_b/default/tools/train_data_lookup.py
+  Copied local train-data lookup tool, identical to examples/tools/train_data_lookup.py.
+
+outputs/track_b/multiagent/prompt.txt
+  Prompt record for the Track B multi-agent run. Combines the coordinator
+  system prompt with biology_expert/data_analyst roles and the zero-shot user
+  prompt template.
+
+outputs/track_b/multiagent/responses_cache.json
+  Cached Track B multi-agent responses keyed by row id. Stores final
+  predictions, coordinator trajectory, sub-agent trajectories, token usage,
+  aggregated tool-call count, and model name.
+
+outputs/track_b/multiagent/submission.csv
+  Generated Track B multi-agent submission CSV with nested reasoning traces,
+  predictions, token/tool metadata, prompt token count, distinct-tool count,
+  and model name.
+
+outputs/track_b/multiagent/submission_track_b.zip
+  Generated Track B multi-agent Kaggle upload archive. Contains submission,
+  prompt.txt, and copied tools. The archive currently also contains Python
+  __pycache__ entries, so inspect before submitting if Kaggle packaging must
+  be clean.
+
+outputs/track_b/multiagent/tools/__init__.py
+  Copied Track B tool package initializer, identical to examples/tools/__init__.py.
+
+outputs/track_b/multiagent/tools/gene_info.py
+  Copied mygene.info tool, identical to examples/tools/gene_info.py.
+
+outputs/track_b/multiagent/tools/protein_interactions.py
+  Copied STRING DB interaction tool, identical to examples/tools/protein_interactions.py.
+
+outputs/track_b/multiagent/tools/train_data_lookup.py
+  Copied local train-data lookup tool, identical to examples/tools/train_data_lookup.py.
+
+outputs/track_c/prompt.txt
+  Prompt template recorded for a Track C inference run with
+  Qwen/Qwen3-4B-Thinking-2507. Uses the same zero-shot ternary question shape.
+
+outputs/track_c/responses_cache.json
+  Cached Track C model responses keyed by row id. Stores final predictions,
+  reasoning trace, generated token count, and model name.
+
+outputs/track_c/submission.csv
+  Generated Track C submission CSV with id, prediction_up, prediction_down,
+  reasoning_trace, tokens_used, and model_name.
+
+outputs/track_c/submission_track_c.zip
+  Generated Track C Kaggle upload archive. Contains submission.csv and
+  prompt.txt.
