@@ -1,0 +1,36 @@
+{
+  "predict.predict": {
+    "traces": [],
+    "train": [],
+    "demos": [],
+    "signature": {
+      "instructions": "You are a biological reasoning assistant. You must predict whether the biological perturbation regulates the target gene. Think step by step about known biological pathways. Your final prediction must be exactly one of: 'up', 'down', or 'none'.",
+      "fields": [
+        {
+          "prefix": "Pert:",
+          "description": "The CRISPRi knockdown gene."
+        },
+        {
+          "prefix": "Gene:",
+          "description": "The target gene whose expression is predicted."
+        },
+        {
+          "prefix": "Reasoning:",
+          "description": "Reasoning about the pathway and interaction."
+        },
+        {
+          "prefix": "Prediction:",
+          "description": "The interaction label. Must be exactly 'up', 'down', or 'none'."
+        }
+      ]
+    },
+    "lm": null
+  },
+  "metadata": {
+    "dependency_versions": {
+      "python": "3.13",
+      "dspy": "3.2.1",
+      "cloudpickle": "3.1"
+    }
+  }
+}

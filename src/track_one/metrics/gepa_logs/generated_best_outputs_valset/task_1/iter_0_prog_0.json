@@ -1,0 +1,4 @@
+{
+    "reasoning": "INTS9 is a core subunit of the Integrator complex, which primarily participates in the 3\u2032\u2011end processing of small nuclear RNAs and modulates RNA polymerase\u202fII transcriptional termination and pause\u2011release for a subset of protein\u2011coding genes. While loss of INTS9 can cause broad transcriptional dysregulation, there is no well\u2011characterized direct regulatory relationship between INTS9 and the leucine\u2011rich repeat\u2011containing protein LRRC25. LRRC25 expression is mainly driven by innate\u2011immune signaling pathways (e.g., interferon response) rather than by the Integrator complex. Consequently, a CRISPRi\u2011mediated knockdown of INTS9 is unlikely to specifically up\u2011 or down\u2011regulate LRRC25; any effect would be indirect and not predictable from known pathways. Therefore the most appropriate label is \u201cnone\u201d.",
+    "prediction": "none"
+}

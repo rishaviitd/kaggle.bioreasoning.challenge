@@ -31,8 +31,11 @@ class TrackAStudent(dspy.Module):
         return self.predict(pert=pert, gene=gene)
 
 
-def load_data(filepath: Path):
+def load_data(filepath: Path, limit: int | None = None):
     df = pd.read_csv(filepath)
+    if limit is not None:
+        df = df.head(limit)
+
     examples = []
     for _, row in df.iterrows():
         ex = dspy.Example(
@@ -44,7 +47,11 @@ def load_data(filepath: Path):
     return examples
 
 
-def main():
+def run_optimization(
+    train_limit: int | None = None,
+    val_limit: int | None = None,
+    max_full_evals: int = 3,
+):
     print("Setting up models...")
     student_lm = get_student_lm()
     refiner_lm = get_refiner_lm()
@@ -52,8 +59,8 @@ def main():
     dspy.settings.configure(lm=student_lm)
 
     print("Loading datasets...")
-    trainset = load_data(TRAIN_DATA)
-    valset = load_data(VAL_DATA)
+    trainset = load_data(TRAIN_DATA, limit=train_limit)
+    valset = load_data(VAL_DATA, limit=val_limit)
 
     print(f"Loaded {len(trainset)} training examples and {len(valset)} validation examples.")
 
@@ -61,7 +68,8 @@ def main():
     gepa = dspy.GEPA(
         metric=gepa_kaggle_metric,
         reflection_lm=refiner_lm,
-        max_full_evals=3,
+        max_full_evals=max_full_evals,
+        num_threads=1,
         track_stats=True,
         log_dir=GEPA_LOG_DIR,
     )
@@ -79,6 +87,11 @@ def main():
     Path(OPTIMIZED_STUDENT_PATH).parent.mkdir(parents=True, exist_ok=True)
     optimized_student.save(OPTIMIZED_STUDENT_PATH)
     print(f"Saved optimized module to {OPTIMIZED_STUDENT_PATH}")
+    return optimized_student
+
+
+def main():
+    run_optimization()
 
 if __name__ == "__main__":
     main()
