@@ -9,7 +9,7 @@ import re
 from pathlib import Path
 from typing import Any
 
-from sklearn.metrics import roc_auc_score
+from sklearn.metrics import f1_score, precision_score, roc_auc_score
 
 
 DEFAULT_GENERATION = Path("src/track_one/output/v0.json")
@@ -63,7 +63,28 @@ def _mean(values: list[float]) -> float | None:
     return sum(values) / len(values) if values else None
 
 
-def _calculate_metrics(rows: list[dict[str, Any]]) -> dict[str, float | None]:
+def _response_content(response: dict[str, Any]) -> str:
+    choices = response.get("choices") or []
+    if not choices:
+        return ""
+    message = choices[0].get("message") or {}
+    return message.get("content") or ""
+
+
+def _content_label(response: dict[str, Any]) -> str | None:
+    content = _response_content(response)
+    tag_match = re.search(r"<answer>\s*([ABCabc])\s*</answer>", content)
+    if tag_match:
+        return TOKEN_TO_LABEL[tag_match.group(1).upper()]
+
+    loose_match = re.search(r"\b([ABCabc])\b", content)
+    if loose_match:
+        return TOKEN_TO_LABEL[loose_match.group(1).upper()]
+
+    return None
+
+
+def _calculate_full_metrics(rows: list[dict[str, Any]]) -> dict[str, float | None]:
     metrics: dict[str, float | None] = {
         "kaggle_score": None,
         "de_auroc": None,
@@ -139,11 +160,86 @@ def _calculate_metrics(rows: list[dict[str, Any]]) -> dict[str, float | None]:
     return metrics
 
 
+def _calculate_cost_efficient_metrics(rows: list[dict[str, Any]]) -> dict[str, Any]:
+    metrics: dict[str, Any] = {
+        "macro_f1": None,
+        "accuracy": None,
+        "macro_precision": None,
+        "per_class_f1": {label: None for label in LABELS},
+        "per_class_precision": {label: None for label in LABELS},
+        "per_class_accuracy": {label: None for label in LABELS},
+        "seed_agreement_rate": None,
+    }
+    if not rows:
+        return metrics
+
+    true_labels = [row["true_label"] for row in rows]
+    predicted_labels = [row["predicted_label"] for row in rows]
+    per_class = f1_score(
+        true_labels,
+        predicted_labels,
+        labels=list(LABELS),
+        average=None,
+        zero_division=0,
+    )
+    per_class_precision = precision_score(
+        true_labels,
+        predicted_labels,
+        labels=list(LABELS),
+        average=None,
+        zero_division=0,
+    )
+
+    metrics["macro_f1"] = float(
+        f1_score(
+            true_labels,
+            predicted_labels,
+            labels=list(LABELS),
+            average="macro",
+            zero_division=0,
+        )
+    )
+    metrics["accuracy"] = _mean([float(row["correct"]) for row in rows])
+    metrics["macro_precision"] = float(
+        precision_score(
+            true_labels,
+            predicted_labels,
+            labels=list(LABELS),
+            average="macro",
+            zero_division=0,
+        )
+    )
+    metrics["per_class_f1"] = {
+        label: float(score) for label, score in zip(LABELS, per_class)
+    }
+    metrics["per_class_precision"] = {
+        label: float(score) for label, score in zip(LABELS, per_class_precision)
+    }
+    metrics["per_class_accuracy"] = {
+        label: _mean(
+            [
+                float(row["correct"])
+                for row in rows
+                if row["true_label"] == label
+            ]
+        )
+        for label in LABELS
+    }
+    metrics["seed_agreement_rate"] = _mean(
+        [float(row["seed_agreement"]) for row in rows]
+    )
+    return metrics
+
+
 def evaluate(
     generation_path: Path = DEFAULT_GENERATION,
     metrics_path: Path = DEFAULT_METRICS,
     train_path: Path = TRAIN_DATA,
-) -> tuple[dict[str, float | None], list[str], list[str]]:
+    evaluation_type: str = "full",
+) -> tuple[dict[str, Any], list[str], list[str]]:
+    if evaluation_type not in {"full", "cost_efficient"}:
+        raise ValueError("evaluation_type must be full or cost_efficient")
+
     print(f"Loading generated responses from {generation_path}...")
     generation = json.loads(generation_path.read_text(encoding="utf-8"))
     labels = _load_labels(train_path)
@@ -160,39 +256,60 @@ def evaluate(
             failures.append({"id": row_id, "reason": "label_not_found"})
             continue
 
-        seed_probabilities = []
+        seed_predictions = []
         for seed in (42, 43, 44):
             response = (record.get("responses") or {}).get(str(seed))
-            probabilities = _seed_probabilities(response or {})
-            if probabilities is None:
-                failures.append(
-                    {"id": row_id, "reason": f"logprob_extraction_failed_seed_{seed}"}
-                )
-                seed_probabilities = []
+            if evaluation_type == "full":
+                prediction = _seed_probabilities(response or {})
+                failure_reason = f"logprob_extraction_failed_seed_{seed}"
+            else:
+                prediction = _content_label(response or {})
+                failure_reason = f"answer_extraction_failed_seed_{seed}"
+
+            if prediction is None:
+                failures.append({"id": row_id, "reason": failure_reason})
+                seed_predictions = []
                 break
 
-            seed_probabilities.append(probabilities)
+            seed_predictions.append(prediction)
             usage = response.get("usage") or {}
             total_cost += float(usage.get("cost") or 0.0)
             total_tokens += int(usage.get("total_tokens") or 0)
 
-        if len(seed_probabilities) != 3:
+        if len(seed_predictions) != 3:
             continue
 
-        probabilities = {
-            label: _mean([item[label] for item in seed_probabilities])
-            for label in LABELS
-        }
-        predicted_label = max(LABELS, key=lambda label: probabilities[label])
-        confidence = probabilities[predicted_label]
-        entropy = -sum(
-            probability * math.log(max(probability, 1e-15))
-            for probability in probabilities.values()
-        )
-        seed_labels = [
-            max(LABELS, key=lambda label: item[label])
-            for item in seed_probabilities
-        ]
+        if evaluation_type == "full":
+            probabilities = {
+                label: _mean([item[label] for item in seed_predictions])
+                for label in LABELS
+            }
+            predicted_label = max(LABELS, key=lambda label: probabilities[label])
+            confidence = probabilities[predicted_label]
+            entropy = -sum(
+                probability * math.log(max(probability, 1e-15))
+                for probability in probabilities.values()
+            )
+            seed_labels = [
+                max(LABELS, key=lambda label: item[label])
+                for item in seed_predictions
+            ]
+            row_extra = {
+                "probabilities": probabilities,
+                "true_label_probability": probabilities[true_label],
+                "confidence": confidence,
+                "entropy": entropy,
+            }
+        else:
+            seed_labels = seed_predictions
+            predicted_label = max(
+                LABELS,
+                key=lambda label: (
+                    seed_labels.count(label),
+                    -LABELS.index(label),
+                ),
+            )
+            row_extra = {"seed_predictions": seed_predictions}
 
         evaluated_rows.append(
             {
@@ -200,21 +317,30 @@ def evaluate(
                 "true_label": true_label,
                 "predicted_label": predicted_label,
                 "correct": predicted_label == true_label,
-                "probabilities": probabilities,
-                "true_label_probability": probabilities[true_label],
-                "confidence": confidence,
-                "entropy": entropy,
                 "seed_agreement": len(set(seed_labels)) == 1,
+                **row_extra,
             }
         )
 
-    print(f"Extracted probabilities for {len(evaluated_rows)} rows.")
-    metrics = _calculate_metrics(evaluated_rows)
+    print(f"Evaluated {len(evaluated_rows)} rows.")
+    if evaluation_type == "full":
+        metrics = _calculate_full_metrics(evaluated_rows)
+        primary_score_name = "kaggle_score"
+    else:
+        metrics = _calculate_cost_efficient_metrics(evaluated_rows)
+        primary_score_name = "macro_f1"
+    primary_score = metrics[primary_score_name]
+    metrics = {
+        "primary_score_name": primary_score_name,
+        "primary_score": primary_score,
+        **metrics,
+    }
     correct_ids = [row["id"] for row in evaluated_rows if row["correct"]]
     incorrect_ids = [row["id"] for row in evaluated_rows if not row["correct"]]
 
     result = {
         "prompt_version": generation.get("prompt_version", "v0"),
+        "evaluation_type": evaluation_type,
         "source": str(generation_path),
         "rows_requested": len(generation.get("records", [])),
         "rows_evaluated": len(evaluated_rows),
