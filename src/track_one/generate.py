@@ -8,7 +8,7 @@ from pathlib import Path
 from src.track_one.prompts.prompt import PROMPT_V0
 
 
-DEFAULT_PROVIDER = "openrouter"
+DEFAULT_PROVIDER = "nvidia"
 OUTPUT_DIR = Path("src/track_one/output")
 
 
