@@ -236,6 +236,21 @@ src/track_one/evaluate.py
   train labels, and saves Kaggle and correctness metrics under
   src/track_one/metrics/.
 
+src/track_one/gepa_config.py
+  DSPy LM configuration for NVIDIA GPT-OSS student inference and GLM-5.1 GEPA
+  reflection.
+
+src/track_one/gepa_metric.py
+  Label-based GEPA feedback metric. Uses ground-truth labels for score and
+  returns textual feedback for the reflection model.
+
+src/track_one/split_data.py
+  Creates local GEPA train/validation/test CSV splits under data/gepa_splits/.
+
+src/track_one/optimize.py
+  Runs DSPy GEPA using the Track One student module, local GEPA splits, and the
+  label-based feedback metric.
+
 src/track_one/improve.py
   Reserved for the GEPA prompt-improvement workflow.
 

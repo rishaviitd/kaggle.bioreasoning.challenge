@@ -3,7 +3,7 @@ import numpy as np
 from pathlib import Path
 
 TRAIN_CSV = Path("data/train.csv")
-OUTPUT_DIR = Path("data/splits")
+OUTPUT_DIR = Path("data/gepa_splits")
 
 def main():
     df = pd.read_csv(TRAIN_CSV)
