@@ -18,22 +18,44 @@ from openai import OpenAI
 from sklearn.metrics import accuracy_score, confusion_matrix, f1_score, precision_score, recall_score
 from tqdm.auto import tqdm
 
+ROOT_DIR = Path(__file__).resolve().parents[2]
+if str(ROOT_DIR) not in sys.path:
+    sys.path.insert(0, str(ROOT_DIR))
+
 from src.track_one.prompts.prompt import PROMPT_V0
 
 
 VAL_PATH = Path("data/gepa_splits/gepa_val.csv")
 OUTPUT_DIR = Path("src/track_one/metrics/model_benchmarks")
 OPENROUTER_BASE_URL = "https://openrouter.ai/api/v1"
-MAX_TOKENS = 30_000
-TEMPERATURE = 1.0
+DEFAULT_MAX_TOKENS = 30_000
+TEMPERATURE = 0.0
 TOP_P = 1.0
 MAX_WORKERS = 4
 LABELS = ["up", "down", "none"]
 LETTER_TO_LABEL = {"A": "up", "B": "down", "C": "none"}
+MODEL_OVERRIDES = {
+    "openai/gpt-5.4-mini": {
+        "reasoning_effort": "medium",
+        "max_tokens": 30_000,
+    },
+    "deepseek/deepseek-v4-pro": {
+        "reasoning_effort": "high",
+        "max_tokens": 8_000,
+    },
+}
 
 
 def _model_slug(model: str) -> str:
     return re.sub(r"[^A-Za-z0-9_.-]+", "__", model).strip("_")
+
+
+def _reasoning_effort(model: str) -> str | None:
+    return MODEL_OVERRIDES.get(model, {}).get("reasoning_effort")
+
+
+def _max_tokens(model: str) -> int:
+    return int(MODEL_OVERRIDES.get(model, {}).get("max_tokens", DEFAULT_MAX_TOKENS))
 
 
 def _load_val_rows() -> list[dict[str, str]]:
@@ -80,14 +102,18 @@ def _parse_prediction(content: str) -> str:
 def _send_one(client: OpenAI, model: str, row: dict[str, str]) -> dict[str, Any]:
     row_id = row.get("id") or f"{row['pert']}_{row['gene']}"
     prompt = PROMPT_V0.format(pert=row["pert"], gene=row["gene"])
+    reasoning_effort = _reasoning_effort(model)
+    max_tokens = _max_tokens(model)
     request = {
         "model": model,
         "messages": [{"role": "user", "content": prompt}],
         "temperature": TEMPERATURE,
         "top_p": TOP_P,
-        "max_tokens": MAX_TOKENS,
+        "max_tokens": max_tokens,
         "timeout": 300,
     }
+    if reasoning_effort:
+        request["extra_body"] = {"reasoning": {"enabled": True, "effort": reasoning_effort}}
 
     start = time.monotonic()
     try:
@@ -156,13 +182,23 @@ def _metrics(results: list[dict[str, Any]]) -> dict[str, Any]:
 def benchmark(model: str) -> Path:
     rows = _load_val_rows()
     client = _client()
-    output_path = OUTPUT_DIR / f"{_model_slug(model)}__prompt_v0__val.json"
+    reasoning_effort = _reasoning_effort(model)
+    max_tokens = _max_tokens(model)
+    reasoning_slug = reasoning_effort or "none"
+    output_path = OUTPUT_DIR / (
+        f"{_model_slug(model)}__prompt_v0__val__reasoning_{reasoning_slug}"
+        f"__max_tokens_{max_tokens}.json"
+    )
     output_path.parent.mkdir(parents=True, exist_ok=True)
 
     print(f"Benchmarking model: {model}")
     print(f"Rows: {len(rows)} from {VAL_PATH}")
     print(f"Prompt: PROMPT_V0")
-    print(f"Settings: temperature={TEMPERATURE}, top_p={TOP_P}, max_tokens={MAX_TOKENS}")
+    print(
+        "Settings: "
+        f"temperature={TEMPERATURE}, top_p={TOP_P}, max_tokens={max_tokens}, "
+        f"reasoning_effort={reasoning_effort or 'none'}"
+    )
     print(f"OpenRouter parallel workers: {MAX_WORKERS}")
 
     results: list[dict[str, Any]] = []
@@ -176,8 +212,9 @@ def benchmark(model: str) -> Path:
                 "settings": {
                     "temperature": TEMPERATURE,
                     "top_p": TOP_P,
-                    "max_tokens": MAX_TOKENS,
+                    "max_tokens": max_tokens,
                     "max_workers": MAX_WORKERS,
+                    "reasoning_effort": reasoning_effort,
                 },
                 "summary": _metrics(results),
                 "rows": sorted(results, key=lambda row: row["id"]),
@@ -190,8 +227,9 @@ def benchmark(model: str) -> Path:
         "settings": {
             "temperature": TEMPERATURE,
             "top_p": TOP_P,
-            "max_tokens": MAX_TOKENS,
+            "max_tokens": max_tokens,
             "max_workers": MAX_WORKERS,
+            "reasoning_effort": reasoning_effort,
         },
         "summary": _metrics(results),
         "rows": sorted(results, key=lambda row: row["id"]),

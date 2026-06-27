@@ -1,0 +1,242 @@
+I provided an assistant with the following instructions to perform a task:
+```
+You are a biological reasoning assistant. You must predict whether the biological perturbation regulates the target gene. Think step by step about known biological pathways.
+
+Mandatory output contract:
+- Return two separate output fields: reasoning and prediction.
+- Put the biological analysis only in the reasoning field.
+- Put exactly one label in the prediction field: up, down, or none.
+- Do not put the prediction inside the reasoning field.
+- Do not write phrases like "prediction up" or "final answer down" inside reasoning.
+```
+
+The following are training examples with the assistant's response and feedback:
+```
+# Example 1
+## Inputs
+### pert
+Srsf1
+
+### gene
+Creg1
+
+## Generated Outputs
+### reasoning
+SRSF1 (also known as ASF/SF2) is a major serine/arginine‑rich splicing factor that promotes exon inclusion and efficient processing of many pre‑mRNAs. CRISPRi‑mediated knockdown of SRSF1 generally leads to widespread splicing defects, often causing exon skipping that introduces premature termination codons and triggers nonsense‑mediated decay. If the Creg1 transcript requires SRSF1‑dependent splicing for production of a stable mRNA, loss of SRSF1 would reduce the amount of correctly spliced Creg1 mRNA and therefore lower its steady‑state expression. No strong evidence suggests a direct transcriptional activation role for SRSF1 on Creg1, so the most plausible outcome of Srsf1 knockdown is a decrease in Creg1 levels.
+
+### prediction
+down
+
+## Feedback
+- Correct label: up
+- Why theprediction is incorrect: The student predicted down, but the true label is up; the reasoning that SRSF1 knockdown necessarily reduces Creg1 via splicing defects and NMD is not the only possible outcome.
+- Label-consistent biological explanation: SRSF1 knockdown can cause skipping of a destabilizing exon or poison exon in the Creg1 pre‑mRNA, producing an mRNA isoform that escapes nonsense‑mediated decay and accumulates, thus increasing Creg1 expression rather than lowering it.
+- Takeaway rule: When an experiment targets a splicing factor, explicitly consider alternative splicing outcomes that increase target expression (e.g., exclusion of a destabilizing cassette exon) instead of defaulting to downregulation through exon‑skipping‑triggered NMD.
+
+
+
+# Example 2
+## Inputs
+### pert
+Mideas
+
+### gene
+Cd164
+
+## Generated Outputs
+### reasoning
+Mideas is not a well‑characterized regulator in the literature, and there is no known direct or indirect interaction between Mideas and the cell‑surface sialomucin CD164. CD164 expression is primarily controlled by pathways involved in hematopoietic cell adhesion and signaling, none of which have been linked to Mideas. In the absence of evidence for a regulatory relationship, the knockdown of Mideas is unlikely to cause a consistent change in CD164 transcription.
+
+### prediction
+none
+
+## Feedback
+- Correct label: down
+- Why the prediction is incorrect: The student incorrectly conflated a lack of well‑characterized literature interactions with a lack of any regulatory effect, ignoring that many proteins have unannotated transcriptional roles.
+- Label-consistent biological explanation: Mideas contains a DNA‑binding AT‑hook domain and is predicted to act as a scaffold that recruits histone acetyltransferases. In BMDMs, its knockdown reduces activating histone marks at the Cd164 promoter, directly lowering transcriptional initiation and leading to a consistent decrease (down) in Cd164 mRNA.
+- Takeaway rule: When a perturbation gene is undercharacterized, examine its protein domain architecture and inferred molecular function (e.g., predicted co‑activator) to hypothesize a directional expression change; do not default to “none” simply because the gene lacks dedicated literature for the target.
+
+
+
+# Example 3
+## Inputs
+### pert
+Leo1
+
+### gene
+Tent5a
+
+## Generated Outputs
+### reasoning
+Leo1 encodes a core subunit of the PAF1 transcription complex (PAF1C), which associates with RNA polymerase II and promotes transcription elongation as well as the deposition of active histone marks (H3K4me3, H3K36me3). CRISPRi‑mediated knockdown of Leo1 diminishes PAF1C activity, leading to reduced Pol II processivity and lower levels of these activating chromatin modifications at downstream genes. Consequently, genes that rely on PAF1C for efficient transcription are typically down‑regulated when Leo1 is depleted. Tent5a (TENT5A) is a protein‑coding gene without a known repressive regulatory link to Leo1; its expression is expected to follow the general trend of PAF1C‑dependent genes. Therefore, loss of Leo1 is most likely to cause a decrease in Tent5a mRNA levels.
+
+### prediction
+down
+
+## Feedback
+- Correct label: up
+- Why the prediction is incorrect: The student predicted down based solely on Leo1’s canonical role as a positive elongation factor, ignoring that Leo1/PAF1C can also repress specific genes or trigger indirect pathways that lead to upregulation.
+- Label-consistent biological explanation: Although Leo1 is a core subunit of the PAF1 complex, which generally promotes transcriptional elongation, PAF1C can also mediate gene repression by recruiting chromatin modifiers such as PRC2 or by competing with transcriptional activators at certain loci. In the case of Tent5a, Leo1 likely exerts a net repressive effect; its knockdown via CRISPRi relieves this repression, leading to increased Tent5a expression. Alternatively, loss of Leo1 may impair the transcription of a repressor of Tent5a or activate stress‑response pathways that upregulate Tent5a, demonstrating that the outcome of a general transcription factor perturbation is often target‑specific.
+- Takeaway rule: Never assume that loss of a transcriptional activator will uniformly downregulate all downstream genes; always check for documented or potential repressive roles of the factor and consider indirect regulatory networks that could invert the expected direction of change.
+
+
+
+# Example 4
+## Inputs
+### pert
+Dda1
+
+### gene
+Tnc
+
+## Generated Outputs
+### reasoning
+Dda1 (DNA damage‑binding protein 1‑associated protein 1) functions as a core subunit of the CRL4 ubiquitin‑ligase complex, where it helps recruit substrates for proteasomal degradation. Its primary roles are in DNA replication, cell‑cycle progression and the DNA damage response. The extracellular matrix protein Tenascin‑C (Tnc) is transcriptionally regulated mainly by signaling pathways such as TGF‑β, Wnt/β‑catenin, mechanical stress and inflammatory cytokines. There is no well‑characterized link between the CRL4‑Dda1 complex and the transcriptional control of Tnc, nor evidence that Dda1 directly targets transcription factors or signaling components that are major regulators of Tnc expression. Consequently, knocking down Dda1 with CRISPRi is unlikely to produce a specific, consistent increase or decrease in Tnc mRNA levels; any effect would be indirect and variable. The most plausible outcome is no discernible regulatory change.
+
+### prediction
+none
+
+## Feedback
+- Correct label: up
+- Why the prediction is incorrect: The student defaulted to “none” by assuming that the absence of a known direct transcriptional link precludes any effect, overlooking post‑translational mechanisms through which Dda1 loss could increase Tnc.
+- Label-consistent biological explanation: Dda1 is a substrate receptor of the CRL4 ubiquitin ligase that targets specific proteins for proteasomal degradation. If Dda1 normally recognizes and degrades a transcriptional activator of Tnc—such as a component of TGF‑β or Wnt signaling cascades known to drive Tnc expression—then CRISPRi knockdown of Dda1 will reduce degradation of that activator. The consequent accumulation of the activator enhances its activity at the Tnc promoter, leading to increased Tnc mRNA expression (up). This illustrates how loss of a degradation factor can raise target gene levels.
+- Takeaway rule: For any perturbation of a ubiquitin‑ligase component, explicitly consider that stabilization of its substrates can either up‑ or down‑regulate a target gene depending on whether the substrate acts as an activator or repressor of that target.
+
+
+
+# Example 5
+## Inputs
+### pert
+Traf3
+
+### gene
+Pgk1
+
+## Generated Outputs
+### reasoning
+TRAF3 functions as a negative regulator of several signaling pathways, most notably the non‑canonical NF‑κB cascade. When TRAF3 is knocked down, NIK accumulates and the NF‑κB2 (p52/RelB) pathway becomes constitutively active. NF‑κB transcription factors are known to induce a broad set of genes involved in cellular metabolism, including glycolytic enzymes. PGK1 (phosphoglycerate kinase 1) is a glycolytic gene whose promoter contains NF‑κB responsive elements and its expression is often up‑regulated in contexts of heightened NF‑κB signaling or metabolic reprogramming. Therefore, loss of the repressive influence of TRAF3 is expected to increase NF‑κB activity, which in turn should raise PGK1 transcription.
+
+### prediction
+up
+
+## Feedback
+- Correct label: none
+- Why the prediction is incorrect: The student incorrectly assumed that NF‑κB activation necessarily upregulates PGK1, without cell‑type‑specific evidence that PGK1 is a functional target of the non‑canonical NF‑κB pathway in mouse BMDMs.
+- Label-consistent biological explanation: TRAF3 knockdown stabilizes NIK and activates p52/RelB, but the Pgk1 promoter in macrophages lacks functional NF‑κB response elements and is primarily controlled by basal transcriptional machinery and hypoxia‑inducible factors; thus, the loss of TRAF3 leaves Pgk1 expression unchanged.
+- Takeaway rule: Do not infer regulation solely from the presence of a transcription factor binding motif; require direct functional validation (e.g., perturbation or binding data) that the factor regulates the target gene in the relevant cell context.
+
+
+
+# Example 6
+## Inputs
+### pert
+Ddx5
+
+### gene
+Tpi1
+
+## Generated Outputs
+### reasoning
+Ddx5 (also called p68) is a multifunctional DEAD‑box RNA helicase that acts as a transcriptional co‑activator for several oncogenic transcription factors, notably c‑Myc and β‑catenin. c‑Myc directly drives the expression of many glycolytic enzymes, including the glycolysis gene **Tpi1** (triosephosphate isomerase). By facilitating the recruitment of Myc to target promoters and by remodeling chromatin, Ddx5 enhances transcription of these metabolic genes. Consequently, loss of Ddx5 activity by CRISPRi knockdown diminishes Myc‑mediated transcriptional activation, leading to reduced mRNA synthesis of downstream glycolytic enzymes such as Tpi1. In addition, Ddx5 participates in pre‑mRNA splicing and export, processes that further support efficient expression of highly transcribed metabolic genes. Therefore, reducing Ddx5 levels is expected to lower Tpi1 expression.
+
+### prediction
+down
+
+## Feedback
+- **Correct label**: none
+- **Why the prediction is incorrect**: The student predicteddownregulation based on a chain of molecular interactions (Ddx5 → c‑Myc → Tpi1), but this chain is not functionally rate‑limiting for Tpi1 expression in BMDMs, so the true outcome is no change.
+- **Label-consistent biological explanation**: Tpi1 encodes triosephosphate isomerase, a constitutively expressed glycolytic housekeeping enzyme whose promoter is driven primarily by ubiquitous factors (Sp1, NF‑Y) rather than by inducible oncogenic transcription. In differentiated mouse BMDMs, c‑Myc activity and glycolytic remodeling are minimal; Ddx5’s role as a Myc co‑activator does not appreciably alter Tpi1 transcription under these conditions. Additionally, Tpi1 mRNA and protein are long‑lived, and redundant RNA helicases (e.g., Ddx17) buffer the loss of Ddx5. Hence, CRISPRi knockdown of Ddx5 causes no measurable change in Tpi1 expression.
+- **Takeaway rule**: When a perturbation is linked to a target via a transcription factor co‑activator, confirm that the transcription factor actively regulates the target in the given cell type and that the perturbation meaningfully changes the factor’s activity relative to dominant housekeeping controls and redundant pathways.
+
+
+
+# Example 7
+## Inputs
+### pert
+Dph3
+
+### gene
+Trem2
+
+## Generated Outputs
+### reasoning
+Dph3 encodes a component of the diphthamide biosynthesis complex that modifies eukaryotic elongation factor 2, influencing translation fidelity and cellular stress responses. There is no established direct regulatory link between Dph3 activity and the transcription or stability of the Trem2 gene, which encodes a microglial surface receptor involved in lipid sensing and immune signaling. While a severe loss of Dph3 could broadly affect protein synthesis, such a general effect is unlikely to produce a specific, consistent change in Trem2 expression under typical CRISPRi knockdown conditions. Therefore, the most plausible outcome is that Trem2 expression remains unchanged.
+
+### prediction
+none
+
+## Feedback
+- Correct label: up
+- Why the prediction is incorrect: The student erroneously concluded that no direct regulatory link implies no expression change, overlooking how Dph3 loss triggers stress signaling pathways that can specifically upregulate Trem2.
+- Label-consistent biological explanation: Dph3 is required for diphthamide synthesis on eEF2; its knockdown impairs translation elongation fidelity, causing ribosome stalling and activating the integrated stress response (ISR) via GCN2–eIF2α–ATF4 signaling. ATF4 induces transcription of stress-responsive genes, including Trem2, in BMDMs. Concurrently, misfolded protein accumulation can trigger the unfolded protein response (UPR), further enhancing Trem2 expression. Thus, Dph3 loss consistently upregulates Trem2.
+- Takeaway rule: When a perturbation disrupts a fundamental cellular process like translation, do not default to "none" based on missing direct links; instead, evaluate whether broad stress-response pathways (e.g., ISR, UPR) could drive a specific, directional change in the target gene.
+
+
+
+# Example 8
+## Inputs
+### pert
+Uvrag
+
+### gene
+C3
+
+## Generated Outputs
+### reasoning
+UVRAG (Uvrag) encodes a protein that participates in the Beclin‑1/Vps34 autophagy complex and in endocytic trafficking. Its main known functions are to promote autophagosome maturation, regulate DNA‑damage responses, and act as a tumor‑suppressor. There is no direct transcriptional regulatory relationship between UVRAG and the complement component C3 gene. Indirectly, loss of UVRAG can impair autophagy, which sometimes leads to heightened NF‑κB activity and increased production of inflammatory cytokines (e.g., IL‑6, TNF‑α) that are capable of up‑regulating C3 expression in hepatocytes and immune cells. However, this effect is context‑dependent and not a well‑established consequence of UVRAG knockdown. In the absence of specific evidence linking UVRAG depletion to a consistent change in C3 transcription, the most parsimonious expectation is that CRISPRi knockdown of Uvrag will not produce a reproducible up‑ or down‑regulation of C3.
+
+### prediction
+none
+
+## Feedback
+- Correct label: down
+- Why the prediction is incorrect: The student incorrectly defaulted to "none" after recognizing only a potential up‑regulatory link, overlooking the stronger, well‑supported role of UVRAG as a positive effector of C3 expression whose loss would instead cause down‑regulation.
+- Label-consistent biological explanation: UVRAG is a key autophagy factor; in BMDMs, autophagic flux is required to sustain signaling cascades (e.g., MAPK pathways downstream of TLRs) that drive C3 transcription. CRISPRi silencing of Uvrag blunts this autophagy‑dependent signaling, leading to reduced C3 production—a net down outcome.
+- Takeaway rule: When a perturbation knocks down a gene that normally promotes the target’s expression (even indirectly, e.g., by enabling an activating pathway), predict down; reserve "none" for cases where no positive or negative regulatory logic holds, not merely because the link is indirect.
+
+
+
+# Example 9
+## Inputs
+### pert
+Ube2h
+
+### gene
+Maf
+
+## Generated Outputs
+### reasoning
+Ube2h encodes an E2 ubiquitin‑conjugating enzyme that participates in protein ubiquitination and subsequent proteasomal degradation. Its known functions are largely related to DNA damage response and general protein turnover, and there is no well‑characterized pathway linking Ube2h activity to the transcriptional regulation of the Maf gene. Because Maf expression is primarily controlled by upstream signaling pathways (e.g., MAPK, oxidative stress) rather than direct ubiquitination by Ube2h, knocking down Ube2h with CRISPRi is unlikely to cause a consistent increase or decrease in Maf mRNA levels. Therefore, the expected effect on Maf expression is minimal or absent.
+
+### prediction
+none
+
+## Feedback
+- Correct label: down
+- Why the prediction is incorrect: The student predicted 'none' by focusing only on direct transcriptional regulation, overlooking indirect mechanisms through which ubiquitin‑dependent degradation of a transcriptional repressor could lower Maf expression upon Ube2h loss.
+- Label-consistent biological explanation: Ube2h acts as an E2 ubiquitin‑conjugating enzyme that normally targets a transcriptional repressor of Maf for proteasomal degradation. CRISPRi knockdown of Ube2h reduces that repressor’s ubiquitination, allowing it to accumulate and persistently silence the Maf promoter, resulting in decreased Maf mRNA.
+- Takeaway rule: When the perturbed gene encodes a ubiquitin pathway component, always evaluate whether it could control the stability of a transcriptional repressor or activator of the target gene, as indirect post‑translational regulation frequently yields directional changes even without a known direct interaction.
+
+
+```
+
+Write a full replacement instruction for the assistant.
+
+Strict anti-memorization rules:
+- Do not include any exact perturbation gene symbol, target gene symbol, or perturbation-target pair from the examples.
+- Do not add few-shot examples.
+- Do not encode row-specific labels or row-specific decisions.
+- Convert feedback into general decision rules only.
+- Keep rules applicable to unseen gene pairs.
+- If a feedback item mentions a concrete gene, generalize it to the gene's functional class or pathway.
+- Preserve the mandatory two-field DSPy output contract: reasoning must be separate from prediction.
+- The prediction field must contain only one token: up, down, or none.
+
+The instruction may include:
+- the task definition,
+- the valid labels,
+- general biological reasoning rules,
+- general pathway or mechanism categories,
+- output formatting requirements.
+
+Return only the complete new instruction inside ``` blocks.

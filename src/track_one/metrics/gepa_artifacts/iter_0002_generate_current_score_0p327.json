@@ -1,0 +1,424 @@
+{
+  "stage": "generate_current",
+  "iteration": 2,
+  "candidate_idx": 0,
+  "batch_size": 18,
+  "scores": [
+    0.32712215320910976,
+    0.32712215320910976,
+    0.32712215320910976,
+    0.32712215320910976,
+    0.32712215320910976,
+    0.32712215320910976,
+    0.32712215320910976,
+    0.32712215320910976,
+    0.32712215320910976,
+    0.32712215320910976,
+    0.32712215320910976,
+    0.32712215320910976,
+    0.32712215320910976,
+    0.32712215320910976,
+    0.32712215320910976,
+    0.32712215320910976,
+    0.32712215320910976,
+    0.32712215320910976
+  ],
+  "diagnostics": {
+    "summary": {
+      "primary_score": 0.32712215320910976,
+      "score_sum": 5.888198757763975,
+      "accuracy": 0.5,
+      "macro_precision": 0.3717948717948718,
+      "macro_recall": 0.3333333333333333,
+      "macro_f1": 0.32712215320910976,
+      "de_hard_score": 0.5875,
+      "dir_hard_score": 0.1,
+      "hard_proxy_score": 0.34375,
+      "non_de_recall": 0.8,
+      "de_recall": 0.375,
+      "up_recall": 0.2,
+      "down_recall": 0.0
+    },
+    "per_class": {
+      "none": {
+        "support": 10,
+        "predicted": 13,
+        "precision": 0.6153846153846154,
+        "recall": 0.8,
+        "f1": 0.6956521739130435
+      },
+      "up": {
+        "support": 5,
+        "predicted": 2,
+        "precision": 0.5,
+        "recall": 0.2,
+        "f1": 0.28571428571428575
+      },
+      "down": {
+        "support": 3,
+        "predicted": 3,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      }
+    },
+    "true_label_counts": {
+      "up": 5,
+      "none": 10,
+      "down": 3
+    },
+    "predicted_label_counts": {
+      "down": 3,
+      "none": 13,
+      "up": 2
+    },
+    "confusion": {
+      "none": {
+        "none": 8,
+        "up": 1,
+        "down": 1
+      },
+      "up": {
+        "none": 2,
+        "up": 1,
+        "down": 2
+      },
+      "down": {
+        "none": 3,
+        "up": 0,
+        "down": 0
+      }
+    },
+    "rows": [
+      {
+        "index": 0,
+        "pert": "Srsf1",
+        "gene": "Creg1",
+        "true_label": "up",
+        "predicted_label": "down",
+        "correct": false,
+        "row_score": 0.32712215320910976
+      },
+      {
+        "index": 1,
+        "pert": "Yeats4",
+        "gene": "Krtcap2",
+        "true_label": "none",
+        "predicted_label": "none",
+        "correct": true,
+        "row_score": 0.32712215320910976
+      },
+      {
+        "index": 2,
+        "pert": "Mideas",
+        "gene": "Cd164",
+        "true_label": "down",
+        "predicted_label": "none",
+        "correct": false,
+        "row_score": 0.32712215320910976
+      },
+      {
+        "index": 3,
+        "pert": "Alg2",
+        "gene": "Anapc15",
+        "true_label": "none",
+        "predicted_label": "none",
+        "correct": true,
+        "row_score": 0.32712215320910976
+      },
+      {
+        "index": 4,
+        "pert": "Leo1",
+        "gene": "Tent5a",
+        "true_label": "up",
+        "predicted_label": "down",
+        "correct": false,
+        "row_score": 0.32712215320910976
+      },
+      {
+        "index": 5,
+        "pert": "Rpl35",
+        "gene": "Mthfs",
+        "true_label": "none",
+        "predicted_label": "none",
+        "correct": true,
+        "row_score": 0.32712215320910976
+      },
+      {
+        "index": 6,
+        "pert": "Junb",
+        "gene": "Spryd7",
+        "true_label": "none",
+        "predicted_label": "none",
+        "correct": true,
+        "row_score": 0.32712215320910976
+      },
+      {
+        "index": 7,
+        "pert": "Ndc80",
+        "gene": "Csf3r",
+        "true_label": "none",
+        "predicted_label": "none",
+        "correct": true,
+        "row_score": 0.32712215320910976
+      },
+      {
+        "index": 8,
+        "pert": "Dda1",
+        "gene": "Tnc",
+        "true_label": "up",
+        "predicted_label": "none",
+        "correct": false,
+        "row_score": 0.32712215320910976
+      },
+      {
+        "index": 9,
+        "pert": "Aip",
+        "gene": "Cd14",
+        "true_label": "up",
+        "predicted_label": "up",
+        "correct": true,
+        "row_score": 0.32712215320910976
+      },
+      {
+        "index": 10,
+        "pert": "Dcaf13",
+        "gene": "Ctsk",
+        "true_label": "none",
+        "predicted_label": "none",
+        "correct": true,
+        "row_score": 0.32712215320910976
+      },
+      {
+        "index": 11,
+        "pert": "Pafah1b1",
+        "gene": "Pmp22",
+        "true_label": "none",
+        "predicted_label": "none",
+        "correct": true,
+        "row_score": 0.32712215320910976
+      },
+      {
+        "index": 12,
+        "pert": "Traf3",
+        "gene": "Pgk1",
+        "true_label": "none",
+        "predicted_label": "up",
+        "correct": false,
+        "row_score": 0.32712215320910976
+      },
+      {
+        "index": 13,
+        "pert": "Ddx5",
+        "gene": "Tpi1",
+        "true_label": "none",
+        "predicted_label": "down",
+        "correct": false,
+        "row_score": 0.32712215320910976
+      },
+      {
+        "index": 14,
+        "pert": "Dph3",
+        "gene": "Trem2",
+        "true_label": "up",
+        "predicted_label": "none",
+        "correct": false,
+        "row_score": 0.32712215320910976
+      },
+      {
+        "index": 15,
+        "pert": "Uvrag",
+        "gene": "C3",
+        "true_label": "down",
+        "predicted_label": "none",
+        "correct": false,
+        "row_score": 0.32712215320910976
+      },
+      {
+        "index": 16,
+        "pert": "Ube2h",
+        "gene": "Maf",
+        "true_label": "down",
+        "predicted_label": "none",
+        "correct": false,
+        "row_score": 0.32712215320910976
+      },
+      {
+        "index": 17,
+        "pert": "Kat5",
+        "gene": "Cd9",
+        "true_label": "none",
+        "predicted_label": "none",
+        "correct": true,
+        "row_score": 0.32712215320910976
+      }
+    ]
+  },
+  "inputs": [
+    {
+      "pert": "Srsf1",
+      "gene": "Creg1",
+      "label": "up"
+    },
+    {
+      "pert": "Yeats4",
+      "gene": "Krtcap2",
+      "label": "none"
+    },
+    {
+      "pert": "Mideas",
+      "gene": "Cd164",
+      "label": "down"
+    },
+    {
+      "pert": "Alg2",
+      "gene": "Anapc15",
+      "label": "none"
+    },
+    {
+      "pert": "Leo1",
+      "gene": "Tent5a",
+      "label": "up"
+    },
+    {
+      "pert": "Rpl35",
+      "gene": "Mthfs",
+      "label": "none"
+    },
+    {
+      "pert": "Junb",
+      "gene": "Spryd7",
+      "label": "none"
+    },
+    {
+      "pert": "Ndc80",
+      "gene": "Csf3r",
+      "label": "none"
+    },
+    {
+      "pert": "Dda1",
+      "gene": "Tnc",
+      "label": "up"
+    },
+    {
+      "pert": "Aip",
+      "gene": "Cd14",
+      "label": "up"
+    },
+    {
+      "pert": "Dcaf13",
+      "gene": "Ctsk",
+      "label": "none"
+    },
+    {
+      "pert": "Pafah1b1",
+      "gene": "Pmp22",
+      "label": "none"
+    },
+    {
+      "pert": "Traf3",
+      "gene": "Pgk1",
+      "label": "none"
+    },
+    {
+      "pert": "Ddx5",
+      "gene": "Tpi1",
+      "label": "none"
+    },
+    {
+      "pert": "Dph3",
+      "gene": "Trem2",
+      "label": "up"
+    },
+    {
+      "pert": "Uvrag",
+      "gene": "C3",
+      "label": "down"
+    },
+    {
+      "pert": "Ube2h",
+      "gene": "Maf",
+      "label": "down"
+    },
+    {
+      "pert": "Kat5",
+      "gene": "Cd9",
+      "label": "none"
+    }
+  ],
+  "outputs": [
+    {
+      "reasoning": "SRSF1 (also known as ASF/SF2) is a major serine/arginine\u2011rich splicing factor that promotes exon inclusion and efficient processing of many pre\u2011mRNAs. CRISPRi\u2011mediated knockdown of SRSF1 generally leads to widespread splicing defects, often causing exon skipping that introduces premature termination codons and triggers nonsense\u2011mediated decay. If the Creg1 transcript requires SRSF1\u2011dependent splicing for production of a stable mRNA, loss of SRSF1 would reduce the amount of correctly spliced Creg1 mRNA and therefore lower its steady\u2011state expression. No strong evidence suggests a direct transcriptional activation role for SRSF1 on Creg1, so the most plausible outcome of Srsf1 knockdown is a decrease in Creg1 levels.",
+      "prediction": "down"
+    },
+    {
+      "reasoning": "YEATS4 (also known as GAS41) is a chromatin\u2011associated protein that functions as part of the NuA4 histone acetyltransferase complex and can act as a transcriptional co\u2011activator for a variety of genes involved in cell proliferation and DNA repair. Its knock\u2011down by CRISPRi generally leads to broad changes in chromatin accessibility and transcription, but there is no specific evidence that YEATS4 directly regulates the keratinocyte\u2011associated protein KRTCAP2. KRTCAP2 expression is not known to be a downstream target of the YEATS4\u2011containing complexes, and no pathway linking the two has been described. Therefore, the most plausible outcome of YEATS4 knock\u2011down on KRTCAP2 expression is no consistent change.",
+      "prediction": "none"
+    },
+    {
+      "reasoning": "Mideas is not a well\u2011characterized regulator in the literature, and there is no known direct or indirect interaction between Mideas and the cell\u2011surface sialomucin CD164. CD164 expression is primarily controlled by pathways involved in hematopoietic cell adhesion and signaling, none of which have been linked to Mideas. In the absence of evidence for a regulatory relationship, the knockdown of Mideas is unlikely to cause a consistent change in CD164 transcription.",
+      "prediction": "none"
+    },
+    {
+      "reasoning": "ALG2 encodes a mannosyltransferase that functions in the early steps of N\u2011linked glycosylation within the endoplasmic reticulum. Its primary role is to contribute to the assembly of the lipid\u2011linked oligosaccharide donor used for protein glycosylation. Disruption of ALG2 typically leads to defects in protein folding and may trigger an unfolded protein response, but it does not directly intersect with the regulatory pathways that control the anaphase\u2011promoting complex (APC/C) or its subunits such as ANAPC15. There is no known transcriptional or signaling link between ALG2 activity and the expression of ANAPC15, and any effect would likely be indirect and weak. Therefore, CRISPRi knockdown of ALG2 is not expected to cause a consistent up\u2011 or down\u2011regulation of ANAPC15.",
+      "prediction": "none"
+    },
+    {
+      "reasoning": "Leo1 encodes a core subunit of the PAF1 transcription complex (PAF1C), which associates with RNA polymerase\u202fII and promotes transcription elongation as well as the deposition of active histone marks (H3K4me3, H3K36me3). CRISPRi\u2011mediated knockdown of Leo1 diminishes PAF1C activity, leading to reduced Pol\u202fII processivity and lower levels of these activating chromatin modifications at downstream genes. Consequently, genes that rely on PAF1C for efficient transcription are typically down\u2011regulated when Leo1 is depleted. Tent5a (TENT5A) is a protein\u2011coding gene without a known repressive regulatory link to Leo1; its expression is expected to follow the general trend of PAF1C\u2011dependent genes. Therefore, loss of Leo1 is most likely to cause a decrease in Tent5a mRNA levels.",
+      "prediction": "down"
+    },
+    {
+      "reasoning": "Rpl35 encodes a component of the large ribosomal subunit and is primarily involved in ribosome assembly and general protein synthesis. Reducing Rpl35 levels by CRISPRi typically causes a broad translational stress response rather than a targeted transcriptional program. Mthfs encodes methenyltetrahydrofolate synthetase, a metabolic enzyme in the folate pathway, and there is no known direct regulatory link between ribosomal protein levels and the transcription of this specific metabolic gene. Consequently, knocking down Rpl35 is unlikely to cause a specific up\u2011 or down\u2011regulation of Mthfs beyond any indirect effects of global stress, which are generally modest at the transcriptional level for such a gene. Therefore, the most appropriate prediction is that Mthfs expression will not be specifically altered.",
+      "prediction": "none"
+    },
+    {
+      "reasoning": "JunB is an AP\u20111 family transcription factor that can act as an activator or repressor of target genes containing AP\u20111 binding sites.  While JunB regulates many genes involved in proliferation, differentiation and inflammatory responses, there is no well\u2011characterized AP\u20111 site or reported JunB\u2011dependent transcriptional control in the promoter or enhancer regions of the Spryd7 gene.  Spryd7 (a SPRY\u2011domain containing protein) is primarily linked to modulation of MAPK signaling, and its expression has not been shown to be directly responsive to JunB activity in the literature.  Consequently, knocking down JunB with CRISPRi is unlikely to cause a consistent change in Spryd7 mRNA levels.",
+      "prediction": "none"
+    },
+    {
+      "reasoning": "NDC80 is a core component of the kinetochore complex required for proper chromosome alignment and segregation during mitosis. Its knockdown by CRISPRi primarily induces mitotic defects, leading to cell\u2011cycle arrest, activation of DNA\u2011damage responses, and possibly apoptosis. Csf3r (the G\u2011CSF receptor) is a cytokine receptor expressed mainly in myeloid progenitors and is regulated by transcription factors that control granulocytic differentiation (e.g., C/EBP\u03b1, PU.1). There is no established direct regulatory link between kinetochore function and Csf3r transcription. Consequently, reducing NDC80 levels is unlikely to specifically up\u2011 or down\u2011regulate Csf3r expression beyond any generic stress\u2011induced transcriptional changes, which are not sufficient to predict a consistent directional effect. Therefore, the most appropriate prediction is that NDC80 knockdown does not have a specific regulatory impact on Csf3r.",
+      "prediction": "none"
+    },
+    {
+      "reasoning": "Dda1 (DNA damage\u2011binding protein 1\u2011associated protein 1) functions as a core subunit of the CRL4 ubiquitin\u2011ligase complex, where it helps recruit substrates for proteasomal degradation. Its primary roles are in DNA replication, cell\u2011cycle progression and the DNA damage response. The extracellular matrix protein Tenascin\u2011C (Tnc) is transcriptionally regulated mainly by signaling pathways such as TGF\u2011\u03b2, Wnt/\u03b2\u2011catenin, mechanical stress and inflammatory cytokines. There is no well\u2011characterized link between the CRL4\u2011Dda1 complex and the transcriptional control of Tnc, nor evidence that Dda1 directly targets transcription factors or signaling components that are major regulators of Tnc expression. Consequently, knocking down Dda1 with CRISPRi is unlikely to produce a specific, consistent increase or decrease in Tnc mRNA levels; any effect would be indirect and variable. The most plausible outcome is no discernible regulatory change.",
+      "prediction": "none"
+    },
+    {
+      "reasoning": "AIP (aryl hydrocarbon receptor\u2011interacting protein) functions as a co\u2011chaperone that stabilizes the AhR complex and promotes its nuclear translocation. AhR signaling in myeloid cells has been reported to suppress expression of several innate\u2011immune receptors, including CD14, by interfering with NF\u2011\u03baB\u2011driven transcription. Consequently, reducing AIP levels by CRISPRi is expected to diminish AhR activity, relieving this repression and allowing CD14 transcription to increase. No other major pathways directly link AIP to CD14 regulation, so the most plausible outcome is an increase in CD14 expression.",
+      "prediction": "up"
+    },
+    {
+      "reasoning": "DCAF13 functions as a substrate receptor for the CUL4\u2011DDB1 E3 ubiquitin ligase complex, targeting specific proteins for proteasomal degradation. Its known roles are largely in cell\u2011cycle control and DNA\u2011damage responses, and there is no well\u2011characterized link between DCAF13 activity and the transcriptional regulation of cathepsin\u202fK (CTSK), which is primarily expressed in osteoclasts and controlled by pathways such as RANK\u2011L/NFATc1. Because no direct regulatory relationship between DCAF13 and CTSK has been reported, knocking down DCAF13 with CRISPRi is unlikely to cause a consistent increase or decrease in CTSK mRNA levels.",
+      "prediction": "none"
+    },
+    {
+      "reasoning": "Pafah1b1 (also known as LIS1) encodes a regulatory subunit of the platelet\u2011activating factor acetylhydrolase complex and is best known for its role in dynein\u2011mediated microtubule transport, neuronal migration and cortical development. Its primary actions are cytoskeletal and involve regulation of intracellular trafficking rather than direct transcriptional control of myelin genes.  \n\nPmp22 encodes peripheral myelin protein 22, a compact\u2011myelin component expressed mainly in Schwann cells. Its expression is regulated by pathways that control Schwann\u2011cell differentiation (e.g., neuregulin\u2011ErbB signaling, cAMP, Krox\u201120/Egr2) rather than by the dynein/LIS1 axis. No published studies link LIS1 activity to the transcriptional regulation of Pmp22, and loss of LIS1 does not typically alter peripheral myelin gene programs in the contexts examined.  \n\nTherefore, knocking down Pafah1b1 with CRISPRi is unlikely to produce a consistent up\u2011 or down\u2011regulation of Pmp22; any effect would be indirect and weak. The most plausible outcome is no detectable change in Pmp22 expression.",
+      "prediction": "none"
+    },
+    {
+      "reasoning": "TRAF3 functions as a negative regulator of several signaling pathways, most notably the non\u2011canonical NF\u2011\u03baB cascade. When TRAF3 is knocked down, NIK accumulates and the NF\u2011\u03baB2 (p52/RelB) pathway becomes constitutively active. NF\u2011\u03baB transcription factors are known to induce a broad set of genes involved in cellular metabolism, including glycolytic enzymes. PGK1 (phosphoglycerate kinase 1) is a glycolytic gene whose promoter contains NF\u2011\u03baB responsive elements and its expression is often up\u2011regulated in contexts of heightened NF\u2011\u03baB signaling or metabolic reprogramming. Therefore, loss of the repressive influence of TRAF3 is expected to increase NF\u2011\u03baB activity, which in turn should raise PGK1 transcription.",
+      "prediction": "up"
+    },
+    {
+      "reasoning": "Ddx5 (also called p68) is a multifunctional DEAD\u2011box RNA helicase that acts as a transcriptional co\u2011activator for several oncogenic transcription factors, notably c\u2011Myc and \u03b2\u2011catenin. c\u2011Myc directly drives the expression of many glycolytic enzymes, including the glycolysis gene **Tpi1** (triosephosphate isomerase). By facilitating the recruitment of Myc to target promoters and by remodeling chromatin, Ddx5 enhances transcription of these metabolic genes. Consequently, loss of Ddx5 activity by CRISPRi knockdown diminishes Myc\u2011mediated transcriptional activation, leading to reduced mRNA synthesis of downstream glycolytic enzymes such as Tpi1. In addition, Ddx5 participates in pre\u2011mRNA splicing and export, processes that further support efficient expression of highly transcribed metabolic genes. Therefore, reducing Ddx5 levels is expected to lower Tpi1 expression.",
+      "prediction": "down"
+    },
+    {
+      "reasoning": "Dph3 encodes a component of the diphthamide biosynthesis complex that modifies eukaryotic elongation factor\u202f2, influencing translation fidelity and cellular stress responses. There is no established direct regulatory link between Dph3 activity and the transcription or stability of the Trem2 gene, which encodes a microglial surface receptor involved in lipid sensing and immune signaling. While a severe loss of Dph3 could broadly affect protein synthesis, such a general effect is unlikely to produce a specific, consistent change in Trem2 expression under typical CRISPRi knockdown conditions. Therefore, the most plausible outcome is that Trem2 expression remains unchanged.",
+      "prediction": "none"
+    },
+    {
+      "reasoning": "UVRAG (Uvrag) encodes a protein that participates in the Beclin\u20111/Vps34 autophagy complex and in endocytic trafficking. Its main known functions are to promote autophagosome maturation, regulate DNA\u2011damage responses, and act as a tumor\u2011suppressor. There is no direct transcriptional regulatory relationship between UVRAG and the complement component\u202fC3 gene. Indirectly, loss of UVRAG can impair autophagy, which sometimes leads to heightened NF\u2011\u03baB activity and increased production of inflammatory cytokines (e.g., IL\u20116, TNF\u2011\u03b1) that are capable of up\u2011regulating C3 expression in hepatocytes and immune cells. However, this effect is context\u2011dependent and not a well\u2011established consequence of UVRAG knockdown. In the absence of specific evidence linking UVRAG depletion to a consistent change in C3 transcription, the most parsimonious expectation is that CRISPRi knockdown of Uvrag will not produce a reproducible up\u2011 or down\u2011regulation of C3.",
+      "prediction": "none"
+    },
+    {
+      "reasoning": "Ube2h encodes an E2 ubiquitin\u2011conjugating enzyme that participates in protein ubiquitination and subsequent proteasomal degradation. Its known functions are largely related to DNA damage response and general protein turnover, and there is no well\u2011characterized pathway linking Ube2h activity to the transcriptional regulation of the Maf gene. Because Maf expression is primarily controlled by upstream signaling pathways (e.g., MAPK, oxidative stress) rather than direct ubiquitination by Ube2h, knocking down Ube2h with CRISPRi is unlikely to cause a consistent increase or decrease in Maf mRNA levels. Therefore, the expected effect on Maf expression is minimal or absent.",
+      "prediction": "none"
+    },
+    {
+      "reasoning": "KAT5 (also called TIP60) is a nuclear histone acetyltransferase that facilitates transcription of many genes by acetylating histones and certain transcription factors. Reducing KAT5 levels generally leads to lower chromatin acetylation and can diminish expression of genes that depend on its co\u2011activator function. CD9, a tetraspanin membrane protein, is regulated mainly by signaling pathways such as TGF\u2011\u03b2, Wnt and cell\u2011adhesion cues, and there is no well\u2011established direct regulatory link between KAT5 activity and CD9 transcription. Consequently, a CRISPRi knockdown of Kat5 is unlikely to produce a specific up\u2011 or down\u2011regulation of Cd9; any effect would probably be minimal or indirect.",
+      "prediction": "none"
+    }
+  ],
+  "has_trajectories": true
+}

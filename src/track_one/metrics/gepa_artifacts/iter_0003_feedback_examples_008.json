@@ -1,0 +1,101 @@
+{
+  "stage": "feedback",
+  "iteration": 3,
+  "candidate_idx": 0,
+  "components": [
+    "predict.predict"
+  ],
+  "feedback_examples": {
+    "predict.predict": [
+      {
+        "Inputs": {
+          "pert": "Axin1",
+          "gene": "Pdcd1lg2"
+        },
+        "Generated Outputs": {
+          "reasoning": "Axin1 is a core component of the \u03b2\u2011catenin destruction complex; it promotes phosphorylation and degradation of \u03b2\u2011catenin, thereby keeping canonical Wnt signaling low. CRISPRi\u2011mediated knockdown of Axin1 weakens this complex, leading to accumulation of \u03b2\u2011catenin in the nucleus and transcriptional activation of Wnt target genes.  \n\nSeveral studies have shown that active \u03b2\u2011catenin signaling in tumor cells drives expression of immune\u2011checkpoint ligands, most notably PD\u2011L1 (CD274) and, to a lesser extent, PD\u2011L2 (PDCD1LG2). The transcription factor TCF/LEF, downstream of \u03b2\u2011catenin, can bind regulatory regions of PD\u2011L2 and promote its transcription, contributing to an immunosuppressive micro\u2011environment. Consequently, loss of Axin1 is expected to enhance \u03b2\u2011catenin activity and increase PD\u2011L2 (PDCD1LG2) mRNA levels.  \n\nTherefore, the predicted effect of Axin1 knockdown on Pdcd1lg2 expression is an up\u2011regulation.",
+          "prediction": "up"
+        },
+        "Feedback": "- **Correct label:** none  \n- **Why the prediction is incorrect:** The student assumed that \u03b2\u2011catenin activation directly upregulates Pdcd1lg2, but the true label is none, indicating that Axin1 knockdown does not measurably change Pdcd1lg2 expression in BMDMs.  \n- **Label\u2011consistent biological explanation:** Axin1 loss stabilizes \u03b2\u2011catenin, which can activate canonical Wnt targets, but the Pdcd1lg2 locus in unstimulated bone\u2011marrow\u2011derived macrophages is not a functional TCF/LEF target under these conditions. Unlike some tumour lines where oncogenic \u03b2\u2011catenin drives PD\u2011L1/L2, primary macrophages rely on STAT, IRF and NF\u2011\u03baB pathways for immune checkpoint ligand induction; a mere increase in \u03b2\u2011catenin is insufficient to overcome the absence of those co\u2011stimuli or to remodel chromatin at this gene. Additionally, Axin1 has \u03b2\u2011catenin\u2011independent scaffolding roles, and its knockdown may alter other signalling branches without net effect on Pdcd1lg2 transcription, yielding no directional change.  \n- **Takeaway rule:** When inferring the effect of a perturbation on a target gene, do not assume that a pathway component automatically regulates every downstream candidate found in cancer or overexpression studies\u2014always check whether the link is functional in the exact cell type and basal state being asked about."
+      },
+      {
+        "Inputs": {
+          "pert": "Dync1h1",
+          "gene": "Ms4a6b"
+        },
+        "Generated Outputs": {
+          "reasoning": "DYNC1H1 encodes the heavy chain of cytoplasmic dynein, a motor protein that mediates retrograde transport of vesicles, organelles and signaling endosomes along microtubules. Its primary role is in intracellular trafficking rather than direct transcriptional regulation. Knockdown of DYNC1H1 can lead to broad cellular stress, altered endosome signaling, and defects in neuronal or secretory pathways, but there is no documented pathway linking dynein activity to the transcriptional control of MS4A family members. MS4A6B is a membrane\u2011spanning protein expressed mainly in immune cells and microglia, and its expression is regulated by cytokine\u2011driven transcription factors rather than by microtubule motor activity. Consequently, a CRISPRi\u2011mediated reduction of DYNC1H1 is unlikely to cause a specific up\u2011 or down\u2011regulation of MS4A6B; any effect would be indirect and not reproducibly observed.",
+          "prediction": "none"
+        },
+        "Feedback": "- Correct label: down\n- Why the prediction is incorrect: The student predicted \"none,\" incorrectly assuming that because DYNC1H1 is a motor protein without direct transcriptional activity its knockdown cannot specifically alter MS4A6B expression, overlooking indirect effects through disrupted intracellular trafficking.\n- Label-consistent biological explanation: DYNC1H1 encodes cytoplasmic dynein heavy chain, which drives retrograde transport of signaling endosomes toward the nucleus. In macrophages, surface receptors such as CSF1R and TLR4 continue signaling from endosomal platforms after internalization, and their dynein-dependent transport sustains activation of transcription factors like NF-\u03baB and AP-1 that maintain basal Ms4a6b expression. CRISPRi knockdown of Dync1h1 impairs this endosomal trafficking, weakening the signaling cascades needed for Ms4a6b transcription and causing a measurable reduction (down) in target mRNA.\n- Takeaway rule: When the perturbed gene encodes a trafficking or motor protein, do not dismiss regulatory outcomes solely because it lacks DNA-binding activity; instead, systematically consider whether its loss disrupts the endosomal transport or spatial organization of signaling components that indirectly control transcription of the target gene."
+      },
+      {
+        "Inputs": {
+          "pert": "Chd4",
+          "gene": "Dock10"
+        },
+        "Generated Outputs": {
+          "reasoning": "CHD4 is a core component of the NuRD (nucleosome remodeling and deacetylase) complex, which generally functions as a transcriptional corepressor by remodeling chromatin and recruiting histone deacetylases. Reducing CHD4 levels by CRISPRi typically leads to a loss of repression at loci that are directly bound by the NuRD complex, resulting in modest up\u2011regulation of those genes. However, there is no well\u2011characterized direct regulatory relationship between CHD4 and the DOCK10 gene in the literature. DOCK10 expression is primarily controlled by signaling pathways linked to B\u2011cell activation and cytoskeletal dynamics, and it has not been reported as a direct NuRD target. Consequently, CHD4 knockdown is unlikely to produce a consistent, strong change in DOCK10 transcription; any effect would be indirect and probably minimal.",
+          "prediction": "none"
+        },
+        "Feedback": "- Correct label: up\n- Why the prediction is incorrect: The student predicted \"none\" despite recognizing that Chd4 knockdown generally causes upregulation via NuRD corepressor loss, but incorrectly dismissed DOCK10 as unaffected due to lack of a documented direct interaction.\n- Label-consistent biological explanation: CHD4 is a core component of the NuRD complex, which represses transcription; CRISPRi knockdown of Chd4 impairs NuRD function, leading to derepression of NuRD target genes. DOCK10, like many immunomodulatory genes, is plausibly under NuRD-mediated repression in BMDMs, so Chd4 loss relieves this repression, increasing DOCK10 mRNA levels. Alternatively, NuRD may repress a transcription factor that itself represses DOCK10, so NuRD loss upregulates DOCK10 indirectly via derepression of an activator.\n- Takeaway rule: When a perturbation targets a transcriptional corepressor, the default expectation for a gene without evidence of regulation is \"up\", because loss of the corepressor commonly derepresses many genes; the absence of a known direct interaction does not imply \"none\"."
+      },
+      {
+        "Inputs": {
+          "pert": "Ptpa",
+          "gene": "Fcgr2b"
+        },
+        "Generated Outputs": {
+          "reasoning": "PTPA (also known as PPP2R4) is a regulatory protein that activates protein phosphatase\u202f2A (PP2A). PP2A dephosphorylates many signaling molecules and generally acts as a brake on pathways such as MAPK/ERK, NF\u2011\u03baB and Akt. CRISPRi knockdown of PTPA would be expected to reduce PP2A activity, leading to heightened phosphorylation and activation of these downstream pathways.  \n\nFcgr2b (the inhibitory Fc\u03b3RIIB receptor) is transcriptionally regulated by a variety of immune\u2011signaling pathways, but there is no well\u2011established direct link between PP2A activity and Fcgr2b expression. The available literature does not describe a clear mechanism whereby reduced PP2A activation would consistently increase or decrease Fcgr2b transcription. Consequently, the most parsimonious expectation is that PTPA knockdown will not produce a reproducible, directional change in Fcgr2b mRNA levels.",
+          "prediction": "none"
+        },
+        "Feedback": "- Correct label: down\n- Why the prediction is incorrect: The student predicted 'none' because they assumed no direct link exists, but the true label is 'down'; the student correctly identified that PTPA knockdown enhances MAPK and NF\u2011\u03baB pathways, yet overlooked that these same pathways are known to transcriptionally repress Fcgr2b in macrophages.\n- Label-consistent biological explanation: PTPA (PPP2R4) is an essential activator of PP2A phosphatase, which normally restrains MAPK/ERK and NF\u2011\u03baB signaling. CRISPRi knockdown of PTPA reduces PP2A activity, leading to hyperactivation of these pro\u2011inflammatory pathways. In bone\u2011marrow\u2011derived macrophages, strong MAPK/NF\u2011\u03baB signaling (e.g., triggered by LPS) downregulates the inhibitory receptor Fcgr2b. Therefore, the net effect of the perturbation is a decrease in Fcgr2b mRNA.\n- Takeaway rule: When a perturbation alters a signaling hub, do not default to 'none' merely because a direct molecular interaction with the target gene is not curated; instead, ask whether the target gene is known to be transcriptionally regulated by the downstream pathways the hub controls."
+      },
+      {
+        "Inputs": {
+          "pert": "Wdr3",
+          "gene": "1110038B12Rik"
+        },
+        "Generated Outputs": {
+          "reasoning": "Wdr3 (WD repeat domain 3) is a broadly expressed nuclear protein that participates in ribosome biogenesis, chromatin remodeling and cell\u2011cycle progression. Its known interactions involve components of the nucleolus and the transcriptional machinery, but there is no specific evidence linking Wdr3 to the regulation of the poorly characterized mouse gene 1110038B12Rik, which is annotated as a predicted protein\u2011coding or long\u2011non\u2011coding transcript with no reported functional connection to ribosome assembly or cell\u2011cycle pathways. Because CRISPRi knockdown of Wdr3 would primarily affect processes such as ribosomal RNA processing rather than directly modulating the transcription of 1110038B12Rik, a specific up\u2011 or down\u2011regulation of this target gene is unlikely. Therefore the most plausible outcome is no measurable change in the expression of 1110038B12Rik.",
+          "prediction": "none"
+        },
+        "Feedback": "-Correct label: up\n- Why the prediction is incorrect: The student predicted none by assuming no direct connection, but overlooked that Wdr3 knockdown can lead to indirect upregulation through loss of repression or cellular stress pathways.\n- Label-consistent biological explanation: Wdr3 functions in ribosome biogenesis and chromatin remodeling; its depletion triggers nucleolar stress, activating stress-responsive transcription factors (e.g., p53) that can upregulate a battery of genes, including poorly characterized ones like 1110038B12Rik. Alternatively, Wdr3 may normally act as part of a repressive complex that silences the target gene, so CRISPRi knockdown relieves this repression and causes increased expression. Both mechanisms plausibly yield an \u201cup\u201d outcome.\n- Takeaway rule: When the perturbed gene is a pleiotropic regulator involved in fundamental processes (ribosome biogenesis, chromatin, stress signaling), avoid defaulting to \u201cnone\u201d simply because a direct activating interaction is unknown\u2014consider that its loss can derepress or stress-activate the target gene, making upregulation a viable prediction."
+      },
+      {
+        "Inputs": {
+          "pert": "Ppp2r2a",
+          "gene": "Fosl2"
+        },
+        "Generated Outputs": {
+          "reasoning": "Ppp2r2a encodes the B55\u03b1 regulatory subunit of protein phosphatase\u202f2A (PP2A), a major serine/threonine phosphatase that attenuates MAP\u2011kinase signaling by dephosphorylating components such as MEK and ERK. When Ppp2r2a is knocked down with CRISPRi, PP2A activity toward these substrates is reduced, leading to prolonged ERK phosphorylation. Active ERK drives transcription of immediate\u2011early genes that form the AP\u20111 complex, including members of the Fos family. Fosl2 (Fos\u2011like antigen\u202f2) is an AP\u20111 subunit whose transcription is known to be induced by MAPK/ERK signaling. Therefore, loss of the PP2A B55\u03b1 subunit is expected to enhance ERK activity and consequently increase Fosl2 expression.",
+          "prediction": "up"
+        },
+        "Feedback": "- Correct label: down\n- Why the prediction is incorrect: The student predicted up because they assumed Ppp2r2a knockdown would simply reduce overall PP2A activity and enhance ERK-driven induction of Fosl2, but they overlooked that the B55\u03b1 subunit specifically mediates dephosphorylation events required for Fosl2 activation, so its loss represses Fosl2 instead.\n- Label-consistent biological explanation: B55\u03b1\u2011containing PP2A dephosphorylates and activates a transcription factor (e.g., a CREB family member) that directly promotes Fosl2 transcription. CRISPRi knockdown of Ppp2r2a leaves this factor in a hyperphosphorylated, inactive state, thereby decreasing Fosl2 mRNA production. Any concurrent ERK activation fails to compensate, resulting in net downregulation.\n- Takeaway rule: When the perturbation targets a regulatory subunit of a multi\u2011subunit enzyme, always trace the functional consequences through the specific substrates of that subunit, rather than assuming the phenotype will mirror inhibition of the entire enzyme complex."
+      },
+      {
+        "Inputs": {
+          "pert": "Ikbkb",
+          "gene": "Ifit3"
+        },
+        "Generated Outputs": {
+          "reasoning": "IKBKB encodes the catalytic subunit IKK\u03b2, a central kinase that phosphorylates I\u03baB proteins to activate NF\u2011\u03baB signaling. NF\u2011\u03baB cooperates with interferon regulatory factors (IRFs) to drive transcription of many antiviral and inflammatory genes. IFIT3 is an interferon\u2011stimulated gene whose expression is strongly induced by type\u202fI IFN signaling (via STAT1/STAT2/IRF9) and can also be enhanced by NF\u2011\u03baB\u2013dependent transcriptional activation during viral infection. Reducing IKBKB levels with CRISPRi diminishes IKK\u03b2 activity, leading to weaker NF\u2011\u03baB activation and also attenuates IRF3\u2011mediated IFN\u2011\u03b2 production. Both effects would lower the stimulus for IFIT3 transcription, resulting in decreased IFIT3 mRNA levels.",
+          "prediction": "down"
+        },
+        "Feedback": "- Correct label: none\n- Why the prediction is incorrect: The student predicted down, but the true label is none; the reasoning incorrectly assumes that reducing NF\u2011\u03baB activity via IKBKB knockdown will strongly and unavoidably lower IFIT3 expression, ignoring the dominant JAK\u2011STAT and IRF\u2011driven regulation that can maintain IFIT3 independently of IKBKB.\n- Label-consistent biological explanation: IFIT3 is primarily an interferon\u2011stimulated gene (ISG) induced via type\u202fI IFN signaling through the JAK\u2011STAT pathway and via IRF3/7 directly activated by TBK1/IKK\u03b5, neither of which require IKBKB. Although NF\u2011\u03baB can contribute to IFN\u2011\u03b2 transcription, in unstimulated or weakly stimulated BMDMs, basal ISG expression depends largely on tonic IFN signaling and other transcription factors. CRISPRi knockdown of IKBKB may dampen NF\u2011\u03baB but does not eliminate the dominant IRF/STAT inputs, and compensatory NF\u2011\u03baB activation via other pathways (e.g., IKK\u03b1) can occur. The net effect on IFIT3 mRNA is therefore nondirectional and below the detection threshold, making \u201cnone\u201d the correct label.\n- Takeaway rule: When analyzing a perturbation\u2019s effect on a gene, identify the primary, direct transcriptional regulators of that target; if the perturbed gene acts on a secondary, modulatory pathway and multiple independent, unperturbed regulatory routes exist, the overall expression change is likely \u201cnone\u201d unless the primary regulator is directly impaired."
+      },
+      {
+        "Inputs": {
+          "pert": "Ncor2",
+          "gene": "Maf"
+        },
+        "Generated Outputs": {
+          "reasoning": "NCoR2 (also known as SMRT) functions as a transcriptional corepressor that is recruited by various nuclear receptors and transcription factors to silence target gene expression through histone deacetylation. Reducing NCoR2 levels by CRISPRi generally leads to de\u2011repression of genes that are directly bound by the NCoR2 complex. There is no well\u2011characterized direct interaction between NCoR2 and the promoter or regulatory regions of the Maf gene, nor is Maf commonly listed as a downstream target of NCoR2\u2011mediated repression in the literature. Consequently, knocking down Ncor2 is unlikely to produce a consistent change in Maf transcription; any effect would be indirect and context\u2011dependent, making a specific up\u2011 or down\u2011regulation unlikely.",
+          "prediction": "none"
+        },
+        "Feedback": "- Correct label: up\n- Why the prediction is incorrect: The student predicted \"none\" by requiring a well\u2011characterized direct interaction, overlooking that broad\u2011acting corepressors like NCoR2 can have widespread indirect effects and that their knockdown often derepresses transcription.\n- Label-consistent biological explanation: NCoR2/SMRT functions as a scaffold that recruits histone deacetylases to silence transcription. When Ncor2 is knocked down by CRISPRi in BMDMs, this repressive machinery is lost. Maf, a bZIP transcription factor, is likely under tonic repression by NCoR2\u2011containing complexes at its regulatory elements (for example, via AP\u20111 factors or nuclear receptors that recruit NCoR2). The resulting increase in local histone acetylation relieves repression and permits transcriptional activation, producing a net upregulation of Maf mRNA.\n- Takeaway rule: For loss\u2011of\u2011function perturbations of transcriptional corepressors, a target gene can be upregulated even without a curated direct regulatory link; only predict \u201cnone\u201d if there is cell\u2011type\u2011specific evidence that the gene\u2019s locus is not occupied or affected by the corepressor complex, not merely because an interaction is absent from databases."
+      }
+    ]
+  },
+  "feedback_selection": "wrong_or_format_failed_rows_only"
+}
