@@ -1,4 +1,0 @@
-{
-    "reasoning": "Runx1 is a transcription factor primarily known for its role in hematopoietic development and regulation of genes involved in cell proliferation, differentiation, and lineage commitment. Its downstream targets are largely genes controlling blood cell development, cytokine signaling, and some cell\u2011cycle regulators. Apol8 (Apolipoprotein L8) belongs to the apolipoprotein L family, which is implicated in lipid transport and metabolism, and is expressed mainly in liver and certain immune cells. There is no well\u2011characterized direct regulatory relationship between Runx1 and Apol8 in current literature, nor a clear pathway linking Runx1 activity to lipid\u2011handling genes such as Apol8. Consequently, a CRISPRi knockdown of Runx1 is unlikely to cause a specific up\u2011 or down\u2011regulation of Apol8; any effect would be indirect and not predictable from known interactions.",
-    "prediction": "none"
-}

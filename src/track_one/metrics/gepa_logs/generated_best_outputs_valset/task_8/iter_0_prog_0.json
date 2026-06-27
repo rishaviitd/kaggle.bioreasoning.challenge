@@ -1,4 +1,0 @@
-{
-    "reasoning": "INTS9 encodes a catalytic subunit of the Integrator complex that primarily functions in the 3\u2032\u2011end processing of small nuclear RNAs and in regulating promoter\u2011proximal pausing of RNA polymerase\u202fII. Its known roles are largely related to RNA processing and transcriptional control of a broad set of genes, but there is no established direct regulatory connection between INTS9 and the mitochondrial phosphoenolpyruvate carboxykinase gene\u202fPCK2. PCK2 expression is principally governed by metabolic cues (e.g., gluconeogenic signaling, p53, AMPK) rather than by the Integrator\u2011mediated snRNA processing pathway. Consequently, knocking down INTS9 with CRISPRi is unlikely to produce a consistent, specific up\u2011 or down\u2011regulation of PCK2; any effect would be indirect and not predictable. Therefore the most appropriate label is \u201cnone\u201d.",
-    "prediction": "none"
-}

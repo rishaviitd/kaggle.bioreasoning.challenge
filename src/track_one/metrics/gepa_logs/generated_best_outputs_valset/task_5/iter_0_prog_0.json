@@ -1,4 +1,0 @@
-{
-    "reasoning": "Runx1 is a hematopoietic transcription factor that primarily controls genes involved in cell\u2011cycle regulation, differentiation, and signaling pathways specific to blood lineages. Ndufa4 encodes a subunit of the mitochondrial electron\u2011transport chain (originally annotated as part of Complex\u202fI and now recognized as a component of Complex\u202fIV). Its expression is generally governed by pathways that regulate mitochondrial biogenesis and oxidative phosphorylation, such as PGC\u20111\u03b1 and NRF1/2, rather than by lineage\u2011specific transcription factors like Runx1. There is no documented direct transcriptional relationship or metabolic feedback loop linking Runx1 activity to Ndufa4 transcription. Consequently, knocking down Runx1 with CRISPRi is unlikely to cause a consistent up\u2011 or down\u2011regulation of Ndufa4 expression.",
-    "prediction": "none"
-}

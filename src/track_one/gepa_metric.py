@@ -1,5 +1,5 @@
 import dspy
-from src.track_one.gepa_config import get_refiner_lm
+from src.track_one.gepa_config import get_feedback_lm
 
 VALID_LABELS = {"up", "down", "none"}
 _feedback_lm = None
@@ -16,8 +16,8 @@ def _normalize_label(value: object) -> str:
 def _get_feedback_lm():
     global _feedback_lm
     if _feedback_lm is None:
-        print("Loading GLM feedback model...")
-        _feedback_lm = get_refiner_lm()
+        print("Loading DeepSeek feedback model...")
+        _feedback_lm = get_feedback_lm()
     return _feedback_lm
 
 
@@ -28,33 +28,49 @@ def _llm_feedback(
     true_label: str,
 ) -> str:
     reasoning = getattr(pred, "reasoning", "") or "No reasoning available."
-    prompt = f"""You are the feedback model for GEPA prompt optimization.
+    prompt = f"""You are a feedback model for GEPA prompt optimization.
 
-The student model is predicting CRISPRi perturbation effects in mouse BMDMs.
-The ground-truth label is already known. Do not judge correctness from scratch.
-Explain where the student's reasoning likely failed and what prompt instruction
-would prevent similar mistakes.
+Task context:
+- A student model predicts whether a CRISPRi knockdown perturbation changes a target gene in mouse BMDMs.
+- Valid labels are exactly: up, down, none.
+- The ground-truth label is provided below. Treat it as correct.
+- We do not have a written ground-truth solution, so you must synthesize a concise label-consistent biological solution path.
+- The feedback is for the prompt optimizer, not for the student.
 
-Perturbation: {gold.pert}
-Target gene: {gold.gene}
-True label: {true_label}
-Student predicted: {predicted_label}
+Example:
+- Perturbation: {gold.pert}
+- Target gene: {gold.gene}
+- True label: {true_label}
+- Student predicted: {predicted_label}
+
 Student reasoning:
 {reasoning}
 
-Return concise feedback for the optimizer. Include:
-1. the failure mode,
-2. the likely reasoning mistake,
-3. one concrete prompt-improvement instruction.
+Write feedback in the same spirit as a worked solution: state the correct answer, explain why the model answer is wrong, provide the biological reasoning path consistent with the label, and give one reusable takeaway.
+
+Constraints:
+- Do not question the true label.
+- Do not invent row-specific few-shot rules or memorize this exact gene pair.
+- Make the takeaway reusable for unseen perturbation-target pairs.
+- Be concrete; avoid vague phrases like "consider biology better."
+- If the true label is none, emphasize why the student's proposed regulation is too weak, indirect, unsupported, or directionally uncertain.
+- If the true label is up or down, explain what type of loss-of-function mechanism could plausibly produce that direction.
+
+Return exactly four bullets:
+- Correct label: {true_label}
+- Why the prediction is incorrect: <one sentence comparing the student prediction to the true label>
+- Label-consistent biological explanation: <a concise but complete plausible solution path consistent with the true label>
+- Takeaway rule: <one general prompt rule that would prevent this mistake on unseen gene pairs>
 """
-    print(f"Generating GLM feedback for {gold.pert}_{gold.gene}...")
     response = _get_feedback_lm()(prompt)
     if isinstance(response, list):
-        return str(response[0])
+        response = response[0]
+    if isinstance(response, dict) and "text" in response:
+        return str(response["text"])
     return str(response)
 
 
-def gepa_kaggle_metric(
+def gepa_exact_match_metric(
     gold: dspy.Example,
     pred: dspy.Prediction,
     trace=None,
@@ -62,13 +78,18 @@ def gepa_kaggle_metric(
     pred_trace=None,
 ):
     """
-    GEPA metric with label-based score and GLM-generated error feedback.
+    Row-level exact-match metric with LLM-generated error feedback.
 
-    The score comes only from ground-truth labels. GLM explains mistakes after
-    receiving the true label, predicted label, and student reasoning.
+    The optimizer adapter converts row-level exact matches into batch macro F1.
+    DeepSeek explains mistakes after receiving the true label, predicted label,
+    and student reasoning.
     """
     predicted_label = _normalize_label(getattr(pred, "prediction", ""))
     true_label = _normalize_label(gold.label)
+    score = float(predicted_label in VALID_LABELS and predicted_label == true_label)
+
+    if pred_name is None:
+        return score
 
     if predicted_label not in VALID_LABELS:
         return dspy.Prediction(
@@ -83,12 +104,12 @@ def gepa_kaggle_metric(
 
     if predicted_label == true_label:
         return dspy.Prediction(
-            score=1.0,
+            score=score,
             feedback="Correct. Keep the final label format exact.",
         )
 
     return dspy.Prediction(
-        score=0.0,
+        score=score,
         feedback=_llm_feedback(
             gold=gold,
             pred=pred,
