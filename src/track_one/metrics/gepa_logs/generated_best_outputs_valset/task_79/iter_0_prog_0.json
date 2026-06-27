@@ -1,0 +1,4 @@
+{
+    "reasoning": "WDR70 is a nuclear protein that participates in DNA\u2011damage repair and chromatin\u2011related processes. Its primary functions involve facilitating homologous recombination and maintaining genome stability, and it does not act as a transcription factor or signaling molecule that directly controls genes encoding endoplasmic\u2011reticulum chaperones. PDI\u2011A3 (PDIA3/ERp57) is an ER\u2011resident oxidoreductase that assists protein folding and is regulated mainly by the unfolded\u2011protein response and calcium\u2011dependent signaling pathways. There is no established mechanistic link between WDR70 activity and the transcriptional regulation of PDIA3. Consequently, knocking down WDR70 with CRISPRi is unlikely to cause a specific up\u2011 or down\u2011regulation of PDIA3 expression; any effect would be indirect and minimal.",
+    "prediction": "none"
+}

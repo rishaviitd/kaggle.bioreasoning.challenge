@@ -1,0 +1,4 @@
+{
+    "reasoning": "Talin\u20111 (TLN1) is a key adaptor that links integrins to the actin cytoskeleton and is required for full integrin activation and downstream focal\u2011adhesion signaling. Active integrin signaling stimulates pathways such as Src, FAK and MAPK that are known to promote the transcription and stability of CAV1, the principal component of caveolae. When TLN1 is knocked down by CRISPRi, integrin activation is impaired, leading to reduced Src/FAK signaling and consequently lower transcriptional activation of CAV1. Moreover, loss of talin\u2011mediated adhesion often results in decreased membrane tension and altered membrane microdomains, conditions that are unfavorable for caveolin\u20111 expression and caveolae formation. Therefore, reducing TLN1 levels is expected to cause a decrease in CAV1 mRNA and protein levels.",
+    "prediction": "down"
+}

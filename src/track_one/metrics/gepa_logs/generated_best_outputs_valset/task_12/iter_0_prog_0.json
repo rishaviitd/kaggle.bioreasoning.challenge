@@ -1,0 +1,4 @@
+{
+    "reasoning": "Wdr5 is a core subunit of the MLL/SET1 histone methyltransferase complexes that catalyze H3K4 trimethylation, a chromatin mark strongly associated with active promoters. CRISPRi\u2011mediated knockdown of Wdr5 reduces the activity of these complexes, leading to lower H3K4me3 levels at many gene promoters and consequently to reduced transcriptional output. Unless a gene is specifically repressed by Wdr5\u2011containing complexes (which is rare), the predominant effect of Wdr5 loss is down\u2011regulation of its target genes. Gm16133 is a mouse\u2011encoded gene with no known repressive relationship to Wdr5; therefore, the most likely outcome of Wdr5 knockdown is a decrease in its expression.",
+    "prediction": "down"
+}

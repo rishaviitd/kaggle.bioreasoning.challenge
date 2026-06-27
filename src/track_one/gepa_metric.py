@@ -1,8 +1,13 @@
 import dspy
+import threading
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from src.track_one.gepa_config import get_feedback_lm
 
 VALID_LABELS = {"up", "down", "none"}
+CORRECT_FEEDBACK = "Correct. Keep the final label format exact."
+OPENROUTER_FEEDBACK_WORKERS = 3
 _feedback_lm = None
+_feedback_lm_lock = threading.Lock()
 
 
 def _normalize_label(value: object) -> str:
@@ -16,19 +21,31 @@ def _normalize_label(value: object) -> str:
 def _get_feedback_lm():
     global _feedback_lm
     if _feedback_lm is None:
-        print("Loading DeepSeek feedback model...")
-        _feedback_lm = get_feedback_lm()
+        with _feedback_lm_lock:
+            if _feedback_lm is None:
+                print("Loading DeepSeek feedback model...")
+                _feedback_lm = get_feedback_lm()
     return _feedback_lm
 
 
-def _llm_feedback(
-    gold: dspy.Example,
-    pred: dspy.Prediction,
+def _extract_feedback_response(response: object) -> str:
+    if isinstance(response, list | tuple):
+        return _extract_feedback_response(response[0]) if response else ""
+    if isinstance(response, dict):
+        for key in ("text", "content", "output", "response"):
+            if key in response and response[key] is not None:
+                return str(response[key])
+    return str(response)
+
+
+def build_feedback_prompt(
+    pert: str,
+    gene: str,
+    reasoning: str,
     predicted_label: str,
     true_label: str,
 ) -> str:
-    reasoning = getattr(pred, "reasoning", "") or "No reasoning available."
-    prompt = f"""You are a feedback model for GEPA prompt optimization.
+    return f"""You are a feedback model for GEPA prompt optimization.
 
 Task context:
 - A student model predicts whether a CRISPRi knockdown perturbation changes a target gene in mouse BMDMs.
@@ -38,8 +55,8 @@ Task context:
 - The feedback is for the prompt optimizer, not for the student.
 
 Example:
-- Perturbation: {gold.pert}
-- Target gene: {gold.gene}
+- Perturbation: {pert}
+- Target gene: {gene}
 - True label: {true_label}
 - Student predicted: {predicted_label}
 
@@ -62,12 +79,37 @@ Return exactly four bullets:
 - Label-consistent biological explanation: <a concise but complete plausible solution path consistent with the true label>
 - Takeaway rule: <one general prompt rule that would prevent this mistake on unseen gene pairs>
 """
-    response = _get_feedback_lm()(prompt)
-    if isinstance(response, list):
-        response = response[0]
-    if isinstance(response, dict) and "text" in response:
-        return str(response["text"])
-    return str(response)
+
+
+def generate_feedback(request: dict[str, str]) -> str:
+    prompt = build_feedback_prompt(**request)
+    return _extract_feedback_response(_get_feedback_lm()(prompt))
+
+
+def generate_feedback_batch(
+    requests: list[dict[str, str]],
+    max_workers: int = OPENROUTER_FEEDBACK_WORKERS,
+) -> list[str]:
+    if not requests:
+        return []
+
+    print(
+        "  feedback: generating "
+        f"{len(requests)} OpenRouter calls with {max_workers} workers..."
+    )
+    results = [""] * len(requests)
+    with ThreadPoolExecutor(max_workers=max_workers) as executor:
+        future_to_index = {
+            executor.submit(generate_feedback, request): index
+            for index, request in enumerate(requests)
+        }
+        completed = 0
+        for future in as_completed(future_to_index):
+            index = future_to_index[future]
+            results[index] = future.result()
+            completed += 1
+            print(f"  feedback: {completed}/{len(requests)} complete")
+    return results
 
 
 def gepa_exact_match_metric(
@@ -94,26 +136,16 @@ def gepa_exact_match_metric(
     if predicted_label not in VALID_LABELS:
         return dspy.Prediction(
             score=0.0,
-            feedback=_llm_feedback(
-                gold=gold,
-                pred=pred,
-                predicted_label=predicted_label,
-                true_label=true_label,
-            ),
+            feedback="Needs label-consistent feedback.",
         )
 
     if predicted_label == true_label:
         return dspy.Prediction(
             score=score,
-            feedback="Correct. Keep the final label format exact.",
+            feedback=CORRECT_FEEDBACK,
         )
 
     return dspy.Prediction(
         score=score,
-        feedback=_llm_feedback(
-            gold=gold,
-            pred=pred,
-            predicted_label=predicted_label,
-            true_label=true_label,
-        ),
+        feedback="Needs label-consistent feedback.",
     )

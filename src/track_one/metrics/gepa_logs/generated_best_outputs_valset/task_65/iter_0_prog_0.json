@@ -1,0 +1,4 @@
+{
+    "reasoning": "CTCF is a ubiquitous chromatin\u2011binding protein that functions mainly as an architectural factor, establishing topologically associating domains and insulating regulatory elements. Its knockdown can lead to widespread changes in chromatin accessibility and the expression of many genes, but the effect is highly context\u2011dependent. Fez2 (Fasciculation and elongation protein zeta\u20112) is a neuronal transcription factor with a distinct regulatory program that is not known to be directly controlled by CTCF binding sites or CTCF\u2011mediated loops. In the absence of specific evidence linking CTCF to the promoter or enhancer regions of Fez2, the most parsimonious expectation is that CRISPRi\u2011mediated CTCF knockdown will not produce a consistent, directed change in Fez2 transcription.",
+    "prediction": "none"
+}

@@ -1,0 +1,4 @@
+{
+    "reasoning": "Rptor encodes the regulatory\u2011associated protein of mTOR, a core component of the mTORC1 complex. CRISPRi\u2011mediated knockdown of Rptor diminishes mTORC1 signaling, which relieves the inhibitory phosphorylation of downstream transcription factors such as FOXO and Nrf2. Activation of FOXO and Nrf2 drives the transcription of antioxidant defense genes, including the peroxiredoxin family member Prdx1. Consequently, reduced mTORC1 activity is expected to increase Prdx1 expression rather than suppress it.",
+    "prediction": "up"
+}

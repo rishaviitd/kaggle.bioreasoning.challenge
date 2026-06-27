@@ -1,0 +1,422 @@
+{
+  "stage": "evaluate_proposed",
+  "iteration": 1,
+  "batch_size": 18,
+  "scores": [
+    0.3072463768115942,
+    0.3072463768115942,
+    0.3072463768115942,
+    0.3072463768115942,
+    0.3072463768115942,
+    0.3072463768115942,
+    0.3072463768115942,
+    0.3072463768115942,
+    0.3072463768115942,
+    0.3072463768115942,
+    0.3072463768115942,
+    0.3072463768115942,
+    0.3072463768115942,
+    0.3072463768115942,
+    0.3072463768115942,
+    0.3072463768115942,
+    0.3072463768115942,
+    0.3072463768115942
+  ],
+  "diagnostics": {
+    "summary": {
+      "primary_score": 0.3072463768115942,
+      "score_sum": 5.530434782608696,
+      "accuracy": 0.3888888888888889,
+      "macro_precision": 0.32051282051282054,
+      "macro_recall": 0.3111111111111111,
+      "macro_f1": 0.3072463768115942,
+      "de_hard_score": 0.3625,
+      "dir_hard_score": 0.16666666666666666,
+      "hard_proxy_score": 0.26458333333333334,
+      "non_de_recall": 0.6,
+      "de_recall": 0.125,
+      "up_recall": 0.0,
+      "down_recall": 0.3333333333333333
+    },
+    "per_class": {
+      "none": {
+        "support": 10,
+        "predicted": 13,
+        "precision": 0.46153846153846156,
+        "recall": 0.6,
+        "f1": 0.5217391304347826
+      },
+      "up": {
+        "support": 5,
+        "predicted": 3,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      "down": {
+        "support": 3,
+        "predicted": 2,
+        "precision": 0.5,
+        "recall": 0.3333333333333333,
+        "f1": 0.4
+      }
+    },
+    "true_label_counts": {
+      "none": 10,
+      "down": 3,
+      "up": 5
+    },
+    "predicted_label_counts": {
+      "up": 3,
+      "none": 13,
+      "down": 2
+    },
+    "confusion": {
+      "none": {
+        "none": 6,
+        "up": 3,
+        "down": 1
+      },
+      "up": {
+        "none": 5,
+        "up": 0,
+        "down": 0
+      },
+      "down": {
+        "none": 2,
+        "up": 0,
+        "down": 1
+      }
+    },
+    "rows": [
+      {
+        "index": 0,
+        "pert": "Cnot2",
+        "gene": "Akr1a1",
+        "true_label": "none",
+        "predicted_label": "up",
+        "correct": false,
+        "row_score": 0.3072463768115942
+      },
+      {
+        "index": 1,
+        "pert": "Nolc1",
+        "gene": "Sqstm1",
+        "true_label": "none",
+        "predicted_label": "none",
+        "correct": true,
+        "row_score": 0.3072463768115942
+      },
+      {
+        "index": 2,
+        "pert": "Rcl1",
+        "gene": "Uchl1",
+        "true_label": "down",
+        "predicted_label": "none",
+        "correct": false,
+        "row_score": 0.3072463768115942
+      },
+      {
+        "index": 3,
+        "pert": "Zfp710",
+        "gene": "Ldhb",
+        "true_label": "none",
+        "predicted_label": "none",
+        "correct": true,
+        "row_score": 0.3072463768115942
+      },
+      {
+        "index": 4,
+        "pert": "Dido1",
+        "gene": "Pmp22",
+        "true_label": "none",
+        "predicted_label": "none",
+        "correct": true,
+        "row_score": 0.3072463768115942
+      },
+      {
+        "index": 5,
+        "pert": "Ppp6c",
+        "gene": "Cd86",
+        "true_label": "none",
+        "predicted_label": "up",
+        "correct": false,
+        "row_score": 0.3072463768115942
+      },
+      {
+        "index": 6,
+        "pert": "Pfdn6",
+        "gene": "Cep295",
+        "true_label": "none",
+        "predicted_label": "none",
+        "correct": true,
+        "row_score": 0.3072463768115942
+      },
+      {
+        "index": 7,
+        "pert": "Dido1",
+        "gene": "Prkcg",
+        "true_label": "up",
+        "predicted_label": "none",
+        "correct": false,
+        "row_score": 0.3072463768115942
+      },
+      {
+        "index": 8,
+        "pert": "Mcm4",
+        "gene": "AW554918",
+        "true_label": "down",
+        "predicted_label": "none",
+        "correct": false,
+        "row_score": 0.3072463768115942
+      },
+      {
+        "index": 9,
+        "pert": "Pfdn6",
+        "gene": "Cxcl1",
+        "true_label": "none",
+        "predicted_label": "none",
+        "correct": true,
+        "row_score": 0.3072463768115942
+      },
+      {
+        "index": 10,
+        "pert": "Ss18",
+        "gene": "Slamf9",
+        "true_label": "none",
+        "predicted_label": "down",
+        "correct": false,
+        "row_score": 0.3072463768115942
+      },
+      {
+        "index": 11,
+        "pert": "Eif2s1",
+        "gene": "Hipk1",
+        "true_label": "up",
+        "predicted_label": "none",
+        "correct": false,
+        "row_score": 0.3072463768115942
+      },
+      {
+        "index": 12,
+        "pert": "Srsf1",
+        "gene": "Ifit3",
+        "true_label": "none",
+        "predicted_label": "up",
+        "correct": false,
+        "row_score": 0.3072463768115942
+      },
+      {
+        "index": 13,
+        "pert": "Tsc2",
+        "gene": "Car2",
+        "true_label": "none",
+        "predicted_label": "none",
+        "correct": true,
+        "row_score": 0.3072463768115942
+      },
+      {
+        "index": 14,
+        "pert": "Bag6",
+        "gene": "Mxd1",
+        "true_label": "up",
+        "predicted_label": "none",
+        "correct": false,
+        "row_score": 0.3072463768115942
+      },
+      {
+        "index": 15,
+        "pert": "Yeats4",
+        "gene": "Man1a",
+        "true_label": "up",
+        "predicted_label": "none",
+        "correct": false,
+        "row_score": 0.3072463768115942
+      },
+      {
+        "index": 16,
+        "pert": "Kat5",
+        "gene": "Alox5ap",
+        "true_label": "down",
+        "predicted_label": "down",
+        "correct": true,
+        "row_score": 0.3072463768115942
+      },
+      {
+        "index": 17,
+        "pert": "Eftud2",
+        "gene": "Snhg4",
+        "true_label": "up",
+        "predicted_label": "none",
+        "correct": false,
+        "row_score": 0.3072463768115942
+      }
+    ]
+  },
+  "inputs": [
+    {
+      "pert": "Cnot2",
+      "gene": "Akr1a1",
+      "label": "none"
+    },
+    {
+      "pert": "Nolc1",
+      "gene": "Sqstm1",
+      "label": "none"
+    },
+    {
+      "pert": "Rcl1",
+      "gene": "Uchl1",
+      "label": "down"
+    },
+    {
+      "pert": "Zfp710",
+      "gene": "Ldhb",
+      "label": "none"
+    },
+    {
+      "pert": "Dido1",
+      "gene": "Pmp22",
+      "label": "none"
+    },
+    {
+      "pert": "Ppp6c",
+      "gene": "Cd86",
+      "label": "none"
+    },
+    {
+      "pert": "Pfdn6",
+      "gene": "Cep295",
+      "label": "none"
+    },
+    {
+      "pert": "Dido1",
+      "gene": "Prkcg",
+      "label": "up"
+    },
+    {
+      "pert": "Mcm4",
+      "gene": "AW554918",
+      "label": "down"
+    },
+    {
+      "pert": "Pfdn6",
+      "gene": "Cxcl1",
+      "label": "none"
+    },
+    {
+      "pert": "Ss18",
+      "gene": "Slamf9",
+      "label": "none"
+    },
+    {
+      "pert": "Eif2s1",
+      "gene": "Hipk1",
+      "label": "up"
+    },
+    {
+      "pert": "Srsf1",
+      "gene": "Ifit3",
+      "label": "none"
+    },
+    {
+      "pert": "Tsc2",
+      "gene": "Car2",
+      "label": "none"
+    },
+    {
+      "pert": "Bag6",
+      "gene": "Mxd1",
+      "label": "up"
+    },
+    {
+      "pert": "Yeats4",
+      "gene": "Man1a",
+      "label": "up"
+    },
+    {
+      "pert": "Kat5",
+      "gene": "Alox5ap",
+      "label": "down"
+    },
+    {
+      "pert": "Eftud2",
+      "gene": "Snhg4",
+      "label": "up"
+    }
+  ],
+  "outputs": [
+    {
+      "reasoning": "CNOT2 is a core scaffold subunit of the CCR4\u2011NOT complex, which carries out the major cytoplasmic deadenylation activity that shortens poly(A) tails and promotes mRNA decay.  In addition to its role in mRNA turnover, the complex can act as a transcriptional corepressor through interactions with DNA\u2011binding factors.  Consequently, loss\u2011of\u2011function of CNOT2 (by CRISPRi knockdown) generally reduces deadenylation efficiency and weakens transcriptional repression, leading to increased stability and/or transcription of a broad set of transcripts that are normally kept low by the complex.\n\nAkr1a1 encodes an aldo\u2011keto reductase that is not known to be a direct transcriptional target of a specific factor within the CCR4\u2011NOT pathway.  However, its mRNA is subject to the same general deadenylation machinery as most cellular transcripts.  When CNOT2 is depleted, the deadenylase activity of the CCR4\u2011NOT complex is compromised, which can result in higher steady\u2011state levels of many mRNAs, including those that are not directly regulated by a specific transcription factor.  Therefore, a plausible indirect mechanism exists whereby CNOT2 knockdown leads to modest up\u2011regulation of Akr1a1 through increased mRNA stability (and possibly reduced transcriptional repression).\n\nNo evidence suggests that CNOT2 acts as a specific activator of Akr1a1, nor that compensatory paralogs fully buffer the loss of CNOT2 for this particular transcript.  Given the general repressive/decay function of CNOT2, the most likely direction of change for Akr1a1 expression upon CNOT2 knockdown is an increase.",
+      "prediction": "up"
+    },
+    {
+      "reasoning": "NOLC1 encodes a nucleolar phosphoprotein that participates in rRNA transcription and nucleolar organization.  CRISPRi knockdown of NOLC1 therefore primarily induces nucleolar stress, which can lead to stabilization of p53 and activation of a general stress\u2011response transcriptional program.  SQSTM1 (p62) is a selective autophagy receptor whose transcription is most directly controlled by the NRF2 antioxidant pathway, by NF\u2011\u03baB signaling, and by certain cytokine\u2011driven programs; it is not a known direct target of p53.  There is no established connection between NOLC1 loss and activation of NRF2 or NF\u2011\u03baB in the basal cellular context, and NOLC1 does not function as a transcriptional regulator of SQSTM1.  Consequently, the knockdown is unlikely to produce a specific up\u2011 or down\u2011regulation of SQSTM1 expression; any effect would be indirect and buffered by redundant stress pathways.",
+      "prediction": "none"
+    },
+    {
+      "reasoning": "Rcl1 is a nucleolar protein that participates in the processing of pre\u2011ribosomal RNA and is required for proper 18S rRNA maturation.  Its primary role is in ribosome biogenesis rather than in transcriptional regulation.  Knockdown of Rcl1 by CRISPRi therefore mainly perturbs ribosome production and can induce nucleolar stress, which often activates the p53\u2011dependent stress response.  The downstream transcriptional program of p53 includes cell\u2011cycle arrest and apoptosis genes, but Uchl1 (ubiquitin\u2011carboxyl\u2011terminal hydrolase L1) is a neuronal deubiquitinase that is not known to be a direct p53 target or to be regulated by the nucleolar stress pathway.  There is no reported direct interaction between Rcl1 and the promoter or mRNA stability of Uchl1, and the stress response triggered by loss of Rcl1 does not specifically involve Uchl1 expression.  Consequently, under basal conditions and in the absence of a specific linking pathway, Rcl1 knockdown is unlikely to cause a consistent up\u2011 or down\u2011regulation of Uchl1.",
+      "prediction": "none"
+    },
+    {
+      "reasoning": "Zfp710 encodes a C2H2\u2011type zinc\u2011finger protein that contains a KRAB domain, a motif typical of transcriptional repressors that recruit KAP1 and heterochromatin\u2011forming complexes.  Loss\u2011of\u2011function of such a KRAB\u2011ZFP would be expected to derepress genes that are direct binding targets of the protein.  However, there is no published evidence that Zfp710 binds the promoter or regulatory elements of **Ldhb**, nor that it participates in metabolic pathways (e.g., HIF\u20111\u03b1, c\u2011Myc, or PPAR signaling) that are known to control LDHB expression.  LDHB is primarily regulated by hypoxia\u2011responsive factors, muscle\u2011specific transcription programs, and cellular redox state, none of which are directly linked to Zfp710 activity.  Because Zfp710 is not known to act as a co\u2011activator for pathways that up\u2011regulate Ldhb, nor as a repressor of a pathway that would suppress Ldhb, there is no clear mechanistic route by which Zfp710 knockdown would change Ldhb transcription.  Redundancy among KRAB\u2011ZFP family members could also buffer any indirect effects.  Consequently, the most parsimonious expectation is that Ldhb expression remains unchanged.",
+      "prediction": "none"
+    },
+    {
+      "reasoning": "DIDO1 (death\u2011inducer obliterator 1) is a nuclear protein that functions mainly in the regulation of apoptosis and the DNA\u2011damage response. It can act as a transcriptional co\u2011regulator in some contexts, but it is not a classic transcription factor for peripheral\u2011nerve\u2011specific genes. PMP22 (peripheral myelin protein 22) is a membrane protein whose expression is tightly controlled in Schwann cells by myelination\u2011specific transcription factors such as EGR2/KROX20, SOX10, and by neuregulin\u20111/ErbB signaling pathways. There is no reported direct interaction between DIDO1 and the PMP22 promoter, nor is PMP22 known to be a downstream target of p53\u2011 or apoptosis\u2011related stress pathways that would be modulated by DIDO1 loss. Because DIDO1 knockdown does not engage the Schwann\u2011cell differentiation program or the specific signaling cascades that regulate PMP22, and no compensatory or redundant mechanisms link these two genes, a CRISPRi knockdown of DIDO1 is unlikely to cause a measurable change in PMP22 expression under basal conditions.",
+      "prediction": "none"
+    },
+    {
+      "reasoning": "Ppp6c encodes the catalytic subunit of protein phosphatase\u202f6, a serine/threonine phosphatase that forms holo\u2011enzymes with regulatory subunits. One well\u2011characterized function of PP6 is to limit NF\u2011\u03baB signaling: PP6 dephosphorylates IKK\u03b2 (and possibly other upstream kinases), thereby reducing I\u03baB degradation and dampening NF\u2011\u03baB transcriptional activity. Cd86 is a classic NF\u2011\u03baB\u2011responsive gene; its promoter contains NF\u2011\u03baB binding sites and its expression on dendritic cells, macrophages and B cells is strongly induced by NF\u2011\u03baB activation downstream of Toll\u2011like receptor or cytokine signaling.  \n\nWith CRISPRi knockdown of Ppp6c, the negative phosphatase activity on IKK\u03b2 is diminished, leading to prolonged IKK\u03b2 phosphorylation, enhanced degradation of I\u03baB, and consequently higher NF\u2011\u03baB nuclear translocation. This increase in NF\u2011\u03baB activity is expected to drive higher transcription of NF\u2011\u03baB target genes, including Cd86. No requirement for an external stimulus is needed because basal NF\u2011\u03baB signaling is already present in immune cells, and loss of a repressor typically yields a measurable up\u2011regulation. Redundant phosphatases (e.g., PP2A) do not fully compensate for PP6\u2019s specific role in IKK\u03b2 dephosphorylation, so the effect is not buffered. Therefore, the most plausible outcome of Ppp6c knockdown is an increase in Cd86 expression.",
+      "prediction": "up"
+    },
+    {
+      "reasoning": "Pfdn6 encodes a subunit of the prefoldin complex, a cytosolic chaperone that delivers unfolded proteins, especially actin and tubulin, to the CCT/TRiC chaperonin for proper folding. Its primary role is in protein homeostasis and the assembly of cytoskeletal components; it is not a transcription factor, signaling kinase, or chromatin modifier.  \n\nCep295 is a large centrosomal protein required for centriole duplication and pericentriolar material recruitment. Its expression is linked to cell\u2011cycle progression but is not known to be directly regulated by chaperone activity or by the stress\u2011responsive transcription factors that are typically activated when prefoldin function is compromised (e.g., HSF1, ATF4).  \n\nLoss of Pfdn6 could cause mild proteostasis stress and potentially affect microtubule dynamics, which might indirectly influence centrosome function. However, there is no established pathway whereby reduced prefoldin activity leads to transcriptional up\u2011 or down\u2011regulation of Cep295. The indirect effects (e.g., cell\u2011cycle slowdown) are speculative and would likely produce a modest, non\u2011specific change rather than a consistent directional regulation.  \n\nGiven the absence of a direct regulatory relationship, and no clear stress\u2011responsive transcriptional program that targets Cep295, the most plausible outcome is that knockdown of Pfdn6 does not produce a reproducible change in Cep295 mRNA levels.",
+      "prediction": "none"
+    },
+    {
+      "reasoning": "DIDO1 (death\u2011inducer obliterator 1) is a nuclear protein that functions mainly as a transcriptional regulator and modulator of apoptosis and the DNA\u2011damage response. It contains a PHD\u2011type zinc finger and can associate with chromatin\u2011modifying complexes, acting largely as a repressor of genes involved in cell\u2011cycle progression and survival. There is no reported direct interaction between DIDO1 and the promoter of\u202fPRKCG, nor is DIDO1 known to regulate the calcium\u2011dependent protein kinase C signaling pathway in which PRKCG participates. PRKCG expression is highly tissue\u2011specific, being enriched in neuronal cells, whereas most CRISPRi screens involving DIDO1 are performed in non\u2011neuronal cell lines. Consequently, loss of DIDO1 is unlikely to trigger a stress\u2011responsive transcription factor (e.g., p53, ATF4) that would specifically alter PRKCG transcription, and no compensatory pathway links DIDO1 to PKC\u03b3 regulation. Given the absence of a plausible direct or indirect mechanistic link under basal conditions, the most reasonable expectation is that DIDO1 knockdown does not change PRKCG expression.",
+      "prediction": "none"
+    },
+    {
+      "reasoning": "MCM4 is a core subunit of the MCM2\u20117 helicase that drives DNA unwinding during replication origin firing and fork progression. CRISPRi\u2011mediated knockdown of MCM4 reduces helicase activity, leading to replication stress, S\u2011phase slowdown and activation of the ATR\u2011CHK1 and p53 DNA\u2011damage response pathways. These stress responses can cause broad transcriptional reprogramming, typically up\u2011regulating genes involved in DNA repair, cell\u2011cycle checkpoints and stress\u2011responsive transcription factors (e.g., ATF4, p53 targets) while down\u2011regulating many proliferation\u2011associated genes.\n\nTo predict the effect on the specific target \u201cAW554918\u201d, we must ask whether this gene is known to be a direct target of the replication\u2011stress response, a p53\u2011regulated gene, or otherwise linked to the MCM complex. AW554918 does not correspond to a well\u2011characterized protein\u2011coding gene; it appears to be an unannotated or low\u2011confidence transcript with no reported regulation by replication stress, p53, or the MCM helicase. No direct transcription\u2011factor binding, mRNA\u2011stability, or pathway connection is documented.\n\nGiven the lack of a known mechanistic link, and assuming the basal cellular state does not provide a stimulus that would specifically engage a pathway controlling AW554918, the most parsimonious expectation is that MCM4 knockdown will not produce a consistent, directed change in the expression of this particular transcript. Therefore, the prediction is \u201cnone\u201d.",
+      "prediction": "none"
+    },
+    {
+      "reasoning": "Pfdn6 encodes a subunit of the prefoldin complex, a hetero\u2011hexameric chaperone that delivers newly synthesized cytosolic proteins (especially actin, tubulin and other folding\u2011prone substrates) to the CCT/TRiC chaperonin for proper folding. Its primary role is therefore in protein homeostasis and the assembly of the cytoskeleton.  \n\nLoss\u2011of\u2011function of a prefoldin subunit can generate proteostatic stress, potentially activating general stress\u2011responsive pathways such as the unfolded\u2011protein response (UPR) or the integrated stress response (ISR). These pathways can lead to transcriptional changes mediated by ATF4, CHOP, or p53, but the downstream gene sets are typically centered on amino\u2011acid metabolism, apoptosis, or cell\u2011cycle arrest rather than acute inflammatory chemokines.  \n\nCXCL1 is a chemokine whose transcription is strongly induced by inflammatory signaling (NF\u2011\u03baB, AP\u20111, MAPK) in response to cytokines, bacterial products, or cellular stress that activates those pathways. There is no known direct interaction between prefoldin components and the transcription factors that drive CXCL1, nor is Pfdn6 reported to act as a repressor or co\u2011activator of inflammatory gene expression.  \n\nThus, while a Pfdn6 knockdown might cause a mild stress response, there is no specific mechanistic link that would predict a consistent up\u2011 or down\u2011regulation of CXCL1 under basal conditions. Redundant chaperone systems (other prefoldin subunits, Hsp70/Hsp90) can also buffer the loss, further reducing the likelihood of a measurable effect on CXCL1 transcription.  \n\nGiven the absence of a plausible direct or indirect regulatory connection, the most appropriate prediction is no change in CXCL1 expression.",
+      "prediction": "none"
+    },
+    {
+      "reasoning": "Ss18 encodes a subunit of the SWI/SNF (BAF) chromatin\u2011remodeling complex that functions mainly as a transcriptional co\u2011activator, facilitating nucleosome sliding and opening of promoters for RNA\u2011polymerase II recruitment. Loss\u2011of\u2011function of a core BAF component typically reduces the transcriptional output of many genes rather than derepressing them, because the complex is required for the activation of target promoters. \n\nSlamf9 is a member of the SLAM family of immune\u2011cell surface receptors; its expression is regulated in part by transcription factors that depend on an accessible chromatin environment (e.g., NF\u2011\u03baB, IRF family). Disruption of the BAF complex by Ss18 knockdown would be expected to diminish chromatin accessibility at the Slamf9 promoter/enhancers, leading to lower transcriptional activation. No direct repressive role for Ss18 on Slamf9 has been reported, and there is no known stimulus\u2011dependent pathway that would invert this effect. Although other BAF subunits can partially compensate, Ss18 is a non\u2011redundant core subunit, so the net effect is likely a modest but detectable decrease in Slamf9 mRNA levels.\n\nTherefore, the most plausible outcome of CRISPRi\u2011mediated Ss18 knockdown on Slamf9 expression is down\u2011regulation.",
+      "prediction": "down"
+    },
+    {
+      "reasoning": "Eif2s1 encodes the \u03b1\u2011subunit of eukaryotic initiation factor\u202f2 (eIF2\u03b1), a core component of the translation initiation machinery. A CRISPRi knockdown therefore reduces the amount of functional eIF2\u03b1, leading to a general decrease in translation initiation. The primary transcriptional consequences of reduced eIF2\u03b1 are mediated through the integrated stress response (ISR), which is normally triggered when eIF2\u03b1 is **phosphorylated**; phosphorylation causes selective translation of ATF4 and downstream stress\u2011responsive genes. When the protein itself is depleted, the substrate for phosphorylation is limited, so the canonical ISR\u2011driven transcriptional program is not strongly activated. Consequently, there is no clear pathway by which loss of eIF2\u03b1 would directly or indirectly increase or decrease Hipk1 transcription. Hipk1 is a kinase involved in stress\u2011responsive signaling, but it is not a known direct target of eIF2\u03b1\u2011dependent translational control or of the ATF4\u2011driven transcriptional network. Moreover, the essential nature of eIF2\u03b1 means that cells may invoke compensatory mechanisms (e.g., up\u2011regulation of other translation factors) that buffer the effect on specific mRNA levels. In the absence of a documented direct regulatory relationship or a stimulus that would link eIF2\u03b1 loss to Hipk1 transcription, the most plausible outcome is no measurable change in Hipk1 mRNA.",
+      "prediction": "none"
+    },
+    {
+      "reasoning": "SRSF1 (also known as ASF) is a canonical serine/arginine\u2011rich splicing factor that promotes constitutive and alternative splicing of a large set of pre\u2011mRNAs.  CRISPRi knockdown of SRSF1 reduces splicing efficiency, leading to intron retention and the generation of aberrant double\u2011stranded RNA species.  These RNAs are sensed by cytosolic pattern\u2011recognition receptors such as MDA5/RIG\u2011I, which trigger a type\u2011I interferon (IFN\u2011\u03b1/\u03b2) response.  The IFN signaling cascade activates STAT1/STAT2\u2011IRF9 (ISGF3) transcriptional complexes that drive expression of interferon\u2011stimulated genes (ISGs), among which IFIT3 is a well\u2011characterized member.  Therefore, loss of SRSF1 is expected to indirectly activate the IFN pathway and increase IFIT3 transcription.  No evidence suggests that SRSF1 directly represses IFIT3, and the dominant effect of splicing stress is activation of the innate immune program, making an up\u2011regulation of IFIT3 the most plausible outcome.",
+      "prediction": "up"
+    },
+    {
+      "reasoning": "TSC2 encodes tuberin, a GAP that inhibits the small G\u2011protein Rheb and thereby suppresses mTORC1 signaling. CRISPRi knockdown of TSC2 removes this inhibition, leading to chronic activation of mTORC1. The downstream consequences of heightened mTORC1 activity are increased protein synthesis, ribosome biogenesis, glycolytic flux and, in some contexts, enhanced translation of HIF\u20111\u03b1, which can up\u2011regulate classic hypoxia\u2011responsive carbonic anhydrases such as CA9.  \n\nCAR2 (carbonic anhydrase\u202fII) is a cytosolic enzyme whose expression is prominent in erythrocytes, kidney proximal tubules and certain brain cells. Its transcription is regulated mainly by hormonal cues (e.g., glucocorticoids) and by pH/CO\u2082 balance, rather than by the mTORC1\u2011HIF axis. No direct interaction between TSC2 (or mTORC1 effectors such as S6K, 4E\u2011BP) and the CAR2 promoter has been reported, and CAR2 is not a known mTORC1\u2011responsive gene in the literature.  \n\nBecause the loss of TSC2 primarily drives a growth\u2011promoting, protein\u2011synthetic program and does not engage transcription factors that are documented to control CAR2, there is no plausible direct or indirect mechanism linking TSC2 knockdown to a consistent change in CAR2 mRNA levels under basal conditions. Redundant pathways or compensatory feedback are also unlikely to produce a specific directional effect on CAR2.  \n\nTherefore, the most reasonable expectation is that TSC2 knockdown will not measurably alter CAR2 expression.",
+      "prediction": "none"
+    },
+    {
+      "reasoning": "Bag6 (also called BAT3/Scythe) is a multifunctional co\u2011chaperone that participates in tail\u2011anchored protein insertion, ER\u2011associated degradation and regulation of stress\u2011responsive pathways such as NF\u2011\u03baB and p53 signaling. Its primary role is in protein quality control rather than direct transcriptional regulation.  \n\nMxd1 (Mad1) is a basic\u2011helix\u2011loop\u2011helix transcriptional repressor that antagonizes Myc\u2011Max activity and is typically induced during growth arrest or differentiation. Its expression is controlled by pathways that signal cellular stress, differentiation cues, and sometimes NF\u2011\u03baB or p53, but there is no well\u2011documented direct regulatory connection to Bag6.  \n\nLoss of Bag6 could generate proteostatic stress, potentially activating a general stress response (e.g., UPR/ISR). Such a response might modestly increase MXD1 as part of a growth\u2011arrest program, but the effect is indirect and not consistently observed. Conversely, Bag6 has been reported to support NF\u2011\u03baB and p53 activity; reduced activity of these transcription factors could lower MXD1 if they act as positive regulators, but again the evidence is weak.  \n\nBecause Bag6 does not function as a specific transcriptional activator or repressor of the MXD1 locus, and the indirect routes are ambiguous and likely buffered by redundant pathways, there is no clear mechanistic basis to expect a consistent up\u2011 or down\u2011regulation of MXD1 upon Bag6 knockdown.",
+      "prediction": "none"
+    },
+    {
+      "reasoning": "YEATS4 (also known as GAS41) is a chromatin\u2011reader protein that associates with the TIP60\u2011NuA4 histone acetyltransferase complex and generally functions as a co\u2011activator for genes involved in cell\u2011proliferation and DNA\u2011damage responses. Its loss\u2011of\u2011function by CRISPRi therefore tends to produce a modest global reduction in transcription of proliferation\u2011associated genes, but the effect is often buffered by other YEATS family members (YEATS1, YEATS2) that can compensate for chromatin\u2011reading activity.\n\nMAN1A encodes a Golgi \u03b1\u2011mannosidase that participates in N\u2011glycan processing, a housekeeping function that is constitutively expressed in most cell types. There is no reported direct regulatory relationship between YEATS4 and the MAN1A promoter, nor is MAN1A known to be a primary target of TIP60\u2011NuA4\u2011driven transcription programs. Because the pathway linking YEATS4 to MAN1A is indirect and likely redundant, a knockdown of YEATS4 is unlikely to produce a consistent, directionally specific change in MAN1A mRNA levels under basal conditions.\n\nHence, the most plausible outcome is no detectable change in MAN1A expression.",
+      "prediction": "none"
+    },
+    {
+      "reasoning": "Kat5 (also called Tip60) is a lysine acetyltransferase that acetylates histones (H4, H2A) and several transcription\u2011regulating proteins (e.g., ATM, p53, NF\u2011\u03baB). Its activity generally promotes an open chromatin state and functions as a co\u2011activator for many transcription factors. CRISPRi knockdown of Kat5 therefore reduces histone acetylation and diminishes the transcriptional co\u2011activation capacity of pathways such as NF\u2011\u03baB that drive inflammatory gene programs. Alox5ap (5\u2011lipoxygenase\u2011activating protein) is part of the leukotriene biosynthetic pathway and its expression is up\u2011regulated in response to inflammatory signals that often involve NF\u2011\u03baB. Loss of Kat5 is expected to blunt NF\u2011\u03baB\u2011mediated transcriptional activation, leading to lower Alox5ap mRNA levels. No evidence suggests Kat5 acts as a direct repressor of Alox5ap, so the most plausible outcome of Kat5 knockdown is a decrease in Alox5ap expression.",
+      "prediction": "down"
+    },
+    {
+      "reasoning": "Eftud2 encodes a core component of the U5 snRNP of the spliceosome and is required for efficient pre\u2011mRNA splicing. CRISPRi knockdown of Eftud2 therefore produces a general splicing deficiency that can activate cellular stress pathways (e.g., p53\u2011dependent nucleolar stress, ISR/ATF4) and may lead to widespread changes in mRNA stability. However, Eftud2 is not a transcription factor, chromatin modifier, or signaling enzyme that directly controls the transcription of specific target genes. Snhg4 is a long non\u2011coding RNA that functions as a host gene for small nucleolar RNAs and is regulated in some cancer contexts by oncogenic transcription factors such as MYC, but there is no reported direct link between spliceosome activity and Snhg4 transcription. The stress responses triggered by spliceosome impairment could indirectly modulate some lncRNAs, yet there is no specific evidence that Snhg4 is a downstream target of p53, ATF4, or other stress\u2011responsive transcription factors. Consequently, under basal conditions a loss\u2011of\u2011function perturbation of Eftud2 is unlikely to produce a consistent, directed change in Snhg4 expression. The most plausible outcome is no measurable regulation.",
+      "prediction": "none"
+    }
+  ]
+}

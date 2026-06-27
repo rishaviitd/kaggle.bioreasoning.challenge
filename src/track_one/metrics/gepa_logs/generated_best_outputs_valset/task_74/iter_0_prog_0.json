@@ -1,0 +1,4 @@
+{
+    "reasoning": "Pgm3 encodes phosphoglucomutase 3, an enzyme that generates UDP\u2011GlcNAc for protein N\u2011 and O\u2011GlcNAcylation. Reducing Pgm3 activity lowers cellular UDP\u2011GlcNAc pools, which diminishes O\u2011GlcNAc modification of key transcriptional regulators of adipogenesis such as PPAR\u03b3 and C/EBP\u03b1. O\u2011GlcNAcylation of these factors enhances their transcriptional activity and promotes expression of adipocyte genes, including Fabp4 (fatty acid\u2011binding protein 4). Therefore, CRISPRi\u2011mediated knockdown of Pgm3 is expected to weaken O\u2011GlcNAc\u2011dependent activation of PPAR\u03b3/C/EBP\u03b1, leading to reduced transcription of Fabp4.",
+    "prediction": "down"
+}

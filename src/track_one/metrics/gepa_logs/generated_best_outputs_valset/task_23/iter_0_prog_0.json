@@ -1,0 +1,4 @@
+{
+    "reasoning": "Ehmt2 encodes the G9a histone methyltransferase that deposits the repressive H3K9me2 mark on chromatin. Reducing Ehmt2 activity by CRISPRi generally leads to loss of this repressive modification and can cause de\u2011repression of genes that are directly targeted by G9a. Selenop (selenoprotein\u202fP) is primarily regulated by selenium availability and oxidative\u2011stress responsive transcription factors such as NRF2, rather than by H3K9 methylation. There is no well\u2011characterized direct link between G9a/Ehmt2 and the transcriptional control of Selenop. Consequently, knocking down Ehmt2 is unlikely to produce a consistent up\u2011 or down\u2011regulation of Selenop; the most plausible outcome is no measurable change.",
+    "prediction": "none"
+}

@@ -1,0 +1,4 @@
+{
+    "reasoning": "Ptpn2 encodes a tyrosine phosphatase that attenuates signaling downstream of cytokine receptors (e.g., JAK\u2011STAT pathways) and growth factor receptors. Loss of Ptpn2 by CRISPRi therefore leads to hyper\u2011activation of STAT1/STAT3 and other downstream effectors, which can increase cellular stress and inflammatory signaling. Enhanced cytokine signaling often triggers the unfolded protein response (UPR) and elevates expression of ER\u2011resident chaperones such as Hsp90b1 (GRP94). Moreover, studies linking Ptpn2 deficiency to heightened ER stress and increased expression of heat\u2011shock proteins support a model where Hsp90b1 transcription is up\u2011regulated as a protective response. Consequently, knocking down Ptpn2 is expected to cause an increase in Hsp90b1 mRNA levels.",
+    "prediction": "up"
+}

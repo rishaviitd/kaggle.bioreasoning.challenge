@@ -1,0 +1,4 @@
+{
+    "reasoning": "CUL3 is the scaffold protein of a Cullin\u2011RING E3 ubiquitin ligase complex that targets several regulatory proteins for proteasomal degradation. One well\u2011characterized substrate is NRF2, which is kept low under basal conditions by the KEAP1\u2011CUL3 complex. CRISPRi\u2011mediated knockdown of CUL3 therefore stabilises NRF2, but CUL3 also participates in the turnover of proteins that restrain NF\u2011\u03baB signaling (e.g., I\u03baB\u2011related adaptors). Loss of CUL3 can therefore lead to enhanced NF\u2011\u03baB activity in macrophages and other inflammatory cells. MMP12 (macrophage elastase) is a transcriptional target of NF\u2011\u03baB and is strongly up\u2011regulated during inflammatory activation. Consequently, reducing CUL3 levels is expected to relieve repression of NF\u2011\u03baB, increasing the transcription of MMP12.",
+    "prediction": "up"
+}

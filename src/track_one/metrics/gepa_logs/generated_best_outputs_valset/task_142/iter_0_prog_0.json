@@ -1,0 +1,4 @@
+{
+    "reasoning": "Snx14 is a member of the sorting\u2011nexin family that localizes to endoplasmic\u2011reticulum (ER) membranes and participates in lipid homeostasis and ER\u2011associated degradation pathways. Loss of Snx14 disrupts ER membrane integrity and has been shown to trigger an unfolded\u2011protein response (UPR). The UPR activates transcription factors such as ATF6, XBP1 and ATF4, which in turn increase the expression of ER\u2011resident chaperones and oxidoreductases that assist protein folding. PDIA3 (also called ERp57) is a canonical ER chaperone whose transcription is up\u2011regulated during ER stress and the UPR. Therefore, CRISPRi\u2011mediated knockdown of Snx14 is expected to elevate ER stress signaling, leading to higher transcription of Pdia3.",
+    "prediction": "up"
+}

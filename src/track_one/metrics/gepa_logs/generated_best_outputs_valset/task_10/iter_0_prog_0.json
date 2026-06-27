@@ -1,0 +1,4 @@
+{
+    "reasoning": "WDR70 is a WD\u2011repeat protein that participates in the DNA damage response, particularly in the processing of double\u2011strand breaks and in homologous recombination repair. Loss of WDR70 by CRISPRi knock\u2011down impairs efficient repair, leading to accumulation of DNA lesions and activation of the p53\u2011mediated stress response. p53 activation in stem and progenitor cells generally promotes cell\u2011cycle arrest and differentiation, and it represses a set of genes associated with the stem\u2011cell phenotype, including the surface marker Ly6a (Sca\u20111). Consequently, when WDR70 is reduced, the downstream stress signaling tends to lower Ly6a transcription rather than increase it. No direct activating pathway linking WDR70 to Ly6a expression is known, making an up\u2011regulation unlikely.",
+    "prediction": "down"
+}

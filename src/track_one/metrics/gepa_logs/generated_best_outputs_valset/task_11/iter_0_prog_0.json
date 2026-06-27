@@ -1,0 +1,4 @@
+{
+    "reasoning": "Atp6v1a encodes the catalytic A subunit of the vacuolar H\u207a\u2011ATPase, a core component of the proton\u2011pumping complex that acidifies endosomes, lysosomes and other intracellular compartments. Its primary role is in maintaining organelle pH and supporting processes such as protein degradation, vesicular trafficking and nutrient sensing. While loss of V\u2011ATPase activity can lead to cellular stress and secondary effects on signaling pathways, there is no direct transcriptional regulatory link between Atp6v1a and the \u03b2\u2011actin gene (Actb). Actb is a classic housekeeping gene with constitutive expression that is generally insensitive to perturbations of lysosomal acidification. Consequently, CRISPRi\u2011mediated knockdown of Atp6v1a is unlikely to cause a specific up\u2011 or down\u2011regulation of Actb expression.",
+    "prediction": "none"
+}

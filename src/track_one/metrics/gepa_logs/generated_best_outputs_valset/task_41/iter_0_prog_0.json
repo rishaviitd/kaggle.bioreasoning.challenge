@@ -1,0 +1,4 @@
+{
+    "reasoning": "Wdr5 is a core subunit of the MLL/SET1 histone methyltransferase complexes that catalyze H3K4 trimethylation, a chromatin mark associated with active promoters. CRISPRi\u2011mediated knockdown of Wdr5 reduces the activity of these complexes, leading to lower H3K4me3 levels and a general decrease in transcriptional output from genes that depend on this activating mark. Guanylate\u2011binding protein 8 (Gbp8) is an interferon\u2011stimulated gene whose promoter, like many immune\u2011responsive genes, requires an open chromatin configuration and active histone modifications for robust transcription. Loss of Wdr5 therefore is expected to diminish the activating chromatin environment at the Gbp8 promoter, resulting in reduced Gbp8 mRNA levels. No known repressive role for Wdr5 on Gbp8 exists, making up\u2011regulation unlikely.",
+    "prediction": "down"
+}

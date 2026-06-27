@@ -1,0 +1,4 @@
+{
+    "reasoning": "WDR75 is a nucleolar protein that participates in ribosome biogenesis. Disruption of ribosome production creates nucleolar stress, which is a well\u2011characterized trigger for stabilization and activation of the tumor suppressor p53. Activated p53 transcriptionally up\u2011regulates a set of downstream genes involved in cell\u2011cycle arrest and apoptosis, among which PH domain\u2011containing leucine\u2011rich repeat protein 3 (Phlda3) is a direct p53 target. Therefore, CRISPRi\u2011mediated knockdown of Wdr75 is expected to generate nucleolar stress, activate p53, and consequently increase Phlda3 transcription.",
+    "prediction": "up"
+}

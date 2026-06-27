@@ -1,0 +1,4 @@
+{
+    "reasoning": "ATG9A encodes a key transmembrane protein required for autophagosome formation. Reducing ATG9A levels impairs autophagic flux, leading to accumulation of damaged organelles, especially mitochondria, and consequently higher intracellular reactive oxygen species (ROS). Elevated ROS activates the NRF2\u2011KEAP1 signaling pathway, which transcriptionally induces a suite of antioxidant genes to restore redox balance. PRDX1 (peroxiredoxin\u20111) is a well\u2011characterized NRF2 target that detoxifies hydrogen peroxide and other peroxides. Therefore, knockdown of ATG9A is expected to increase oxidative stress, trigger NRF2 activation, and consequently raise PRDX1 mRNA and protein levels.",
+    "prediction": "up"
+}

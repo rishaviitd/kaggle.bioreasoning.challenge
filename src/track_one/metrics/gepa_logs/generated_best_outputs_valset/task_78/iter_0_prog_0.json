@@ -1,0 +1,4 @@
+{
+    "reasoning": "Runx1 encodes a DNA\u2011binding transcription factor that primarily controls genes involved in hematopoietic lineage commitment, cell\u2011cycle regulation and signaling pathways such as Notch, TGF\u2011\u03b2 and Wnt. Its documented target repertoire includes many cytokine receptors, cell\u2011surface markers and regulators of differentiation, but there is no established direct regulatory relationship between Runx1 and the DEAD\u2011box helicase Ddx56, which functions mainly in nucleolar ribosome biogenesis and RNA processing. In the absence of evidence for Runx1 binding to the Ddx56 promoter or for Ddx56 being part of a Runx1\u2011controlled transcriptional program, a CRISPRi knockdown of Runx1 is unlikely to cause a consistent up\u2011 or down\u2011regulation of Ddx56 expression. Therefore the most plausible outcome is no significant change.",
+    "prediction": "none"
+}

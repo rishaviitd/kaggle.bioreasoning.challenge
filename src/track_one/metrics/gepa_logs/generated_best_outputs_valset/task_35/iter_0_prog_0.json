@@ -1,0 +1,4 @@
+{
+    "reasoning": "HARS encodes the cytosolic histidyl\u2011tRNA synthetase, a core component of the protein\u2011translation machinery. Reducing HARS levels by CRISPRi primarily impairs global protein synthesis and can activate general stress responses such as the integrated stress response (ISR). While the ISR can modulate a variety of downstream genes, there is no well\u2011established mechanistic link between HARS activity and the transcriptional regulators that control POSTN (periostin) expression, such as TGF\u2011\u03b2, Wnt/\u03b2\u2011catenin, or mechanical\u2011stress pathways. Consequently, knockdown of HARS is unlikely to specifically up\u2011 or down\u2011regulate POSTN; any effect would be indirect and modest at best. Therefore the most plausible outcome is no significant change in POSTN expression.",
+    "prediction": "none"
+}

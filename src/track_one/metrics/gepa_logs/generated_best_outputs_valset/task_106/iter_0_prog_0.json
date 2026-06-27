@@ -1,0 +1,4 @@
+{
+    "reasoning": "Cpsf4 encodes a subunit of the CPSF complex that participates in 3\u2032\u2011end cleavage and polyadenylation of nascent transcripts. Its primary role is in mRNA processing rather than transcriptional regulation or signaling pathways that would specifically modulate cathepsin\u202fL (Ctsl) expression. While global perturbation of CPSF activity can lead to widespread changes in mRNA stability, there is no documented direct regulatory link between Cpsf4 activity and the transcription or stability of the Ctsl transcript. Consequently, a CRISPRi knockdown of Cpsf4 is unlikely to cause a specific up\u2011 or down\u2011regulation of Ctsl beyond any nonspecific effects.",
+    "prediction": "none"
+}

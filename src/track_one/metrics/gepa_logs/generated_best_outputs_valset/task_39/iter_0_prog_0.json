@@ -1,0 +1,4 @@
+{
+    "reasoning": "HARS encodes the cytoplasmic histidyl\u2011tRNA synthetase, an enzyme that charges tRNA^His for protein synthesis. Its primary role is in translation rather than transcriptional regulation. Reducing HARS levels by CRISPRi can lead to a general decrease in translational capacity or activation of stress pathways, but there is no known direct regulatory connection between HARS activity and the transcription of the housekeeping gene ACTB (\u03b2\u2011actin). Consequently, knockdown of HARS is unlikely to cause a specific up\u2011 or down\u2011regulation of ACTB expression; any effect would be indirect and modest at best.",
+    "prediction": "none"
+}

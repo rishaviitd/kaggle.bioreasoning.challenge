@@ -1,0 +1,4 @@
+{
+    "reasoning": "Rpn2 encodes a core subunit of the 19S regulatory particle of the 26S proteasome, and its knockdown primarily impairs proteasome assembly and protein degradation. This leads to a broad cellular stress response and altered turnover of many regulatory proteins, but there is no established link between proteasome activity and the transcriptional control of Igsf6, which is an immunoglobulin superfamily member expressed mainly in germ cells and involved in sperm\u2011egg interaction. Consequently, a CRISPRi\u2011mediated reduction of Rpn2 is unlikely to specifically up\u2011 or down\u2011regulate Igsf6 expression.",
+    "prediction": "none"
+}

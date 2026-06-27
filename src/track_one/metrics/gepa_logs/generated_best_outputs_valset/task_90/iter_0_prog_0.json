@@ -1,0 +1,4 @@
+{
+    "reasoning": "EIF1AD is a component of the translation initiation machinery that assists in the formation of the 43S pre\u2011initiation complex. Reducing EIF1AD levels by CRISPRi is expected to impair general protein synthesis, which can lead to accumulation of nascent polypeptides in the endoplasmic reticulum and trigger the unfolded protein response (UPR). A hallmark of the UPR is the transcriptional up\u2011regulation of ER\u2011resident chaperones such as Hsp90b1 (GRP94) to restore proteostasis. Because there is no known direct regulatory link between EIF1AD and Hsp90b1, the most likely effect is an indirect stress\u2011induced increase in Hsp90b1 expression.",
+    "prediction": "up"
+}

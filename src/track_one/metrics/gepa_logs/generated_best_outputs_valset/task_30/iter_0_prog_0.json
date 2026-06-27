@@ -1,0 +1,4 @@
+{
+    "reasoning": "Ehmt2 encodes the histone methyltransferase G9a, which deposits the repressive H3K9me2 mark on chromatin. When G9a activity is reduced by CRISPRi knockdown, loci that are normally kept in a repressed state lose this mark and become more transcriptionally permissive. Genes involved in oxidative stress responses, such as the antioxidant enzyme Prdx1, are often subject to epigenetic silencing by G9a in unstressed cells. Loss of G9a therefore tends to relieve repression and increase transcription of such genes. Consequently, knocking down Ehmt2 is expected to lead to higher Prdx1 mRNA levels.",
+    "prediction": "up"
+}

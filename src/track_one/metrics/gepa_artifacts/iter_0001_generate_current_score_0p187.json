@@ -1,0 +1,423 @@
+{
+  "stage": "generate_current",
+  "iteration": 1,
+  "candidate_idx": 0,
+  "batch_size": 18,
+  "scores": [
+    0.18666666666666668,
+    0.18666666666666668,
+    0.18666666666666668,
+    0.18666666666666668,
+    0.18666666666666668,
+    0.18666666666666668,
+    0.18666666666666668,
+    0.18666666666666668,
+    0.18666666666666668,
+    0.18666666666666668,
+    0.18666666666666668,
+    0.18666666666666668,
+    0.18666666666666668,
+    0.18666666666666668,
+    0.18666666666666668,
+    0.18666666666666668,
+    0.18666666666666668,
+    0.18666666666666668
+  ],
+  "diagnostics": {
+    "summary": {
+      "primary_score": 0.18666666666666668,
+      "score_sum": 3.3600000000000003,
+      "accuracy": 0.3888888888888889,
+      "macro_precision": 0.15555555555555556,
+      "macro_recall": 0.2333333333333333,
+      "macro_f1": 0.18666666666666668,
+      "de_hard_score": 0.35,
+      "dir_hard_score": 0.0,
+      "hard_proxy_score": 0.175,
+      "non_de_recall": 0.7,
+      "de_recall": 0.0,
+      "up_recall": 0.0,
+      "down_recall": 0.0
+    },
+    "per_class": {
+      "none": {
+        "support": 10,
+        "predicted": 15,
+        "precision": 0.4666666666666667,
+        "recall": 0.7,
+        "f1": 0.56
+      },
+      "up": {
+        "support": 5,
+        "predicted": 3,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      "down": {
+        "support": 3,
+        "predicted": 0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      }
+    },
+    "true_label_counts": {
+      "none": 10,
+      "down": 3,
+      "up": 5
+    },
+    "predicted_label_counts": {
+      "up": 3,
+      "none": 15
+    },
+    "confusion": {
+      "none": {
+        "none": 7,
+        "up": 3,
+        "down": 0
+      },
+      "up": {
+        "none": 5,
+        "up": 0,
+        "down": 0
+      },
+      "down": {
+        "none": 3,
+        "up": 0,
+        "down": 0
+      }
+    },
+    "rows": [
+      {
+        "index": 0,
+        "pert": "Cnot2",
+        "gene": "Akr1a1",
+        "true_label": "none",
+        "predicted_label": "up",
+        "correct": false,
+        "row_score": 0.18666666666666668
+      },
+      {
+        "index": 1,
+        "pert": "Nolc1",
+        "gene": "Sqstm1",
+        "true_label": "none",
+        "predicted_label": "none",
+        "correct": true,
+        "row_score": 0.18666666666666668
+      },
+      {
+        "index": 2,
+        "pert": "Rcl1",
+        "gene": "Uchl1",
+        "true_label": "down",
+        "predicted_label": "none",
+        "correct": false,
+        "row_score": 0.18666666666666668
+      },
+      {
+        "index": 3,
+        "pert": "Zfp710",
+        "gene": "Ldhb",
+        "true_label": "none",
+        "predicted_label": "none",
+        "correct": true,
+        "row_score": 0.18666666666666668
+      },
+      {
+        "index": 4,
+        "pert": "Dido1",
+        "gene": "Pmp22",
+        "true_label": "none",
+        "predicted_label": "none",
+        "correct": true,
+        "row_score": 0.18666666666666668
+      },
+      {
+        "index": 5,
+        "pert": "Ppp6c",
+        "gene": "Cd86",
+        "true_label": "none",
+        "predicted_label": "up",
+        "correct": false,
+        "row_score": 0.18666666666666668
+      },
+      {
+        "index": 6,
+        "pert": "Pfdn6",
+        "gene": "Cep295",
+        "true_label": "none",
+        "predicted_label": "none",
+        "correct": true,
+        "row_score": 0.18666666666666668
+      },
+      {
+        "index": 7,
+        "pert": "Dido1",
+        "gene": "Prkcg",
+        "true_label": "up",
+        "predicted_label": "none",
+        "correct": false,
+        "row_score": 0.18666666666666668
+      },
+      {
+        "index": 8,
+        "pert": "Mcm4",
+        "gene": "AW554918",
+        "true_label": "down",
+        "predicted_label": "none",
+        "correct": false,
+        "row_score": 0.18666666666666668
+      },
+      {
+        "index": 9,
+        "pert": "Pfdn6",
+        "gene": "Cxcl1",
+        "true_label": "none",
+        "predicted_label": "none",
+        "correct": true,
+        "row_score": 0.18666666666666668
+      },
+      {
+        "index": 10,
+        "pert": "Ss18",
+        "gene": "Slamf9",
+        "true_label": "none",
+        "predicted_label": "none",
+        "correct": true,
+        "row_score": 0.18666666666666668
+      },
+      {
+        "index": 11,
+        "pert": "Eif2s1",
+        "gene": "Hipk1",
+        "true_label": "up",
+        "predicted_label": "none",
+        "correct": false,
+        "row_score": 0.18666666666666668
+      },
+      {
+        "index": 12,
+        "pert": "Srsf1",
+        "gene": "Ifit3",
+        "true_label": "none",
+        "predicted_label": "up",
+        "correct": false,
+        "row_score": 0.18666666666666668
+      },
+      {
+        "index": 13,
+        "pert": "Tsc2",
+        "gene": "Car2",
+        "true_label": "none",
+        "predicted_label": "none",
+        "correct": true,
+        "row_score": 0.18666666666666668
+      },
+      {
+        "index": 14,
+        "pert": "Bag6",
+        "gene": "Mxd1",
+        "true_label": "up",
+        "predicted_label": "none",
+        "correct": false,
+        "row_score": 0.18666666666666668
+      },
+      {
+        "index": 15,
+        "pert": "Yeats4",
+        "gene": "Man1a",
+        "true_label": "up",
+        "predicted_label": "none",
+        "correct": false,
+        "row_score": 0.18666666666666668
+      },
+      {
+        "index": 16,
+        "pert": "Kat5",
+        "gene": "Alox5ap",
+        "true_label": "down",
+        "predicted_label": "none",
+        "correct": false,
+        "row_score": 0.18666666666666668
+      },
+      {
+        "index": 17,
+        "pert": "Eftud2",
+        "gene": "Snhg4",
+        "true_label": "up",
+        "predicted_label": "none",
+        "correct": false,
+        "row_score": 0.18666666666666668
+      }
+    ]
+  },
+  "inputs": [
+    {
+      "pert": "Cnot2",
+      "gene": "Akr1a1",
+      "label": "none"
+    },
+    {
+      "pert": "Nolc1",
+      "gene": "Sqstm1",
+      "label": "none"
+    },
+    {
+      "pert": "Rcl1",
+      "gene": "Uchl1",
+      "label": "down"
+    },
+    {
+      "pert": "Zfp710",
+      "gene": "Ldhb",
+      "label": "none"
+    },
+    {
+      "pert": "Dido1",
+      "gene": "Pmp22",
+      "label": "none"
+    },
+    {
+      "pert": "Ppp6c",
+      "gene": "Cd86",
+      "label": "none"
+    },
+    {
+      "pert": "Pfdn6",
+      "gene": "Cep295",
+      "label": "none"
+    },
+    {
+      "pert": "Dido1",
+      "gene": "Prkcg",
+      "label": "up"
+    },
+    {
+      "pert": "Mcm4",
+      "gene": "AW554918",
+      "label": "down"
+    },
+    {
+      "pert": "Pfdn6",
+      "gene": "Cxcl1",
+      "label": "none"
+    },
+    {
+      "pert": "Ss18",
+      "gene": "Slamf9",
+      "label": "none"
+    },
+    {
+      "pert": "Eif2s1",
+      "gene": "Hipk1",
+      "label": "up"
+    },
+    {
+      "pert": "Srsf1",
+      "gene": "Ifit3",
+      "label": "none"
+    },
+    {
+      "pert": "Tsc2",
+      "gene": "Car2",
+      "label": "none"
+    },
+    {
+      "pert": "Bag6",
+      "gene": "Mxd1",
+      "label": "up"
+    },
+    {
+      "pert": "Yeats4",
+      "gene": "Man1a",
+      "label": "up"
+    },
+    {
+      "pert": "Kat5",
+      "gene": "Alox5ap",
+      "label": "down"
+    },
+    {
+      "pert": "Eftud2",
+      "gene": "Snhg4",
+      "label": "up"
+    }
+  ],
+  "outputs": [
+    {
+      "reasoning": "CNOT2 is a core subunit of the CCR4\u2011NOT complex, which functions mainly as a transcriptional repressor and as a deadenylase that promotes mRNA decay. When CNOT2 is knocked down with CRISPRi, the repressive activity of the complex is reduced, leading to increased transcription of many target genes and enhanced stability of their mRNAs because deadenylation is less efficient. Akr1a1 (aldehyde reductase) is not known to be a direct transcriptional target of CNOT2, but it is a typical metabolic gene whose mRNA stability can be influenced by the CCR4\u2011NOT deadenylase activity. Therefore, loss of CNOT2 is expected to relieve repression and/or increase mRNA stability, resulting in higher steady\u2011state levels of Akr1a1 transcripts.",
+      "prediction": "up"
+    },
+    {
+      "reasoning": "NOLC1 (nucleolar and coiled\u2011body phosphoprotein 1) is primarily involved in ribosomal RNA transcription, processing, and nucleolar organization. Its knockdown by CRISPRi typically induces nucleolar stress and can activate p53\u2011dependent pathways, leading to broad changes in cell cycle and stress\u2011response gene expression. However, there is no well\u2011characterized direct regulatory relationship between NOLC1 and the autophagy adaptor protein SQSTM1 (p62). While general stress may modestly influence SQSTM1 levels, the current literature does not provide evidence that reducing NOLC1 expression specifically up\u2011 or down\u2011regulates SQSTM1 transcription or stability. Therefore, the most plausible outcome is that SQSTM1 expression remains unchanged.",
+      "prediction": "none"
+    },
+    {
+      "reasoning": "Rcl1 (RNA 3\u2032-terminal phosphate cyclase-like protein 1) is a component of the ribosome biogenesis machinery that participates in the processing of pre\u2011ribosomal RNA and the assembly of the small ribosomal subunit. Its primary role is in the nucleolus, facilitating maturation of rRNA rather than acting as a transcription factor or signaling molecule that directly controls the expression of specific downstream genes. Uchl1 (ubiquitin carboxyl\u2011terminal hydrolase L1) is a neuronal deubiquitinating enzyme whose transcription is regulated mainly by neuronal differentiation pathways and stress\u2011responsive transcription factors. There is no reported mechanistic link between Rcl1 activity and the transcriptional regulation of Uchl1, nor evidence that perturbing ribosome biogenesis selectively alters Uchl1 mRNA levels. Consequently, a CRISPRi knockdown of Rcl1 is unlikely to cause a specific up\u2011 or down\u2011regulation of Uchl1; any effect would be indirect and nonspecific.",
+      "prediction": "none"
+    },
+    {
+      "reasoning": "Zfp710 encodes a zinc\u2011finger transcription factor that has been implicated mainly in developmental and neuronal contexts, with no well\u2011characterized role in metabolic gene regulation. Ldhb (lactate dehydrogenase B) is a metabolic enzyme whose transcription is typically controlled by factors such as HIF\u20111\u03b1, PPARs, and other metabolic regulators. There is no reported direct interaction or regulatory pathway linking Zfp710 to Ldhb expression, and CRISPRi\u2011mediated knockdown of Zfp710 is unlikely to impact the transcriptional network governing Ldhb. Consequently, the perturbation is expected to have no measurable effect on Ldhb levels.",
+      "prediction": "none"
+    },
+    {
+      "reasoning": "DIDO1 (Death\u2011inducer obliterator 1) functions primarily as a nuclear regulator of the DNA damage response and cell\u2011cycle progression, and it has been implicated in apoptosis and tumor suppression. Its known molecular interactions involve chromatin\u2011modifying complexes and transcriptional regulators that are not specific to peripheral nerve or Schwann\u2011cell biology. PMP22 (Peripheral Myelin Protein 22) is a membrane protein highly expressed in Schwann cells and regulated by pathways such as neuregulin\u2011ErbB signaling, cholesterol metabolism, and transcription factors like SOX10 and EGR2 that control myelination. There is no reported direct or indirect link between DIDO1 activity and the transcriptional control or stability of PMP22 mRNA. Consequently, CRISPRi\u2011mediated knockdown of DIDO1 is unlikely to cause a measurable change in PMP22 expression.",
+      "prediction": "none"
+    },
+    {
+      "reasoning": "PPP6C encodes the catalytic subunit of protein phosphatase\u202f6, a serine/threonine phosphatase that attenuates signaling pathways such as NF\u2011\u03baB by dephosphorylating upstream kinases (e.g., IKK\u03b2, TAK1). CD86 is a co\u2011stimulatory molecule whose transcription is driven by NF\u2011\u03baB activity in antigen\u2011presenting cells. Reducing PPP6C levels with CRISPRi would diminish this negative regulatory phosphatase activity, leading to heightened NF\u2011\u03baB signaling and consequently increased transcription of NF\u2011\u03baB\u2011responsive genes, including Cd86. Therefore, knockdown of Ppp6c is expected to cause an up\u2011regulation of Cd86 expression.",
+      "prediction": "up"
+    },
+    {
+      "reasoning": "Pfdn6 encodes a subunit of the prefoldin complex that functions as a molecular chaperone, primarily assisting the folding of cytoskeletal proteins such as actin and tubulin. Its role is largely post\u2011translational, facilitating proper assembly of protein complexes rather than directly influencing transcriptional programs. Cep295 (also known as CCDC14) is a centrosomal scaffold protein required for centriole duplication and pericentriolar material recruitment. The regulation of Cep295 expression is tied to cell\u2011cycle cues and centrosome\u2011specific signaling pathways, not to the general protein\u2011folding activities of prefoldin. No literature links Pfdn6 activity to transcriptional control of Cep295, nor is there evidence that loss of prefoldin function leads to compensatory changes in Cep295 mRNA levels. Therefore, knocking down Pfdn6 with CRISPRi is unlikely to cause a specific up\u2011 or down\u2011regulation of Cep295 expression; any effect would be indirect and minimal.",
+      "prediction": "none"
+    },
+    {
+      "reasoning": "DIDO1 (death inducer\u2011obliterator 1) is a nuclear protein that participates mainly in transcriptional regulation of apoptosis\u2011related genes and in the DNA damage response. Its reported targets include p53\u2011dependent pathways and genes involved in cell\u2011cycle control, but there is no established connection to the signaling cascade that controls PRKCG (protein kinase C\u202f\u03b3), which is a calcium\u2011dependent kinase expressed predominantly in neuronal tissues and regulated by pathways such as neurotrophin signaling, calcium influx, and DAG production. Because DIDO1 knockdown by CRISPRi is not known to influence the transcriptional regulators or second\u2011messenger systems that modulate PRKCG expression, a direct up\u2011 or down\u2011regulation is unlikely.",
+      "prediction": "none"
+    },
+    {
+      "reasoning": "MCM4 is a core subunit of the MCM2\u20117 helicase complex that unwinds DNA at replication origins. Reducing MCM4 levels by CRISPRi impairs origin firing, slows S\u2011phase progression and can trigger a DNA\u2011damage response and cell\u2011cycle checkpoint activation. The downstream transcriptional changes are therefore typically enriched for genes involved in DNA replication, repair, cell\u2011cycle regulation and stress responses. Unless the target gene AW554918 is known to be directly involved in these pathways (e.g., a replication\u2011origin\u2011associated factor, a checkpoint regulator, or a DNA\u2011damage\u2011induced transcript), there is no mechanistic basis to expect a specific up\u2011 or down\u2011regulation. Because AW554918 is not a recognized replication\u2011related gene, the most plausible outcome is that MCM4 knockdown does not produce a consistent change in its expression.",
+      "prediction": "none"
+    },
+    {
+      "reasoning": "Pfdn6 encodes a subunit of the prefoldin complex that assists in the cytosolic folding of actin, tubulin and other proteins. It is not known to function as a transcription factor or to directly modulate signaling pathways that control the expression of the chemokine Cxcl1. While loss of a chaperone can generate cellular stress and potentially activate broad stress\u2011responsive transcription programs (e.g., NF\u2011\u03baB), there is no specific evidence linking Pfdn6 deficiency to altered Cxcl1 transcription. Therefore, a CRISPRi knockdown of Pfdn6 is unlikely to produce a consistent, directed up\u2011 or down\u2011regulation of Cxcl1 expression.",
+      "prediction": "none"
+    },
+    {
+      "reasoning": "Ss18 (also known as SYT) is a core component of the SWI/SNF (BAF) chromatin\u2011remodeling complex and functions broadly in transcriptional regulation. It does not have a known, specific regulatory relationship with the immune\u2011receptor gene Slamf9 (SLAMF9). While loss of a general chromatin remodeler can cause widespread transcriptional changes, there is no documented pathway or interaction that would predict a consistent up\u2011 or down\u2011regulation of Slamf9 upon Ss18 knockdown. Therefore, the most reasonable expectation is that Ss18 CRISPRi does not produce a directed change in Slamf9 expression.",
+      "prediction": "none"
+    },
+    {
+      "reasoning": "Eif2s1 encodes the \u03b1 subunit of eukaryotic initiation factor\u202f2, a core component of the translation initiation machinery. Reducing its levels by CRISPRi generally leads to a broad decrease in protein synthesis and can activate the integrated stress response (e.g., phosphorylation of eIF2\u03b1, ATF4 induction). Hipk1 (homeodomain\u2011interacting protein kinase\u202f1) is a nuclear kinase that functions mainly in transcriptional regulation, cell\u2011cycle control and DNA\u2011damage signaling, and its expression is not known to be a direct target of the eIF2\u2011mediated stress pathway. Because there is no established regulatory link between eIF2S1 activity and Hipk1 transcription or stability, knocking down Eif2s1 is unlikely to cause a specific up\u2011 or down\u2011regulation of Hipk1 beyond any generic stress\u2011induced changes, which are not documented for this gene pair. Therefore the most plausible outcome is no specific effect.",
+      "prediction": "none"
+    },
+    {
+      "reasoning": "SRSF1 (also known as ASF/SF2) is a major splicing factor that influences the processing and export of many mRNAs. Its knock\u2011down generally leads to widespread splicing defects and can trigger cellular stress responses, including activation of innate immune pathways. Several studies have shown that loss of SRSF1 can relieve its negative regulatory effect on type\u2011I interferon signaling, resulting in increased activation of IRF3/7 and higher production of interferon\u2011\u03b2. The downstream interferon\u2011stimulated genes, such as IFIT3, are therefore often up\u2011regulated when SRSF1 levels are reduced. Consequently, CRISPRi\u2011mediated knock\u2011down of Srsf1 is expected to cause an increase in Ifit3 expression.",
+      "prediction": "up"
+    },
+    {
+      "reasoning": "TSC2 forms part of the TSC1/2 complex that negatively regulates mTORC1 signaling. CRISPRi\u2011mediated knockdown of TSC2 relieves this inhibition, leading to heightened mTORC1 activity and downstream effects on protein synthesis, cell growth, and metabolic reprogramming. Carbonic anhydrase\u202fII (CAR2) is primarily involved in CO\u2082/bicarbonate buffering and is expressed in tissues such as kidney and erythrocytes. Its transcriptional regulation is linked to factors like hypoxia\u2011inducible factor (HIF) and pH balance rather than directly to mTORC1 signaling. No established pathway connects TSC2/mTORC1 activity to CAR2 expression, and available literature does not report a consistent up\u2011 or down\u2011regulation of CAR2 following TSC2 loss. Therefore, the most plausible outcome of TSC2 knockdown on CAR2 expression is no significant change.",
+      "prediction": "none"
+    },
+    {
+      "reasoning": "Bag6 (also called BAT3) functions mainly as a co\u2011chaperone in protein quality control, ER\u2011associated degradation, and regulation of apoptosis and immune signaling. Its known transcriptional effects are indirect, mediated through stress\u2011response pathways such as the unfolded\u2011protein response or NF\u2011\u03baB activation. Mxd1 (Mad1) is a Myc\u2011antagonist whose transcription is driven by pathways like MAPK, TGF\u2011\u03b2, and certain stress\u2011induced transcription factors (e.g., ATF4). There is no well\u2011characterized direct regulatory connection between Bag6 and the Mxd1 promoter, and Bag6 knockdown does not typically trigger a specific signaling cascade that is known to robustly alter Mxd1 levels. Consequently, based on current knowledge, reducing Bag6 expression is unlikely to cause a consistent up\u2011 or down\u2011regulation of Mxd1.",
+      "prediction": "none"
+    },
+    {
+      "reasoning": "YEATS4 (also called GAS41) is a chromatin\u2011associated protein that functions as a reader of acetyl\u2011lysine marks and as a component of the TIP60 histone\u2011acetyltransferase complex. It generally acts to promote transcription of genes involved in cell proliferation and DNA repair, often in cooperation with MYC and other oncogenic pathways. There is no reported direct regulatory relationship between YEATS4 and the glycosyl\u2011processing enzyme MAN1A, which resides in the Golgi and participates in N\u2011linked oligosaccharide maturation. Because YEATS4\u2019s known targets are largely nuclear and related to cell cycle control rather than Golgi\u2011resident enzymes, CRISPRi\u2011mediated knockdown of YEATS4 is unlikely to cause a specific up\u2011 or down\u2011regulation of MAN1A expression. Any effect would probably be indirect and modest, falling below the threshold of a clear regulatory change.",
+      "prediction": "none"
+    },
+    {
+      "reasoning": "Kat5 (also called Tip60) is a histone acetyltransferase that broadly modulates chromatin accessibility and can act as a co\u2011activator for several transcription factors, including NF\u2011\u03baB. Alox5ap encodes the 5\u2011lipoxygenase\u2011activating protein, whose expression is typically induced in inflammatory cells downstream of NF\u2011\u03baB signaling. Knockdown of Kat5 could reduce NF\u2011\u03baB\u2011mediated transcription, which might lower Alox5ap levels; however, there is no well\u2011documented, direct regulatory relationship between Kat5 and Alox5ap, and the effect is likely context\u2011dependent. In the absence of specific evidence linking Kat5 knockdown to a consistent change in Alox5ap expression, the most prudent expectation is that Alox5ap expression will not be reliably altered.",
+      "prediction": "none"
+    },
+    {
+      "reasoning": "EFTUD2 encodes a core component of the U5 small nuclear ribonucleoprotein complex that is essential for the catalytic step of pre\u2011mRNA splicing. Loss of EFTUD2 by CRISPRi generally leads to widespread splicing defects and can trigger nonsense\u2011mediated decay of many transcripts, but it is not known to act as a transcriptional regulator of specific genes. SNHG4 is a small nucleolar RNA host gene (a long non\u2011coding RNA) whose expression is primarily controlled by its own promoter and by tissue\u2011specific transcription factors rather than by the spliceosomal machinery. Consequently, knocking down EFTUD2 is unlikely to cause a directed up\u2011 or down\u2011regulation of SNHG4; any effect would be indirect and nonspecific. Therefore the most plausible outcome is no specific regulatory change.",
+      "prediction": "none"
+    }
+  ],
+  "has_trajectories": true
+}

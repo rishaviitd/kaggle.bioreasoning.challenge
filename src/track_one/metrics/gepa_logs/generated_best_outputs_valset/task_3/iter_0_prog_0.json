@@ -1,0 +1,4 @@
+{
+    "reasoning": "Rpn2 encodes a core subunit of the 19S regulatory particle of the 26S proteasome.  Knock\u2011down of Rpn2 by CRISPRi primarily reduces proteasome assembly and activity, leading to a general accumulation of ubiquitinated proteins and activation of stress\u2011responsive pathways (e.g., unfolded protein response, oxidative stress signaling).  GDE1 (glycerophosphodiester phosphodiesterase 1) functions in phospholipid metabolism and is not known to be a direct substrate of the proteasome nor a transcriptional target of the stress pathways that are most strongly induced by proteasome inhibition.  Consequently, there is no established mechanistic link that would cause a consistent up\u2011 or down\u2011regulation of GDE1 when Rpn2 levels are reduced.  The expected outcome is therefore no specific change in GDE1 expression.",
+    "prediction": "none"
+}

@@ -1,0 +1,4 @@
+{
+    "reasoning": "DPM1 encodes the catalytic subunit of dolichyl\u2011phosphate\u2011mannose synthase, which is essential for the synthesis of dolichol\u2011linked oligosaccharides used in N\u2011linked glycosylation in the endoplasmic reticulum. Reducing DPM1 activity by CRISPRi impairs N\u2011glycosylation, leading to accumulation of unglycosylated or misfolded proteins in the ER. This triggers the unfolded protein response (UPR), a stress pathway that transcriptionally up\u2011regulates many ER\u2011resident chaperones and oxidoreductases, including members of the protein disulfide isomerase family such as PDIA3 (ERp57). Consequently, knockdown of DPM1 is expected to cause an increase in PDIA3 expression as part of the compensatory UPR.",
+    "prediction": "up"
+}

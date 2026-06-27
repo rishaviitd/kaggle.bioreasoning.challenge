@@ -1,0 +1,4 @@
+{
+    "reasoning": "HARS encodes the histidyl\u2011tRNA synthetase, a key enzyme for charging tRNA^His and thus for efficient protein synthesis. CRISPRi\u2011mediated knockdown of HARS impairs histidine incorporation into nascent polypeptides, leading to translational stress and activation of cellular stress responses such as the integrated stress response (ISR) and unfolded protein response (UPR). These stress pathways often increase intracellular reactive oxygen species (ROS) because of impaired protein folding and mitochondrial dysfunction. Elevated ROS levels trigger the Nrf2\u2011Keap1 antioxidant signaling cascade, which transcriptionally up\u2011regulates a suite of detoxifying enzymes, including the peroxiredoxin family member PRDX1. Consequently, loss of HARS is expected to cause a compensatory increase in PRDX1 expression to counteract the heightened oxidative stress.",
+    "prediction": "up"
+}

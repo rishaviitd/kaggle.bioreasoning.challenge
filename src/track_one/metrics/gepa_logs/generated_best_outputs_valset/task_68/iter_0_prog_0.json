@@ -1,0 +1,4 @@
+{
+    "reasoning": "Bcl6 functions primarily as a transcriptional repressor in immune cells, where it limits the activity of NF\u2011\u03baB and other pro\u2011inflammatory pathways. Mmp12 (macrophage elastase) is an NF\u2011\u03baB\u2011responsive gene that is strongly induced during inflammatory activation of macrophages. When Bcl6 is knocked down, its repressive influence on NF\u2011\u03baB target genes is reduced, allowing greater transcriptional activation of downstream inflammatory effectors such as Mmp12. Consequently, loss of Bcl6 is expected to increase Mmp12 expression.",
+    "prediction": "up"
+}

@@ -1,0 +1,4 @@
+{
+    "reasoning": "Rpn2 encodes a core subunit of the 19S regulatory particle of the 26S proteasome. Reducing Rpn2 levels by CRISPRi impairs proteasome assembly and activity, leading to decreased degradation of misfolded and ubiquitinated proteins. Accumulation of such proteins triggers cellular stress responses, notably the unfolded protein response (UPR) in the endoplasmic reticulum. A key component of the UPR is the transcriptional up\u2011regulation of ER\u2011resident chaperones, including the Hsp90 family member encoded by **Hsp90b1** (GRP94). Consequently, knockdown of Rpn2 is expected to increase Hsp90b1 expression.",
+    "prediction": "up"
+}

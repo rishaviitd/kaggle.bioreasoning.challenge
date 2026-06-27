@@ -13,11 +13,22 @@ from typing import Any
 from gepa import GEPAResult, optimize
 from gepa.strategies.instruction_proposal import InstructionProposalSignature
 
+from dspy.adapters.chat_adapter import ChatAdapter
+from dspy.adapters.types import History
+from dspy.adapters.types.base_type import Type
+from dspy.teleprompt.bootstrap_trace import FailedPrediction
 from dspy.teleprompt.gepa.gepa_utils import DspyAdapter, LoggerAdapter
 from dspy.teleprompt.gepa.gepa import DspyGEPAResult
 
-from src.track_one.gepa_config import get_student_lm, get_refiner_lm
-from src.track_one.gepa_metric import gepa_exact_match_metric
+from src.track_one.gepa_config import (
+    DEEPSEEK_MAX_COMPLETION_TOKENS,
+    REFLECTION_REASONING_EFFORT,
+    STUDENT_REASONING_EFFORT,
+    STUDENT_TEMPERATURE,
+    get_refiner_lm,
+    get_student_lm,
+)
+from src.track_one.gepa_metric import generate_feedback_batch, gepa_exact_match_metric
 
 
 TRAIN_DATA = Path("data/gepa_splits/gepa_train.csv")
@@ -27,12 +38,18 @@ OPTIMIZED_STUDENT_PATH = "src/track_one/prompts/optimized_trackA_student.json"
 CANDIDATE_EXPORT_DIR = Path("src/track_one/prompts/gepa_candidates")
 ARTIFACT_EXPORT_DIR = Path("src/track_one/metrics/gepa_artifacts")
 LABELS = ("none", "up", "down")
-STRATIFIED_MINIBATCH_COUNTS = {"none": 6, "up": 6, "down": 6}
+STRATIFIED_MINIBATCH_COUNTS = {"none": 10, "up": 5, "down": 3}
 REFLECTION_MINIBATCH_SIZE = sum(STRATIFIED_MINIBATCH_COUNTS.values())
 TRAIN_LIMIT = None
 VAL_LIMIT = None
 FIRST_RUN_METRIC_CALL_BUDGET = 1500
 GEPA_PERFECT_SCORE = 1.0
+REQUIRED_OUTPUT_CONTRACT = """Mandatory output contract:
+- Return two separate output fields: reasoning and prediction.
+- Put the biological analysis only in the reasoning field.
+- Put exactly one label in the prediction field: up, down, or none.
+- Do not put the prediction inside the reasoning field.
+- Do not write phrases like "prediction up" or "final answer down" inside reasoning."""
 REFINER_PROMPT_TEMPLATE = """I provided an assistant with the following instructions to perform a task:
 ```
 <curr_instructions>
@@ -52,6 +69,8 @@ Strict anti-memorization rules:
 - Convert feedback into general decision rules only.
 - Keep rules applicable to unseen gene pairs.
 - If a feedback item mentions a concrete gene, generalize it to the gene's functional class or pathway.
+- Preserve the mandatory two-field DSPy output contract: reasoning must be separate from prediction.
+- The prediction field must contain only one token: up, down, or none.
 
 The instruction may include:
 - the task definition,
@@ -227,11 +246,36 @@ def _evaluation_diagnostics(
     }
 
 
-def _call_reflection_lm(prompt: str) -> str:
-    response = dspy.settings.lm(prompt)
-    if isinstance(response, list):
-        return str(response[0])
+def _extract_lm_text(response: Any) -> str:
+    if isinstance(response, list | tuple):
+        return _extract_lm_text(response[0]) if response else ""
+    if isinstance(response, dict):
+        for key in ("text", "content", "output", "response"):
+            if key in response and response[key] is not None:
+                return str(response[key])
+        return json.dumps(_jsonable(response))
+    if hasattr(response, "text"):
+        return str(response.text)
+    if hasattr(response, "content"):
+        return str(response.content)
     return str(response)
+
+
+def _call_reflection_lm(prompt: str) -> str:
+    return _extract_lm_text(dspy.settings.lm(prompt))
+
+
+def _with_output_contract(instruction: str) -> str:
+    instruction = instruction.strip()
+    if "\\n" in instruction and "\n" not in instruction[:500]:
+        instruction = instruction.replace("\\n", "\n")
+    if "Mandatory output contract:" in instruction:
+        return instruction
+    return f"{instruction}\n\n{REQUIRED_OUTPUT_CONTRACT}"
+
+
+def _is_correct_stub_feedback(item: dict[str, Any]) -> bool:
+    return str(item.get("Feedback", "")).strip().startswith("Correct.")
 
 
 def anti_memorization_instruction_proposer(
@@ -243,14 +287,21 @@ def anti_memorization_instruction_proposer(
     for name in components_to_update:
         if name not in reflective_dataset or not reflective_dataset[name]:
             continue
-        new_texts[name] = InstructionProposalSignature.run(
+        high_signal_examples = [
+            item for item in reflective_dataset[name]
+            if not _is_correct_stub_feedback(item)
+        ]
+        if not high_signal_examples:
+            continue
+        proposed_instruction = InstructionProposalSignature.run(
             lm=_call_reflection_lm,
             input_dict={
                 "current_instruction_doc": candidate[name],
-                "dataset_with_feedback": reflective_dataset[name],
+                "dataset_with_feedback": high_signal_examples,
                 "prompt_template": REFINER_PROMPT_TEMPLATE,
             },
         )["new_instruction"]
+        new_texts[name] = _with_output_contract(proposed_instruction)
     return new_texts
 
 
@@ -456,9 +507,13 @@ class GEPASummaryLogger:
                 "candidate_idx": event["candidate_idx"],
                 "components": event["components"],
                 "feedback_examples": event["dataset"],
+                "feedback_selection": "wrong_or_format_failed_rows_only",
             },
         )
-        print(f"  feedback examples prepared: {feedback_count}")
+        print(
+            "  feedback examples prepared: "
+            f"{feedback_count} wrong/format rows"
+        )
         print("  refiner: requesting updated instruction text...")
 
     def on_proposal_end(self, event: dict[str, Any]) -> None:
@@ -579,13 +634,20 @@ class GEPASummaryLogger:
 
 
 class PredictInteraction(dspy.Signature):
-    """You are a biological reasoning assistant. You must predict whether the biological perturbation regulates the target gene. Think step by step about known biological pathways. Your final prediction must be exactly one of: 'up', 'down', or 'none'."""
+    """You are a biological reasoning assistant. You must predict whether the biological perturbation regulates the target gene. Think step by step about known biological pathways.
+
+Mandatory output contract:
+- Return two separate output fields: reasoning and prediction.
+- Put the biological analysis only in the reasoning field.
+- Put exactly one label in the prediction field: up, down, or none.
+- Do not put the prediction inside the reasoning field.
+- Do not write phrases like "prediction up" or "final answer down" inside reasoning."""
 
     pert = dspy.InputField(desc="The CRISPRi knockdown gene.")
     gene = dspy.InputField(desc="The target gene whose expression is predicted.")
 
-    reasoning = dspy.OutputField(desc="Reasoning about the pathway and interaction.")
-    prediction = dspy.OutputField(desc="The interaction label. Must be exactly 'up', 'down', or 'none'.")
+    reasoning = dspy.OutputField(desc="Biological reasoning only. Do not include the final label in this field.")
+    prediction = dspy.OutputField(desc="Exactly one token only: up, down, or none.")
 
 
 class TrackAStudent(dspy.Module):
@@ -636,6 +698,130 @@ class MacroF1DspyAdapter(DspyAdapter):
         macro_f1 = diagnostics["summary"]["macro_f1"] or 0.0
         result.scores = [macro_f1 for _ in result.scores]
         return result
+
+    def make_reflective_dataset(self, candidate, eval_batch, components_to_update):
+        program = self.build_program(candidate)
+        reflective_dataset = {}
+
+        for pred_name in components_to_update:
+            module = None
+            for name, predictor in program.named_predictors():
+                if name == pred_name:
+                    module = predictor
+                    break
+            assert module is not None, f"Predictor not found: {pred_name}"
+
+            items = []
+            feedback_requests = []
+            feedback_item_indices = []
+
+            for data in eval_batch.trajectories or []:
+                trace = data["trace"]
+                example = data["example"]
+                prediction = data["prediction"]
+                module_score = data["score"]
+                if hasattr(module_score, "score"):
+                    module_score = module_score["score"]
+
+                trace_instances = [
+                    trace_item
+                    for trace_item in trace
+                    if trace_item[0].signature.equals(module.signature)
+                ]
+                if not self.add_format_failure_as_feedback:
+                    trace_instances = [
+                        trace_item
+                        for trace_item in trace_instances
+                        if not isinstance(trace_item[2], FailedPrediction)
+                    ]
+                if not trace_instances:
+                    continue
+
+                selected = None
+                for trace_item in trace_instances:
+                    if isinstance(trace_item[2], FailedPrediction):
+                        selected = trace_item
+                        break
+
+                if selected is None:
+                    if isinstance(prediction, FailedPrediction):
+                        continue
+                    selected = self.rng.choice(trace_instances)
+
+                inputs = selected[1]
+                outputs = selected[2]
+                new_inputs = {}
+                new_outputs = {}
+
+                contains_history = False
+                history_key_name = None
+                for input_key, input_val in inputs.items():
+                    if isinstance(input_val, History):
+                        contains_history = True
+                        assert history_key_name is None
+                        history_key_name = input_key
+
+                if contains_history:
+                    history = "```json\n"
+                    for index, message in enumerate(inputs[history_key_name].messages):
+                        history += f"  {index}: {message}\n"
+                    history += "```"
+                    new_inputs["Context"] = history
+
+                for input_key, input_val in inputs.items():
+                    if contains_history and input_key == history_key_name:
+                        continue
+                    if isinstance(input_val, Type) and self.custom_instruction_proposer is not None:
+                        new_inputs[input_key] = input_val
+                    else:
+                        new_inputs[input_key] = str(input_val)
+
+                item = {"Inputs": new_inputs}
+                if isinstance(outputs, FailedPrediction):
+                    raw_output = (
+                        "Couldn't parse the output as per the expected output format. "
+                        "The model's raw response was:\n```\n"
+                        f"{outputs.completion_text}\n```\n"
+                    )
+                    item["Generated Outputs"] = raw_output
+                    adapter = ChatAdapter()
+                    structure_instruction = ""
+                    for message in adapter.format(module.signature, [], {}):
+                        structure_instruction += message["role"] + ": " + message["content"] + "\n"
+                    item["Feedback"] = "Your output failed to parse. Follow this structure:\n" + structure_instruction
+                    items.append(item)
+                    continue
+
+                if module_score >= GEPA_PERFECT_SCORE:
+                    continue
+
+                for output_key, output_val in outputs.items():
+                    new_outputs[output_key] = str(output_val)
+                item["Generated Outputs"] = new_outputs
+                item["Feedback"] = "Pending OpenRouter feedback."
+                feedback_item_indices.append(len(items))
+                feedback_requests.append(
+                    {
+                        "pert": str(getattr(example, "pert", "")),
+                        "gene": str(getattr(example, "gene", "")),
+                        "reasoning": str(getattr(outputs, "reasoning", "")) or "No reasoning available.",
+                        "predicted_label": _prediction_label(outputs) or "invalid",
+                        "true_label": _label(getattr(example, "label", "")),
+                    }
+                )
+                items.append(item)
+
+            feedbacks = generate_feedback_batch(feedback_requests)
+            for item_index, feedback in zip(feedback_item_indices, feedbacks, strict=True):
+                items[item_index]["Feedback"] = feedback
+
+            if items:
+                reflective_dataset[pred_name] = items
+
+        if not reflective_dataset:
+            raise Exception("No wrong or format-failed predictions found for any module.")
+
+        return reflective_dataset
 
 
 class MacroF1GEPA(dspy.GEPA):
@@ -806,9 +992,21 @@ def run_optimization(
     print("Setting up models...")
     student_lm = get_student_lm()
     refiner_lm = get_refiner_lm()
-    print("Student model: NVIDIA openai/gpt-oss-120b, temperature=1.0, top_p=1.0, max_tokens=65536, reasoning=off")
-    print("Feedback model: OpenRouter deepseek/deepseek-v4-pro, temperature=1.0, top_p=1.0, max_tokens=384000, reasoning_effort=high")
-    print("Refiner model: OpenRouter deepseek/deepseek-v4-pro, temperature=1.0, top_p=1.0, max_tokens=384000, reasoning_effort=high")
+    print(
+        "Student model: NVIDIA openai/gpt-oss-120b, "
+        f"temperature={STUDENT_TEMPERATURE}, top_p=1.0, max_tokens=65536, "
+        f"reasoning_effort={STUDENT_REASONING_EFFORT}"
+    )
+    print(
+        "Feedback model: OpenRouter deepseek/deepseek-v4-pro, "
+        f"temperature=1.0, top_p=1.0, max_tokens={DEEPSEEK_MAX_COMPLETION_TOKENS}, "
+        f"reasoning_effort={REFLECTION_REASONING_EFFORT}"
+    )
+    print(
+        "Refiner model: OpenRouter deepseek/deepseek-v4-pro, "
+        f"temperature=1.0, top_p=1.0, max_tokens={DEEPSEEK_MAX_COMPLETION_TOKENS}, "
+        f"reasoning_effort={REFLECTION_REASONING_EFFORT}"
+    )
     print("NVIDIA request policy: 1 at a time, 2s gap, retries on 429 with 30s/60s/120s backoff")
     print("GEPA mode: reflective mutations only, merge disabled for clearer attribution")
     print(

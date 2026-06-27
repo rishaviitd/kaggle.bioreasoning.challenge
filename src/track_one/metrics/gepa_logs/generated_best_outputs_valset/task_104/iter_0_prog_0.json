@@ -1,0 +1,4 @@
+{
+    "reasoning": "Rptor encodes the regulatory\u2011associated protein of mTOR, a core component of the mTORC1 complex. CRISPRi\u2011mediated knockdown of Rptor diminishes mTORC1 signaling, which in turn reduces the activity of downstream transcription factors such as HIF\u20111\u03b1 and c\u2011Myc that drive expression of glycolytic enzymes. GAPDH (encoded by\u202fGapdh) is a canonical glycolytic gene whose transcription is positively regulated by these pathways. Consequently, loss of Rptor is expected to lower GAPDH transcription and overall expression levels.",
+    "prediction": "down"
+}

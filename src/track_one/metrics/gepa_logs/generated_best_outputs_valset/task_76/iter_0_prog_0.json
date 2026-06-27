@@ -1,0 +1,4 @@
+{
+    "reasoning": "EIF1AD encodes a translation initiation factor that participates in the early steps of protein synthesis. Its primary role is to facilitate the assembly of the ribosomal pre\u2011initiation complex, and it is not known to function as a transcriptional regulator or to be part of signaling pathways that directly control the expression of the hydroxycarboxylic acid receptor 2 (HCAR2). Consequently, CRISPRi\u2011mediated knockdown of Eif1ad would be expected to cause a modest, largely global reduction in translation efficiency rather than a specific transcriptional effect on Hcar2. In the absence of a documented regulatory link between EIF1AD activity and HCAR2 gene expression, the most plausible outcome is no measurable change in Hcar2 mRNA levels.",
+    "prediction": "none"
+}

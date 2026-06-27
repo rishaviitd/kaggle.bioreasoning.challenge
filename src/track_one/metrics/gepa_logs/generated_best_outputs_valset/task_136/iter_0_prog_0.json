@@ -1,0 +1,4 @@
+{
+    "reasoning": "Rela encodes the p65 subunit of NF\u2011\u03baB, a transcription factor that activates many genes involved in inflammation, survival and proliferation. CRISPRi knockdown of Rela will diminish NF\u2011\u03baB transcriptional activity. For a change in Depdc1a expression to be observed, Depdc1a would need to be a direct or indirect NF\u2011\u03baB target. Current literature and gene\u2011regulation databases do not list Depdc1a as a known NF\u2011\u03baB\u2011responsive gene; its expression is more closely linked to cell\u2011cycle regulators such as E2F and to oncogenic signaling pathways distinct from NF\u2011\u03baB. Therefore, reducing Rela levels is unlikely to have a measurable effect on Depdc1a transcription.",
+    "prediction": "none"
+}

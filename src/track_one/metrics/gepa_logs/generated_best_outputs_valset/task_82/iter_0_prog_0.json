@@ -1,0 +1,4 @@
+{
+    "reasoning": "Rptor encodes the regulatory\u2011associated protein of mTOR, a core component of the mTORC1 complex that promotes protein synthesis and suppresses catabolic processes. CRISPRi\u2011mediated knockdown of Rptor diminishes mTORC1 signaling, leading to reduced activity of downstream effectors such as S6K and 4E\u2011BP1 and generally causes a shift toward catabolic and stress\u2011responsive transcriptional programs. Rnf167 encodes a RING\u2011finger ubiquitin ligase that functions mainly in endosomal sorting and lysosomal trafficking; it is not a well\u2011characterized direct target of mTORC1\u2011dependent transcription factors. No strong evidence links Rnf167 expression to mTORC1 activity, and the pathway connections are indirect at best. Therefore, knocking down Rptor is unlikely to cause a consistent, specific up\u2011 or down\u2011regulation of Rnf167 expression.",
+    "prediction": "none"
+}

@@ -1,0 +1,4 @@
+{
+    "reasoning": "Ehmt2 encodes the histone methyltransferase G9a, which deposits the repressive H3K9me2 mark on chromatin and generally silences gene expression. CRISPRi\u2011mediated knockdown of Ehmt2 reduces H3K9 dimethylation, leading to de\u2011repression of genes that are normally kept low by G9a activity. Pdia3 (ERp57) is a protein\u2011disulfide isomerase involved in oxidative protein folding and antigen presentation, and there is no well\u2011characterized link indicating that its promoter is a direct target of G9a\u2011mediated repression. In the absence of specific evidence for a regulatory relationship, the most parsimonious expectation is that Ehmt2 knockdown will not produce a consistent, measurable change in Pdia3 transcript levels.",
+    "prediction": "none"
+}

@@ -1,0 +1,4 @@
+{
+    "reasoning": "CTCF is a chromatin architectural protein that binds insulator sites and helps organize topologically associating domains. Its loss can lead to altered enhancer\u2011promoter contacts and changes in expression of many genes, particularly those that rely on CTCF\u2011mediated looping for proper regulation. However, GAPDH is a classic housekeeping gene whose transcription is driven by a strong, constitutive promoter and is generally maintained across diverse cellular contexts. There is no well\u2011documented direct regulatory relationship between CTCF binding and GAPDH transcription, and housekeeping genes are typically resilient to perturbations of architectural factors. Therefore, knocking down CTCF with CRISPRi is unlikely to cause a consistent up\u2011 or down\u2011regulation of GAPDH expression.",
+    "prediction": "none"
+}

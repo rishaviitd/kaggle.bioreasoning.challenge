@@ -1,0 +1,4 @@
+{
+    "reasoning": "Dpm1 encodes the catalytic subunit of dolichyl\u2011phosphate\u2011mannose synthase, which is essential for proper N\u2011linked glycosylation of nascent proteins in the endoplasmic reticulum. Loss of Dpm1 activity impairs glycosylation, causing accumulation of misfolded glycoproteins and triggering endoplasmic reticulum stress. The unfolded protein response (UPR) is activated under these conditions, leading to transcriptional up\u2011regulation of ER\u2011resident chaperones and folding factors. Hsp90b1 (GRP94) is a major ER chaperone whose expression is known to increase during UPR activation. Therefore, knockdown of Dpm1 is expected to elevate Hsp90b1 expression as part of the stress response.",
+    "prediction": "up"
+}

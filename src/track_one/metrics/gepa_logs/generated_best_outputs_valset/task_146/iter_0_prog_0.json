@@ -1,0 +1,4 @@
+{
+    "reasoning": "Tnfaip3 encodes the ubiquitin\u2011editing protein A20, a key negative regulator of the NF\u2011\u03baB signaling pathway. When A20 is reduced by CRISPRi knockdown, the inhibitory brake on NF\u2011\u03baB is released, resulting in heightened NF\u2011\u03baB activity. NF\u2011\u03baB drives the transcription of many inflammatory and immune\u2011responsive genes, among them cathepsin\u202fL (Ctsl), which has been reported to be up\u2011regulated in contexts of enhanced NF\u2011\u03baB signaling. Consequently, loss of Tnfaip3 is expected to increase Ctsl expression.",
+    "prediction": "up"
+}

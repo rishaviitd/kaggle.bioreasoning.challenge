@@ -16,6 +16,9 @@ OPENROUTER_API_BASE = "https://openrouter.ai/api/v1"
 REQUEST_GAP_SECONDS = 2
 RATE_LIMIT_BACKOFF_SECONDS = (30, 60, 120)
 DEEPSEEK_MAX_COMPLETION_TOKENS = 384_000
+STUDENT_REASONING_EFFORT = "high"
+STUDENT_TEMPERATURE = 0.0
+REFLECTION_REASONING_EFFORT = "max"
 _request_lock = threading.Lock()
 _last_request_started = 0.0
 
@@ -131,8 +134,9 @@ def get_student_lm():
         api_base=NVIDIA_API_BASE,
         api_key=_nvidia_api_key(),
         max_tokens=65_536,
-        temperature=1.0,
+        temperature=STUDENT_TEMPERATURE,
         top_p=1.0,
+        extra_body={"reasoning": {"effort": STUDENT_REASONING_EFFORT}},
         num_retries=0,
         model_type="chat",
     )
@@ -147,7 +151,7 @@ def _get_deepseek_lm(role_name: str, temperature: float):
         max_tokens=DEEPSEEK_MAX_COMPLETION_TOKENS,
         temperature=temperature,
         top_p=1.0,
-        extra_body={"reasoning": {"enabled": True, "effort": "high"}},
+        extra_body={"reasoning": {"enabled": True, "effort": REFLECTION_REASONING_EFFORT}},
         num_retries=0,
         model_type="chat",
     )

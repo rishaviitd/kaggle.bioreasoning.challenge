@@ -1,0 +1,4 @@
+{
+    "reasoning": "KARS encodes a lysyl\u2011tRNA synthetase that is essential for charging tRNA^Lys and supporting general protein synthesis. Reducing KARS levels with CRISPRi can cause a mild translational stress or a global slowdown of protein production, but it does not directly participate in transcriptional regulatory pathways that target specific genes such as ACTB. \u03b2\u2011actin (ACTB) is a housekeeping cytoskeletal gene whose transcription is typically maintained even under broad translational stress, and there is no known feedback loop linking lysyl\u2011tRNA synthetase activity to ACTB expression. Therefore, knocking down KARS is unlikely to cause a specific up\u2011 or down\u2011regulation of ACTB; any effect would be indirect and minimal.",
+    "prediction": "none"
+}

@@ -1,0 +1,4 @@
+{
+    "reasoning": "AP3B1 encodes a subunit of the AP\u20113 adaptor complex that mediates cargo sorting to lysosome\u2011related organelles and regulates vesicle trafficking. Its primary functions are in protein sorting and membrane transport rather than transcriptional control of metabolic enzymes. Cmpk2 encodes the mitochondrial UMP\u2011CMP kinase that participates in nucleotide salvage within mitochondria. There is no established signaling or transcriptional pathway linking AP\u20113 complex activity to the regulation of Cmpk2 expression, and loss of AP3B1 is not known to directly affect mitochondrial nucleotide metabolism. Therefore, knocking down AP3B1 with CRISPRi is unlikely to cause a consistent up\u2011 or down\u2011regulation of Cmpk2.",
+    "prediction": "none"
+}

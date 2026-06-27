@@ -1,0 +1,4 @@
+{
+    "reasoning": "RELA encodes the p65 subunit of NF\u2011\u03baB, a transcription factor that activates many genes involved in immune signaling and cell adhesion. When RELA is knocked down by CRISPRi, NF\u2011\u03baB\u2013dependent transcription is reduced. IGSF6 (immunoglobulin superfamily member 6) is expressed in immune cells and its promoter contains NF\u2011\u03baB binding sites, indicating that its basal expression is at least partially driven by NF\u2011\u03baB activity. Consequently, loss of RELA is expected to lower IGSF6 transcription.",
+    "prediction": "down"
+}

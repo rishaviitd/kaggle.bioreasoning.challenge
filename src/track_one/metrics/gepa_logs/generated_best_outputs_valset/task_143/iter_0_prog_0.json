@@ -1,0 +1,4 @@
+{
+    "reasoning": "HARS encodes the cytosolic histidyl\u2011tRNA synthetase, a housekeeping enzyme required for charging tRNA^His and supporting general protein synthesis. Its knockdown primarily leads to reduced translational capacity and may trigger a generic stress response (e.g., unfolded protein response). There is no established regulatory connection between HARS activity and the transcriptional control of MHC class I genes such as H2\u2011Q7, which are normally induced by cytokines (e.g., IFN\u2011\u03b3) through the JAK/STAT pathway. Consequently, reducing HARS levels is unlikely to specifically up\u2011 or down\u2011regulate H2\u2011Q7 expression.",
+    "prediction": "none"
+}

@@ -1,0 +1,4 @@
+{
+    "reasoning": "Eif1ad encodes a component of the translation initiation machinery and functions primarily in the cytoplasmic step of protein synthesis. Its known activities are limited to facilitating ribosome loading on mRNAs and do not include transcriptional regulation, chromatin remodeling, or signaling pathways that would directly modulate the expression of specific nuclear RNAs. Peak1os is a long non\u2011coding RNA whose transcription is regulated by distinct developmental and neuronal transcription factors, and there is no reported interaction or regulatory axis linking a general translation initiation factor such as Eif1ad to Peak1os expression. Consequently, knocking down Eif1ad with CRISPRi is unlikely to cause a specific up\u2011 or down\u2011regulation of Peak1os; any effect would be indirect and nonspecific.",
+    "prediction": "none"
+}

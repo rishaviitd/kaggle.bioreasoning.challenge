@@ -1,0 +1,4 @@
+{
+    "reasoning": "Cpsf4 encodes a subunit of the CPSF complex that participates in 3\u2032\u2011end cleavage and polyadenylation of pre\u2011mRNAs. Its primary role is in general mRNA processing rather than transcriptional regulation of specific immune\u2011related genes such as the MHC class I locus H2\u2011Q7. There is no known signaling or transcription factor pathway linking Cpsf4 activity to the expression of H2\u2011Q7, and CRISPRi\u2011mediated knockdown of a core polyadenylation factor would be expected to cause broad, modest effects on many transcripts rather than a targeted up\u2011 or down\u2011regulation of this particular gene. Consequently, a specific regulatory effect on H2\u2011Q7 is unlikely.",
+    "prediction": "none"
+}

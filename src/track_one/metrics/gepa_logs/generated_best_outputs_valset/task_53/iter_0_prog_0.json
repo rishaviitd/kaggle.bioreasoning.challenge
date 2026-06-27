@@ -1,0 +1,4 @@
+{
+    "reasoning": "Rpn2 encodes a core subunit of the 19S regulatory particle of the 26S proteasome. CRISPRi\u2011mediated knockdown of Rpn2 impairs proteasome assembly and activity, leading to reduced degradation of ubiquitinated proteins. This proteasome insufficiency causes accumulation of misfolded or orphan proteins in the cytosol and endoplasmic reticulum, thereby triggering the unfolded protein response (UPR). Key UPR transcription factors such as ATF6, XBP1 and ATF4 drive the expression of ER\u2011resident folding enzymes, including members of the protein disulfide isomerase family. Pdia3 (ERp57) is a canonical UPR target that assists in disulfide bond formation and peptide loading onto MHC class I molecules. Consequently, loss of Rpn2 is expected to activate the UPR and increase transcription of Pdia3.",
+    "prediction": "up"
+}

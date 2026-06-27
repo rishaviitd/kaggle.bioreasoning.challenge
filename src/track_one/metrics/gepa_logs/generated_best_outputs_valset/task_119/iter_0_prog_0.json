@@ -1,0 +1,4 @@
+{
+    "reasoning": "Bcl6 encodes a transcriptional repressor that is primarily active in lymphoid cells, where it controls germinal\u2011center formation and represses genes involved in DNA damage responses, cytokine signaling and cell\u2011cycle regulation. Its known target repertoire does not include genes of the selenium\u2011transport pathway, and Selenop (selenoprotein\u202fP) is mainly expressed in liver and regulated by hepatic transcription factors such as HNF4\u03b1, as well as by selenium availability. There is no established direct or indirect regulatory connection between Bcl6 activity and Selenop transcription, making a change in Selenop expression unlikely upon Bcl6 knockdown.",
+    "prediction": "none"
+}
