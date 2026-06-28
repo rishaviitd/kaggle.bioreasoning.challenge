@@ -1,4 +1,0 @@
-{
-    "reasoning": "NOP16 (also known as nucleolar protein 16) is primarily involved in ribosome biogenesis and nucleolar assembly. Its main functions relate to the processing of pre\u2011ribosomal RNA and the formation of the 60S ribosomal subunit. Cmpk2 (mitochondrial UMP\u2011CMP kinase) functions in the mitochondrial nucleotide salvage pathway and is transcriptionally induced by interferon signaling and cellular stress that affect mitochondrial DNA replication. There is no established regulatory connection between nucleolar ribosome\u2011assembly factors and the transcriptional control of Cmpk2. Consequently, CRISPRi\u2011mediated knockdown of NOP16 is unlikely to directly alter Cmpk2 expression, and any effect would be indirect and minimal.",
-    "prediction": "none"
-}

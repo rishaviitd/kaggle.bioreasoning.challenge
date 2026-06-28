@@ -1,4 +1,0 @@
-{
-    "reasoning": "EHMT2 (also known as G9a) is a histone methyltransferase that deposits the repressive H3K9me2 mark on chromatin. Reducing EHMT2 activity by CRISPRi generally leads to loss of this repressive modification and can cause de\u2011repression (up\u2011regulation) of genes that are directly targeted by G9a. LRP12 is a member of the LDL\u2011receptor family with roles in neuronal development and Wnt signaling, but there is no well\u2011characterized direct link showing that its promoter or enhancers are specifically marked by H3K9me2 under normal conditions. In the absence of evidence for a direct EHMT2\u2011LRP12 regulatory connection, the knockdown of EHMT2 is unlikely to produce a consistent, strong change in LRP12 expression. Therefore the most plausible outcome is no clear effect.",
-    "prediction": "none"
-}

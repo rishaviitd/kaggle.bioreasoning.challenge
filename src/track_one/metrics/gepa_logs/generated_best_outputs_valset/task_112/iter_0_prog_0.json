@@ -1,4 +1,0 @@
-{
-    "reasoning": "Wdr48 (also known as UAF1) acts primarily as a regulatory co\u2011factor for the deubiquitinases USP1, USP12 and USP46, influencing DNA\u2011damage repair, PCNA deubiquitination and cell\u2011cycle progression. Its known downstream effects involve stabilization of these enzymes and modulation of the Fanconi anemia and checkpoint pathways. Aig1 (Androgen\u2011induced gene 1) is a neuronal protein implicated in neuroprotective signaling and is transcriptionally regulated by stress\u2011responsive and hormonal cues rather than by the DNA\u2011damage/repair machinery that Wdr48 controls. There is no reported direct interaction, transcriptional regulation, or shared signaling cascade linking Wdr48 activity to Aig1 expression. Consequently, CRISPRi\u2011mediated knockdown of Wdr48 is unlikely to cause a consistent up\u2011 or down\u2011regulation of Aig1.",
-    "prediction": "none"
-}

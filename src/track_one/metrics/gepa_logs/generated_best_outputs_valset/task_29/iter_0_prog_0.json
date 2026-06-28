@@ -1,4 +1,0 @@
-{
-    "reasoning": "HARS encodes the cytosolic histidyl\u2011tRNA synthetase, a housekeeping enzyme that primarily functions in charging tRNA^His for protein synthesis. Its knockdown mainly induces a general translational stress or amino\u2011acid\u2011starvation response, but it is not known to directly regulate mitochondrial nucleotide kinases. Cmpk2 (mitochondrial UMP/CMP kinase) is typically induced by interferon signaling, DNA damage or mitochondrial stress rather than by alterations in cytosolic amino\u2011acyl\u2011tRNA synthetase levels. Because there is no established pathway linking HARS activity to Cmpk2 transcription or stability, the perturbation is unlikely to cause a specific up\u2011 or down\u2011regulation of Cmpk2.",
-    "prediction": "none"
-}

@@ -1,4 +1,0 @@
-{
-    "reasoning": "Arih1 encodes an E3 ubiquitin\u2011protein ligase (TRIAD1) that participates mainly in ubiquitination of proteins involved in DNA\u2011damage responses and NF\u2011\u03baB signaling. Its known substrates include PCNA, p53 and other signaling molecules, but there is no reported interaction with the gigaxonin (GAN) protein or with the transcriptional regulators that control GAN expression. GAN functions as a BTB\u2011Kelch adaptor for a Cullin\u20113 ubiquitin ligase complex that targets intermediate\u2011filament proteins for degradation, a pathway that is distinct from Arih1\u2011mediated ubiquitination. Because there is no established mechanistic link between Arih1 activity and GAN transcription or stability, reducing Arih1 levels by CRISPRi is unlikely to cause a consistent change in GAN mRNA levels.",
-    "prediction": "none"
-}

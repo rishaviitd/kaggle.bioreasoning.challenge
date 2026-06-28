@@ -1,4 +1,0 @@
-{
-    "reasoning": "Arih1 encodes an RBR\u2011type E3 ubiquitin ligase that targets several signaling intermediates for proteasomal degradation. In immune cells it has been reported to ubiquitinate components of the NF\u2011\u03baB pathway, acting as a negative regulator of NF\u2011\u03baB activation. CRISPRi\u2011mediated knockdown of Arih1 therefore relieves this inhibition, leading to heightened NF\u2011\u03baB signaling. NF\u2011\u03baB is a major transcriptional activator of the anti\u2011inflammatory cytokine Il10 in macrophages and dendritic cells. Consequently, reduced Arih1 levels are expected to increase Il10 transcription.",
-    "prediction": "up"
-}

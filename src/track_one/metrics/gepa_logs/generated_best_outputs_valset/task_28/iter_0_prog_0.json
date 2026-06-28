@@ -1,4 +1,0 @@
-{
-    "reasoning": "HARS encodes a histidyl\u2011tRNA synthetase that functions in the core translation machinery. Its primary role is to charge tRNA^His for protein synthesis, and it is not known to act as a transcriptional regulator or to participate in signaling pathways that specifically control Tmtc2 expression. While CRISPRi\u2011mediated knockdown of HARS could induce a general stress response or reduce overall protein synthesis, there is no established mechanistic link between reduced HARS activity and transcriptional up\u2011 or down\u2011regulation of the Tmtc2 gene. Therefore, the most likely outcome is that Tmtc2 expression remains unchanged.",
-    "prediction": "none"
-}

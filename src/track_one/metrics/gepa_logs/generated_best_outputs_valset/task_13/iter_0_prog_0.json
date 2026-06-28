@@ -1,4 +1,0 @@
-{
-    "reasoning": "MMS22L is a component of the MMS22L\u2011TONSL complex that promotes homologous recombination\u2013mediated DNA repair and helps cells cope with replication stress. Reducing MMS22L levels by CRISPRi typically leads to accumulation of DNA damage and activation of DNA\u2011damage\u2011response pathways, including p53 and the cGAS\u2011STING axis. Activation of cGAS\u2011STING can trigger a type\u2011I interferon response, which in turn induces a set of interferon\u2011stimulated genes (ISGs). Tgtp2 (T\u2011cell specific GTPase 2) is an ISG that is strongly up\u2011regulated by interferon\u2011\u03b3 and type\u2011I interferons. Therefore, knockdown of Mms22l is expected to create a DNA\u2011damage signal that elevates interferon signaling, leading to higher transcription of Tgtp2. No direct repressive interaction between MMS22L and Tgtp2 is known, so the most plausible outcome is an increase in Tgtp2 expression.",
-    "prediction": "up"
-}

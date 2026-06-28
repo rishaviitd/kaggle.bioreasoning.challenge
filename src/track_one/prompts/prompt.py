@@ -8,9 +8,19 @@ Perturbation: {pert}
 Gene of interest: {gene}
 
 Predict the effect of CRISPRi knockdown of {pert} on {gene}:
-  A) Up-regulated.
-  B) Down-regulated.
-  C) No significant effect.
+  A) up-regulated.
+  B) down-regulated.
+  C) no significant effect.
 
-Think step by step, then provide your final answer.
-Answer:"""
+Think step by step in the reasoning section.
+
+Then provide the final output in a separate final section.
+The final output must be exactly one of these three uppercase letters and nothing else:
+A
+B
+C
+
+Reasoning:
+
+Final output:"""
+

@@ -1,4 +1,0 @@
-{
-    "reasoning": "WDR75 (WD repeat\u2011containing protein 75) is primarily characterized as a nucleolar factor that participates in ribosome biogenesis and RNA processing. Its known functions are limited to the assembly of ribosomal subunits and maintenance of nucleolar structure, with no reported role in transcriptional regulation or signaling pathways that intersect with phosphatidylserine decarboxylase activity.  \n\nPSD3 (phosphatidylserine decarboxylase 3) encodes a membrane\u2011associated enzyme involved in phospholipid metabolism and signaling, and its expression is regulated by lipid\u2011responsive transcription factors rather than nucleolar proteins. There is no documented interaction, shared regulatory network, or feedback loop linking WDR75 activity to PSD3 transcription. Consequently, knocking down WDR75 with CRISPRi is unlikely to cause a consistent up\u2011 or down\u2011regulation of PSD3 expression.",
-    "prediction": "none"
-}

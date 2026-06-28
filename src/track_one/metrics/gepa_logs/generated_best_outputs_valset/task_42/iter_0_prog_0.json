@@ -1,4 +1,0 @@
-{
-    "reasoning": "Pgm3 encodes phosphoglucomutase 3, a key enzyme that generates UDP\u2011GlcNAc for the hexosamine biosynthetic pathway and consequently for N\u2011linked glycosylation of nascent proteins. Reducing Pgm3 activity lowers cellular UDP\u2011GlcNAc pools, impairing proper N\u2011glycosylation of many secretory and membrane proteins. Defective glycosylation can cause accumulation of misfolded proteins in the endoplasmic reticulum, activating the unfolded protein response (UPR). A core component of the UPR is the transcriptional up\u2011regulation of ER\u2011resident folding catalysts, including the protein disulfide isomerase family member PDIA3 (also known as ERp57), which works with calnexin/calreticulin to assist the folding of glycoproteins. Therefore, CRISPRi knock\u2011down of Pgm3 is expected to trigger ER stress and lead to increased expression of Pdia3.",
-    "prediction": "up"
-}

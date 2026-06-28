@@ -1,4 +1,0 @@
-{
-    "reasoning": "Srrd (also known as SRRD) is a relatively uncharacterized nuclear protein that has been implicated in RNA processing and possibly splicing, but there is no well\u2011established role for it as a transcriptional activator or repressor of lysosomal proteases. The expression of the cathepsin\u202fL gene (Ctsl) is primarily controlled by transcription factors involved in lysosomal biogenesis and stress responses, such as TFEB, MITF, and NF\u2011\u03baB, rather than by RNA\u2011binding proteins like Srrd. No published data or pathway databases link Srrd directly to the regulation of Ctsl transcription or stability. Consequently, knocking down Srrd with CRISPRi is unlikely to cause a consistent up\u2011 or down\u2011regulation of Ctsl expression.",
-    "prediction": "none"
-}

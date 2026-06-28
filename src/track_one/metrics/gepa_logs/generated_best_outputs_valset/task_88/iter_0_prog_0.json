@@ -1,4 +1,0 @@
-{
-    "reasoning": "Srrd encodes a putative RNA\u2011binding/splicing regulator and is not known to function as a transcription factor or signaling molecule that directly controls the expression of vesicle\u2011trafficking genes such as Rabac1. There are no reported pathways linking Srrd activity to the transcriptional regulation of Rabac1, and CRISPRi\u2011mediated knock\u2011down of a splicing factor typically affects its direct RNA targets rather than unrelated genes. Consequently, a knock\u2011down of Srrd is unlikely to cause a consistent up\u2011 or down\u2011regulation of Rabac1 expression.",
-    "prediction": "none"
-}

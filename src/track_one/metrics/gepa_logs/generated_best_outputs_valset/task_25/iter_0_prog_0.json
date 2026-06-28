@@ -1,4 +1,0 @@
-{
-    "reasoning": "Cul2 is the scaffold protein of the CRL2 (Cullin\u20112) E3 ubiquitin ligase complex, most notably the VHL\u2011CRL2 complex that targets the oxygen\u2011sensing transcription factor HIF\u2011\u03b1 for proteasomal degradation under normoxic conditions. When Cul2 is knocked down by CRISPRi, the CRL2\u2011VHL complex is destabilized, leading to reduced ubiquitination and degradation of HIF\u2011\u03b1. Consequently, HIF\u2011\u03b1 accumulates even in the presence of oxygen and translocates to the nucleus, where it activates transcription of hypoxia\u2011responsive genes. BNIP3 (Bcl\u20112/adenovirus E1B 19\u202fkDa interacting protein 3) is a well\u2011characterized HIF\u20111 target that is induced under hypoxic conditions to promote cell death and autophagy. Therefore, loss of Cul2 is expected to increase HIF\u20111 activity and consequently up\u2011regulate BNIP3 expression.",
-    "prediction": "up"
-}

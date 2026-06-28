@@ -1,4 +1,0 @@
-{
-    "reasoning": "Runx1 is a lineage\u2011specific transcription factor that primarily controls genes involved in hematopoietic differentiation and proliferation. Its known targets include cytokine receptors, cell\u2011cycle regulators, and other transcription factors, but there is no established regulatory relationship between Runx1 and genes encoding mitochondrial complex I subunits such as Ndufa4. In the absence of evidence for direct transcriptional activation or repression of Ndufa4 by Runx1, a CRISPRi knockdown of Runx1 is unlikely to cause a consistent change in Ndufa4 expression.",
-    "prediction": "none"
-}

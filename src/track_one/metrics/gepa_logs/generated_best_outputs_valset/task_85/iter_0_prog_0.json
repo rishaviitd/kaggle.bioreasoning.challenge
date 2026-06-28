@@ -1,4 +1,0 @@
-{
-    "reasoning": "Cpsf4 encodes a subunit of the CPSF complex that participates in 3\u2032\u2011end cleavage and polyadenylation of nascent transcripts. Its primary role is to ensure proper maturation and stability of many mRNAs rather than to act as a transcriptional regulator of specific pathways. Htra2 (also called Omi) is a mitochondrial serine protease involved in apoptosis and protein quality control, and its expression is controlled mainly by stress\u2011responsive and mitochondrial signaling mechanisms. There is no reported direct regulatory connection between CPSF4\u2011mediated polyadenylation and HTRA2 transcription or stability. Consequently, knocking down Cpsf4 with CRISPRi would be expected to cause broad, modest effects on mRNA processing rather than a targeted up\u2011 or down\u2011regulation of Htra2. The most likely outcome is no specific change in Htra2 expression.",
-    "prediction": "none"
-}

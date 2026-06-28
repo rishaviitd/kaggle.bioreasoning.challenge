@@ -1,4 +1,0 @@
-{
-    "reasoning": "Wdr48 (also called UAF1) functions primarily as a regulatory co\u2011factor for several deubiquitinating enzymes (USP1, USP12, USP46) and is involved in DNA\u2011damage response and cell\u2011cycle control. Its known actions are post\u2011translational, influencing protein stability rather than transcriptional programs. Mylip (IDOL) is an E3 ubiquitin ligase whose expression is transcriptionally controlled by liver X receptors (LXRs) in response to cellular cholesterol levels. There is no reported pathway linking Wdr48 activity to LXR signaling or to the transcription of Mylip. Consequently, reducing Wdr48 levels by CRISPRi is unlikely to cause a consistent up\u2011 or down\u2011regulation of Mylip mRNA; any effect would be indirect and minimal.",
-    "prediction": "none"
-}

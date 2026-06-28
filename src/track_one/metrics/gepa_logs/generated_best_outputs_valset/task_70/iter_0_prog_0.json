@@ -1,4 +1,0 @@
-{
-    "reasoning": "Ehmt2 encodes the histone methyltransferase G9a, which primarily deposits the repressive H3K9me2 mark on chromatin. Reducing Ehmt2 levels by CRISPRi generally leads to a loss of this repressive modification and can cause de\u2011repression of genes that are directly targeted by G9a. Gapdh, however, is a classic housekeeping gene with a promoter that is constitutively active and is not known to be a direct target of G9a\u2011mediated H3K9 dimethylation. Consequently, knocking down Ehmt2 is unlikely to produce a consistent, measurable change in Gapdh transcription.",
-    "prediction": "none"
-}

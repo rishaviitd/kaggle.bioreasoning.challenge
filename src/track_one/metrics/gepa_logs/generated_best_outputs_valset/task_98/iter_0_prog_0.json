@@ -1,4 +1,0 @@
-{
-    "reasoning": "Cul3 encodes a scaffold protein for CRL3 ubiquitin\u2011ligase complexes that target a variety of cellular proteins for proteasomal degradation (e.g., NRF2 via KEAP1, components of the actin cytoskeleton, cell\u2011cycle regulators). Reducing Cul3 levels by CRISPRi would generally lead to stabilization of its substrates, but there is no well\u2011characterized pathway linking Cul3 activity to transcriptional control of the GRCC10 gene. GRCC10 (glutamate\u2011rich protein 10) is not a known substrate of Cul3\u2011containing ligases, nor is it reported to be regulated by the major signaling cascades (NRF2, NF\u2011\u03baB, MAPK) that are most sensitive to Cul3 loss. In the absence of a documented direct or indirect regulatory connection, the most parsimonious expectation is that Cul3 knockdown does not appreciably change GRCC10 mRNA levels.",
-    "prediction": "none"
-}

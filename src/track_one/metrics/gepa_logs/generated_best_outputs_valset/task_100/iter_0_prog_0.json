@@ -1,4 +1,0 @@
-{
-    "reasoning": "Tyrobp (DAP12) is an ITAM\u2011bearing adaptor protein that amplifies signaling downstream of several innate immune receptors in microglia and macrophages, leading to activation of Syk, PI3K/Akt and NF\u2011\u03baB pathways and the production of pro\u2011inflammatory cytokines. Annexin\u202fA2 (Anxa2) is a calcium\u2011dependent phospholipid\u2011binding protein whose transcription is known to be up\u2011regulated by NF\u2011\u03baB\u2013driven inflammatory signals (e.g., TNF\u2011\u03b1, IL\u20111\u03b2). Reducing Tyrobp levels by CRISPRi diminishes ITAM\u2011mediated signaling, attenuates NF\u2011\u03baB activation and lowers cytokine output. Consequently, the transcriptional stimulus that normally drives Anxa2 expression is weakened, leading to a decrease in Anxa2 mRNA levels. Therefore, Tyrobp knockdown is expected to cause down\u2011regulation of Anxa2.",
-    "prediction": "down"
-}

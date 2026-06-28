@@ -1,4 +1,0 @@
-{
-    "reasoning": "Bcl6 functions primarily as a transcriptional repressor in lymphoid cells, where it controls genes involved in cell cycle, DNA damage response, and differentiation. Arhgap10 encodes a Rho GTPase\u2011activating protein that is most prominently expressed in neuronal tissues and has not been reported as a direct Bcl6 target in the literature. Because there is no known regulatory connection between Bcl6 and Arhgap10, and they are active in largely distinct cellular contexts, CRISPRi\u2011mediated knockdown of Bcl6 is unlikely to cause a consistent change in Arhgap10 expression.",
-    "prediction": "none"
-}

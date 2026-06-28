@@ -1,4 +1,0 @@
-{
-    "reasoning": "HARS encodes the cytosolic histidyl\u2011tRNA synthetase that charges tRNA^His. CRISPRi\u2011mediated knockdown of HARS reduces histidine\u2011tRNA charging, creating an amino\u2011acid\u2011deficiency\u2011like stress. This activates the GCN2\u2011eIF2\u03b1\u2011ATF4 integrated stress response. ATF4 together with CHOP can induce transcription of pro\u2011apoptotic and mitophagy genes, among which Bnip3 is a well\u2011known downstream target of ATF4/CHOP and also of HIF\u20111\u03b1 that is up\u2011regulated during cellular stress. Consequently, loss of HARS is expected to increase Bnip3 mRNA levels as the cell engages stress\u2011responsive pathways.",
-    "prediction": "up"
-}

@@ -1,4 +1,0 @@
-{
-    "reasoning": "SNX14 (sorting nexin\u201114) is a membrane\u2011associated protein that participates mainly in lipid homeostasis at the endoplasmic reticulum and in autophagy\u2011related pathways. Its reported functions involve regulation of lipid droplet formation, ER\u2011mitochondria contacts, and possibly neuronal development, but there is no established link to transcriptional control of glycolytic enzymes. GAPDH is a core glycolytic gene that is typically constitutively expressed and regulated by metabolic cues rather than by the trafficking or lipid\u2011handling functions of SNX14. Consequently, knocking down SNX14 with CRISPRi is unlikely to cause a specific up\u2011 or down\u2011regulation of GAPDH expression; any change would probably be indirect and minimal.",
-    "prediction": "none"
-}

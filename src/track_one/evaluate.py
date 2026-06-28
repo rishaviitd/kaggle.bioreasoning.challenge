@@ -19,9 +19,70 @@ LABELS = ("up", "down", "none")
 TOKEN_TO_LABEL = {"A": "up", "B": "down", "C": "none"}
 
 
-def _answer_letter(token: str) -> str | None:
-    match = re.search(r"(?:^|>)([ABC])$", token.strip().upper())
-    return match.group(1) if match else None
+def _answer_token_label(token: str, allow_decorated_letter: bool = False) -> str | None:
+    stripped = token.strip()
+    lowered = stripped.lower()
+    if lowered in LABELS:
+        return lowered
+    if stripped in TOKEN_TO_LABEL:
+        return TOKEN_TO_LABEL[stripped]
+    if allow_decorated_letter:
+        cleaned = stripped.strip('`*_#>"\'<>()[]{}:;,.')
+        if cleaned != stripped and len(cleaned) == 1 and cleaned.upper() in TOKEN_TO_LABEL:
+            return TOKEN_TO_LABEL[cleaned.upper()]
+    return None
+
+
+def _final_answer_label(content: str) -> str | None:
+    exact = _answer_token_label(content)
+    if exact:
+        return exact
+
+    patterns = [
+        r"<answer>\s*(up|down|none|[ABCabc])\s*</answer>",
+        r"\b(?:final\s+output|final\s+answer|answer|prediction|conclusion)\s*[:\-]?\s*\**\s*(up|down|none|[ABCabc])\b",
+        r"\*\*\s*([ABCabc])\s*\)",
+        r"\b([ABCabc])\s*\)\s*(?:up|down|no significant|none)",
+    ]
+    for pattern in patterns:
+        matches = list(re.finditer(pattern, content, re.IGNORECASE))
+        if matches:
+            return _answer_token_label(matches[-1].group(1))
+    return None
+
+
+def _probabilities_from_token_item(
+    item: dict[str, Any],
+    actual_label: str | None,
+) -> dict[str, float] | None:
+    probabilities: dict[str, float] = {}
+    if actual_label and item.get("logprob") is not None:
+        probabilities[actual_label] = float(item["logprob"])
+
+    for alternative in item.get("top_logprobs") or []:
+        label = _answer_token_label(
+            str(alternative.get("token", "")),
+            allow_decorated_letter=True,
+        )
+        logprob = alternative.get("logprob")
+        if label and logprob is not None:
+            probabilities[label] = max(
+                float(logprob),
+                probabilities.get(label, float("-inf")),
+            )
+
+    if not probabilities:
+        return None
+
+    floor = min(probabilities.values()) - 20.0
+    logits = [probabilities.get(label, floor) for label in LABELS]
+    maximum = max(logits)
+    values = [math.exp(value - maximum) for value in logits]
+    total = sum(values)
+    return {
+        label: value / total
+        for label, value in zip(LABELS, values)
+    }
 
 
 def _seed_probabilities(response: dict[str, Any]) -> dict[str, float] | None:
@@ -29,27 +90,18 @@ def _seed_probabilities(response: dict[str, Any]) -> dict[str, float] | None:
     if not choices:
         return None
 
+    content = _response_content(response)
+    final_label = _final_answer_label(content)
     token_items = (choices[0].get("logprobs") or {}).get("content") or []
-    for item in reversed(token_items):
-        probabilities: dict[str, float] = {}
-        for alternative in item.get("top_logprobs") or []:
-            letter = _answer_letter(str(alternative.get("token", "")))
-            logprob = alternative.get("logprob")
-            if letter and logprob is not None and letter not in probabilities:
-                probabilities[letter] = float(logprob)
 
-        if len(probabilities) < 2:
-            continue
-
-        floor = min(probabilities.values()) - 20.0
-        logits = [probabilities.get(letter, floor) for letter in ("A", "B", "C")]
-        maximum = max(logits)
-        values = [math.exp(value - maximum) for value in logits]
-        total = sum(values)
-        return {
-            TOKEN_TO_LABEL[letter]: value / total
-            for letter, value in zip(("A", "B", "C"), values)
-        }
+    if final_label:
+        for item in reversed(token_items):
+            actual_label = _answer_token_label(
+                str(item.get("token", "")),
+                allow_decorated_letter=True,
+            )
+            if actual_label == final_label:
+                return _probabilities_from_token_item(item, actual_label)
 
     return None
 
@@ -73,15 +125,7 @@ def _response_content(response: dict[str, Any]) -> str:
 
 def _content_label(response: dict[str, Any]) -> str | None:
     content = _response_content(response)
-    tag_match = re.search(r"<answer>\s*([ABCabc])\s*</answer>", content)
-    if tag_match:
-        return TOKEN_TO_LABEL[tag_match.group(1).upper()]
-
-    loose_match = re.search(r"\b([ABCabc])\b", content)
-    if loose_match:
-        return TOKEN_TO_LABEL[loose_match.group(1).upper()]
-
-    return None
+    return _final_answer_label(content)
 
 
 def _calculate_full_metrics(rows: list[dict[str, Any]]) -> dict[str, float | None]:

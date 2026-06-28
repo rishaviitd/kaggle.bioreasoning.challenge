@@ -1,4 +1,0 @@
-{
-    "reasoning": "WDR70 is a WD\u2011repeat protein that participates primarily in DNA\u2011damage response and homologous recombination pathways, acting as a scaffold for repair complexes. Its known functions are centered on chromatin remodeling and transcriptional regulation of DNA\u2011repair genes rather than on mitochondrial nucleotide metabolism. Cmpk2 encodes a mitochondrial nucleoside diphosphate kinase that is most prominently induced as an interferon\u2011stimulated gene and functions in the synthesis of nucleoside triphosphates for mitochondrial DNA replication. There is no reported direct regulatory connection between WDR70 activity and the transcriptional control of Cmpk2, nor are they members of a common signaling cascade. Consequently, CRISPRi\u2011mediated knockdown of WDR70 is unlikely to cause a consistent up\u2011 or down\u2011regulation of Cmpk2 expression.",
-    "prediction": "none"
-}

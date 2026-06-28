@@ -1,4 +1,0 @@
-{
-    "reasoning": "WDR70 is a WD\u2011repeat protein implicated primarily in DNA damage response and chromatin remodeling pathways. Its known functions involve recruitment of repair factors and modulation of histone ubiquitination, but there is no established link to transcriptional regulation of the gigaxonin (GAN) gene, which encodes an E3\u2011ligase adaptor involved in intermediate filament organization. Because the pathways mediated by WDR70 do not intersect with the regulatory networks that control GAN expression, knocking down WDR70 with CRISPRi is unlikely to cause a consistent up\u2011 or down\u2011regulation of GAN. Therefore the expected effect on GAN expression is neutral.",
-    "prediction": "none"
-}

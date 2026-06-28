@@ -1,4 +1,0 @@
-{
-    "reasoning": "EIF1AD encodes a translation initiation factor that participates in the early steps of protein synthesis. Its primary role is to facilitate ribosomal scanning and start\u2011codon recognition, and it is not known to act as a transcriptional regulator or to be part of signaling pathways that control major histocompatibility complex (MHC) class I genes such as H2\u2011Q7. Expression of H2\u2011Q7 is typically driven by cytokine signaling (e.g., IFN\u2011\u03b3) and transcription factors like NF\u2011\u03baB and IRF family members. Because knockdown of a general translation factor would affect global protein production rather than specifically modulating the transcriptional network governing H2\u2011Q7, there is no clear mechanistic link that would cause a consistent up\u2011 or down\u2011regulation of this MHC gene. Therefore, the most likely outcome is no specific change in H2\u2011Q7 expression.",
-    "prediction": "none"
-}

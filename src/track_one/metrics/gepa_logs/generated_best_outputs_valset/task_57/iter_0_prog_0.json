@@ -1,4 +1,0 @@
-{
-    "reasoning": "PTPN2 (TC\u2011PTP) is a tyrosine phosphatase that attenuates cytokine\u2011 and hormone\u2011induced JAK/STAT signaling, including leptin\u2011STAT3 pathways in the hypothalamus. When PTPN2 is reduced, STAT3 remains more phosphorylated and active. In hypothalamic neurons, activated STAT3 represses transcription of the orexigenic neuropeptide Y (NPY) gene. Therefore, loss of PTPN2 is expected to enhance leptin\u2011STAT3 signaling, leading to decreased Npy expression.",
-    "prediction": "down"
-}

@@ -1,4 +1,0 @@
-{
-    "reasoning": "Tnfaip3 encodes the ubiquitin\u2011editing enzyme A20, a key negative regulator of NF\u2011\u03baB and other inflammatory signaling pathways. CRISPRi\u2011mediated knockdown of Tnfaip3 removes this brake, leading to heightened NF\u2011\u03baB activity and increased expression of many cytokines and stress\u2011responsive genes. Sec11c, however, encodes a subunit of the endoplasmic\u2011reticulum signal peptidase complex that is primarily involved in co\u2011translational protein processing. There is no established link between A20\u2011mediated NF\u2011\u03baB signaling and transcriptional control of Sec11c, nor is Sec11c known to be an NF\u2011\u03baB target gene. Consequently, loss of Tnfaip3 is unlikely to cause a consistent up\u2011 or down\u2011regulation of Sec11c expression.",
-    "prediction": "none"
-}

@@ -1,4 +1,0 @@
-{
-    "reasoning": "COP1 (also known as RFWD2) is an E3 ubiquitin ligase that targets several transcription factors for proteasomal degradation, including the stress\u2011responsive factor HSF1. HSF1 is the primary transcriptional activator of heat\u2011shock protein genes such as Hsp90ab1. When COP1 is present, it limits HSF1 protein levels and therefore restrains Hsp90 transcription. CRISPRi\u2011mediated knockdown of COP1 would reduce HSF1 degradation, allowing HSF1 to accumulate and become more transcriptionally active. The resulting increase in HSF1 activity is expected to drive higher transcription of Hsp90ab1, leading to an up\u2011regulation of its mRNA and protein levels.",
-    "prediction": "up"
-}

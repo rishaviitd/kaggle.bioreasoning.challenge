@@ -1,4 +1,0 @@
-{
-    "reasoning": "Vps33a is a core subunit of the HOPS and CORVET tethering complexes that mediate late endosome\u2013lysosome fusion and lysosomal trafficking. Loss of Vps33a impairs lysosomal delivery and leads to lysosomal dysfunction and accumulation of undegraded substrates. Cells respond to lysosomal stress by activating transcriptional programs that increase the expression of lysosomal enzymes in an attempt to restore catabolic capacity. Lipa encodes lysosomal acid lipase, a key enzyme that hydrolyzes cholesteryl esters and triglycerides within lysosomes. When lysosomal fusion is compromised, the buildup of lipid substrates can trigger a compensatory up\u2011regulation of Lipa transcription. Therefore, CRISPRi knockdown of Vps33a is expected to cause an increase in Lipa expression.",
-    "prediction": "up"
-}

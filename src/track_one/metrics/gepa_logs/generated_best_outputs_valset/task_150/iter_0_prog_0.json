@@ -1,4 +1,0 @@
-{
-    "reasoning": "TYROBP (also called DAP12) is an immunoreceptor\u2011tyrosine\u2011based activation motif (ITAM) adaptor that pairs with receptors such as TREM2 in myeloid cells. Engagement of the TREM2\u2011TYROBP complex activates SYK, PI3K\u2011AKT and downstream transcription factors (e.g., TFEB, PPAR\u03b3) that promote a lipid\u2011handling program in microglia/macrophages. Among the genes induced by this program are lysosomal enzymes required for lipid catabolism, including LIPA, which encodes lysosomal acid lipase. Consequently, loss of TYROBP signaling (as would occur with CRISPRi knockdown) diminishes the activation of these pathways and typically leads to reduced transcription of lipid\u2011metabolism genes. Therefore, knocking down TYROBP is expected to lower LIPA expression.",
-    "prediction": "down"
-}

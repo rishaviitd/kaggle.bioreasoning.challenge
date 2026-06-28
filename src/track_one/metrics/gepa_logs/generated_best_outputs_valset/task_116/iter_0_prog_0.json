@@ -1,4 +1,0 @@
-{
-    "reasoning": "Pgm3 encodes phosphoglucomutase\u202f3, a key enzyme in the hexosamine biosynthetic pathway that generates UDP\u2011GlcNAc for protein N\u2011glycosylation and GPI\u2011anchor synthesis. CRISPRi\u2011mediated knockdown of Pgm3 lowers cellular UDP\u2011GlcNAc levels, leading to defective N\u2011glycosylation of nascent secretory proteins. Improperly glycosylated proteins accumulate in the endoplasmic reticulum, activating the unfolded protein response (UPR). Hsp90b1 (GRP94) is an ER\u2011resident Hsp90 chaperone whose transcription is strongly induced as part of the UPR to assist folding of misfolded proteins. Therefore, reducing Pgm3 activity is expected to cause ER stress and consequently up\u2011regulate Hsp90b1 expression.",
-    "prediction": "up"
-}

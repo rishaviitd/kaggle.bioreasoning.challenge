@@ -1,4 +1,0 @@
-{
-    "reasoning": "Cul3 encodes a scaffold protein for CRL3 ubiquitin\u2011ligase complexes that target many diverse substrates for proteasomal degradation (e.g., NRF2 via the KEAP1\u2011Cul3 complex, various signaling proteins, and regulators of the actin cytoskeleton).  Reducing Cul3 by CRISPRi would generally decrease ubiquitination of these substrates, causing their accumulation.  For a change in Elmod2 expression to occur, one of the stabilized proteins would need to act as a transcriptional activator or repressor of the Elmod2 gene.  No well\u2011characterized link exists between Cul3 substrates and the transcriptional control of Elmod2; NRF2 does not appear to regulate Elmod2, and other known Cul3 targets are not reported to influence Elmod2 transcription.  Consequently, a knockdown of Cul3 is unlikely to produce a consistent up\u2011 or down\u2011regulation of Elmod2 expression.",
-    "prediction": "none"
-}

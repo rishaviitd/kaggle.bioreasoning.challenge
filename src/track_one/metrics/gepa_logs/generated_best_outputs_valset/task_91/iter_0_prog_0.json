@@ -1,4 +1,0 @@
-{
-    "reasoning": "TYROBP (also called DAP12) is an immunoreceptor\u2011tyrosine\u2011based activation motif (ITAM) adaptor that transduces signals from receptors such as TREM2 in myeloid cells and microglia.  CRISPRi\u2011mediated knock\u2011down of TYROBP mainly dampens downstream signaling pathways (e.g., SYK, PI3K\u2011AKT, NF\u2011\u03baB) and consequently alters the expression of genes involved in inflammation, phagocytosis, and cytokine production.  The gene 1500015A07Rik is a poorly characterized mouse locus with no reported functional link to TYROBP\u2011dependent signaling cascades.  There is no evidence that it is a direct transcriptional target of TYROBP\u2011mediated pathways, nor is it part of the known microglial activation gene set regulated by TYROBP.  Therefore, reducing TYROBP levels is unlikely to cause a consistent up\u2011 or down\u2011regulation of 1500015A07Rik.",
-    "prediction": "none"
-}

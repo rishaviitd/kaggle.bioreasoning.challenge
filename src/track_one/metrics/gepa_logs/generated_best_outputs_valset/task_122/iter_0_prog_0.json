@@ -1,4 +1,0 @@
-{
-    "reasoning": "WDR48 (also called UAF1) functions primarily as a regulatory subunit for several deubiquitinases (USP1, USP12, USP46) that control protein turnover in the DNA\u2011damage response and cell\u2011cycle pathways. Its known roles are centered on maintaining genome stability through deubiquitination of substrates such as PCNA and FANCD2. There is no established transcriptional regulatory connection between WDR48 and the chemokine\u202fCXCL10 (IP\u201110). CXCL10 expression is driven mainly by interferon\u2011\u03b3, type\u202fI interferons, NF\u2011\u03baB and other inflammatory signaling cascades. While loss of WDR48 could indirectly increase DNA\u2011damage signaling and potentially activate innate immune pathways, the effect on CXCL10 is not documented and would be expected to be modest at best. Consequently, a CRISPRi knockdown of WDR48 is unlikely to produce a consistent, directed change in CXCL10 mRNA levels.",
-    "prediction": "none"
-}

@@ -1,4 +1,0 @@
-{
-    "reasoning": "COP1 (also known as RFWD2) functions primarily as an E3 ubiquitin ligase that targets specific transcription factors such as c\u2011Jun, p53, and ETS family members for proteasomal degradation. Its regulatory role is therefore centered on modulating signaling pathways and transcriptional programs downstream of those factors. \u03b2\u2011actin (ACTB) is a core cytoskeletal protein whose mRNA is typically expressed constitutively as a housekeeping gene and is not known to be a direct transcriptional target of the pathways most strongly controlled by COP1. Consequently, knocking down COP1 with CRISPRi is unlikely to cause a specific up\u2011 or down\u2011regulation of ACTB expression; any effect would be indirect and minimal.",
-    "prediction": "none"
-}

@@ -1,4 +1,0 @@
-{
-    "reasoning": "Cul3 encodes a scaffold protein for Cullin\u2011RING E3 ubiquitin ligases. Its best\u2011characterized role is in the KEAP1\u2011Cul3 complex that targets the transcription factor NRF2 for proteasomal degradation; loss of Cul3 stabilizes NRF2 and up\u2011regulates antioxidant response genes. Cul3 also participates in the turnover of cell\u2011cycle regulators such as cyclin\u202fE and certain signaling proteins, but there is no reported direct interaction between Cul3 and the RNA\u2011acetyltransferase Nat10. Nat10 transcription is primarily controlled by pathways linked to ribosome biogenesis and cell\u2011growth signals rather than the NRF2 or KEAP1 pathways. Because knockdown of Cul3 does not appear to affect known transcriptional regulators of Nat10, and no literature links Cul3\u2011mediated ubiquitination to Nat10 stability or expression, the most plausible outcome is that Nat10 levels remain unchanged.",
-    "prediction": "none"
-}

@@ -1,4 +1,0 @@
-{
-    "reasoning": "INTS9 encodes a subunit of the Integrator complex, which associates with RNA polymerase II and is primarily involved in the 3\u2032 end processing of small nuclear RNAs and in regulating transcriptional termination of a subset of protein\u2011coding genes. While loss of INTS9 can lead to broad changes in RNA processing and modest alterations in the expression of many genes, there is no specific evidence linking INTS9 activity to the regulation of the mouse locus Gm34961. Gm34961 is a poorly characterized predicted gene with no reported interaction with the Integrator complex. Consequently, a CRISPRi knockdown of INTS9 is unlikely to produce a consistent, directed change (up\u2011 or down\u2011regulation) of Gm34961 expression beyond background variability.",
-    "prediction": "none"
-}

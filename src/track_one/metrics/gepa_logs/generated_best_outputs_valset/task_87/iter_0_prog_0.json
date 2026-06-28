@@ -1,4 +1,0 @@
-{
-    "reasoning": "Tnfaip3 encodes the ubiquitin\u2011editing enzyme A20, a key negative regulator of NF\u2011\u03baB signaling. When A20 is reduced by CRISPRi knockdown, the inhibitory brake on the NF\u2011\u03baB pathway is released, resulting in heightened NF\u2011\u03baB activity. Many S100 family members are transcriptionally responsive to NF\u2011\u03baB\u2013driven inflammatory signaling, and S100a6 is known to be up\u2011regulated in contexts of increased cytokine or NF\u2011\u03baB activation. Therefore, loss of Tnfaip3 is expected to increase NF\u2011\u03baB\u2013mediated transcription of S100a6, leading to higher S100a6 mRNA levels.",
-    "prediction": "up"
-}

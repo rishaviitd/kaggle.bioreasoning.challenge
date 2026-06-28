@@ -1,4 +1,0 @@
-{
-    "reasoning": "Srrd encodes a putative RNA\u2011binding/splicing regulatory protein that has not been linked to mitochondrial nucleotide metabolism or interferon\u2011stimulated gene pathways. Cmpk2 (cytosolic mitochondrial pyrimidine monophosphate kinase 2) is primarily regulated by innate immune signaling and cellular nucleotide demand. There is no reported transcriptional, post\u2011transcriptional, or signaling connection between Srrd activity and Cmpk2 expression, making a direct up\u2011 or down\u2011regulation unlikely when Srrd is knocked down by CRISPRi.",
-    "prediction": "none"
-}

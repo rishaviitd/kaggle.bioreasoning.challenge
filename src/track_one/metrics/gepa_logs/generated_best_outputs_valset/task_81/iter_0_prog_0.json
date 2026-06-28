@@ -1,4 +1,0 @@
-{
-    "reasoning": "OTUD5 (also called DUBA) is a deubiquitinase that removes K63\u2011linked ubiquitin chains from TRAF3 and other signaling adapters, thereby acting as a negative regulator of the innate immune and type\u2011I interferon pathways. When OTUD5 is reduced (e.g., by CRISPRi knockdown), TRAF3 remains ubiquitinated, leading to enhanced activation of IRF3/IRF7 and increased production of type\u2011I interferons. Type\u2011I IFN signaling drives the transcription of many interferon\u2011stimulated genes (ISGs). Cmpk2 (cytidine monophosphate kinase 2) is a known ISG that is transcriptionally up\u2011regulated in response to interferon signaling to support mitochondrial dNTP synthesis. Therefore, decreasing OTUD5 is expected to relieve its repression of the IFN pathway, resulting in higher IFN levels and consequently increased expression of Cmpk2.",
-    "prediction": "up"
-}

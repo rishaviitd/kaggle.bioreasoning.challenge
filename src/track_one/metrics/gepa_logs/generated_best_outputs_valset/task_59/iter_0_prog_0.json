@@ -1,4 +1,0 @@
-{
-    "reasoning": "WDR70 is a WD\u2011repeat protein that participates mainly in nuclear processes such as DNA damage response and homologous recombination. It is not known to act as a transcription factor or co\u2011activator for mitochondrial genes, nor is it linked to the regulation of the oxidative phosphorylation machinery. NDUFA4 encodes a subunit of mitochondrial complex\u202fI and its expression is typically controlled by mitochondrial biogenesis pathways rather than by DNA\u2011repair proteins. Because there is no established mechanistic connection between WDR70 activity and NDUFA4 transcription, knocking down WDR70 with CRISPRi is unlikely to cause a consistent change in NDUFA4 mRNA levels.",
-    "prediction": "none"
-}

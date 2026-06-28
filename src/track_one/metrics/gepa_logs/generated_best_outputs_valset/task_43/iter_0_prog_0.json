@@ -1,4 +1,0 @@
-{
-    "reasoning": "Tyrobp (DAP12) functions as an immunoreceptor\u2011signalling adaptor primarily in myeloid cells, where it couples receptors such as TREM2 to downstream kinases and modulates inflammatory pathways (e.g., NF\u2011\u03baB, MAPK). Selenop encodes the secreted selenium\u2011transport protein selenoprotein\u202fP, whose transcription is mainly controlled by oxidative\u2011stress regulators such as NRF2 and by systemic selenium status. There is no established mechanistic link between Tyrobp\u2011mediated immune signalling and the transcriptional control of Selenop. Consequently, CRISPRi\u2011mediated knockdown of Tyrobp is unlikely to cause a consistent up\u2011 or down\u2011regulation of Selenop expression.",
-    "prediction": "none"
-}

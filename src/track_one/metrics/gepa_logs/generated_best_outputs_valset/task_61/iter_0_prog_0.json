@@ -1,4 +1,0 @@
-{
-    "reasoning": "Runx1 functions as a transcriptional activator in several neuronal lineages, including subsets of sensory neurons where it directly promotes the expression of neuropeptide Y (Npy). Loss\u2011of\u2011function or knock\u2011down of Runx1 reduces its binding to the Npy promoter/enhancers, leading to lower transcriptional output of Npy. Therefore, CRISPRi\u2011mediated knockdown of Runx1 is expected to diminish Npy mRNA levels.",
-    "prediction": "down"
-}

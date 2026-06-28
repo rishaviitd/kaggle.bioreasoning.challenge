@@ -1,4 +1,0 @@
-{
-    "reasoning": "WDR75 is a WD\u2011repeat nucleolar protein primarily implicated in ribosome biogenesis and RNA processing. It does not function as a transcription factor, signaling molecule, or chromatin regulator that is known to influence neuropeptide pathways. Neuropeptide Y (NPY) expression is controlled mainly by neuronal activity, stress hormones, and specific transcription factors such as CREB, FoxO, and PPAR\u03b3. There is no reported interaction or regulatory axis linking WDR75 to the transcriptional control or secretion of NPY. Consequently, knocking down WDR75 with CRISPRi is unlikely to cause a measurable change in Npy mRNA levels.",
-    "prediction": "none"
-}

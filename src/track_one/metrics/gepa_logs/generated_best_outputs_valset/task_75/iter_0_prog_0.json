@@ -1,4 +1,0 @@
-{
-    "reasoning": "Tnfaip3 encodes the ubiquitin\u2011editing protein A20, a key negative regulator of NF\u2011\u03baB and other inflammatory signaling pathways. CRISPRi\u2011mediated knockdown of Tnfaip3 removes this brake, resulting in heightened NF\u2011\u03baB activity and increased production of pro\u2011inflammatory cytokines such as TNF\u2011\u03b1 and IL\u20111\u03b2. Lipa (lysosomal acid lipase) is primarily involved in lipid catabolism and is transcriptionally regulated by lipid\u2011sensing nuclear receptors (e.g., LXR, PPAR) rather than by canonical NF\u2011\u03baB signaling. There is no well\u2011established direct link whereby enhanced NF\u2011\u03baB activity up\u2011 or down\u2011regulates Lipa expression. Consequently, loss of A20 is unlikely to cause a consistent change in Lipa transcript levels.",
-    "prediction": "none"
-}

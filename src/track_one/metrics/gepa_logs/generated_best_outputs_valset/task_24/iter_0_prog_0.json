@@ -1,4 +1,0 @@
-{
-    "reasoning": "Cul3 functions as the scaffold protein of the Cul3\u2011Keap1 E3 ubiquitin ligase complex that targets the transcription factor NRF2 for proteasomal degradation under basal conditions. When Cul3 is knocked down by CRISPRi, the Cul3\u2011Keap1 complex is impaired, leading to reduced ubiquitination and degradation of NRF2. Stabilized NRF2 translocates to the nucleus, binds antioxidant response elements (ARE) in the promoters of many cytoprotective genes, and drives their transcription. Peroxiredoxin\u20111 (Prdx1) is an antioxidant enzyme whose promoter contains ARE sites and is known to be up\u2011regulated in response to NRF2 activation. Therefore, loss of Cul3 is expected to increase NRF2 activity and consequently raise Prdx1 mRNA levels.",
-    "prediction": "up"
-}

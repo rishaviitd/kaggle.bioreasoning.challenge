@@ -1,4 +1,0 @@
-{
-    "reasoning": "WDR70 is a nuclear WD\u2011repeat protein that participates in transcription elongation and DNA\u2011damage\u2011response pathways, primarily influencing chromatin\u2011associated processes rather than lysosomal protease expression. Cathepsin\u202fL (CTSL) is a lysosomal cysteine protease whose transcription is mainly controlled by stress\u2011responsive and lysosome\u2011biogenesis transcription factors (e.g., TFEB) rather than by components of the transcription\u2011elongation machinery such as WDR70. No direct regulatory relationship between WDR70 and CTSL has been reported, and the functional domains of WDR70 do not suggest a specific role in modulating CTSL promoter activity. Consequently, CRISPRi\u2011mediated knockdown of WDR70 is unlikely to cause a consistent, directed change in CTSL mRNA levels.",
-    "prediction": "none"
-}

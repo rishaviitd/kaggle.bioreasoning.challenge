@@ -1,4 +1,0 @@
-{
-    "reasoning": "Cul2 encodes a scaffold protein for a Cullin\u2011RING E3 ubiquitin ligase complex, most notably the VHL\u2011Cul2 complex that targets HIF\u2011\u03b1 subunits for proteasomal degradation under normoxic conditions. CRISPRi\u2011mediated knockdown of Cul2 therefore reduces the activity of this ligase, leading to accumulation of HIF\u2011\u03b1 and activation of the hypoxia\u2011responsive transcriptional program. While HIF signaling influences many metabolic genes, the lysosomal acid lipase gene\u202fLIPA (encoding LIPA) is not a well\u2011characterized HIF target and its expression is primarily regulated by lipid\u2011sensing pathways rather than hypoxia. No direct regulatory relationship between Cul2 and LIPA has been reported, and the downstream effects of HIF activation are unlikely to markedly change LIPA transcription. Consequently, knocking down Cul2 is expected to have little or no effect on LIPA expression.",
-    "prediction": "none"
-}

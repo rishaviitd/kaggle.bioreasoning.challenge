@@ -1,4 +1,0 @@
-{
-    "reasoning": "WDR75 is a nucleolar protein that participates in ribosome biogenesis and rRNA processing. Loss of WDR75 by CRISPRi typically induces nucleolar stress, which stabilizes and activates p53. Activated p53 transcriptionally represses several genes involved in cell growth and proliferation, including the polyamine\u2011biosynthetic enzyme ODC1 (ornithine decarboxylase). Therefore, knocking down WDR75 is expected to lead to reduced ODC1 transcription.",
-    "prediction": "down"
-}

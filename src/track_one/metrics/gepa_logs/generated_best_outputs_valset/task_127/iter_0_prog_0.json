@@ -1,4 +1,0 @@
-{
-    "reasoning": "Pgm3 encodes phosphoglucomutase 3, an enzyme that interconverts GlcNAc\u20116\u2011phosphate and GlcNAc\u20111\u2011phosphate in the hexosamine biosynthetic pathway, thereby contributing to UDP\u2011GlcNAc production for protein N\u2011glycosylation. Its primary influence is on metabolic flux and glycosylation capacity rather than direct transcriptional regulation of cytoskeletal genes. Actb (\u03b2\u2011actin) is a core housekeeping gene whose expression is generally stable and is not known to be directly controlled by the hexosamine pathway or by Pgm3 activity. Consequently, knocking down Pgm3 with CRISPRi is unlikely to cause a specific up\u2011 or down\u2011regulation of Actb; any effect would be indirect and minimal.",
-    "prediction": "none"
-}

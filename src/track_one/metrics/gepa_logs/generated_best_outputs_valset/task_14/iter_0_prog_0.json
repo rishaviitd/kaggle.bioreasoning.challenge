@@ -1,4 +1,0 @@
-{
-    "reasoning": "Srrd (Serrate RNA\u2011binding domain\u2011containing protein) is a relatively poorly characterized nuclear protein with no established role in signaling pathways that directly control the transcription or stability of Rapgef5. Rapgef5 is a guanine\u2011nucleotide exchange factor for Rap GTPases, primarily regulated by upstream signaling cascades rather than by Srrd\u2011mediated transcriptional control. Because there is no documented interaction, co\u2011expression pattern, or pathway linking Srrd to the regulation of Rapgef5, knocking down Srrd with CRISPRi is unlikely to cause a consistent change in Rapgef5 mRNA levels.",
-    "prediction": "none"
-}
