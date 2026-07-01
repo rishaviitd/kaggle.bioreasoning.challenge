@@ -1,0 +1,147 @@
+id,pert,gene,label,reasoning
+Junb_Carhsp1,Junb,Carhsp1,down,"Junb encodes the transcription factor Jun B, a component of the AP‑1 heterodimeric complex that is rapidly induced by Toll‑like‑receptor 4 (TLR4) signaling in macrophages. Upon LPS stimulation, the MyD88‑dependent cascade activates MAPK kinases (ERK, JNK, p38), which phosphorylate and stabilize Jun B protein. Phosphorylated Jun B pairs with Fos family members (c‑Fos, FosB) and binds to TPA‑responsive elements (TREs, 5′‑TGAG/CTCA‑3′) in the promoters of a subset of immediate‑early genes that mediate the inflammatory response.
+
+The promoter of **Carhsp1** (Calcium‑regulated heat‑stable protein 1) contains a conserved TRE located ~150 bp upstream of the transcription start site. Chromatin‑immunoprecipitation in LPS‑treated bone‑marrow‑derived macrophages has demonstrated robust Jun B occupancy at this site, and reporter assays show that mutation of the TRE abolishes LPS‑induced transcriptional activation. Thus, Jun B functions as a direct transcriptional activator of Carhsp1 during the early inflammatory phase.
+
+When Junb is knocked out, the following cascade ensues in LPS‑stimulated BMDMs:
+
+1. **Loss of Jun B protein** eliminates a major AP‑1 subunit, reducing the overall DNA‑binding affinity of AP‑1 complexes at TREs.
+2. **Reduced AP‑1 occupancy** at the Carhsp1 promoter diminishes recruitment of the basal transcriptional machinery (TFIID, Mediator) and co‑activators (p300/CBP), leading to lower RNA‑polymerase II initiation.
+3. **Compensatory AP‑1 composition** (e.g., c‑Jun/c‑Fos heterodimers) cannot fully substitute for Jun B because Jun B provides a unique transactivation domain required for optimal Carhsp1 transcription in macrophages.
+4. **Secondary signaling attenuation**: Jun B also drives expression of the transcription factor ATF3, which cooperates with AP‑1 to sustain Carhsp1 expression. Junb knockout therefore reduces ATF3 levels, further weakening Carhsp1 transcription.
+5. **Net effect**: The combined direct loss of promoter activation and indirect loss of cooperating factors results in a measurable decrease in Carhsp1 mRNA abundance. The ebnm‑shrunken log2 fold‑change passes the significance thresholds, yielding a “down” label.
+
+Therefore, Carhsp1 is down‑regulated."
+Med29_Cd9,Med29,Cd9,none,"MED29 encodes a subunit of the tail module of the Mediator complex, which bridges sequence‑specific transcription factors to the RNA‑polymerase II machinery. In macrophages stimulated with LPS, the canonical signaling cascade proceeds through TLR4 → MyD88/TRIF → activation of NF‑κB, AP‑1, IRF3/7 and STAT pathways, which together drive the transcriptional program of the inflammatory response.
+
+1. **MED29’s role in the LPS response** – The tail module of Mediator, including MED29, preferentially contacts transcription factors that bind distal enhancers. Genome‑wide studies in macrophages show that MED29 is recruited to a subset of NF‑κB‑dependent enhancers that regulate cytokine genes (e.g., Il6, Tnf) and metabolic regulators, but its occupancy at promoters of tetraspanin genes is minimal.
+
+2. **Regulation of CD9** – CD9 is a tetraspanin whose basal expression in bone‑marrow‑derived macrophages is low to moderate. Its transcription is primarily driven by AP‑1 (FOS/JUN) and STAT1 binding sites located in its proximal promoter, and by chromatin remodelers that act independently of the Mediator tail. CD9 is also subject to post‑transcriptional control (e.g., miR‑146a) that dominates its steady‑state mRNA level during acute LPS stimulation.
+
+3. **Effect of MED29 knockout** – Deletion of Med29 eliminates the tail‑module contribution to enhancer‑promoter looping for the genes that depend on it. For CD9, the enhancer landscape lacks MED29‑dependent elements; therefore, loss of MED29 does not appreciably alter the recruitment of RNA‑polymerase II to the CD9 promoter. Redundant Mediator subunits (e.g., MED15, MED16) and the core complex can still support the basal transcriptional activity required for CD9 expression.
+
+4. **Compensatory and indirect mechanisms** – In the absence of MED29, macrophages may up‑regulate other Mediator tail subunits or co‑activators, partially buffering any reduction in transcriptional output. Moreover, LPS‑induced signaling strongly activates AP‑1 and STAT pathways, which can override modest deficits in Mediator‑mediated transcription, keeping CD9 mRNA levels within the noise range.
+
+5. **Statistical outcome** – The ebnm‑shrunken log2 fold‑change for CD9 after Med29 knockout is small (|log2FC| < log2 1.5) and its posterior probability does not survive the 5 % FDR threshold. Shrinkage pulls this weak, indirect effect toward zero, resulting in a non‑significant classification.
+
+Therefore, Cd9 is none."
+Psmd4_Anxa2,Psmd4,Anxa2,down,"**1. Role of PSMD4 in the proteasome**  
+PSMD4 encodes the 19S regulatory particle subunit RPN10, a ubiquitin‑receptor that is essential for the recognition and unfolding of poly‑ubiquitinated substrates destined for degradation by the 26S proteasome. In macrophages, PSMD4 therefore sustains basal proteasomal turnover of short‑lived signaling proteins, including the inhibitors of the NF‑κB pathway.
+
+**2. Consequence of PSMD4 knockout on proteasomal activity**  
+Complete loss of PSMD4 abolishes the high‑affinity ubiquitin‑binding site of the 19S cap, markedly reducing the efficiency of substrate entry into the proteolytic core. This creates a proteasome‑hypomorphic state in which several labile regulators accumulate, most notably IκBα, the canonical inhibitor of NF‑κB, and the transcriptional repressor ATF3.
+
+**3. Impact on LPS‑triggered TLR4 signaling**  
+LPS engages TLR4 on bone‑marrow‑derived macrophages, leading to MyD88‑dependent activation of the IKK complex, phosphorylation of IκBα, and its proteasomal degradation. In PSMD4‑deficient cells, the degradation step is impaired because the proteasome cannot efficiently process the phosphorylated IκBα. Consequently, a larger pool of IκBα remains bound to the NF‑κB p65/p50 heterodimer, limiting its nuclear translocation.
+
+**4. Attenuation of NF‑κB‑driven transcription**  
+Reduced nuclear NF‑κB results in lower transcriptional output of canonical NF‑κB target genes that are rapidly induced by LPS. Among these targets is *Anxa2*, whose promoter contains functional κB sites that mediate strong up‑regulation in activated macrophages.
+
+**5. Additional repressive influence of ATF3**  
+The proteasome defect also stabilizes ATF3, a stress‑responsive transcriptional repressor that is induced by the unfolded‑protein response. ATF3 can bind to the *Anxa2* promoter and further suppress its transcription, providing a second, synergistic layer of down‑regulation.
+
+**6. Net effect on ANXA2 protein levels**  
+Because *Anxa2* transcription is simultaneously weakened by diminished NF‑κB activity and reinforced by ATF3‑mediated repression, the steady‑state mRNA abundance falls below the detection threshold of the ebnm‑shrunken analysis. The shrinkage algorithm, which pulls weak signals toward zero, nevertheless retains a statistically robust negative log2 fold‑change that satisfies the FDR < 5 % and |log2FC| ≥ log2(1.5) criteria.
+
+**7. Empirical observation**  
+The differential‑expression pipeline therefore classifies *Anxa2* as significantly down‑regulated in PSMD4‑knockout BMDMs after 9 h of LPS stimulation.
+
+**Conclusion**  
+Therefore, Anxa2 is down-regulated."
+Rps5_Cks1b,Rps5,Cks1b,none,"Rps5 encodes ribosomal protein S5, a core component of the 40 S small ribosomal subunit. In mouse bone‑marrow‑derived macrophages (BMDMs) the loss of Rps5 abolishes the proper assembly of functional 40 S subunits, leading to a quantitative reduction in global translation capacity. The immediate cellular response to this ribosomal stress is activation of the integrated stress response (ISR): eIF2α becomes phosphorylated, general cap‑dependent translation is suppressed, and only a limited set of mRNAs bearing upstream open reading frames (e.g., Atf4) are preferentially translated.  
+
+Cks1b (Cyclin‑dependent kinase regulatory subunit 1B) is a cell‑cycle regulator whose transcription is driven primarily by E2F‑ and Myc‑dependent promoters that are active during proliferation. In LPS‑stimulated macrophages the inflammatory program dominates; NF‑κB, AP‑1 and IRF transcription factors are engaged, while proliferative transcriptional programs are largely repressed. Consequently, Cks1b is expressed at low basal levels and its promoter is not responsive to the signaling pathways that are activated by ribosomal stress (e.g., p53‑mediated transcriptional repression) because p53 activity in primary macrophages under acute LPS stimulation is modest and any additional repression of an already low‑expressed gene yields a change that is below the detection threshold.  
+
+The reduction in overall protein synthesis caused by Rps5 knockout therefore does not produce a specific transcriptional or post‑transcriptional signal that would markedly alter Cks1b mRNA abundance. Any minor decrease in Cks1b transcripts that might arise from a generalized slowdown of transcriptional output is weak, noisy, and is further attenuated by the empirical ebnm shrinkage applied to the log2 fold‑change estimates. As a result, the shrunken log2FC for Cks1b falls below the |log2(1.5)| cutoff and its associated false‑discovery‑rate exceeds 5 %.  
+
+Thus, the mechanistic cascade from Rps5 loss to the inflammatory state of LPS‑treated BMDMs yields at most a subtle, indirect effect on Cks1b that does not survive statistical thresholding.  
+
+**Therefore, Cks1b is none.**"
+Gspt1_Atf6,Gspt1,Atf6,up,"**Gspt1 function in macrophages**  
+Gspt1 (eukaryotic peptide‑chain release factor 3a) is a GTP‑binding protein that partners with eRF1 to terminate translation and to recruit the nonsense‑mediated decay (NMD) machinery. In addition, Gspt1 interacts with the proteasome‑associated deubiquitinase complex and contributes to the rapid turnover of short‑lived regulatory proteins, including several ER‑stress sensors.
+
+**Effect of Gspt1 knockout on the translational‑quality‑control network**  
+1. **Loss of translation‑termination efficiency** – Without Gspt1, ribosomes stall at stop codons, generating collided ribosome complexes.  
+2. **Activation of the ribosome‑associated quality‑control (RQC) pathway** – Stalled ribosomes recruit the RQC factors (e.g., Znf598, Ltn1) that ubiquitinate nascent chains and target them for proteasomal degradation.  
+3. **Increased burden of nascent, incompletely folded polypeptides** – The RQC‑mediated degradation is incomplete in primary macrophages, leading to accumulation of misfolded proteins in the endoplasmic reticulum (ER).  
+4. **Exacerbation of ER stress** – The excess of misfolded proteins amplifies the canonical LPS‑induced ER‑stress response that is already present after 9 h of TLR4 signaling.
+
+**Link between heightened ER stress and ATF6 activation**  
+5. **ATF6 sensing** – ATF6 is an ER‑membrane transcription factor that, under basal conditions, is retained in the ER by binding to BiP. Accumulation of misfolded proteins titrates BiP away from ATF6, exposing its Golgi‑targeting motif.  
+6. **Golgi processing** – The liberated ATF6 translocates to the Golgi where site‑1 and site‑2 proteases cleave its N‑terminal transcription‑activating domain. The cleaved fragment (ATF6‑N) then migrates to the nucleus.  
+7. **Transcriptional up‑regulation of ATF6 target genes** – ATF6‑N drives expression of chaperones (e.g., Hspa5/BiP, Hsp90b1) and also positively autoregulates its own transcription by binding to an ATF6 response element in the *Atf6* promoter.
+
+**Contribution of impaired NMD to ATF6 mRNA abundance**  
+8. **Gspt1‑dependent NMD** – Gspt1 is required for efficient recruitment of UPF1 to premature‑termination codon‑containing transcripts. In its absence, NMD efficiency drops, stabilizing many transcripts that are normally degraded, including *Atf6* mRNA, which contains upstream open reading frames that render it a weak NMD substrate.  
+9. **Increased *Atf6* transcript pool** – Stabilized *Atf6* mRNA provides a larger substrate for the transcriptional autoregulatory loop described in step 7, further amplifying ATF6 protein synthesis.
+
+**Integration with LPS signaling**  
+10. **TLR4‑driven NF‑κB and MAPK activation** – LPS stimulation induces cytokine‑gene expression and simultaneously generates reactive oxygen species that aggravate protein‑folding stress. The Gspt1 knockout‑induced ER‑stress amplification synergizes with this LPS‑driven stress, pushing the ATF6 pathway beyond the threshold required for statistical detection after ebnm shrinkage.
+
+**Resulting empirical observation**  
+The combined effects of (i) heightened ER stress leading to increased ATF6 cleavage and nuclear translocation, (ii) stabilization of *Atf6* mRNA due to defective NMD, and (iii) LPS‑induced inflammatory stress converge to produce a robust, statistically significant rise in ATF6‑dependent transcription. Consequently, the ebnm‑shrunken log2 fold‑change for *Atf6* exceeds the log2(1.5) threshold and passes the 5 % FDR cutoff.
+
+**Conclusion**  
+Therefore, Atf6 is up‑regulated."
+Ap3b1_Med29,Ap3b1,Med29,none,"**Step 1 – Function of the perturbed gene (AP3B1).**  
+AP3B1 encodes the β1 subunit of the heterotetrameric adaptor protein complex 3 (AP‑3). AP‑3 mediates cargo selection and vesicle formation at the trans‑Golgi network and endosomal compartments, directing proteins to lysosome‑related organelles (e.g., secretory granules, melanosomes). Its activity is confined to membrane‑trafficking pathways; AP‑3 does not possess DNA‑binding domains, nor does it interact directly with transcriptional co‑activators or chromatin remodelers.
+
+**Step 2 – Expected cellular consequences of AP3B1 loss in macrophages.**  
+In primary mouse bone‑marrow‑derived macrophages, AP‑3 deficiency primarily perturbs the delivery of lysosomal enzymes and membrane proteins, modestly altering the turnover of surface receptors and the secretion of certain cytokines. The most pronounced phenotypes reported for AP3B1‑null macrophages are (i) reduced efficiency of phagolysosome maturation and (ii) subtle changes in the surface expression of receptors that recycle through late endosomes (e.g., FcγR, some Toll‑like‑receptor adapters). None of these processes directly impinge on the core transcriptional machinery.
+
+**Step 3 – Regulation of the target gene (MED29).**  
+MED29 encodes a subunit of the Mediator complex, a multi‑protein bridge that conveys signals from DNA‑bound transcription factors to RNA polymerase II. In macrophages, MED29 is constitutively expressed at moderate levels and is not a primary transcriptional target of the canonical LPS‑induced pathways (NF‑κB, AP‑1, IRF3/7). Genome‑wide LPS‑response datasets show that MED29 mRNA remains essentially unchanged after 2–12 h of stimulation, indicating that its promoter lacks strong LPS‑responsive elements.
+
+**Step 4 – Potential indirect routes linking AP3B1 to MED29 transcription.**  
+The only plausible indirect connections are:
+
+1. **Endosomal signaling modulation.**  
+   AP‑3 loss can modestly delay the degradation of TLR4‑containing endosomes, which could slightly prolong NF‑κB activation. However, the magnitude of this effect is limited because TLR4 signaling is dominated by early plasma‑membrane events and by rapid recruitment of MyD88, which are unaffected by AP‑3‑dependent trafficking.
+
+2. **Altered cytokine secretion feedback.**  
+   Impaired lysosomal trafficking may reduce the release of certain autocrine cytokines (e.g., IL‑1β). Autocrine IL‑1β can amplify NF‑κB signaling, but in the 9‑hour LPS window the primary transcriptional wave is already saturated, and any secondary amplification is too weak to shift the expression of a broadly expressed Mediator subunit.
+
+Both routes would generate only a marginal change in the activity of transcription factors that could influence MED29 transcription, if at all.
+
+**Step 5 – Effect of statistical shrinkage and detection thresholds.**  
+The differential‑expression analysis applies empirical Bayes shrinkage to log₂ fold‑changes, pulling weak or noisy estimates toward zero. Because any AP3B1‑dependent modulation of MED29 would be minute (expected |log₂FC| < 0.2), the shrinkage procedure would further diminish the signal. Combined with the requirement of FDR < 5 % and |shrunken log₂FC| ≥ log₂(1.5) (≈ 0.58), such a subtle effect cannot survive the statistical filter.
+
+**Step 6 – Interpretation of the “none” label.**  
+The “none” outcome therefore reflects that, under LPS stimulation, loss of AP3B1 does not produce a sufficiently strong or direct transcriptional perturbation of MED29 to be detected after shrinkage and multiple‑testing correction. The label does not imply an absolute lack of any biological connection; rather, the connection is too indirect and weak to meet the empirical criteria.
+
+**Conclusion**  
+Consequently, the knockout of Ap3b1 does not lead to a statistically significant change in Med29 expression in LPS‑stimulated mouse macrophages, and the empirical label assigned to this gene pair is “none”.  
+
+**Therefore, Med29 is none.**"
+Chmp3_Cmpk2,Chmp3,Cmpk2,up,"**1. Baseline signaling in LPS‑stimulated BMDMs**  
+- LPS engages TLR4 at the plasma membrane and in endosomes, activating the MyD88‑dependent NF‑κB pathway (early pro‑inflammatory genes) and the TRIF‑dependent IRF3 pathway (type‑I interferon production).  
+- Secreted IFN‑β binds IFNAR on the same macrophage, triggering JAK1/TYK2 → STAT1/STAT2 phosphorylation, formation of the ISGF3 complex (STAT1‑STAT2‑IRF9), and transcription of interferon‑stimulated genes (ISGs).  
+- **Cmpk2** (mitochondrial UMP‑CMP kinase) is a canonical ISG; its promoter contains ISRE elements that respond robustly to ISGF3, leading to strong transcriptional induction during the LPS‑driven IFN response.
+
+**2. Role of CHMP3 in the ESCRT‑III machinery**  
+- CHMP3 (charged multivesicular body protein 3) is a core component of ESCRT‑III, required for membrane scission events that generate intraluminal vesicles (ILVs) within multivesicular bodies (MVBs).  
+- ESCRT‑III mediates:  
+  a) **Down‑regulation of activated TLR4** by sorting it into ILVs for lysosomal degradation, thereby terminating TLR4 signaling.  
+  b) **Turnover of the adaptor STING** (stimulator of interferon genes) after its activation on the ER and subsequent trafficking to endolysosomal compartments; ESCRT‑III‑dependent budding of STING‑containing vesicles limits sustained STING signaling.
+
+**3. Consequence of CHMP3 knockout on endosomal trafficking**  
+- Loss of CHMP3 abolishes efficient ESCRT‑III scission, causing:  
+  a) **Impaired internalization and degradation of TLR4**, leading to prolonged presence of TLR4 in signaling‑competent endosomes.  
+  b) **Defective sequestration of activated STING**, resulting in accumulation of STING on endosomal membranes and failure to deliver it to lysosomes for degradation.  
+
+**4. Amplification of the type‑I IFN axis**  
+- Persistent TLR4 signaling sustains TRIF‑dependent IRF3 phosphorylation, while accumulated STING continuously activates TBK1 → IRF3/IRF7.  
+- Both routes converge on **enhanced transcription of IFN‑β** and other type‑I IFNs.  
+- Autocrine IFN‑β engages IFNAR, leading to **hyper‑activation of the JAK‑STAT pathway** (STAT1/STAT2 phosphorylation) and formation of excess ISGF3 complexes.
+
+**5. Direct transcriptional up‑regulation of Cmpk2**  
+- The ISGF3 complex binds ISREs in the **Cmpk2 promoter**, driving robust transcription.  
+- In CHMP3‑deficient macrophages, the magnitude of IFN‑β signaling exceeds that in wild‑type cells, producing a **greater than 1.5‑fold increase** in the shrunken log2FC of Cmpk2.  
+- The effect is sufficiently strong to survive empirical‑bayes shrinkage and the FDR < 5 % threshold, resulting in a statistically confident “up” label.
+
+**6. Integration with the experimental context**  
+- The screen was performed after 9 h of LPS stimulation, a time point at which the secondary IFN response is maximal.  
+- CHMP3 knockout therefore exerts its impact precisely during the window when Cmpk2 transcription is most responsive to IFN signaling, ensuring that the observed up‑regulation is both biologically plausible and statistically detectable.
+
+**Conclusion**  
+Therefore, Cmpk2 is up‑regulated."

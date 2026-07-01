@@ -217,13 +217,16 @@ SOLUTION_GENERATION_V0 = """You are an expert computational biologist tasked wit
 ### Task
 You are given the Perturbed Gene, a Target Gene, and the GROUND TRUTH empirical label from the experiment. Your job is to reverse-engineer the biological mechanism. Write a detailed, step-by-step causal chain that logically justifies WHY this specific outcome occurred in LPS-stimulated mouse macrophages.
 
-Be concrete and mechanistic. Cite known pathway relationships. Explain why the signal is strong enough (for up/down) or too weak/indirect (for none) to pass the statistical threshold.
+### Formatting Constraints
+1. **Be Authoritative:** Do NOT use conversational meta-language like "We need to explain why..." or "Let's discuss". Write in the third person like a textbook.
+2. **Be Direct:** State the facts of the genes, link the mechanistic pathway, and conclude logically.
+3. **Mandatory Conclusion:** Your reasoning trace MUST end with the exact wording indicating the final label. (e.g. "Therefore, {gene} is up-regulated.")
 
 ### Ground Truth Event
 * Perturbation (Knockout): {pert}
 * Target Gene: {gene}
 * True Empirical Outcome: {true_label}
 
-Explain the mechanistic pathway that leads exactly to this outcome. Think step by step.
+Explain the mechanistic pathway that leads exactly to this outcome.
 
 Reasoning:"""

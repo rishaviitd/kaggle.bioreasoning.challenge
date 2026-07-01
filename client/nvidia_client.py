@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import os
 import time
+import threading
 from typing import Any
 
 from dotenv import load_dotenv
@@ -17,6 +18,36 @@ SEEDS = (42, 43, 44)
 REASONING_EFFORTS = {"low", "medium", "high"}
 REQUEST_DELAY_SECONDS = 5
 RETRY_BACKOFF_SECONDS = (10, 30, 90)
+
+# Global Rate Limiting for NVIDIA (40 RPM limit)
+API_LOCK = threading.Lock()
+LAST_REQ_TIME = 0.0
+
+def _wait_for_rate_limit() -> None:
+    """Strictly enforce a minimum of 1.6 seconds between API calls across all threads."""
+    global LAST_REQ_TIME
+    with API_LOCK:
+        now = time.monotonic()
+        elapsed = now - LAST_REQ_TIME
+        if elapsed < 1.6:
+            time.sleep(1.6 - elapsed)
+        LAST_REQ_TIME = time.monotonic()
+
+def chat_completion(client: OpenAI, request: dict[str, Any]) -> dict[str, Any]:
+    """Robust thread-safe chat completion with rate limiting and backoff."""
+    for attempt in range(len(RETRY_BACKOFF_SECONDS) + 1):
+        _wait_for_rate_limit()
+        try:
+            response = client.chat.completions.create(**request)
+            return response.model_dump(mode="json", exclude_unset=True)
+        except Exception as exc:
+            if attempt == len(RETRY_BACKOFF_SECONDS):
+                raise
+            delay = RETRY_BACKOFF_SECONDS[attempt]
+            print(f"\n[API Error] {exc}. Retrying in {delay}s...")
+            time.sleep(delay)
+            
+    raise RuntimeError("unreachable retry state")
 
 
 def _send_with_retries(
