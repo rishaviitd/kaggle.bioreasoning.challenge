@@ -29,8 +29,8 @@ from openai import OpenAI
 from sklearn.metrics import f1_score
 
 
-from src.track_one.evaluate import LABELS, _final_answer_label
-from src.track_one.prompts.prompt import PROMPT_V17
+from src.track_one.utils.evaluate import LABELS, _final_answer_label
+from src.track_one.prompts.prompt import PROMPT_V3
 
 # ---------------------------------------------------------------------------
 # Config
@@ -113,7 +113,7 @@ def _row_id(row: dict[str, str]) -> str:
 
 def _send_one(client: OpenAI, model: str, row: dict[str, str]) -> dict[str, Any]:
     """Send one request to OpenRouter and return the response dict."""
-    prompt = PROMPT_V17.format(pert=row["pert"], gene=row["gene"])
+    prompt = PROMPT_V3.format(pert=row["pert"], gene=row["gene"])
 
     if model in REASONING_MODELS:
         # Thinking ON via reasoning effort, use WandB provider for 120b
@@ -383,7 +383,7 @@ def run(n_rows: int = 150, smoke: bool = False) -> None:
         models = MODELS
         tag = f"{n_rows} rows × {len(models)} models"
 
-    print(f"NVIDIA Refiner Benchmark  |  {tag}  |  PROMPT_V17")
+    print(f"NVIDIA Refiner Benchmark  |  {tag}  |  PROMPT_V3")
     print(f"{'─' * 70}")
 
     rows = _load_rows(n_rows)
