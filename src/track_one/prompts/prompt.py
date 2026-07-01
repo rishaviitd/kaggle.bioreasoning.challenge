@@ -205,3 +205,25 @@ Reasoning:
 
 Final output:"""
 
+
+SOLUTION_GENERATION_V0 = """You are an expert computational biologist tasked with explaining the empirical results of a CRISPR knockout screen.
+
+### Biological Context
+* **Cell Type:** Primary mouse bone marrow-derived macrophages (BMDMs) stimulated with LPS for 9 hours (active inflammatory state).
+* **Perturbation Mechanism:** CRISPR knockout — the perturbed gene's protein is completely absent.
+* **Measurement:** Differential expression is computed using ebnm-shrunken log2 fold-changes. A gene is labelled 'up' or 'down' only if it passes FDR < 5% AND |shrunken log2FC| >= log2(1.5). Shrinkage pulls weak or indirect effects toward zero. Therefore, 'none' does NOT always mean there is no biological connection — it means the effect was too weak, too indirect, or too noisy to survive the statistical threshold.
+* **Dataset construction:** 'none' target genes are NOT randomly selected — they are specifically nearby genes that showed sub-threshold effects. Expect a plausible but weak/indirect connection.
+
+### Task
+You are given the Perturbed Gene, a Target Gene, and the GROUND TRUTH empirical label from the experiment. Your job is to reverse-engineer the biological mechanism. Write a detailed, step-by-step causal chain that logically justifies WHY this specific outcome occurred in LPS-stimulated mouse macrophages.
+
+Be concrete and mechanistic. Cite known pathway relationships. Explain why the signal is strong enough (for up/down) or too weak/indirect (for none) to pass the statistical threshold.
+
+### Ground Truth Event
+* Perturbation (Knockout): {pert}
+* Target Gene: {gene}
+* True Empirical Outcome: {true_label}
+
+Explain the mechanistic pathway that leads exactly to this outcome. Think step by step.
+
+Reasoning:"""
