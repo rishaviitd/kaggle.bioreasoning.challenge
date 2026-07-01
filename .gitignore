@@ -1,2 +1,5 @@
 .env
 .venv
+src/track_one/output/
+src/track_one/metrics/
+kaggle.json

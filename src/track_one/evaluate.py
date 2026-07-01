@@ -39,15 +39,31 @@ def _final_answer_label(content: str) -> str | None:
         return exact
 
     patterns = [
+        # Original patterns
         r"<answer>\s*(up|down|none|[ABCabc])\s*</answer>",
         r"\b(?:final\s+output|final\s+answer|answer|prediction|conclusion)\s*[:\-]?\s*\**\s*(up|down|none|[ABCabc])\b",
         r"\*\*\s*([ABCabc])\s*\)",
         r"\b([ABCabc])\s*\)\s*(?:up|down|no significant|none)",
+        # Handles newline between keyword and letter, and trailing text like (down-regulated)
+        r"\b(?:final\s+(?:output|answer|prediction)|predicted\s+\w+|answer|prediction|conclusion|result|outcome)\b[^\n]*\n*\s*[:\-]?\s*\**\s*([ABCabc])\**\b",
+        # Handles bold-wrapped letter after arrow or colon:
+        r"(?:→|:)\s*\**\s*([ABCabc])\**(?:[^a-zA-Z]|$)",
     ]
     for pattern in patterns:
-        matches = list(re.finditer(pattern, content, re.IGNORECASE))
+        matches = list(re.finditer(pattern, content, re.IGNORECASE | re.MULTILINE))
         if matches:
             return _answer_token_label(matches[-1].group(1))
+
+    # Last resort: scan the final 300 chars for a standalone bare letter on its own line, or a bolded letter
+    tail = content[-300:] if len(content) > 300 else content
+    tail_matches = list(re.finditer(r"(?:^|\n)\s*\**\s*([ABCabc])\**\s*(?:\n|$)", tail, re.MULTILINE))
+    if tail_matches:
+        return _answer_token_label(tail_matches[-1].group(1))
+        
+    tail_bold_matches = list(re.finditer(r"\*\*\s*([ABCabc])\s*\*\*", tail, re.IGNORECASE))
+    if tail_bold_matches:
+        return _answer_token_label(tail_bold_matches[-1].group(1))
+
     return None
 
 
