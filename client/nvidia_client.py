@@ -157,3 +157,36 @@ def refine_prompt(
 
     print("All NVIDIA refiner samples complete.")
     return responses
+
+
+def run_task_lm(prompt: str | None = None, messages: list | None = None, temperature: float = 0.0, max_tokens: int = 65536, reasoning_effort: str = "medium") -> dict[str, Any]:
+    """Runs the 120B task model and requests logprobs for the output."""
+    client = _client()
+    if messages is None:
+        messages = [{"role": "user", "content": prompt}]
+    request = {
+        "model": STUDENT_MODEL,
+        "messages": messages,
+        "temperature": temperature,
+        "max_tokens": max_tokens,
+        "logprobs": True,
+        "top_logprobs": 5,
+        "extra_body": {"reasoning": {"effort": reasoning_effort}},
+    }
+    return chat_completion(client, request)
+
+
+def run_feedback_lm(prompt: str | None = None, messages: list | None = None, temperature: float = 0.0, max_tokens: int = 65536, reasoning_effort: str = "medium") -> str:
+    """Runs the 20B feedback model."""
+    client = _client()
+    if messages is None:
+        messages = [{"role": "user", "content": prompt}]
+    request = {
+        "model": "openai/gpt-oss-20b",
+        "messages": messages,
+        "temperature": temperature,
+        "max_tokens": max_tokens,
+        "extra_body": {"reasoning": {"effort": reasoning_effort}},
+    }
+    resp = chat_completion(client, request)
+    return resp["choices"][0]["message"]["content"]

@@ -230,3 +230,141 @@ You are given the Perturbed Gene, a Target Gene, and the GROUND TRUTH empirical 
 Explain the mechanistic pathway that leads exactly to this outcome.
 
 Reasoning:"""
+
+
+PROMPT_V4 = """You are an expert molecular biologist who studies how genes are related using Perturb-seq.
+
+Context: Mouse bone marrow-derived macrophages (BMDMs) are primary immune cells differentiated from bone marrow precursors using M-CSF.
+
+The following question is about a CRISPRi knockdown experiment in mouse bone marrow-derived macrophages (BMDMs).
+
+Perturbation: {pert}
+Gene of interest: {gene}
+
+Predict the effect of CRISPRi knockdown of {pert} on {gene} from the following options:
+  no significant effect.
+  up-regulated.
+  down-regulated.
+
+Think step by step in the reasoning section.
+
+Then provide the final output in a separate final section.
+
+The final output must be exactly one of these three and nothing else:
+
+none
+up
+down
+"""
+
+PROMPT_V5 = """You are an expert molecular biologist specializing in mouse bone‑marrow‑derived macrophages (BMDMs) and Perturb‑seq analysis.  
+For each query you are given:
+
+* **pert** – the gene knocked down with CRISPR‑i.  
+* **gene** – the downstream gene whose expression change you must predict.
+
+Your answer must contain two sections:
+
+1. **reasoning** – 1–3 short sentences per logical step.  
+2. **label** – exactly one token: `none`, `up`, or `down`.
+
+### Decision‑making workflow
+
+1. **Identify the primary molecular function of *pert***  
+   - Classify it (TF, co‑factor, chromatin remodeler, RNA‑binding protein, ribosomal/translation factor, export receptor, chaperone, proteasome subunit, ER‑AD component, endosomal trafficking protein, ubiquitin‑ligase scaffold or substrate‑receptor, kinase/phosphatase, metabolic enzyme, scaffold for signaling complexes, etc.).  
+   - **If the gene has multiple reported roles, list the most relevant one for signaling or transcription in macrophages** (e.g., a metabolic enzyme that generates a lipid second messenger, a trafficking subunit that controls receptor recycling, an actin‑regulatory protein that scaffolds MyD88/TLR signaling).  
+   - Use a curated database (UniProt, Gene Ontology, BioGRID) to verify the annotation; do **not** rely on a single memory of the protein.
+
+2. **Immediate cellular consequence of loss**  
+   Apply the appropriate consequence based on the functional class:  
+
+   * Enzymatic loss → substrate accumulation or depletion.  
+   * Export‑receptor loss → nuclear retention of NES‑containing TFs or pre‑miRNAs.  
+   * Ribosome‑biogenesis loss → nucleolar stress → release of RPL5/11 → p53 stabilisation.  
+   * DNA‑damage/replication stress → GCN2/PKR → eIF2α‑P → ATF4 activation.  
+   * Chaperone/ER‑AD loss → UPR (ATF6, XBP1‑s, PERK‑ATF4).  
+   * Negative‑regulator loss → hyper‑activation of its pathway.  
+   * Endosomal‑trafficking loss → prolonged receptor signalling (e.g., TLR4, cytokine receptors).  
+   * Metabolic‑enzyme loss → change in a lipid/second‑messenger that normally dampens or promotes a kinase cascade (e.g., ceramide‑PP2A, malate/α‑KG carrier).  
+   * Scaffold‑for‑signaling‑complex loss → disruption of complex assembly, leading to altered downstream kinase or adaptor activity (e.g., actin‑WRC, LUBAC, Ragulator).  
+
+   **New principle:** loss of a scaffold or trafficking protein can *enhance* upstream signalling (by preventing termination) or *dampen* it (by preventing proper complex formation). Evaluate both possibilities.
+
+3. **Map the consequence to transcription‑factor activity**  
+   Identify which TF(s) become **activated** (or **de‑repressed**) by the consequence in BMDMs:  
+
+   * **p53** – nucleolar/DNA‑damage stress.  
+   * **ATF4** – integrated stress response via eIF2α‑P (GCN2, PERK).  
+   * **NRF2** – oxidative stress (KEAP1 loss, ROS).  
+   * **ATF6 / XBP1‑s** – classic UPR.  
+   * **NF‑κB (p65/RelA)** – LPS/TLR4, also boosted by prolonged receptor residence or loss of IκBα turnover.  
+   * **STAT1/STAT3, IRF1/IRF3** – type‑I/II IFN signalling.  
+   * **Myc‑Max, C/EBPβ, AP‑1** – metabolic or cytokine‑responsive programmes.  
+   * **TFEB/TFE3** – mTORC1 inhibition or Ragulator loss.  
+
+   Include indirect activation: e.g., loss of a negative regulator of NF‑κB (TANK, ATF3) → sustained NF‑κB; loss of a metabolic enzyme that removes an inhibitor of NF‑κB → hyper‑activation.
+
+4. **Search for direct or indirect links between *pert* and transcription‑factor regulation**  
+
+   a. **Known client / substrate proteins** – If *pert* is a chaperone, proteasome subunit, ubiquitin‑ligase, spliceosomal factor, metabolic enzyme, or signaling scaffold, list documented client proteins that are (i) TF repressors, (ii) TF activators, or (iii) adapters controlling TF activity.  
+
+   b. **Effect of client destabilisation** –  
+      * Loss of a chaperone that folds a TF repressor → degradation of the repressor → **derepression** of TF‑activated targets (`up`).  
+      * Loss of an E3 that normally degrades a TF → **stabilisation** of that TF (`up` for TF‑activated targets, `down` for TF‑repressed targets).  
+      * Loss of a spliceosomal factor that causes intron‑retention in transcripts encoding TF inhibitors (e.g., *IκBα*) → reduced inhibitor protein → **enhanced TF activity** (`up`).  
+
+   c. **Protein‑protein interaction shortcuts** – If curated databases list *pert* as directly interacting with a TF (as scaffold, adaptor, or regulator), treat that interaction as a mechanistic bridge.  
+
+   d. **Secondary pathway effects** – Consider well‑documented secondary activities (e.g., a metabolic enzyme that supplies a lipid second messenger, a trafficking subunit that controls receptor recycling, a Ragulator subunit that regulates TFEB). Use these to link *pert* loss to TF activation even if no direct client is known.
+
+5. **Check TF‑target relationship for *gene***  
+
+   a. **Direct evidence** – ChIP‑seq, reporter assay, or documented promoter motif showing the TF binds the *gene* promoter.  
+
+   b. **Curated TF‑target list** – If the *gene* belongs to one of the core stress‑TF families below, treat it as a bona‑fide target of that TF.  
+
+   c. **Composite promoter logic** – If the *gene* promoter contains binding sites for **multiple** TFs that are each predicted to be activated by the perturbation (e.g., NF‑κB + p53, NF‑κB + ATF4, NF‑κB + TFEB), the combined activation can produce a **synergistic up‑regulation** even when one pathway alone is near saturation. In such cases, retain the `up` prediction.  
+
+   d. **Repressor‑TF scenario** – If the TF is a known transcriptional repressor of the *gene* and is activated, predict `down`.  
+
+   e. **m6A‑mediated decay rule** – Loss of an m6A writer (e.g., VIRMA) reduces m6A on the *gene* transcript, **decreases** YTHDF2‑mediated decay, and therefore **stabilises** the mRNA → predict `up` when the gene’s expression change is driven primarily at the RNA‑stability level.  
+
+   f. **Splicing‑sensitivity rule** – For genes with weak 5′ splice sites or known splicing‑dependent regulation, loss of a spliceosomal component can cause intron retention → predict `down`. For genes with strong canonical splice sites and strong transcriptional activation (e.g., NF‑κB‑driven), the effect is often buffered → default to `none` unless other evidence exists.  
+
+   g. **Chromatin‑remodeler rule** – Loss of a complex that deposits an activating histone variant (e.g., H2A.Z via SRCAP) generally **opens** chromatin, facilitating binding of stimulus‑dependent TFs → predict `up` for TF‑target genes if the TF is active. Conversely, loss of a complex that maintains repressive marks can **derepress** genes → predict `up`.  
+
+6. **Pathway‑saturation and synergy assessment**  
+
+   *Determine whether the relevant TF‑branch is already near‑maximal in LPS‑stimulated BMDMs.*  
+
+   - If the only activated TF is known to be saturated **and** no synergistic promoter composition (step 5c) or direct chromatin‑opening event (step 5e‑g) is present, downgrade the prediction to `none`.  
+   - If multiple TFs are activated, or the perturbation creates a new TF‑activating mechanism (e.g., stabilising NRF2 while also enhancing NF‑κB), retain the `up`/`down` call because synergistic amplification can overcome apparent saturation.  
+
+7. **Redundancy / buffering consideration**  
+
+   - If *pert* belongs to a family with known functional redundancy (multiple ER‑AD E3s, export receptors, Sec‑complex subunits, paralogous chaperonins), loss is often buffered; default to `none` **unless** strong non‑redundant evidence exists (client destabilisation, direct TF interaction, unique scaffold role).  
+
+8. **Finalize**  
+
+   - If a clear mechanistic chain survives the above filters (perturbation → TF activation/inhibition → target gene regulation), output `up` or `down`.  
+   - Otherwise output `none`.
+
+### Example template
+
+**reasoning**
+1. X encodes … (function, note any secondary signaling role).  
+2. Knock‑down causes … (stress, TF activation, loss of inhibition, client destabilisation, or signaling scaffold disruption).  
+3. TF Y is activated (or a repressor is lost) and directly/curated‑list‑wise regulates target Z (or Z is derepressed).  
+4. Pathway‑saturation / synergy / redundancy assessment → … (retain, downgrade, or default).  
+5. Therefore Z is expected to be ….
+
+**label**
+up
+
+### Query
+
+Perturbation: {pert}
+Target Gene: {gene}
+
+Analyze the mechanism and provide your reasoning and label as instructed.
+"""

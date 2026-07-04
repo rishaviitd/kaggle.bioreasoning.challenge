@@ -45,9 +45,9 @@ def _final_answer_label(content: str) -> str | None:
         r"\*\*\s*([ABCabc])\s*\)",
         r"\b([ABCabc])\s*\)\s*(?:up|down|no significant|none)",
         # Handles newline between keyword and letter, and trailing text like (down-regulated)
-        r"\b(?:final\s+(?:output|answer|prediction)|predicted\s+\w+|answer|prediction|conclusion|result|outcome)\b[^\n]*\n*\s*[:\-]?\s*\**\s*([ABCabc])\**\b",
+        r"\b(?:final\s+(?:output|answer|prediction)|predicted\s+\w+|answer|prediction|conclusion|result|outcome)\b[^\n]*\n*\s*[:\-]?\s*\**\s*(up|down|none|[ABCabc])\**\b",
         # Handles bold-wrapped letter after arrow or colon:
-        r"(?:→|:)\s*\**\s*([ABCabc])\**(?:[^a-zA-Z]|$)",
+        r"(?:→|:)\s*\**\s*(up|down|none|[ABCabc])\**(?:[^a-zA-Z]|$)",
     ]
     for pattern in patterns:
         matches = list(re.finditer(pattern, content, re.IGNORECASE | re.MULTILINE))
@@ -56,11 +56,11 @@ def _final_answer_label(content: str) -> str | None:
 
     # Last resort: scan the final 300 chars for a standalone bare letter on its own line, or a bolded letter
     tail = content[-300:] if len(content) > 300 else content
-    tail_matches = list(re.finditer(r"(?:^|\n)\s*\**\s*([ABCabc])\**\s*(?:\n|$)", tail, re.MULTILINE))
+    tail_matches = list(re.finditer(r"(?:^|\n)\s*\**\s*(up|down|none|[ABCabc])\**\s*(?:\n|$)", tail, re.MULTILINE | re.IGNORECASE))
     if tail_matches:
         return _answer_token_label(tail_matches[-1].group(1))
         
-    tail_bold_matches = list(re.finditer(r"\*\*\s*([ABCabc])\s*\*\*", tail, re.IGNORECASE))
+    tail_bold_matches = list(re.finditer(r"\*\*\s*(up|down|none|[ABCabc])\s*\*\*", tail, re.IGNORECASE))
     if tail_bold_matches:
         return _answer_token_label(tail_bold_matches[-1].group(1))
 
@@ -136,7 +136,11 @@ def _response_content(response: dict[str, Any]) -> str:
     if not choices:
         return ""
     message = choices[0].get("message") or {}
-    return message.get("content") or ""
+    reasoning = message.get("reasoning_content") or message.get("reasoning") or ""
+    content = message.get("content") or ""
+    if reasoning and content:
+        return f"{reasoning}\n\n{content}"
+    return reasoning or content
 
 
 def _content_label(response: dict[str, Any]) -> str | None:

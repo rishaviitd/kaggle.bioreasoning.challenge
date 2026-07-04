@@ -12,15 +12,16 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 from typing import Any
 
-from openrouter import OpenRouter
+import dspy
+from openai import OpenAI
 
 ROOT_DIR = Path(__file__).resolve().parents[2]
 if str(ROOT_DIR) not in sys.path:
     sys.path.insert(0, str(ROOT_DIR))
 
-from client.openrouter_client import MODEL, PROVIDER, _openrouter_api_key
-from src.track_one.evaluate import _response_content, _seed_probabilities
-from src.track_one.prompts.prompt import PROMPT_V1
+from client.nvidia_client import _client, chat_completion, STUDENT_MODEL as MODEL
+from src.track_one.utils.evaluate import _response_content, _seed_probabilities
+from src.track_one.prompts.prompt import PROMPT_V5
 
 
 TEST_PATH = Path("data/test.csv")
@@ -33,14 +34,14 @@ FAILURES_PATH = OUTPUT_DIR / "failures.json"
 ZIP_PATH = OUTPUT_DIR / "submission_track_a.zip"
 
 SEEDS = (42, 43, 44)
-TEMPERATURE = 1.0
+TEMPERATURE = 0.0
 TOP_P = 1.0
-MAX_TOKENS = 8_192
-REASONING_EFFORT = "high"
+MAX_TOKENS = 65_536
+REASONING_EFFORT = "medium"
 TOP_LOGPROBS = 20
 MAX_RETRIES = 3
 TIMEOUT_MS = 240_000
-ROW_WORKERS = 8
+ROW_WORKERS = 1
 
 FALLBACK_UP = 0.306165
 FALLBACK_DOWN = 0.140947
@@ -88,16 +89,57 @@ def _write_json(path: Path, payload: Any) -> None:
     path.write_text(json.dumps(payload, indent=2), encoding="utf-8")
 
 
+class SimpleClassificationSignature(dspy.Signature):
+    __doc__ = PROMPT_V5.split("### Query")[0].strip()
+    pert = dspy.InputField(desc="The knocked-out perturbation gene")
+    gene = dspy.InputField(desc="The target gene to predict")
+    
+    reasoning = dspy.OutputField(desc="Step-by-step biological reasoning")
+    label = dspy.OutputField(desc="Final label: exactly 'up', 'down', or 'none'")
+
+
+class KaggleTaskLM(dspy.LM):
+    def __init__(self, seed: int, client: OpenAI):
+        super().__init__("openai/gpt-oss-120b")
+        self.seed = seed
+        self.client = client
+        
+    def __call__(self, prompt=None, messages=None, **kwargs):
+        if messages:
+            content = "\n\n".join([m["content"] for m in messages])
+            api_messages = [{"role": "user", "content": content}]
+        else:
+            api_messages = [{"role": "user", "content": prompt}]
+            
+        request = {
+            "model": MODEL,
+            "messages": api_messages,
+            "temperature": TEMPERATURE,
+            "top_p": TOP_P,
+            "seed": self.seed,
+            "max_tokens": MAX_TOKENS,
+            "logprobs": True,
+            "top_logprobs": 5,
+            "extra_body": {"reasoning": {"effort": REASONING_EFFORT}},
+        }
+        response = chat_completion(self.client, request)
+        text = response.get("choices", [{}])[0].get("message", {}).get("content", "")
+        self.history.append({
+            "prompt": prompt, 
+            "messages": messages,
+            "response": text, 
+            "kwargs": kwargs, 
+            "raw_response": response
+        })
+        return [text]
+
+
 def _write_csv(path: Path, rows: list[dict[str, Any]]) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     with path.open("w", newline="", encoding="utf-8") as file:
         writer = csv.DictWriter(file, fieldnames=SUBMISSION_COLUMNS)
         writer.writeheader()
         writer.writerows(rows)
-
-
-def _prompt_for_row(row: dict[str, str]) -> str:
-    return PROMPT_V1.format(pert=row["pert"], gene=row["gene"])
 
 
 def _rough_prompt_tokens(prompt: str) -> int:
@@ -117,31 +159,18 @@ def _row_done(cached: dict[str, Any]) -> bool:
 
 
 def _send_seed(
-    client: OpenRouter,
+    client: OpenAI,
     row: dict[str, str],
     seed: int,
 ) -> tuple[dict[str, Any] | None, dict[str, float] | None, dict[str, Any] | None]:
-    prompt = _prompt_for_row(row)
     started = time.monotonic()
     try:
-        response = client.chat.send(
-            model=MODEL,
-            messages=[{"role": "user", "content": prompt}],
-            temperature=TEMPERATURE,
-            top_p=TOP_P,
-            seed=seed,
-            max_tokens=MAX_TOKENS,
-            reasoning={"effort": REASONING_EFFORT},
-            logprobs=True,
-            top_logprobs=TOP_LOGPROBS,
-            provider={
-                "order": [PROVIDER],
-                "allow_fallbacks": False,
-                "require_parameters": True,
-            },
-            timeout_ms=TIMEOUT_MS,
-        )
-        data = response.model_dump(mode="json", exclude_unset=True)
+        lm = KaggleTaskLM(seed=seed, client=client)
+        with dspy.context(lm=lm):
+            program = dspy.ChainOfThought(SimpleClassificationSignature)
+            pred = program(pert=row["pert"], gene=row["gene"])
+        
+        data = lm.history[-1]["raw_response"]
         data["elapsed_seconds"] = time.monotonic() - started
         probabilities = _seed_probabilities(data)
         if probabilities is None:
@@ -152,7 +181,7 @@ def _send_seed(
 
 
 def _run_seed_with_retries(
-    client: OpenRouter,
+    client: OpenAI,
     row: dict[str, str],
     seed: int,
 ) -> dict[str, Any]:
@@ -225,10 +254,9 @@ def _build_cache_row(
     row: dict[str, str],
     results: list[dict[str, Any]],
 ) -> tuple[dict[str, Any], list[dict[str, Any]]]:
-    prompt = _prompt_for_row(row)
     successful_count = sum(1 for result in results if result.get("ok"))
     final_up, final_down = _average_probabilities(results)
-    prompt_tokens = _usage_max(results, "prompt_tokens") or _rough_prompt_tokens(prompt)
+    prompt_tokens = _usage_max(results, "prompt_tokens") or 0
 
     cached: dict[str, Any] = {
         "id": row["id"],
@@ -300,7 +328,7 @@ def _write_submission_artifacts(test_rows: list[dict[str, str]], cache_rows: dic
     submission_rows = _submission_rows(test_rows, cache_rows)
     _write_csv(SUBMISSION_PATH, submission_rows)
     PROMPT_PATH.parent.mkdir(parents=True, exist_ok=True)
-    PROMPT_PATH.write_text(PROMPT_V1, encoding="utf-8")
+    PROMPT_PATH.write_text(PROMPT_V5, encoding="utf-8")
     with zipfile.ZipFile(ZIP_PATH, "w", zipfile.ZIP_DEFLATED) as archive:
         archive.write(SUBMISSION_PATH, "submission.csv")
         archive.write(PROMPT_PATH, "prompt.txt")
@@ -354,7 +382,7 @@ def _row_cost(results: list[dict[str, Any]]) -> float:
 
 
 def _process_row(
-    client: OpenRouter,
+    client: OpenAI,
     row: dict[str, str],
     cached: dict[str, Any],
 ) -> tuple[dict[str, Any], list[dict[str, Any]], float]:
@@ -386,7 +414,6 @@ def generate() -> None:
     print(f"Input test rows: {TEST_PATH}", flush=True)
     print(f"Output dir: {OUTPUT_DIR}", flush=True)
     print(f"Model: {MODEL}", flush=True)
-    print(f"Provider: {PROVIDER}", flush=True)
     print(
         "Settings: "
         f"seeds={SEEDS}, temperature={TEMPERATURE}, top_p={TOP_P}, "
@@ -396,12 +423,12 @@ def generate() -> None:
         flush=True,
     )
 
-    _validate_sample_columns()
-    test_rows = _load_csv(TEST_PATH)
+    # _validate_sample_columns()
+    test_rows = _load_csv(TEST_PATH)[:50]
     cache = _load_json(CACHE_PATH, {"rows": {}})
     failures = _load_json(FAILURES_PATH, [])
     cache_rows = cache.setdefault("rows", {})
-    client = OpenRouter(api_key=_openrouter_api_key())
+    client = _client()
 
     _write_submission_artifacts(test_rows, cache_rows)
     total = len(test_rows)
