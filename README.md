@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://www.kaggle.com/competitions/139769/images/header" alt="BioReasoning Challenge overview" width="100%">
+  <img src="https://genentech.github.io/BioReasoningChallenge/img/challenge_overview.png" alt="BioReasoning Challenge overview" width="100%">
 </p>
 
 <h1 align="center">
@@ -19,9 +19,9 @@
 ## Project Highlights
 
 | Track | Stack | Purpose |
-|---|---|---|
-| **Track A: Prompt Optimization** | <img src="https://storage.googleapis.com/lightning-avatars/litpages/01hsbt485wd2m6xgwhsh8xw26j/3c7af255-9b22-4d05-b476-d105c32acfd2.png" height="20" align="top"> DSPy, GEPA, GPT-OSS-120B | Automatically optimize the biological reasoning instructions for a 120B parameter model using Generative Error-driven Prompt Adaptation (GEPA). |
-| **Track C: Fine-Tuning** | <img src="https://r2.madebyagents.com/qwen.webp" height="20" align="top"> Qwen 3.5 9B | Fine-tune a compact (<10B) open-weights LLM to intrinsically learn the causal gene networks without relying on complex runtime prompts. |
+| :--- | :--- | :--- |
+| <img src="https://storage.googleapis.com/lightning-avatars/litpages/01hsbt485wd2m6xgwhsh8xw26j/3c7af255-9b22-4d05-b476-d105c32acfd2.png" height="20" align="absmiddle">&nbsp; **Track A: Prompt Optimization** | DSPy, GEPA, GPT-OSS-120B | Automatically optimize the biological reasoning instructions for a 120B parameter model using Generative Error-driven Prompt Adaptation (GEPA). |
+| <img src="https://r2.madebyagents.com/qwen.webp" height="20" align="absmiddle">&nbsp; **Track C: Fine-Tuning** | Qwen 3.5 9B | Fine-tune a compact (<10B) open-weights LLM to intrinsically learn the causal gene networks without relying on complex runtime prompts. |
 
 ## Overview
 
