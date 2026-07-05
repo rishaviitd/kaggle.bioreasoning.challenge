@@ -187,9 +187,9 @@ def metric_fn(example, pred, trace=None):
         # --- Generate Prediction Flaw Analysis ---
         metric_context = ""
         if true_label in ["up", "down"] and predicted_label == "none":
-            metric_context = f"The model failed to detect ANY directional effect (Combined P(up)+P(down) = {probs['up']+probs['down']:.4f})."
+            metric_context = f"The model failed to detect ANY directional effect."
         elif true_label == "none" and predicted_label in ["up", "down"]:
-            metric_context = f"The model hallucinated a directional effect where none exists (P({predicted_label}) = {probs[predicted_label]:.4f})."
+            metric_context = f"The model hallucinated a directional effect where none exists."
         elif true_label in ["up", "down"] and predicted_label in ["up", "down"] and true_label != predicted_label:
             metric_context = f"The model correctly detected an interaction, but got the direction COMPLETELY BACKWARDS. It predicted '{predicted_label}' but the truth is '{true_label}'."
         else:
@@ -201,7 +201,6 @@ Perturbation: {example.pert}
 Target Gene: {example.gene}
 True Label: {true_label}
 Student Predicted: {predicted_label}
-Student Probabilities: P(up): {probs['up']:.4f}, P(down): {probs['down']:.4f}, P(none): {probs['none']:.4f}
 
 Student's Reasoning:
 {pred.reasoning}
@@ -224,7 +223,7 @@ Critique the student's reasoning. You MUST structure your response exactly using
         
         # Inject the probability context DIRECTLY into the feedback string returned to GEPA
         # so the 120B Reflection LLM sees exactly what went wrong mathematically!
-        feedback_text = f"Incorrect prediction. True label is '{true_label}'.\n\nStudent Probabilities: P(up): {probs['up']:.4f}, P(down): {probs['down']:.4f}, P(none): {probs['none']:.4f}\n\nTeacher Critique:\n{critique}\n\n[PREDICTION FLAW ANALYSIS]\n{metric_context}"
+        feedback_text = f"Incorrect prediction. True label is '{true_label}'.\n\nTeacher Critique:\n{critique}\n\n[PREDICTION FLAW ANALYSIS]\n{metric_context}"
         
         import json
         import os
@@ -294,12 +293,13 @@ from collections import Counter
 from typing import Any, List, Dict
 
 class SimpleClassificationSignature(dspy.Signature):
-    """{escaped_instruction}"""
     pert = dspy.InputField(desc="The knocked-out perturbation gene")
     gene = dspy.InputField(desc="The target gene to predict")
     
     reasoning = dspy.OutputField(desc="Step-by-step biological reasoning")
     label = dspy.OutputField(desc="Final label: exactly 'up', 'down', or 'none'")
+    
+SimpleClassificationSignature.__doc__ = """{escaped_instruction}"""
 
 program = dspy.ChainOfThought(SimpleClassificationSignature)
 '''
