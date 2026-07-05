@@ -236,12 +236,12 @@ PROMPT_V4 = """You are an expert molecular biologist who studies how genes are r
 
 Context: Mouse bone marrow-derived macrophages (BMDMs) are primary immune cells differentiated from bone marrow precursors using M-CSF.
 
-The following question is about a CRISPRi knockdown experiment in mouse bone marrow-derived macrophages (BMDMs).
+The following question is about a CRISPR knockout experiment in mouse bone marrow-derived macrophages (BMDMs).
 
 Perturbation: {pert}
 Gene of interest: {gene}
 
-Predict the effect of CRISPRi knockdown of {pert} on {gene} from the following options:
+Predict the effect of CRISPR knockout of {pert} on {gene} from the following options:
   no significant effect.
   up-regulated.
   down-regulated.

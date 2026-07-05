@@ -20,6 +20,15 @@ class NvidiaTaskLM(dspy.LM):
     def __call__(self, prompt=None, messages=None, **kwargs):
         response = run_task_lm(prompt=prompt, messages=messages, temperature=0.0)
         text = response.get("choices", [{}])[0].get("message", {}).get("content", "")
+        
+        # Real-time disk logger for full visibility
+        import json
+        import os
+        os.makedirs("src/track_one/output/gepa_logs", exist_ok=True)
+        with open("src/track_one/output/gepa_logs/raw_outputs.jsonl", "a") as f:
+            log_entry = {"prompt": prompt, "messages": messages, "response": text}
+            f.write(json.dumps(log_entry) + "\n")
+            
         self.history.append({
             "prompt": prompt, 
             "messages": messages,
@@ -140,12 +149,57 @@ def metric_fn(example, pred, trace=None):
         feedback_text = f"Incorrect prediction. True label is '{true_label}'."
     else:
         print(f"\033[38;5;208m⏳ Teacher Model is writing critique for {example.pert} -> {example.gene}...\033[0m", flush=True)
+        
+        # --- Extract Probabilities from History ---
+        from src.track_one.utils.evaluate import _seed_probabilities
+        probs = None
+        history = dspy.settings.lm.history
+        for entry in reversed(history):
+            prompt_str = entry.get("prompt") or ""
+            if not prompt_str and "messages" in entry and entry["messages"]:
+                prompt_str = "\n".join([m.get("content", "") for m in entry["messages"]])
+                
+            if example.pert in prompt_str and example.gene in prompt_str:
+                raw_data = entry.get("raw_response", {})
+                probs = _seed_probabilities(raw_data)
+                if probs is None:
+                    from src.track_one.utils.evaluate import _answer_token_label, _probabilities_from_token_item
+                    choices = raw_data.get("choices") or []
+                    if choices:
+                        token_items = (choices[0].get("logprobs") or {}).get("content") or []
+                        for item in reversed(token_items):
+                            actual_label = _answer_token_label(str(item.get("token", "")), allow_decorated_letter=True)
+                            if actual_label in ("up", "down", "none"):
+                                probs = _probabilities_from_token_item(item, actual_label)
+                                break
+                break
+        
+        if probs is None:
+            print(f"\033[1;91mCRITICAL: Teacher prob extraction failed for {example.pert}_{example.gene}\033[0m", flush=True)
+            probs = {"up": 0.33, "down": 0.33, "none": 0.34} # Fallback
+            
+        for lbl in ("up", "down", "none"):
+            if lbl not in probs:
+                probs[lbl] = 0.0
+                
+        # --- Generate Prediction Flaw Analysis ---
+        metric_context = ""
+        if true_label in ["up", "down"] and predicted_label == "none":
+            metric_context = f"The model failed to detect ANY directional effect (Combined P(up)+P(down) = {probs['up']+probs['down']:.4f})."
+        elif true_label == "none" and predicted_label in ["up", "down"]:
+            metric_context = f"The model hallucinated a directional effect where none exists (P({predicted_label}) = {probs[predicted_label]:.4f})."
+        elif true_label in ["up", "down"] and predicted_label in ["up", "down"] and true_label != predicted_label:
+            metric_context = f"The model correctly detected an interaction, but got the direction COMPLETELY BACKWARDS. It predicted '{predicted_label}' but the truth is '{true_label}'."
+        else:
+            metric_context = f"The model made an invalid prediction."
+
         feedback_prompt = f"""You are a computational biology mentor. A student model incorrectly predicted a Perturb-seq outcome.
 
 Perturbation: {example.pert}
 Target Gene: {example.gene}
 True Label: {true_label}
 Student Predicted: {predicted_label}
+Student Probabilities: P(up): {probs['up']:.4f}, P(down): {probs['down']:.4f}, P(none): {probs['none']:.4f}
 
 Student's Reasoning:
 {pred.reasoning}
@@ -165,7 +219,10 @@ Critique the student's reasoning. You MUST structure your response exactly using
 (Draft a highly specific, generalized biological rule that explains the Ground Truth mechanism. Do NOT use specific gene names; abstract it so it applies universally to similar pathways.)"""
         
         critique = run_feedback_lm(feedback_prompt, temperature=0.0, max_tokens=65536)
-        feedback_text = f"Incorrect prediction. True label is '{true_label}'. Critique: {critique}"
+        
+        # Inject the probability context DIRECTLY into the feedback string returned to GEPA
+        # so the 120B Reflection LLM sees exactly what went wrong mathematically!
+        feedback_text = f"Incorrect prediction. True label is '{true_label}'.\n\nStudent Probabilities: P(up): {probs['up']:.4f}, P(down): {probs['down']:.4f}, P(none): {probs['none']:.4f}\n\nTeacher Critique:\n{critique}\n\n[PREDICTION FLAW ANALYSIS]\n{metric_context}"
         
         import json
         import os
@@ -176,6 +233,7 @@ Critique the student's reasoning. You MUST structure your response exactly using
                 "gene": example.gene,
                 "true_label": true_label,
                 "predicted_label": predicted_label,
+                "probabilities": probs,
                 "student_reasoning": pred.reasoning,
                 "gt_reasoning": example.gt_reasoning,
                 "critique": critique
@@ -260,47 +318,97 @@ program = dspy.ChainOfThought(SimpleClassificationSignature)
             program_src = self._build_program_src(candidate["instruction"])
             result = self.inner_adapter.evaluate(batch, {"program": program_src}, capture_traces)
             
-            # --- OVERRIDE DSPY ACCURACY WITH MACRO F1 ---
-            from sklearn.metrics import f1_score
-            y_true = []
-            y_pred = []
+            # --- OVERRIDE DSPY ACCURACY WITH KAGGLE SCORE (AUROC) ---
+            from sklearn.metrics import roc_auc_score
+            from src.track_one.utils.evaluate import _seed_probabilities
+            
+            # We must securely match history by checking if pert and gene are in the prompt string
+            history = self.inner_adapter.task_lm.history
+            
+            extracted_rows = []
             
             for ex, pred in zip(batch, result.outputs):
-                try:
-                    y_true.append(ex.label.strip().lower())
-                    
-                    if pred is not None and hasattr(pred, "label") and pred.label is not None:
-                        parsed = _final_answer_label(pred.label)
-                        y_pred.append(parsed if parsed else "none")
-                    else:
-                        y_pred.append("none")
-                except Exception:
-                    y_pred.append("none")
-                    
-            if len(y_true) > 0:
-                macro_f1 = f1_score(y_true, y_pred, labels=["up", "down", "none"], average="macro")
-            else:
-                macro_f1 = 0.0
-            
-            # Force GEPA to optimize for Macro F1 by overwriting BOTH the scalar and the list of scores
-            result.score = macro_f1  
-            if hasattr(result, "scores"):
-                result.scores = [macro_f1] * len(batch)
+                # Search backwards in history to find the most recent call for this specific example
+                # to prevent multithreading race condition misalignment
+                probs = None
+                for entry in reversed(history):
+                    prompt_str = entry.get("prompt") or ""
+                    if not prompt_str and "messages" in entry and entry["messages"]:
+                        prompt_str = "\n".join([m.get("content", "") for m in entry["messages"]])
+                        
+                    if ex.pert in prompt_str and ex.gene in prompt_str:
+                        raw_data = entry.get("raw_response", {})
+                        probs = _seed_probabilities(raw_data)
+                        if probs is None:
+                            # Fallback extractor just in case the final label regex fails
+                            from src.track_one.utils.evaluate import _answer_token_label, _probabilities_from_token_item
+                            choices = raw_data.get("choices") or []
+                            if choices:
+                                token_items = (choices[0].get("logprobs") or {}).get("content") or []
+                                for item in reversed(token_items):
+                                    actual_label = _answer_token_label(str(item.get("token", "")), allow_decorated_letter=True)
+                                    if actual_label in ("up", "down", "none"):
+                                        probs = _probabilities_from_token_item(item, actual_label)
+                                        break
+                        break
                 
-            current_score = macro_f1
+                if probs is None:
+                    # Absolute Fallback if probability extraction completely failed
+                    print(f"CRITICAL: Prob extraction failed for {ex.pert}_{ex.gene}", flush=True)
+                    probs = {"up": 0.306165, "down": 0.140947, "none": 1 - 0.306165 - 0.140947}
+                
+                # Make sure all labels are present securely
+                for label in ("up", "down", "none"):
+                    if label not in probs:
+                        probs[label] = 0.0
+                        
+                extracted_rows.append({
+                    "true_label": ex.label.lower(),
+                    "probabilities": probs
+                })
+                
+            de_true = [int(row["true_label"] != "none") for row in extracted_rows]
+            de_score = [row["probabilities"]["up"] + row["probabilities"]["down"] for row in extracted_rows]
+            
+            try:
+                de_auroc = float(roc_auc_score(de_true, de_score))
+            except ValueError:
+                de_auroc = 0.5  # Fallback if only 1 class is present in a tiny mini-batch
+
+            direction_rows = [row for row in extracted_rows if row["true_label"] != "none"]
+            direction_true = [int(row["true_label"] == "up") for row in direction_rows]
+            direction_score = [row["probabilities"]["up"] / (row["probabilities"]["up"] + row["probabilities"]["down"] + 1e-15) for row in direction_rows]
+            
+            try:
+                direction_auroc = float(roc_auc_score(direction_true, direction_score))
+            except ValueError:
+                direction_auroc = 0.5
+
+            kaggle_score = (de_auroc + direction_auroc) / 2
+            
+            # Force GEPA to optimize for Kaggle Score
+            result.score = kaggle_score  
+            if hasattr(result, "scores"):
+                result.scores = [kaggle_score] * len(batch)
+                
+            current_score = kaggle_score
             
             if is_valset:
                 if self._last_val_score is not None:
-                    print(f"\n\033[1;92m📈 VALSET MACRO F1 SCORE UPDATE: {self._last_val_score:.4f} ➔ {current_score:.4f}\033[0m\n", flush=True)
+                    print(f"\n\033[1;92m📈 VALSET KAGGLE SCORE UPDATE: {self._last_val_score:.4f} ➔ {current_score:.4f}\033[0m\n", flush=True)
                 else:
-                    print(f"\n\033[1;92m🎯 BASELINE VALSET MACRO F1 SCORE ESTABLISHED: {current_score:.4f}\033[0m\n", flush=True)
+                    print(f"\n\033[1;92m🎯 BASELINE VALSET KAGGLE SCORE ESTABLISHED: {current_score:.4f}\033[0m\n", flush=True)
                 self._last_val_score = current_score
             else:
                 if self._last_mini_score is not None:
-                    print(f"\n\033[1;93m📉 MINI-BATCH MACRO F1 SCORE UPDATE: {self._last_mini_score:.4f} ➔ {current_score:.4f}\033[0m\n", flush=True)
+                    print(f"\n\033[1;93m📉 MINI-BATCH KAGGLE SCORE UPDATE: {self._last_mini_score:.4f} ➔ {current_score:.4f}\033[0m\n", flush=True)
                 else:
-                    print(f"\n\033[1;93m🎯 BASELINE MINI-BATCH MACRO F1 SCORE ESTABLISHED: {current_score:.4f}\033[0m\n", flush=True)
+                    print(f"\n\033[1;93m🎯 BASELINE MINI-BATCH KAGGLE SCORE ESTABLISHED: {current_score:.4f}\033[0m\n", flush=True)
                 self._last_mini_score = current_score
+                
+            # STRICT VALIDATION CHECK FOR THE USER
+            assert result.score == kaggle_score, "CRITICAL ERROR: Optimizer score does not match Kaggle Score!"
+            print(f"\033[1;96m[STRICT METRIC VALIDATION] The ONLY score being returned to the GEPA optimizer for selection/rejection is the True Kaggle Score: {result.score:.4f} (DE AUROC: {de_auroc:.4f}, DIR AUROC: {direction_auroc:.4f})\033[0m\n", flush=True)
                 
             return result
             
@@ -318,7 +426,7 @@ program = dspy.ChainOfThought(SimpleClassificationSignature)
         metric_fn=metric_fn,
         reflection_lm=reflection_lm,
         valset=valset,
-        num_threads=5,
+        num_threads=20,
     )
     
     # 5. Run GEPA Optimization

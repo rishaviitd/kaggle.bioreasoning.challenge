@@ -5,3 +5,4 @@ src/track_one/metrics/
 kaggle.json
 outputs/
 local/
+tests/

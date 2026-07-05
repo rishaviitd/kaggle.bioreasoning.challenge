@@ -41,11 +41,11 @@ def _final_answer_label(content: str) -> str | None:
     patterns = [
         # Original patterns
         r"<answer>\s*(up|down|none|[ABCabc])\s*</answer>",
-        r"\b(?:final\s+output|final\s+answer|answer|prediction|conclusion)\s*[:\-]?\s*\**\s*(up|down|none|[ABCabc])\b",
+        r"\b(?:final\s+output|final\s+answer|answer|prediction|conclusion|label)\s*[:\-]?\s*\**\s*(up|down|none|[ABCabc])\b",
         r"\*\*\s*([ABCabc])\s*\)",
         r"\b([ABCabc])\s*\)\s*(?:up|down|no significant|none)",
         # Handles newline between keyword and letter, and trailing text like (down-regulated)
-        r"\b(?:final\s+(?:output|answer|prediction)|predicted\s+\w+|answer|prediction|conclusion|result|outcome)\b[^\n]*\n*\s*[:\-]?\s*\**\s*(up|down|none|[ABCabc])\**\b",
+        r"\b(?:final\s+(?:output|answer|prediction)|predicted\s+\w+|answer|prediction|conclusion|result|outcome|label)\b[^\n]*\n*\s*[:\-]?\s*\**\s*(up|down|none|[ABCabc])\**\b",
         # Handles bold-wrapped letter after arrow or colon:
         r"(?:→|:)\s*\**\s*(up|down|none|[ABCabc])\**(?:[^a-zA-Z]|$)",
     ]

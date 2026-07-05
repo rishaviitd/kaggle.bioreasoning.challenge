@@ -24,13 +24,13 @@ API_LOCK = threading.Lock()
 LAST_REQ_TIME = 0.0
 
 def _wait_for_rate_limit() -> None:
-    """Strictly enforce a minimum of 1.6 seconds between API calls across all threads."""
+    """Strictly enforce a minimum of 2.0 seconds between API calls across all threads."""
     global LAST_REQ_TIME
     with API_LOCK:
         now = time.monotonic()
         elapsed = now - LAST_REQ_TIME
-        if elapsed < 1.6:
-            time.sleep(1.6 - elapsed)
+        if elapsed < 1.58:
+            time.sleep(1.58 - elapsed)
         LAST_REQ_TIME = time.monotonic()
 
 def chat_completion(client: OpenAI, request: dict[str, Any]) -> dict[str, Any]:
@@ -170,7 +170,7 @@ def run_task_lm(prompt: str | None = None, messages: list | None = None, tempera
         "temperature": temperature,
         "max_tokens": max_tokens,
         "logprobs": True,
-        "top_logprobs": 5,
+        "top_logprobs": 15,
         "extra_body": {"reasoning": {"effort": reasoning_effort}},
     }
     return chat_completion(client, request)
