@@ -1,20 +1,16 @@
-# [BioReasoning Challenge - MLGenX LLM Perturbation Competition ↗️](https://genentech.github.io/BioReasoningChallenge/)
-
 <p align="center">
-  <img src="https://www.kaggle.com/competitions/139738/images/header" alt="BioReasoning Challenge overview" width="100%">
+  <img src="https://www.kaggle.com/competitions/139769/images/header" alt="BioReasoning Challenge overview" width="100%">
 </p>
 
-<p align="center">
+<h1 align="center">
+  <a href="https://genentech.github.io/BioReasoningChallenge/" style="text-decoration: none; color: inherit;">MLGenX Bio Reasoning Challenge ↗️</a>
+</h1>
+
+<p align="justify">
   Predicting gene expression changes from CRISPRi perturbations in mouse bone marrow-derived macrophages (BMDMs) using DSPy-optimized prompts and fine-tuned LLMs.
 </p>
 
 <p align="center">
-  <a href="https://www.kaggle.com/competitions/139738">Competition Website</a>
-</p>
-
-<p align="center">
-  <img src="https://storage.googleapis.com/lightning-avatars/litpages/01hsbt485wd2m6xgwhsh8xw26j/3c7af255-9b22-4d05-b476-d105c32acfd2.png" alt="DSPy" height="24" style="border-radius: 4px; margin-right: 4px;">
-  <img src="https://r2.madebyagents.com/qwen.webp" alt="Qwen" height="24" style="border-radius: 4px; margin-right: 4px;">
   <img src="https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=white" alt="Python">
   <img src="https://img.shields.io/badge/Kaggle-20BEFF?logo=Kaggle&logoColor=white" alt="Kaggle">
   <img src="https://img.shields.io/badge/OpenAI-412991?logo=openai&logoColor=white" alt="OpenAI">
@@ -24,8 +20,8 @@
 
 | Track | Stack | Purpose |
 |---|---|---|
-| **Track A: Prompt Optimization** | DSPy, GEPA, GPT-OSS-120B | Automatically optimize the biological reasoning instructions for a 120B parameter model using Generative Error-driven Prompt Adaptation (GEPA). |
-| **Track C: Fine-Tuning** | Qwen 3.5 9B | Fine-tune a compact (<10B) open-weights LLM to intrinsically learn the causal gene networks without relying on complex runtime prompts. |
+| **Track A: Prompt Optimization** | <img src="https://storage.googleapis.com/lightning-avatars/litpages/01hsbt485wd2m6xgwhsh8xw26j/3c7af255-9b22-4d05-b476-d105c32acfd2.png" height="20" align="top"> DSPy, GEPA, GPT-OSS-120B | Automatically optimize the biological reasoning instructions for a 120B parameter model using Generative Error-driven Prompt Adaptation (GEPA). |
+| **Track C: Fine-Tuning** | <img src="https://r2.madebyagents.com/qwen.webp" height="20" align="top"> Qwen 3.5 9B | Fine-tune a compact (<10B) open-weights LLM to intrinsically learn the causal gene networks without relying on complex runtime prompts. |
 
 ## Overview
 
