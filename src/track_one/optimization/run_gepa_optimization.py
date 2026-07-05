@@ -138,9 +138,41 @@ def metric_fn(example, pred, trace=None):
     MAGENTA = "\033[95m"
     RESET = "\033[0m"
     
+    # --- Extract Probabilities from History ---
+    from src.track_one.utils.evaluate import _seed_probabilities
+    probs = None
+    history = dspy.settings.lm.history
+    for entry in reversed(history):
+        prompt_str = entry.get("prompt") or ""
+        if not prompt_str and "messages" in entry and entry["messages"]:
+            prompt_str = "\n".join([m.get("content", "") for m in entry["messages"]])
+            
+        if example.pert in prompt_str and example.gene in prompt_str:
+            raw_data = entry.get("raw_response", {})
+            probs = _seed_probabilities(raw_data)
+            if probs is None:
+                from src.track_one.utils.evaluate import _answer_token_label, _probabilities_from_token_item
+                choices = raw_data.get("choices") or []
+                if choices:
+                    token_items = (choices[0].get("logprobs") or {}).get("content") or []
+                    for item in reversed(token_items):
+                        actual_label = _answer_token_label(str(item.get("token", "")), allow_decorated_letter=True)
+                        if actual_label in ("up", "down", "none"):
+                            probs = _probabilities_from_token_item(item, actual_label)
+                            break
+            break
+    
+    if probs is None:
+        probs = {"up": 0.33, "down": 0.33, "none": 0.34} # Fallback
+        
+    for lbl in ("up", "down", "none"):
+        if lbl not in probs:
+            probs[lbl] = 0.0
+
     status = f"{GREEN}✅ CORRECT{RESET}" if is_correct else f"{RED}❌ INCORRECT{RESET}"
-    # Single atomic print to avoid thread interleaving
-    log_str = f"--------------------------------------------------\n{status} | {CYAN}{example.pert:>6} -> {example.gene:<6}{RESET} | Pred: {YELLOW}{predicted_label:<5}{RESET} | True: {BLUE}{true_label:<5}{RESET} | Score: {MAGENTA}{score:.2f}{RESET}"
+    
+    prob_str = f"P(U):{probs['up']} P(D):{probs['down']}"
+    log_str = f"--------------------------------------------------\n{status} | {CYAN}{example.pert:>6} -> {example.gene:<6}{RESET} | Pred: {YELLOW}{predicted_label:<5}{RESET} | True: {BLUE}{true_label:<5}{RESET} | {MAGENTA}{prob_str}{RESET}"
     print(log_str, flush=True)
     
     if is_correct:
@@ -150,37 +182,7 @@ def metric_fn(example, pred, trace=None):
     else:
         print(f"\033[38;5;208m⏳ Teacher Model is writing critique for {example.pert} -> {example.gene}...\033[0m", flush=True)
         
-        # --- Extract Probabilities from History ---
-        from src.track_one.utils.evaluate import _seed_probabilities
-        probs = None
-        history = dspy.settings.lm.history
-        for entry in reversed(history):
-            prompt_str = entry.get("prompt") or ""
-            if not prompt_str and "messages" in entry and entry["messages"]:
-                prompt_str = "\n".join([m.get("content", "") for m in entry["messages"]])
-                
-            if example.pert in prompt_str and example.gene in prompt_str:
-                raw_data = entry.get("raw_response", {})
-                probs = _seed_probabilities(raw_data)
-                if probs is None:
-                    from src.track_one.utils.evaluate import _answer_token_label, _probabilities_from_token_item
-                    choices = raw_data.get("choices") or []
-                    if choices:
-                        token_items = (choices[0].get("logprobs") or {}).get("content") or []
-                        for item in reversed(token_items):
-                            actual_label = _answer_token_label(str(item.get("token", "")), allow_decorated_letter=True)
-                            if actual_label in ("up", "down", "none"):
-                                probs = _probabilities_from_token_item(item, actual_label)
-                                break
-                break
-        
-        if probs is None:
-            print(f"\033[1;91mCRITICAL: Teacher prob extraction failed for {example.pert}_{example.gene}\033[0m", flush=True)
-            probs = {"up": 0.33, "down": 0.33, "none": 0.34} # Fallback
-            
-        for lbl in ("up", "down", "none"):
-            if lbl not in probs:
-                probs[lbl] = 0.0
+        # Probabilities already extracted above
                 
         # --- Generate Prediction Flaw Analysis ---
         metric_context = ""
