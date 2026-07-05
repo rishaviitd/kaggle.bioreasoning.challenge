@@ -6,3 +6,5 @@ kaggle.json
 outputs/
 local/
 tests/
+*.jsonl
+*.bin

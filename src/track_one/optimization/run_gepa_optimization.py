@@ -46,7 +46,6 @@ class NvidiaReflectionLM(dspy.LM):
     def __call__(self, prompt=None, messages=None, **kwargs):
         # Enforce lean changes and safety bounds for the 4096 token limit
         constraint = """
-        
 CRITICAL CONSTRAINTS FOR YOUR NEW PROMPT:
 1. LEAN CHANGES: This task is highly sensitive to massive prompt rewrites. You must only make lean, incremental updates to the rules based on the failures. Do NOT write a massive, bloated prompt.
 2. TOKEN LIMIT: Your proposed prompt MUST be under 1500 words. We have a strict 4096 token limit, and the model needs at least 2000 tokens leftover to output its step-by-step biological reasoning.

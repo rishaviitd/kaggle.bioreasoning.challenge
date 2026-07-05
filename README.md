@@ -54,3 +54,17 @@ flowchart TD
 * **Student Model (120B):** Generates biological reasoning traces and raw log-probabilities for the final ternary decision.
 * **Teacher Model (20B):** Analyzes the student's failures and writes a mechanistic critique of what biological pathway was missed.
 * **Reflection Engine:** Synthesizes the teacher's critiques and the probability math to surgically rewrite the seed instructions to prevent future hallucinations.
+
+## Frontier Model Benchmarks (8B Class)
+
+We evaluated several frontier 8B-class models on a zero-shot subset of the GEPA Validation Set (300 highly imbalanced rows heavily skewed towards the `none` class) to determine baseline reasoning capabilities. The evaluation tests their ability to natively output precise probability floats (`logprobs`) for the ternary classification, which is strictly required for the Kaggle AUROC metric.
+
+| Model | Kaggle Score (AUROC) | Accuracy | F1 (Macro) | F1 (Up) | F1 (Down) | F1 (None) | Logprobs Support (OpenRouter) |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **IBM Granite 4.1 8B** | **0.5325** | **49.33%** | 0.3238 | 0.1043 | 0.2133 | **0.6537** | ✅ Yes (Native) |
+| **Mistral Ministral 8B** | 0.5253 | 26.33% | 0.2586 | **0.3594** | **0.2577** | 0.1587 | ✅ Yes (via strict routing) |
+| **Qwen 3 8B** | 0.4953 | 41.00% | **0.3252** | 0.2420 | 0.1682 | 0.5655 | ❌ No (Fallback dummy floats) |
+
+* **Granite 4.1** is highly conservative and achieves the highest overall accuracy and Kaggle Score by successfully identifying `none` relationships.
+* **Ministral 8B** achieves abysmal overall accuracy but is aggressively the best at predicting directional relationships (`up`/`down`).
+* **Qwen 3** operates effectively at random chance due to poor logprob support on current hosting providers, requiring hardcoded fallback dummy probabilities.
