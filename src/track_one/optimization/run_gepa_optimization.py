@@ -450,7 +450,7 @@ CRITICAL WARNING: The current instructions `<curr_instructions>` FAILED TO GENER
 Your task is to mathematically UPDATE the assistant's instructions to fix the systemic failure patterns shown above.
 
 STEP 1: ROOT CAUSE ANALYSIS
-Before writing the new instructions, carefully read all the Teacher critiques provided in the feedback samples above. Identify the top 2-3 most highly occurring common failure patterns across all the samples. Focus exclusively on the systemic biological blindspots that are causing the majority of the validation failures.
+Before writing the new instructions, carefully read all the Teacher Critiques AND the Prediction Flaw Analyses provided in the feedback samples above. Identify the top 2-3 most highly occurring failure patterns across the batch by linking the biological blindspots to the directional errors (for example: 'The model consistently ignores secondary metabolic stress responses, which causes it to hallucinate up-regulations'). Focus exclusively on the systemic biological root causes that are driving these specific directional failures.
 
 STEP 2: EDIT PLANNING
 Think about exactly how you will modify the current instructions to fix the root causes. Explicitly list out:
