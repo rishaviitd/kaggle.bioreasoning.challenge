@@ -47,8 +47,7 @@ class NvidiaReflectionLM(dspy.LM):
         # Enforce lean changes and safety bounds for the 4096 token limit
         constraint = """
 CRITICAL CONSTRAINTS FOR YOUR NEW PROMPT:
-1. LEAN CHANGES: This task is highly sensitive to massive prompt rewrites. You must only make lean, incremental updates to the rules based on the failures. Do NOT write a massive, bloated prompt.
-2. TOKEN LIMIT: Your proposed prompt MUST be under 1500 words. We have a strict 4096 token limit, and the model needs at least 2000 tokens leftover to output its step-by-step biological reasoning.
+1. TOKEN LIMIT: Your proposed prompt MUST be under 2000 words.
 """
         if prompt is not None:
             prompt += constraint
@@ -462,8 +461,17 @@ Think about exactly how you will modify the current instructions to fix the root
 CRITICAL CONSTRAINTS FOR YOUR UPDATE:
 1. RETAIN WORKING LOGIC: Existing instructions that do not conflict with the feedback must be preserved. Only delete or modify an instruction if it directly contributes to the systemic failures identified in Step 1.
 2. GENERALIZE THE BIOLOGY: Abstract the highly occurring failure patterns into generalized biological pathways. Do not restrict new instructions to specific gene names.
-3. SURGICAL CHANGES: Make your updates highly targeted. You must preserve and output the entire instruction rulebook from top to bottom without truncating it. The total length of the new instruction MUST NOT exceed 1,500 words.
+3. SURGICAL CHANGES: Make your updates highly targeted. You must preserve and output the entire instruction rulebook from top to bottom without truncating it. The total length of the new instruction MUST NOT exceed 2,000 words.
 4. CRITICAL ANTI-TRUNCATION RULE: You MUST output the ENTIRE rulebook starting from "You are an expert molecular biologist..." all the way to the end. If you output only the example template, or use ellipses (...) to skip sections, the student model will fail completely.
+
+MARKDOWN SCALABILITY GUIDELINES:
+You are highly encouraged to add, modify, or reorganize the biological reasoning steps and headers to improve accuracy. However, you MUST format your new logic perfectly so the Task LM can parse it. 
+
+Follow this formatting formula for any changes you make:
+- Bullet Points are Mandatory: Every distinct biological mechanism or rule MUST be its own bullet point (`- `). Never write dense, multi-sentence paragraphs. 
+- Expand via Headers (`###`): If you invent a new biological category or step, create a new `###` header for it. The Task LM relies on these headers to compartmentalize its Chain of Thought.
+- Targeted Bolding: Use bold text (`**`) exclusively for critical entities (e.g., specific protein families, genes, or mechanisms) so they stand out. Never bold entire sentences.
+- Scale the Skeleton: You have full permission to evolve the macro-structure (e.g., changing the number of steps), as long as your final output is a clean, highly scannable, bullet-driven document.
 
 STEP 3: NEW INSTRUCTIONS
 You MUST wrap your fully updated instruction rulebook inside a single pair of ``` blocks. 
