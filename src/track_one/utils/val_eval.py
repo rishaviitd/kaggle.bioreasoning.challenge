@@ -25,9 +25,10 @@ REASONING_EFFORT = "medium"
 TOP_LOGPROBS = 20
 
 class KaggleTaskLM(dspy.LM):
-    def __init__(self, seed: int):
+    def __init__(self, seed: int, temperature: float = 0.0):
         super().__init__("openai/gpt-oss-120b")
         self.seed = seed
+        self.temperature = temperature
         self.client = _client()
         
     def __call__(self, prompt=None, messages=None, **kwargs):
@@ -40,7 +41,7 @@ class KaggleTaskLM(dspy.LM):
         request = {
             "model": MODEL,
             "messages": api_messages,
-            "temperature": TEMPERATURE,
+            "temperature": self.temperature,
             "top_p": TOP_P,
             "seed": self.seed,
             "max_tokens": MAX_TOKENS,
@@ -66,11 +67,9 @@ def main():
     print("Loading stratified datasets...", flush=True)
     _, valset = load_stratified_splits(train_size=1000, val_size=300)
     print(f"Loaded {len(valset)} validation rows.", flush=True)
-    valset = valset[:100]
+    valset = valset[:10]
     print(f"Ready to evaluate {len(valset)} rows.", flush=True)
 
-    lm = KaggleTaskLM(seed=42)
-    dspy.settings.configure(lm=lm)
     with open("src/track_one/output/system_prompt.txt", "r") as f:
         system_prompt = f.read()
     with open("src/track_one/output/user_prompt.txt", "r") as f:
@@ -105,39 +104,43 @@ def main():
                 {"role": "system", "content": system_prompt},
                 {"role": "user", "content": user_msg}
             ]
-            response_texts, data = lm(messages=messages)
-            text = response_texts[0]
             
-            # Parse the reasoning and label
+            all_probs = []
             parsed_reasoning = ""
-            parsed_label = "none"
+            raw_response_data = None
             
-            try:
-                r_match = re.search(r"\[\[ ## reasoning ## \]\](.*?)\[\[ ## label ## \]\]", text, re.DOTALL)
-                if r_match:
-                    parsed_reasoning = r_match.group(1).strip()
-                else:
-                    print(f"\n⚠️ PARSING WARNING: Missing reasoning brackets for {example.pert}_{example.gene}.\nRaw:\n{text[:200]}...\n", flush=True)
+            for seed in (42, 43, 44):
+                try:
+                    lm_instance = KaggleTaskLM(seed=seed, temperature=0.7)
+                    response_texts, data = lm_instance(messages=messages)
                     
-                l_match = re.search(r"\[\[ ## label ## \]\](.*?)(?:\[\[|$)", text, re.DOTALL)
-                if l_match:
-                    parsed_label = l_match.group(1).strip().lower()
-                else:
-                    print(f"\n⚠️ PARSING WARNING: Missing label brackets for {example.pert}_{example.gene}.\nRaw:\n{text[:200]}...\n", flush=True)
-                    
-            except Exception as e:
-                print(f"\n🚨 PARSING EXCEPTION on {example.pert}_{example.gene}: {e}\nRaw:\n{text[:200]}...\n", flush=True)
-                    
-            if data is None:
-                raise ValueError(f"Could not find matching API response in history for {example.pert}_{example.gene}")
-            
-            probs = _seed_probabilities(data)
-            if probs is None:
-                print(f"Warning: probability extraction failed for {example.pert}_{example.gene}", flush=True)
+                    if seed == 42:
+                        text = response_texts[0]
+                        raw_response_data = data
+                        r_match = re.search(r"\[\[ ## reasoning ## \]\](.*?)\[\[ ## label ## \]\]", text, re.DOTALL)
+                        if r_match:
+                            parsed_reasoning = r_match.group(1).strip()
+                            
+                    probs = _seed_probabilities(data)
+                    if probs is not None:
+                        all_probs.append(probs)
+                except Exception as e:
+                    print(f"Warning: Seed {seed} failed for {example.pert}_{example.gene}: {e}", flush=True)
+
+            if not all_probs:
+                print(f"Warning: ALL seeds failed probability extraction for {example.pert}_{example.gene}", flush=True)
                 probs = {"up": 0.306165, "down": 0.140947, "none": 1 - 0.306165 - 0.140947}
+            else:
+                probs = {
+                    "up": sum(p["up"] for p in all_probs) / len(all_probs),
+                    "down": sum(p["down"] for p in all_probs) / len(all_probs),
+                }
+                probs["none"] = max(0.0, 1.0 - probs["up"] - probs["down"])
                 
             true_label = example.label.lower()
-            predicted_label = _final_answer_label(parsed_label) or "none"
+            
+            # Final prediction is the highest averaged probability
+            predicted_label = max(probs, key=probs.get)
             
             for label in ("up", "down", "none"):
                 if label not in probs:
@@ -151,8 +154,8 @@ def main():
                 "probabilities": probs,
                 "true_label_probability": probs.get(true_label, 0.0),
                 "reasoning_trace": parsed_reasoning,
-                "raw_api_request": lm.history[-1].get("api_messages", []),
-                "raw_api_response": data
+                "raw_api_request": messages,
+                "raw_api_response": raw_response_data
             }
             return idx, example, row_data, None
         except Exception as e:
