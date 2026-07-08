@@ -6,9 +6,12 @@ from gepa import optimize
 from gepa.adapters.dspy_full_program_adapter.full_program_adapter import DspyAdapter
 
 from client.nvidia_client import run_task_lm, run_feedback_lm
+from client.openrouter_client import run_openrouter_prompt
 from src.track_one.utils.evaluate import _seed_probabilities, _final_answer_label
 
 SKIP_FEEDBACK = False
+USE_TEACHER_LM = False  # Toggle this to True to use the 20B Teacher LLM for critiques
+USE_SONNET_REFLECTION = True  # Toggle this to True to use Claude 3.5 Sonnet for reflection
 
 # 1. Custom DSPy LMs for GEPA Adapter
 
@@ -44,7 +47,6 @@ class NvidiaReflectionLM(dspy.LM):
         self.provider = "default"
         
     def __call__(self, prompt=None, messages=None, **kwargs):
-        # Enforce lean changes and safety bounds for the 4096 token limit
         constraint = """
 CRITICAL CONSTRAINTS FOR YOUR NEW PROMPT:
 1. TOKEN LIMIT: Your proposed prompt MUST be under 2000 words.
@@ -52,13 +54,40 @@ CRITICAL CONSTRAINTS FOR YOUR NEW PROMPT:
         if prompt is not None:
             prompt += constraint
             
-        # Use temperature 0.7 for the reflection step to allow creative brainstorming
         response = run_task_lm(prompt=prompt, messages=messages, temperature=0.7)
         text = response.get("choices", [{}])[0].get("message", {}).get("content", "")
         
         self.history.append({
             "prompt": prompt, 
             "messages": messages,
+            "response": text, 
+            "kwargs": kwargs
+        })
+        return text
+
+class OpenRouterReflectionLM(dspy.LM):
+    def __init__(self, model="anthropic/claude-sonnet-5"):
+        super().__init__(model)
+        self.provider = "default"
+
+    def __call__(self, prompt=None, messages=None, **kwargs):
+        constraint = """
+CRITICAL CONSTRAINTS FOR YOUR NEW PROMPT:
+1. TOKEN LIMIT: Your proposed prompt MUST be under 2000 words.
+"""
+        if prompt is not None:
+            prompt += constraint
+            
+        # run_openrouter_prompt directly returns the string content
+        text = run_openrouter_prompt(
+            prompt=prompt, 
+            model=self.kwargs.get("model", "anthropic/claude-sonnet-5"), 
+            temperature=0.7, 
+            max_tokens=8192
+        )
+        
+        self.history.append({
+            "prompt": prompt, 
             "response": text, 
             "kwargs": kwargs
         })
@@ -86,20 +115,21 @@ def _stratified_sample(population, k, *, counts=None):
 
 random.sample = _stratified_sample
 
-def load_stratified_splits(train_size=350, val_size=200):
-    train_df = pd.read_csv("data/local/local_train.csv")
-    sol_df = pd.read_csv("data/local/local_train_solution.csv")
+def load_stratified_splits(train_size=1000, val_size=250):
+    # Load the strict hold-out validation set and the training set
+    train_df = pd.read_csv("data/local/local_train_solution.csv")
+    val_df = pd.read_csv("data/local/local_val.csv")
     
-    # Merge reasoning
-    full_df = train_df.merge(sol_df[['id', 'reasoning']], on='id', how='left')
-    full_df.rename(columns={'reasoning': 'gt_reasoning'}, inplace=True)
+    # Normalize reasoning column names for the training set only
+    if 'reasoning' in train_df.columns:
+        train_df.rename(columns={'reasoning': 'gt_reasoning'}, inplace=True)
+        
+    train_size = min(train_size, len(train_df))
+    val_size = min(val_size, len(val_df))
     
-    # Sample 550 rows stratified by label
-    total_size = train_size + val_size
-    sampled_df, _ = train_test_split(full_df, train_size=total_size, stratify=full_df['label'], random_state=42)
-    
-    # Split the 550 rows into train and val stratified by label
-    train_split, val_split = train_test_split(sampled_df, train_size=train_size, stratify=sampled_df['label'], random_state=42)
+    # Sample independently from the STRICT sets to maintain OOD integrity
+    train_split, _ = train_test_split(train_df, train_size=train_size, stratify=train_df['label'], random_state=42)
+    val_split, _ = train_test_split(val_df, train_size=val_size, stratify=val_df['label'], random_state=42)
     
     def df_to_dspy(df):
         examples = []
@@ -178,22 +208,21 @@ def metric_fn(example, pred, trace=None):
     elif SKIP_FEEDBACK:
         feedback_text = f"Incorrect prediction. True label is '{true_label}'."
     else:
-        print(f"\033[38;5;208m⏳ Teacher Model is writing critique for {example.pert} -> {example.gene}...\033[0m", flush=True)
-        
-        # Probabilities already extracted above
-                
-        # --- Generate Prediction Flaw Analysis ---
+        # --- Generate Prediction Flaw Analysis (3 Cases) ---
         metric_context = ""
         if true_label in ["up", "down"] and predicted_label == "none":
-            metric_context = f"The model failed to detect ANY directional effect."
+            metric_context = f"The model failed to detect ANY directional effect. It predicted 'none' but the truth is '{true_label}'."
         elif true_label == "none" and predicted_label in ["up", "down"]:
-            metric_context = f"The model hallucinated a directional effect where none exists."
+            metric_context = f"The model hallucinated a directional effect where none exists. It predicted '{predicted_label}' but the truth is 'none'."
         elif true_label in ["up", "down"] and predicted_label in ["up", "down"] and true_label != predicted_label:
             metric_context = f"The model correctly detected an interaction, but got the direction COMPLETELY BACKWARDS. It predicted '{predicted_label}' but the truth is '{true_label}'."
         else:
-            metric_context = f"The model made an invalid prediction."
+            metric_context = f"The model made an invalid prediction. It predicted '{predicted_label}' but the truth is '{true_label}'."
 
-        feedback_prompt = f"""You are a computational biology mentor. A student model incorrectly predicted a Perturb-seq outcome.
+        if USE_TEACHER_LM:
+            print(f"\033[38;5;208m⏳ Teacher Model is writing critique for {example.pert} -> {example.gene}...\033[0m", flush=True)
+            
+            feedback_prompt = f"""You are a computational biology mentor. A student model incorrectly predicted a Perturb-seq outcome.
 
 Perturbation: {example.pert}
 Target Gene: {example.gene}
@@ -216,28 +245,30 @@ Critique the student's reasoning. You MUST structure your response exactly using
 
 [MISSING GENERALIZED PRINCIPLE]
 (Draft a highly specific, generalized biological rule that explains the Ground Truth mechanism. Do NOT use specific gene names; abstract it so it applies universally to similar pathways.)"""
-        
-        critique = run_feedback_lm(feedback_prompt, temperature=0.0, max_tokens=65536)
-        
-        # Inject the probability context DIRECTLY into the feedback string returned to GEPA
-        # so the 120B Reflection LLM sees exactly what went wrong mathematically!
-        feedback_text = f"Incorrect prediction. True label is '{true_label}'.\n\nTeacher Critique:\n{critique}\n\n[PREDICTION FLAW ANALYSIS]\n{metric_context}"
-        
-        import json
-        import os
-        os.makedirs("src/track_one/output/gepa_logs", exist_ok=True)
-        with open("src/track_one/output/gepa_logs/feedback_history.jsonl", "a") as f:
-            log_entry = {
-                "pert": example.pert,
-                "gene": example.gene,
-                "true_label": true_label,
-                "predicted_label": predicted_label,
-                "probabilities": probs,
-                "student_reasoning": pred.reasoning,
-                "gt_reasoning": example.gt_reasoning,
-                "critique": critique
-            }
-            f.write(json.dumps(log_entry) + "\n")
+            
+            critique = run_feedback_lm(feedback_prompt, temperature=0.0, max_tokens=65536)
+            
+            # Inject the probability context DIRECTLY into the feedback string returned to GEPA
+            feedback_text = f"Incorrect prediction. True label is '{true_label}'.\n\nTeacher Critique:\n{critique}\n\n[PREDICTION FLAW ANALYSIS]\n{metric_context}"
+            
+            import json
+            import os
+            os.makedirs("src/track_one/output/gepa_logs", exist_ok=True)
+            with open("src/track_one/output/gepa_logs/feedback_history.jsonl", "a") as f:
+                log_entry = {
+                    "pert": example.pert,
+                    "gene": example.gene,
+                    "true_label": true_label,
+                    "predicted_label": predicted_label,
+                    "probabilities": probs,
+                    "student_reasoning": pred.reasoning,
+                    "gt_reasoning": example.gt_reasoning,
+                    "critique": critique
+                }
+                f.write(json.dumps(log_entry) + "\n")
+        else:
+            # FAST FEEDBACK MODE (No Teacher LLM API Call)
+            feedback_text = f"Incorrect prediction. True label is '{true_label}'.\n\n[PREDICTION FLAW ANALYSIS]\n{metric_context}\n\n[GROUND TRUTH BIOLOGICAL REASONING]\n{example.gt_reasoning}"
         
     return dspy.Prediction(score=score, feedback=feedback_text)
 
@@ -260,10 +291,16 @@ def main():
     print("Setting up DSPy models...")
     task_lm = NvidiaTaskLM()
     dspy.settings.configure(lm=task_lm)
-    reflection_lm = NvidiaReflectionLM()
+    
+    if USE_SONNET_REFLECTION:
+        print("Using Claude 3.5 Sonnet (OpenRouter) as the Reflection Model...")
+        reflection_lm = OpenRouterReflectionLM(model="anthropic/claude-sonnet-5")
+    else:
+        print("Using Nvidia 120B as the Reflection Model...")
+        reflection_lm = NvidiaReflectionLM()
     
     print("Loading stratified datasets...")
-    trainset, valset = load_stratified_splits(train_size=1000, val_size=300)
+    trainset, valset = load_stratified_splits(train_size=50, val_size=20)
     
     # Load the winning prompt from the previous run
     prompt_path = "src/track_one/output/best_instructions.txt"
@@ -488,8 +525,8 @@ You are an expert molecular biologist...
         valset=valset,
         adapter=adapter,
         reflection_lm=reflection_lm,
-        reflection_minibatch_size=50,
-        max_metric_calls=20000,
+        reflection_minibatch_size=18,
+        max_metric_calls=150,
         run_dir="src/track_one/output/gepa_logs", # Saves all proposals, traces, and metrics
         display_progress_bar=False,
         reflection_prompt_template=CUSTOM_REFLECTION_TEMPLATE,

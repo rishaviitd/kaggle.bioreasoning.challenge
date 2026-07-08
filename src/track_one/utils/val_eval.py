@@ -67,7 +67,7 @@ def main():
     print("Loading stratified datasets...", flush=True)
     _, valset = load_stratified_splits(train_size=1000, val_size=300)
     print(f"Loaded {len(valset)} validation rows.", flush=True)
-    valset = valset[:10]
+    valset = valset[:300]
     print(f"Ready to evaluate {len(valset)} rows.", flush=True)
 
     with open("src/track_one/output/system_prompt.txt", "r") as f:

@@ -8,3 +8,4 @@ local/
 tests/
 *.jsonl
 *.bin
+scratch/
