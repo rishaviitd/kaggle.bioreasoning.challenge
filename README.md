@@ -1,8 +1,10 @@
 # BioReasoning Prompt
 
-This repository uses the GEPA-optimized `PROMPT_V1` prompt from [`src/track_one/prompts/prompt.py`](src/track_one/prompts/prompt.py) for inference.
-
 ## DSPy Interface
+
+<p align="center">
+  <img src="https://img.shields.io/badge/DSPy-Programmatic%20Language%20Models-5B5BD6?style=for-the-badge&logo=python&logoColor=white" alt="DSPy">
+</p>
 
 The prompt is used through a DSPy chain-of-thought signature with two input fields and two output fields:
 
@@ -30,7 +32,15 @@ class SimpleClassificationSignature(dspy.Signature):
 program = dspy.ChainOfThought(SimpleClassificationSignature)
 ```
 
-## `PROMPT_V1`
+```mermaid
+flowchart LR
+    I[pert + gene] --> S[DSPy Signature]
+    S --> C[ChainOfThought]
+    C --> R[reasoning]
+    C --> L[label]
+```
+
+## Final Inference Prompt
 
 The following is the optimized inference instruction. `{pert}` and `{gene}` are filled with the perturbation and target gene symbols for each example.
 
@@ -125,5 +135,3 @@ Reasoning:
 
 Final output:
 ```
-
-Source: [`src/track_one/prompts/prompt.py`](src/track_one/prompts/prompt.py)
