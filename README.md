@@ -6,12 +6,12 @@
 
 ## Technology Stack
 
-| Technology | Role | Stage |
-| :--- | :--- | :--- |
-| <img src="docs/assets/dspy-logo.png" alt="DSPy" height="22"> | Automated prompt writing and optimization with GEPA from evaluation feedback | Prompting |
-| <img src="docs/assets/unsloth-logo.png" alt="Unsloth" height="22"> | Accelerated supervised fine-tuning | SFT · T4 |
-| <img src="docs/assets/trl-logo.png" alt="TRL" height="22"> | Group Relative Policy Optimization (GRPO) for task-specific outcome prediction | RL · H100 |
-| <img src="docs/assets/vllm-logo.png" alt="vLLM" height="22"> | Continuous batching and high-throughput model inference | Inference |
+| Technology                                                         | Role                                                                           | Stage     |
+| :----------------------------------------------------------------- | :----------------------------------------------------------------------------- | :-------- |
+| <img src="docs/assets/dspy-logo.png" alt="DSPy" height="22">       | Automated prompt writing and optimization with GEPA from evaluation feedback   | Prompting |
+| <img src="docs/assets/unsloth-logo.png" alt="Unsloth" height="22"> | Accelerated supervised fine-tuning                                             | SFT · T4  |
+| <img src="docs/assets/trl-logo.png" alt="TRL" height="22">         | Group Relative Policy Optimization (GRPO) for task-specific outcome prediction | RL · H100 |
+| <img src="docs/assets/vllm-logo.png" alt="vLLM" height="22">       | Continuous batching and high-throughput model inference                        | Inference |
 
 ## DSPy Interface
 
@@ -38,9 +38,9 @@ class SimpleClassificationSignature(dspy.Signature):
 program = dspy.ChainOfThought(SimpleClassificationSignature)
 ```
 
-## Final Inference Prompt
+## Inference Prompt for the Teacher Model
 
-The following is the optimized inference instruction. `{pert}` and `{gene}` are filled with the perturbation and target gene symbols for each example.
+The following is the optimized inference instruction for GPT-OSS-120B. `{pert}` and `{gene}` are filled with the perturbation and target gene symbols for each example.
 
 ```text
 Your input fields are:
@@ -145,7 +145,7 @@ up, down, or none
 [[ ## completed ## ]]
 ```
 
-## Fine-Tuned Model Prompt
+## Inference Prompt for the Fine-Tuned Model
 
 The fine-tuned model uses the shorter system and user prompt shown together below. `{pert}` and `{gene}` are replaced for each gene pair.
 
@@ -188,11 +188,11 @@ Analyze the regulatory effect of knocking down {pert} on {gene} in single-cell m
 Please reason step by step and respond with the corresponding output fields, starting with the field `[[ ## label ## ]]`, and then ending with the marker for `[[ ## completed ## ]]`.
 ```
 
-| Prompt | Input tokens |
-| :--- | ---: |
-| Optimized inference prompt | 1,113 |
-| Fine-tuned model prompt | 415 |
-| Reduction | 698 tokens (62.7%) |
+| Prompt                     |       Input tokens |
+| :------------------------- | -----------------: |
+| Optimized inference prompt |              1,113 |
+| Fine-tuned model prompt    |                415 |
+| Reduction                  | 698 tokens (62.7%) |
 
 Token counts use the official DeepSeek-R1-Distill-Llama-8B tokenizer with `{pert}` and `{gene}` placeholders. The `SYSTEM` and `USER` headings are presentation labels and are not counted or sent to the model; chat-template control tokens are also excluded. The shorter prompt reduces input-token cost and leaves more context capacity for batching and generation.
 
