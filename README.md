@@ -3,10 +3,10 @@
 ## DSPy Interface
 
 <p align="center">
-  <img src="https://img.shields.io/badge/DSPy-Programmatic%20Language%20Models-5B5BD6?style=for-the-badge&logo=python&logoColor=white" alt="DSPy">
+  <img src="https://raw.githubusercontent.com/stanfordnlp/dspy/main/docs/docs/static/img/dspy_logo.png" alt="DSPy" width="220">
 </p>
 
-The prompt is used through a DSPy chain-of-thought signature with two input fields and two output fields:
+The prompt is used through a DSPy chain-of-thought signature with two input fields and one final output field. DSPy handles the reasoning internally; only the final label is exposed:
 
 ```python
 import dspy
@@ -21,9 +21,6 @@ class SimpleClassificationSignature(dspy.Signature):
     gene = dspy.InputField(
         desc="The target gene whose expression response is being predicted"
     )
-    reasoning = dspy.OutputField(
-        desc="Step-by-step biological reasoning"
-    )
     label = dspy.OutputField(
         desc="Final label: exactly 'up', 'down', or 'none'"
     )
@@ -32,32 +29,34 @@ class SimpleClassificationSignature(dspy.Signature):
 program = dspy.ChainOfThought(SimpleClassificationSignature)
 ```
 
-```mermaid
-flowchart LR
-    I[pert + gene] --> S[DSPy Signature]
-    S --> C[ChainOfThought]
-    C --> R[reasoning]
-    C --> L[label]
-```
-
 ## Final Inference Prompt
 
 The following is the optimized inference instruction. `{pert}` and `{gene}` are filled with the perturbation and target gene symbols for each example.
 
 ```text
+Your input fields are:
+1. `pert` (str): The knocked-down perturbation gene
+2. `gene` (str): The target gene to predict
+
+Your output fields are:
+1. `label` (str): Final label: exactly 'up', 'down', or 'none'
+
+All interactions will be structured in the following way, with the appropriate values filled in.
+[[ ## pert ## ]]
+{pert}
+[[ ## gene ## ]]
+{gene}
+
 You are an expert molecular biologist who studies how genes are related using Perturb-seq.
 
 Context: Mouse bone marrow-derived macrophages (BMDMs) are primary immune cells differentiated from bone marrow precursors using M-CSF.
 
 The following question is about a CRISPRi knockdown experiment in mouse bone marrow-derived macrophages (BMDMs).
 
-Perturbation: {pert}
-Gene of interest: {gene}
-
 Predict the effect of CRISPRi knockdown of {pert} on {gene}:
-  A) up-regulated.
-  B) down-regulated.
-  C) no significant effect.
+  up — up-regulated.
+  down — down-regulated.
+  none — no significant effect.
 
 Think step by step in the reasoning section. Use the structured framework below to guide your analysis. You do not need to answer every question — use whichever are relevant to reach a well-justified conclusion.
 
@@ -125,13 +124,11 @@ After working through the relevant categories above, determine which topology be
   [ 3. Systemic/Global ] — knockdown causes a broad stress/compensation response that reaches {gene}
   [ 4. Null Topology ]   — no meaningful functional link exists
 
-Then provide the final output in a separate final section.
-The final output must be exactly one of these three uppercase letters and nothing else:
-A
-B
-C
+After thinking, output only the final label.
 
-Reasoning:
+You MUST output the final label exactly according to the strict bracketed format `[[ ## label ## ]]` and `[[ ## completed ## ]]` as defined at the top of these instructions.
 
-Final output:
+[[ ## label ## ]]
+up, down, or none
+[[ ## completed ## ]]
 ```
