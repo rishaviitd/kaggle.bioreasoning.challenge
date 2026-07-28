@@ -14,10 +14,29 @@ if str(ROOT_DIR) not in sys.path:
     sys.path.insert(0, str(ROOT_DIR))
 
 from client.nvidia_client import _client, chat_completion
-from src.track_one.prompts.prompt import SOLUTION_GENERATION_V0
+SYSTEM_PROMPT = """You are a molecular and cellular biology expert analyzing gene regulation after CRISPRi knockdown in single-cell LPS-stimulated mouse bone-marrow-derived macrophages (BMDMs).
 
-INPUT_CSV = ROOT_DIR / "data/local/local_train.csv"
-OUTPUT_CSV = ROOT_DIR / "data/local/local_train_solution.csv"
+The regulatory effect of knocking down the perturbation gene on the target gene is provided as the empirical solution. Explain why that solution is biologically plausible by considering:
+1. relevant pathways;
+2. cell-type biology, like for example ribosome biogenesis, transcription, mitochondrial function, and stress response;
+3. gene interactions and cell-specific context.
+
+Then choose exactly one option inside <answer> </answer>: 'upregulated', 'downregulated', 'not differentially expressed', or 'I do not know'.
+
+Response format:
+Provide concise reasoning as a paragraph without headings, lists, or Markdown. Then provide exactly one final answer inside the answer tag.
+
+Required format:
+<think>Reasoning</think><answer>upregulated</answer>"""
+
+SOLUTION_LABELS = {
+    "up": "upregulated",
+    "down": "downregulated",
+    "none": "not differentially expressed",
+}
+
+INPUT_CSV = ROOT_DIR / "data/train_gpt_oss_retry.csv"
+OUTPUT_CSV = ROOT_DIR / "data/train_gpt_oss_retry_solutions.csv"
 
 MODEL = "openai/gpt-oss-120b"
 MAX_WORKERS = 5
@@ -29,16 +48,22 @@ completed_count = 0
 
 def _process_one_row(client, row: dict[str, str]) -> dict[str, str]:
     """Send one request and return the row with populated reasoning."""
-    prompt = SOLUTION_GENERATION_V0.format(
-        pert=row["pert"],
-        gene=row["gene"],
-        true_label=row["label"].strip().lower()
+    solution = SOLUTION_LABELS.get(row["label"].strip().lower(), "I do not know")
+    prompt = (
+        f"The perturbation gene is {row['pert']}. The target gene is {row['gene']}.\n"
+        f"The empirical solution is: {solution}.\n\n"
+        f"Explain the regulatory effect of knocking down {row['pert']} on {row['gene']} "
+        "in this BMDM/LPS CRISPRi experiment, then provide the required answer tag."
     )
 
     request = {
         "model": MODEL,
-        "messages": [{"role": "user", "content": prompt}],
+        "messages": [
+            {"role": "system", "content": SYSTEM_PROMPT},
+            {"role": "user", "content": prompt},
+        ],
         "temperature": 0.0,
+        "max_tokens": 4096,
         "extra_body": {"reasoning": {"effort": "high"}},
     }
 
@@ -88,8 +113,8 @@ def generate_solutions(smoke: bool = False):
             remaining_rows.append(row)
 
     if smoke:
-        remaining_rows = remaining_rows[:5]
-        print(f"--- SMOKE TEST MODE (5 rows) ---")
+        remaining_rows = remaining_rows[:10]
+        print(f"--- SMOKE TEST MODE (10 rows) ---")
 
     total_remaining = len(remaining_rows)
     print(f"Found {len(all_rows)} total rows.")

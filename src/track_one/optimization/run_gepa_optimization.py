@@ -11,7 +11,8 @@ from src.track_one.utils.evaluate import _seed_probabilities, _final_answer_labe
 
 SKIP_FEEDBACK = False
 USE_TEACHER_LM = False  # Toggle this to True to use the 20B Teacher LLM for critiques
-USE_SONNET_REFLECTION = True  # Toggle this to True to use Claude 3.5 Sonnet for reflection
+USE_SONNET_REFLECTION = True  # Toggle this to True to use Claude Sonnet 5 for reflection
+USE_CUSTOM_REFLECTION_TEMPLATE = False  # Toggle this to True to use the custom reflection template
 
 # 1. Custom DSPy LMs for GEPA Adapter
 
@@ -49,7 +50,8 @@ class NvidiaReflectionLM(dspy.LM):
     def __call__(self, prompt=None, messages=None, **kwargs):
         constraint = """
 CRITICAL CONSTRAINTS FOR YOUR NEW PROMPT:
-1. TOKEN LIMIT: Your proposed prompt MUST be under 2000 words.
+1. TOKEN LIMIT: Your proposed prompt MUST be under 1500 words.
+2. ZERO-SHOT GENERALIZATION: Do NOT include specific gene or perturbation names (like Med20 or Creg1) in your rules. You must write strictly generalized biological principles that can be applied to completely unseen genes in a holdout test set.
 """
         if prompt is not None:
             prompt += constraint
@@ -73,7 +75,8 @@ class OpenRouterReflectionLM(dspy.LM):
     def __call__(self, prompt=None, messages=None, **kwargs):
         constraint = """
 CRITICAL CONSTRAINTS FOR YOUR NEW PROMPT:
-1. TOKEN LIMIT: Your proposed prompt MUST be under 2000 words.
+1. TOKEN LIMIT: Your proposed prompt MUST be under 1500 words.
+2. ZERO-SHOT GENERALIZATION: Do NOT include specific gene or perturbation names (like Med20 or Creg1) in your rules. You must write strictly generalized biological principles that can be applied to completely unseen genes in a holdout test set.
 """
         if prompt is not None:
             prompt += constraint
@@ -175,7 +178,7 @@ def metric_fn(example, pred, trace=None):
         if not prompt_str and "messages" in entry and entry["messages"]:
             prompt_str = "\n".join([m.get("content", "") for m in entry["messages"]])
             
-        if example.pert in prompt_str and example.gene in prompt_str:
+        if example.pert in prompt_str[-500:] and example.gene in prompt_str[-500:]:
             raw_data = entry.get("raw_response", {})
             probs = _seed_probabilities(raw_data)
             if probs is None:
@@ -300,7 +303,7 @@ def main():
         reflection_lm = NvidiaReflectionLM()
     
     print("Loading stratified datasets...")
-    trainset, valset = load_stratified_splits(train_size=50, val_size=20)
+    trainset, valset = load_stratified_splits(train_size=1000, val_size=250)
     
     # Load the winning prompt from the previous run
     prompt_path = "src/track_one/output/best_instructions.txt"
@@ -373,7 +376,7 @@ program = dspy.ChainOfThought(SimpleClassificationSignature)
                     if not prompt_str and "messages" in entry and entry["messages"]:
                         prompt_str = "\n".join([m.get("content", "") for m in entry["messages"]])
                         
-                    if ex.pert in prompt_str and ex.gene in prompt_str:
+                    if ex.pert in prompt_str[-500:] and ex.gene in prompt_str[-500:]:
                         raw_data = entry.get("raw_response", {})
                         probs = _seed_probabilities(raw_data)
                         if probs is None:
@@ -525,11 +528,11 @@ You are an expert molecular biologist...
         valset=valset,
         adapter=adapter,
         reflection_lm=reflection_lm,
-        reflection_minibatch_size=18,
-        max_metric_calls=150,
+        reflection_minibatch_size=30,
+        max_metric_calls=3000,
         run_dir="src/track_one/output/gepa_logs", # Saves all proposals, traces, and metrics
         display_progress_bar=False,
-        reflection_prompt_template=CUSTOM_REFLECTION_TEMPLATE,
+        reflection_prompt_template=CUSTOM_REFLECTION_TEMPLATE if USE_CUSTOM_REFLECTION_TEMPLATE else None,
     )
     
     print("Optimization Complete!")

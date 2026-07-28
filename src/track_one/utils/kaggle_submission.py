@@ -15,15 +15,15 @@ if str(ROOT_DIR) not in sys.path:
     sys.path.insert(0, str(ROOT_DIR))
 
 from client.nvidia_client import _client, chat_completion, STUDENT_MODEL as MODEL
-from src.track_one.utils.evaluate import _seed_probabilities, _final_answer_label, _calculate_full_metrics
+from src.track_one.utils.evaluate import _final_answer_label
 
 from src.track_one.optimization.run_gepa_optimization import load_stratified_splits
 
-TEMPERATURE = 0.0
-TOP_P = 1.0
-MAX_TOKENS = 65_536
+TEMPERATURE = 0.6
+TOP_P = 0.95
+MAX_TOKENS = 8_192
 REASONING_EFFORT = "medium"
-TOP_LOGPROBS = 20
+SEED = 42
 
 class KaggleTaskLM(dspy.LM):
     def __init__(self, seed: int, temperature: float = 0.0):
@@ -46,8 +46,6 @@ class KaggleTaskLM(dspy.LM):
             "top_p": TOP_P,
             "seed": self.seed,
             "max_tokens": MAX_TOKENS,
-            "logprobs": True,
-            "top_logprobs": TOP_LOGPROBS,
             "extra_body": {"reasoning": {"effort": REASONING_EFFORT}},
         }
         response = chat_completion(self.client, request)
@@ -90,6 +88,7 @@ def main():
             writer = csv.writer(f)
             writer.writerow([
                 "id", "prediction_up", "prediction_down", 
+                "reasoning_trace",
                 "prediction_up_seed42", "prediction_down_seed42", 
                 "prediction_up_seed43", "prediction_down_seed43", 
                 "prediction_up_seed44", "prediction_down_seed44", 
@@ -118,58 +117,31 @@ def main():
                 {"role": "user", "content": user_msg}
             ]
             
-            seed_data = {}
-            total_completion_tokens = 0
-            total_prompt_tokens = 0
-            
-            for seed in (42, 43, 44):
-                try:
-                    lm_instance = KaggleTaskLM(seed=seed, temperature=0.7)
-                    response_texts, data = lm_instance(messages=messages)
-                    text = response_texts[0]
-                    
-                    # Extract reasoning trace for THIS seed
-                    parsed_reasoning = ""
-                    r_match = re.search(r"\[\[ ## reasoning ## \]\](.*?)\[\[ ## label ## \]\]", text, re.DOTALL)
-                    if r_match:
-                        parsed_reasoning = r_match.group(1).strip()
-                        
-                    # Extract probabilities for THIS seed
-                    probs = _seed_probabilities(data)
-                    
-                    # Track Tokens
-                    usage = data.get("usage", {})
-                    total_completion_tokens += usage.get("completion_tokens", 0)
-                    if seed == 42:
-                        total_prompt_tokens = usage.get("prompt_tokens", 0) # Prompt tokens are same across seeds
-                        
-                    seed_data[seed] = {
-                        "probs": probs if probs else {"up": 0.333, "down": 0.333, "none": 0.334},
-                        "reasoning": parsed_reasoning
-                    }
-                except Exception as e:
-                    print(f"Warning: Seed {seed} failed for {row['pert']}_{row['gene']}: {e}", flush=True)
-                    seed_data[seed] = {"probs": {"up": 0.333, "down": 0.333, "none": 0.334}, "reasoning": "Error"}
+            lm_instance = KaggleTaskLM(seed=SEED, temperature=0.6)
+            response_texts, data = lm_instance(messages=messages)
+            text = response_texts[0]
+            label = _final_answer_label(text) or "none"
 
-            # Averaging
-            avg_up = sum(seed_data[s]["probs"]["up"] for s in (42, 43, 44)) / 3
-            avg_down = sum(seed_data[s]["probs"]["down"] for s in (42, 43, 44)) / 3
+            prediction_up = 1.0 if label == "up" else 0.0
+            prediction_down = 1.0 if label == "down" else 0.0
+            usage = data.get("usage", {})
             
             result_row = {
                 "id": row['id'],
-                "prediction_up": avg_up,
-                "prediction_down": avg_down,
-                "prediction_up_seed42": seed_data[42]["probs"]["up"],
-                "prediction_down_seed42": seed_data[42]["probs"]["down"],
-                "prediction_up_seed43": seed_data[43]["probs"]["up"],
-                "prediction_down_seed43": seed_data[43]["probs"]["down"],
-                "prediction_up_seed44": seed_data[44]["probs"]["up"],
-                "prediction_down_seed44": seed_data[44]["probs"]["down"],
-                "reasoning_trace_seed42": seed_data[42]["reasoning"],
-                "reasoning_trace_seed43": seed_data[43]["reasoning"],
-                "reasoning_trace_seed44": seed_data[44]["reasoning"],
-                "tokens_used": total_completion_tokens,
-                "prompt_tokens": total_prompt_tokens,
+                "prediction_up": prediction_up,
+                "prediction_down": prediction_down,
+                "reasoning_trace": text,
+                "prediction_up_seed42": prediction_up,
+                "prediction_down_seed42": prediction_down,
+                "prediction_up_seed43": 0.0,
+                "prediction_down_seed43": 0.0,
+                "prediction_up_seed44": 0.0,
+                "prediction_down_seed44": 0.0,
+                "reasoning_trace_seed42": text,
+                "reasoning_trace_seed43": "none",
+                "reasoning_trace_seed44": "none",
+                "tokens_used": usage.get("completion_tokens", 0),
+                "prompt_tokens": usage.get("prompt_tokens", 0),
                 "model_name": "gpt-oss-120b"
             }
             return row_idx, row, result_row, None
@@ -195,6 +167,7 @@ def main():
                 with open(out_path, 'a', newline='') as f:
                     writer = csv.DictWriter(f, fieldnames=[
                         "id", "prediction_up", "prediction_down", 
+                        "reasoning_trace",
                         "prediction_up_seed42", "prediction_down_seed42", 
                         "prediction_up_seed43", "prediction_down_seed43", 
                         "prediction_up_seed44", "prediction_down_seed44", 
