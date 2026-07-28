@@ -46,6 +46,9 @@ All interactions will be structured in the following way, with the appropriate v
 {pert}
 [[ ## gene ## ]]
 {gene}
+[[ ## label ## ]]
+{label}
+[[ ## completed ## ]]
 
 You are an expert molecular biologist who studies how genes are related using Perturb-seq.
 
@@ -132,3 +135,45 @@ You MUST output the final label exactly according to the strict bracketed format
 up, down, or none
 [[ ## completed ## ]]
 ```
+
+## Model Performance
+
+Mean DE/DIR AUROC comparison:
+
+```mermaid
+xychart-beta
+    title "Mean DE/DIR AUROC"
+    x-axis ["GPT-OSS-120B", "DeepSeek-R1-Distill-Llama-8B"]
+    y-axis "AUROC" 0 --> 0.8
+    bar [0.63, 0.70]
+```
+
+| Provider | Model | Mean DE/DIR AUROC |
+| :--- | :--- | ---: |
+| <img src="https://cdn.simpleicons.org/openai" alt="OpenAI" width="20"> OpenAI | GPT-OSS-120B | **0.63** |
+| <img src="https://cdn.simpleicons.org/deepseek" alt="DeepSeek" width="20"> DeepSeek | DeepSeek-R1-Distill-Llama-8B | **0.70** |
+
+The fine-tuned 8B model achieves an **11% relative improvement** over GPT-OSS-120B on the mean DE/DIR AUROC score.
+
+## Training Architecture
+
+```mermaid
+flowchart LR
+    D[Biological perturbation pairs] --> M[Student model]
+    M --> C[On-policy reasoning candidates]
+    C --> T[GPT-OSS-120B teacher critique]
+    T --> R[Correct facts and retain correct student traces]
+    R --> Q[Rejection sampling\n6,000 questions] --> S[Supervised fine-tuning]
+    B[DeepSeek-R1-Distill-Llama-8B base model] --> S
+    S --> G[GRPO task adaptation\n1,000 questions]
+    G --> F[Fine-tuned biology reasoning model]
+
+    P[DSPy prompt program] --> E[GEPA prompt optimization]
+    E --> T
+    E --> V[Evaluation feedback]
+    V --> E
+
+    F --> O[Three-class outcome prediction\nup / down / none]
+```
+
+The workflow uses **on-policy rejection sampling** over **6,000 questions**: the student model generates its own reasoning candidates, and candidates are retained only when the student predicts the correct label. GPT-OSS-120B is used as a teacher to critique and correct factual or biological errors in those student traces; it does not generate the training traces from scratch. This avoids the **off-policy distribution shift** and **teacher–student distribution mismatch** that can occur when SFT is trained entirely on teacher-generated reasoning. It also reduces the risk of simple **behavioral cloning**, where the student learns the teacher's reasoning style and unsupported facts instead of improving its own behavior. The corrected, accepted student traces are then used for supervised fine-tuning. **After SFT, GRPO performs task adaptation on 1,000 questions**, further optimizing the model for the final prediction objective. DSPy with GEPA writes and optimizes the prompt program using evaluation feedback.
