@@ -2,10 +2,7 @@
   <img src="docs/assets/kaggle-header.png" alt="MLGenX BioReasoning Challenge" width="100%">
 </p>
 
-<p align="center">
-  Sample-efficient hybrid-policy fine-tuning with 6,000 rejection-sampling and 1,000 GRPO questions.<br>
-  Fine-tuned DeepSeek-R1-Distill-Llama-8B: 0.70 mean DE/DIR AUROC vs GPT-OSS-120B: 0.63 (+11%).
-</p>
+<h1 align="center">Sample-efficient hybrid-policy fine-tuning with rejection sampling and GRPO</h1>
 
 ## Technology Stack
 
