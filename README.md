@@ -9,7 +9,7 @@
 | Technology                                                         | Role                                                                           | Stage     |
 | :----------------------------------------------------------------- | :----------------------------------------------------------------------------- | :-------- |
 | <img src="docs/assets/dspy-logo.png" alt="DSPy" height="22">       | Automated prompt writing and optimization with GEPA from evaluation feedback   | Prompting |
-| <img src="docs/assets/unsloth-logo.png" alt="Unsloth" height="22"> | Accelerated supervised fine-tuning                                             | SFT · T4  |
+| <img src="docs/assets/unsloth-logo.png" alt="Unsloth" height="22"> | Accelerated LoRA supervised fine-tuning                                        | LoRA SFT · T4 |
 | <img src="docs/assets/trl-logo.png" alt="TRL" height="22">         | Group Relative Policy Optimization (GRPO) for task-specific outcome prediction | RL · H100 |
 | <img src="docs/assets/vllm-logo.png" alt="vLLM" height="22">       | Continuous batching and high-throughput model inference                        | Inference |
 
@@ -147,7 +147,7 @@ up, down, or none
 
 ## Inference Prompt for the Fine-Tuned Model
 
-The fine-tuned model uses the shorter system and user prompt shown together below. `{pert}` and `{gene}` are replaced for each gene pair.
+The LoRA fine-tuned model uses the shorter system and user prompt shown together below. `{pert}` and `{gene}` are replaced for each gene pair.
 
 ```text
 SYSTEM
@@ -216,7 +216,7 @@ flowchart TD
     C -->|"Yes"| T["GPT-OSS-120B teacher<br/>fact-checks and corrects"]
     T --> R["Accepted corrected<br/>student reasoning traces"]
 
-    B["DeepSeek-R1-Distill-Llama-8B<br/>base model"] --> S["SFT with Unsloth<br/>NVIDIA T4"]
+    B["DeepSeek-R1-Distill-Llama-8B<br/>base model"] --> S["LoRA SFT with Unsloth<br/>NVIDIA T4"]
     R --> S
     S --> G["GRPO task adaptation<br/>1,000 questions · NVIDIA H100"]
     G --> F["Fine-tuned DeepSeek<br/>biology reasoning model"]
@@ -228,5 +228,5 @@ flowchart TD
 - **Rejection sampling:** Only candidates with the correct final label are retained.
 - **Teacher correction:** GPT-OSS-120B checks and corrects scientific facts in accepted student traces; it does not generate the traces from scratch.
 - **Distribution preservation:** Student-generated traces avoid off-policy distribution shift, teacher-student distribution mismatch, and behavioral cloning of the teacher's reasoning style.
-- **Supervised fine-tuning:** Corrected student traces are used to fine-tune DeepSeek-R1-Distill-Llama-8B with Unsloth on an NVIDIA T4.
+- **Supervised fine-tuning:** Corrected student traces are used for LoRA fine-tuning of DeepSeek-R1-Distill-Llama-8B with Unsloth on an NVIDIA T4.
 - **GRPO:** After SFT, 1,000 questions are used for task-specific reinforcement learning on an NVIDIA H100.
