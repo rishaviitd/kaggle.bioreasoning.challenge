@@ -1,10 +1,42 @@
-# BioReasoning Prompt
+<p align="center">
+  <img src="docs/assets/kaggle-header.png" alt="MLGenX BioReasoning Challenge" width="100%">
+</p>
 
-## DSPy Interface
+<h1 align="center">Sample-Efficient BioReasoning</h1>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/stanfordnlp/dspy/main/docs/docs/static/img/dspy_logo.png" alt="DSPy" width="220">
+  <strong>Sample-efficient hybrid-policy fine-tuning</strong><br>
+  On-policy student reasoning + off-policy teacher factual correction
 </p>
+
+<p align="center">
+  <strong>Fine-tuned DeepSeek-R1-Distill-Llama-8B beat its GPT-OSS-120B teacher</strong><br>
+  <strong>0.70 vs 0.63 mean DE/DIR AUROC · 11% relative gain</strong>
+</p>
+
+<p align="center">
+  Achieved with only <strong>6,000 rejection-sampling questions</strong> and
+  <strong>1,000 GRPO questions</strong>.
+</p>
+
+<p align="center">
+  <img src="docs/assets/dspy-logo.png" alt="DSPy" height="52">
+  &nbsp;&nbsp;&nbsp;&nbsp;
+  <img src="docs/assets/unsloth-logo.png" alt="Unsloth" height="52">
+  &nbsp;&nbsp;&nbsp;&nbsp;
+  <img src="docs/assets/vllm-logo.png" alt="vLLM" height="52">
+</p>
+
+## Technology Stack
+
+| Technology | Role | Stage / Compute |
+| :--- | :--- | :--- |
+| <img src="docs/assets/dspy-logo.png" alt="DSPy" height="22"> DSPy + GEPA | Automated prompt writing and optimization from evaluation feedback | Prompt optimization |
+| <img src="docs/assets/unsloth-logo.png" alt="Unsloth" height="22"> Unsloth | Accelerated supervised fine-tuning | **SFT · NVIDIA T4** |
+| TRL + GRPO | Reinforcement learning for task-specific outcome prediction | **GRPO · NVIDIA H100** |
+| <img src="docs/assets/vllm-logo.png" alt="vLLM" height="22"> vLLM | Continuous batching and high-throughput model inference | Inference and rejection sampling |
+
+## DSPy Interface
 
 The prompt is used through a DSPy chain-of-thought signature with two input fields and one final output field. DSPy handles the reasoning internally; only the final label is exposed:
 
@@ -138,42 +170,41 @@ up, down, or none
 
 ## Model Performance
 
-Mean DE/DIR AUROC comparison:
+<p align="center">
+  <img src="docs/assets/model-performance.svg" alt="Fine-tuned DeepSeek model compared with GPT-OSS-120B on mean DE/DIR AUROC" width="100%">
+</p>
 
-```mermaid
-xychart-beta
-    title "Mean DE/DIR AUROC"
-    x-axis ["GPT-OSS-120B", "DeepSeek-R1-Distill-Llama-8B"]
-    y-axis "AUROC" 0 --> 0.8
-    bar [0.63, 0.70]
-```
-
-| Provider | Model | Mean DE/DIR AUROC |
-| :--- | :--- | ---: |
-| <img src="https://cdn.simpleicons.org/openai" alt="OpenAI" width="20"> OpenAI | GPT-OSS-120B | **0.63** |
-| <img src="https://cdn.simpleicons.org/deepseek" alt="DeepSeek" width="20"> DeepSeek | DeepSeek-R1-Distill-Llama-8B | **0.70** |
-
-The fine-tuned 8B model achieves an **11% relative improvement** over GPT-OSS-120B on the mean DE/DIR AUROC score.
+- **GPT-OSS-120B:** 0.63 mean DE/DIR AUROC
+- **Fine-tuned DeepSeek-R1-Distill-Llama-8B:** 0.70 mean DE/DIR AUROC
+- **Relative gain:** 11%
 
 ## Training Architecture
 
 ```mermaid
-flowchart LR
-    D[Biological perturbation pairs] --> M[Student model]
-    M --> C[On-policy reasoning candidates]
-    C --> T[GPT-OSS-120B teacher critique]
-    T --> R[Correct facts and retain correct student traces]
-    R --> Q[Rejection sampling\n6,000 questions] --> S[Supervised fine-tuning]
-    B[DeepSeek-R1-Distill-Llama-8B base model] --> S
-    S --> G[GRPO task adaptation\n1,000 questions]
-    G --> F[Fine-tuned biology reasoning model]
+flowchart TD
+    P["DSPy prompt program"] --> E["GEPA prompt optimization"]
+    E --> D["6,000 biological questions"]
+    D --> M["Student model generates<br/>on-policy reasoning"]
+    M --> C{"Correct final label?"}
+    C -->|"No"| X["Reject candidate"]
+    C -->|"Yes"| T["GPT-OSS-120B teacher<br/>fact-checks and corrects"]
+    T --> R["Accepted corrected<br/>student reasoning traces"]
 
-    P[DSPy prompt program] --> E[GEPA prompt optimization]
-    E --> T
-    E --> V[Evaluation feedback]
-    V --> E
+    B["DeepSeek-R1-Distill-Llama-8B<br/>base model"] --> S["SFT with Unsloth<br/>NVIDIA T4"]
+    R --> S
+    S --> G["GRPO task adaptation<br/>1,000 questions · NVIDIA H100"]
+    G --> F["Fine-tuned DeepSeek<br/>biology reasoning model"]
+    F --> I["High-throughput inference<br/>with vLLM"]
+    I --> O["Three-class prediction<br/>up / down / none"]
 
-    F --> O[Three-class outcome prediction\nup / down / none]
+    M -.-> V["Evaluation feedback"]
+    V -.-> E
 ```
 
-The workflow uses **on-policy rejection sampling** over **6,000 questions**: the student model generates its own reasoning candidates, and candidates are retained only when the student predicts the correct label. GPT-OSS-120B is used as a teacher to critique and correct factual or biological errors in those student traces; it does not generate the training traces from scratch. This avoids the **off-policy distribution shift** and **teacher–student distribution mismatch** that can occur when SFT is trained entirely on teacher-generated reasoning. It also reduces the risk of simple **behavioral cloning**, where the student learns the teacher's reasoning style and unsupported facts instead of improving its own behavior. The corrected, accepted student traces are then used for supervised fine-tuning. **After SFT, GRPO performs task adaptation on 1,000 questions**, further optimizing the model for the final prediction objective. DSPy with GEPA writes and optimizes the prompt program using evaluation feedback.
+- **On-policy generation:** The student generates reasoning candidates for 6,000 questions.
+- **Rejection sampling:** Only candidates with the correct final label are retained.
+- **Teacher correction:** GPT-OSS-120B checks and corrects scientific facts in accepted student traces; it does not generate the traces from scratch.
+- **Distribution preservation:** Student-generated traces avoid off-policy distribution shift, teacher-student distribution mismatch, and behavioral cloning of the teacher's reasoning style.
+- **Supervised fine-tuning:** Corrected student traces are used to fine-tune DeepSeek-R1-Distill-Llama-8B with Unsloth on an NVIDIA T4.
+- **GRPO:** After SFT, 1,000 questions are used for task-specific reinforcement learning on an NVIDIA H100.
+- **Prompt optimization:** DSPy with GEPA writes and optimizes the inference prompt from evaluation feedback.
