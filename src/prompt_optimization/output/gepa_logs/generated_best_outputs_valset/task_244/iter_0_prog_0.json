@@ -1,0 +1,4 @@
+{
+    "reasoning": "CHD4 is the catalytic core of the NuRD repressive complex; loss of CHD4 diminishes HDAC\u2011mediated deacetylation and chromatin remodeling at genes that the complex normally silences. Mrc1 (mannose receptor) is a typical M2\u2011associated gene that is repressed in LPS\u2011stimulated (M1) macrophages, and its promoter is likely a NuRD target. Therefore, CHD4 knockout is expected to relieve repression and increase Mrc1 transcription.",
+    "label": "up"
+}

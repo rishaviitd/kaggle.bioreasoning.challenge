@@ -1,0 +1,4 @@
+{
+    "reasoning": "Becn1 is a core autophagy protein and does not directly bind or modify the Gapdh promoter. Its loss can trigger cellular stress (e.g., ER stress, ROS) that may activate pathways such as p53 or ATF4, which can influence glycolytic gene expression, but the net effect on Gapdh transcription in LPS\u2011stimulated BMDMs is not well\u2011defined and could be either up\u2011 or down\u2011regulation. Because there is no clear, experimentally supported direct or indirect mechanism predicting a consistent change, the safest assignment is \u201cnone\u201d.",
+    "label": "none"
+}

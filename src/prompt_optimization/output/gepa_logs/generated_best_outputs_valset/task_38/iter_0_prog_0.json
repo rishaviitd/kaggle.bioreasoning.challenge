@@ -1,0 +1,4 @@
+{
+    "reasoning": "IFNAR1 is the receptor subunit for type\u202fI interferons; its loss blocks IFN\u2011\u03b1/\u03b2\u2011JAK/STAT signaling that directly drives transcription of interferon\u2011stimulated genes such as Gbp2 via ISGF3 binding to the Gbp2 promoter. Consequently, Gbp2 mRNA is expected to decrease when IFNAR1 is knocked out.",
+    "label": "down"
+}

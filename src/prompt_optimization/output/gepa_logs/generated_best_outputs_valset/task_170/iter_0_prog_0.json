@@ -1,0 +1,4 @@
+{
+    "reasoning": "Cwc25 is a core spliceosome component with no known DNA\u2011binding or chromatin\u2011modifying activity, so there is no direct regulatory link to Vwa5a. Indirectly, loss of a splicing factor can alter expression of downstream targets by causing mis\u2011splicing of transcriptional repressors, but there is no documented repressor of Vwa5a that is known to be splicing\u2011sensitive. Likewise, Vwa5a itself is not reported as a splicing\u2011sensitive transcript in BMDMs. With no mechanistic evidence for up\u2011 or down\u2011regulation, the effect is indeterminate.",
+    "label": "none"
+}

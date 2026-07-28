@@ -1,0 +1,4 @@
+{
+    "reasoning": "Spc24 is a kinetochore component with no known function as a transcription factor, chromatin modifier, or signaling regulator in macrophages, and there is no reported direct binding to the Bcat2 promoter.  Loss of Spc24 may cause mitotic stress, but the established stress\u2011response axes (ribosomal/nucleolar stress \u2192 p53, ISR \u2192 ATF4, UPR) do not specifically connect to Bcat2 expression, and no evidence links Bcat2 to p53\u2011 or ATF4\u2011dependent transcription in BMDMs.  Consequently, there is insufficient mechanistic support to predict a reproducible up\u2011 or down\u2011regulation.",
+    "label": "none"
+}

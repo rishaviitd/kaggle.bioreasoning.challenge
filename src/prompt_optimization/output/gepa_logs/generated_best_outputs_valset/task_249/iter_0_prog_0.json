@@ -1,0 +1,4 @@
+{
+    "reasoning": "Reasoning: Slc7a6os encodes a non\u2011canonical protein/lncRNA with no reported function as a transcription factor, chromatin modifier, splicing factor, amino\u2011acyl\u2011tRNA synthetase, kinase, phosphatase, or ubiquitin\u2011related enzyme in macrophages. There is no known direct binding or regulatory interaction between Slc7a6os and the promoter of 3010003L21Rik, and none of the indirect mechanisms (stress\u2011response axes, splicing\u2011mediated derepression, ISR activation, scaffold or m6A pathways) plausibly connect these two genes. Consequently, the knockout is not expected to produce a reproducible directional change in 3010003L21Rik expression.",
+    "label": "none"
+}

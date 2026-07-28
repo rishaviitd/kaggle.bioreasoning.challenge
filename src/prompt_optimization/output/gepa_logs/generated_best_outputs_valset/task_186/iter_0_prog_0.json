@@ -1,0 +1,4 @@
+{
+    "reasoning": "ARID1A is a core scaffold subunit of the BAF (SWI/SNF) chromatin\u2011remodeling complex, which functions as a transcriptional co\u2011activator for many NF\u2011\u03baB\u2011responsive genes in LPS\u2011stimulated macrophages. Loss of this activating scaffold reduces chromatin accessibility and Pol\u202fII recruitment at target promoters, so genes that depend on SWI/SNF\u2011mediated activation\u2014such as the metabolic enzyme\u202fUpp1\u2014are expected to be expressed at lower levels. No direct ARID1A\u2011Upp1 binding has been reported, but the indirect scaffold\u2011mediated activation mechanism predicts a decrease.",
+    "label": "down"
+}

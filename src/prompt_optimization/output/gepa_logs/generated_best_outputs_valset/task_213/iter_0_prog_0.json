@@ -1,0 +1,4 @@
+{
+    "reasoning": "Reasoning: CLP1 is an RNA kinase involved in tRNA splicing and pre\u2011mRNA 3\u2032\u2011end processing, not a transcription factor, chromatin modifier, or signaling kinase with documented targets, and there is no known direct regulatory link between CLP1 and the folate\u2011cycle gene Mthfs. Although loss of CLP1 could provoke cellular stress, there is no specific evidence that it activates the integrated stress response or ATF4 in BMDMs, nor that Mthfs is an ATF4\u2011responsive gene in this setting. Consequently, a reproducible directional change cannot be inferred.",
+    "label": "none"
+}

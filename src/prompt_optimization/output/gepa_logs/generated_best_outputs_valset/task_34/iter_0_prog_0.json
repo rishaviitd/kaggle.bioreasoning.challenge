@@ -1,0 +1,4 @@
+{
+    "reasoning": "Reasoning: Rheb activates mTORC1, which enhances NF\u2011\u03baB\u2011dependent transcription in LPS\u2011stimulated BMDMs; knockout of Rheb diminishes mTORC1 signaling, leading to reduced NF\u2011\u03baB activity and consequently lower expression of the NF\u2011\u03baB\u2011responsive gene Trim30c. No direct TF\u2011gene link is known, and the pathway is not saturated, supporting a down\u2011regulation prediction.",
+    "label": "down"
+}

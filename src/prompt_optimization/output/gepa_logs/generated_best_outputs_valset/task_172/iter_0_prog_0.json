@@ -1,0 +1,4 @@
+{
+    "reasoning": "ATF4 is a transcription factor that directly binds the promoter of Asns and drives its transcription as part of the integrated stress response; loss of ATF4 therefore removes this activation, leading to reduced Asns mRNA levels. No evidence suggests pathway saturation or compensatory mechanisms that would mask this effect in BMDMs.",
+    "label": "down"
+}

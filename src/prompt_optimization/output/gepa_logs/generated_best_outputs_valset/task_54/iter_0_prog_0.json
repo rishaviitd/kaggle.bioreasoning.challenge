@@ -1,0 +1,4 @@
+{
+    "reasoning": "ATF4 is a transcription factor that drives the integrated stress response, but there is no reported ChIP\u2011seq or literature evidence of ATF4 binding to the Gpnmb promoter/enhancer, nor is Gpnmb a recognized ATF4\u2011responsive gene in macrophages. No indirect mechanisms (splicing\u2011mediated derepression, ISR\u2011dependent activation of a TF that controls Gpnmb, scaffold or ubiquitin\u2011ligase pathways) link ATF4 loss to Gpnmb transcription in BMDMs. Consequently, the knockout is not expected to cause a reproducible change.",
+    "label": "none"
+}

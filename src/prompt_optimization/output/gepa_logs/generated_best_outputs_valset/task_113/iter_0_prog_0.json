@@ -1,0 +1,4 @@
+{
+    "reasoning": "Reasoning: PPP2R3c encodes a regulatory subunit of the PP2A phosphatase complex and is not known to bind the Rad51b promoter or directly control its transcription. No established indirect pathway (e.g., stress\u2011response, splicing, m6A, kinase/phosphatase signaling) links PPP2R3c loss to Rad51b expression in macrophages, and the relevant transcriptional programs are not saturated or redundant in a way that would mask an effect. Consequently, there is insufficient evidence to predict a consistent up\u2011 or down\u2011regulation.",
+    "label": "none"
+}

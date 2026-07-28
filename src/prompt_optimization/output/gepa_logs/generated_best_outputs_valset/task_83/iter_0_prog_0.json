@@ -1,0 +1,4 @@
+{
+    "reasoning": "Actr6 encodes a subunit of the Arp2/3 actin\u2011nucleating complex, which is required for proper actin remodeling that supports TLR\u2011driven NF\u2011\u03baB activation in macrophages.  Loss of Actr6 diminishes NF\u2011\u03baB signaling, and Cd69 is a well\u2011known NF\u2011\u03baB\u2011responsive early activation gene; therefore its transcription is expected to decrease.  No direct TF\u2011binding evidence exists, so the effect is inferred via this indirect positive\u2011regulator pathway.",
+    "label": "down"
+}

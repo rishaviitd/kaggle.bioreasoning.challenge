@@ -1,0 +1,4 @@
+{
+    "reasoning": "RRAGA is a Rag GTPase that positively regulates mTORC1 in response to amino acids. Its knockout diminishes mTORC1 activity, creating an amino\u2011acid\u2011starvation\u2011like state that activates the GCN2\u2011eIF2\u03b1\u2011ATF4 integrated stress response. ATF4 is a known transcriptional activator of the mitochondrial one\u2011carbon enzyme gene\u202fMthfd2, so loss of RRAGA is expected to increase Mthfd2 mRNA levels.",
+    "label": "up"
+}

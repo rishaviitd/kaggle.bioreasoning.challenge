@@ -1,0 +1,4 @@
+{
+    "reasoning": "Psmd13 encodes a non\u2011ATPase subunit of the 19S proteasome regulatory particle and is not a transcription factor, chromatin modifier, or RNA\u2011binding protein that directly regulates Trappc9. Loss of Psmd13 primarily impairs proteasome activity, which can trigger general stress responses (e.g., UPR/ISR, p53 stabilization) and alter NF\u2011\u03baB signaling, but there is no documented direct or indirect pathway linking Psmd13 deficiency to transcriptional activation or repression of the Trappc9 promoter in BMDMs. Consequently, the evidence is insufficient to assign a reproducible up\u2011 or down\u2011regulation.",
+    "label": "none"
+}

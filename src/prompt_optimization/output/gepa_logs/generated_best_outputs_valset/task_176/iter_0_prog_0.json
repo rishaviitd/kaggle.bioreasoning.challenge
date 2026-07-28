@@ -1,0 +1,4 @@
+{
+    "reasoning": "CHD4 is a core component of the NuRD co\u2011repressor complex that deacetylates histones and remodels nucleosomes to silence transcription of many inflammatory genes in macrophages. Loss of CHD4 removes this repressive scaffold, leading to increased histone acetylation and enhanced NF\u2011\u03baB/STAT\u2011driven transcription of cytokine genes such as Ebi3. Therefore the knockout is expected to cause up\u2011regulation of Ebi3.",
+    "label": "up"
+}

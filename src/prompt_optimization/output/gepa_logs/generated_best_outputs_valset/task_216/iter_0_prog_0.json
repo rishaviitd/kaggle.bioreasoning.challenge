@@ -1,0 +1,4 @@
+{
+    "reasoning": "IRF2 is a transcription factor that mainly represses interferon\u2011stimulated genes; there is no reported ChIP or motif evidence that IRF2 directly binds the Rap2a promoter. Loss of IRF2 broadly enhances type\u202fI IFN signaling, but Rap2a is not known to be an IFN\u2011responsive gene, nor is it a documented target of pathways downstream of IRF2. No indirect mechanism (splicing, ISR, kinase, scaffold, m6A, ubiquitin) links IRF2 to Rap2a expression in BMDMs. Therefore the knockout is not expected to cause a reproducible change.",
+    "label": "none"
+}

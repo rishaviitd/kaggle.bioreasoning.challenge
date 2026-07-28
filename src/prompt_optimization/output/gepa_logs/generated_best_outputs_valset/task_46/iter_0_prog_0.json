@@ -1,0 +1,4 @@
+{
+    "reasoning": "Dpm2 is a subunit of the dolichyl\u2011phosphate\u2011mannose synthase complex required for proper N\u2011glycosylation. Loss of Dpm2 impairs protein glycosylation, causing accumulation of misfolded proteins in the ER and activation of the unfolded\u2011protein response (PERK/ATF4, IRE1\u2011XBP1, ATF6). Hsp90b1 (GRP94) is a canonical UPR target gene, up\u2011regulated by ATF6 and XBP1, so Dpm2 knockout is expected to increase its transcription.",
+    "label": "up"
+}

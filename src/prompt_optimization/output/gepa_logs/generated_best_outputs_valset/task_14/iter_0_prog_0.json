@@ -1,0 +1,4 @@
+{
+    "reasoning": "Dpm2 encodes a subunit of the dolichyl\u2011phosphate\u2011mannose synthase complex and is not a transcription factor, chromatin modifier, or RNA\u2011binding regulator of Arhgap15. Its loss can provoke ER stress and activate the unfolded\u2011protein response, but Arhgap15 is not a documented ATF4, XBP1 or NF\u2011\u03baB target in macrophages. With no direct or well\u2011supported indirect regulatory link, the effect on Arhgap15 expression is indeterminate.",
+    "label": "none"
+}

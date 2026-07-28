@@ -1,0 +1,4 @@
+{
+    "reasoning": "Tyrobp encodes the DAP12 adaptor that transduces activating signals from receptors such as TREM2 to Syk\u2011PI3K\u2011MAPK and NF\u2011\u03baB pathways in macrophages. It is not a transcription factor, so there is no direct DNA\u2011binding regulation of\u202fSmpdl3a. However, Smpdl3a expression is known to be up\u2011regulated in LPS\u2011stimulated BMDMs and its promoter contains NF\u2011\u03baB motifs, making it a downstream NF\u2011\u03baB target. Loss of Tyrobp attenuates NF\u2011\u03baB signaling, which would reduce transcription of NF\u2011\u03baB\u2011dependent genes such as\u202fSmpdl3a, leading to a reproducible decrease.",
+    "label": "down"
+}

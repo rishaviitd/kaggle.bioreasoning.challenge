@@ -1,0 +1,4 @@
+{
+    "reasoning": "Cul1 is a core scaffold of SCF ubiquitin\u2011ligase complexes that promote degradation of many substrates, notably I\u03baB\u03b1, thereby facilitating NF\u2011\u03baB activation. No direct ChIP or literature evidence links Cul1 to transcriptional regulation of Slc12a9, and Slc12a9 is not a documented NF\u2011\u03baB\u2011responsive gene in BMDMs. Lacking a known direct or indirect pathway, the effect of Cul1 loss on Slc12a9 expression cannot be inferred.",
+    "label": "none"
+}

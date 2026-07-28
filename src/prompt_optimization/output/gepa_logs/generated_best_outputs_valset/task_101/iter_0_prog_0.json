@@ -1,0 +1,4 @@
+{
+    "reasoning": "ACTR6 is a component of the SRCAP chromatin\u2011remodeling complex that deposits the activating histone variant H2A.Z at promoters. Loss of ACTR6 can reduce H2A.Z incorporation and therefore diminish transcription of genes that rely on this mark, such as Pbxip1. However, H2A.Z deposition is also mediated by the paralogous EP400/p400 complex, providing functional redundancy that often buffers the effect of ACTR6 loss in macrophages; thus a consistent change in Pbxip1 expression is unlikely to be detectable.",
+    "label": "none"
+}

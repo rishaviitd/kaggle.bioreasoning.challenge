@@ -1,0 +1,4 @@
+{
+    "reasoning": "Clp1 is a tRNA\u2011splicing/cleavage\u2011polyadenylation factor and not a transcription factor; there is no reported ChIP or direct binding to the H2\u2011T22 promoter. Although loss of CLP1 could trigger a general stress response (e.g., ISR) or affect splicing of upstream repressors, there is no specific evidence that such indirect mechanisms would consistently alter H2\u2011T22 transcription in BMDMs. Consequently, the direction of change cannot be determined with confidence.",
+    "label": "none"
+}

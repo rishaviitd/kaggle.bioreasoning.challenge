@@ -1,0 +1,4 @@
+{
+    "reasoning": "Reasoning: LENG8 encodes an RNA export factor and is not a transcription factor, chromatin modifier, or known regulator of signaling pathways that control Blvrb expression. There is no documented direct binding of LENG8 to the Blvrb promoter, nor any established indirect mechanism (e.g., splicing\u2011mediated derepression, ISR activation, scaffold\u2011mediated chromatin changes) linking LENG8 loss to altered Blvrb transcription in BMDMs. Consequently, the knockout is unlikely to produce a reproducible up\u2011 or down\u2011regulation of Blvrb.",
+    "label": "none"
+}

@@ -1,0 +1,4 @@
+{
+    "reasoning": "PHB2 does not directly bind the Cxcl2 promoter, but it functions as a mitochondrial and nuclear scaffold that represses NF\u2011\u03baB signaling; loss of PHB2 enhances NF\u2011\u03baB activity and consequently increases expression of NF\u2011\u03baB\u2011responsive chemokines such as Cxcl2. No evidence of pathway saturation or complete redundancy with PHB1 in this context, so the up\u2011regulation is expected.",
+    "label": "up"
+}

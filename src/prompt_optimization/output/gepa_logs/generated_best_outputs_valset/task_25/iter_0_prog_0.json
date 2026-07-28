@@ -1,0 +1,4 @@
+{
+    "reasoning": "Spc24 is a kinetochore component of the NDC80 complex and functions in chromosome segregation; it is not a transcription factor, chromatin modifier, or known regulator of mRNA stability. There is no reported direct binding of Spc24 to the promoter of Gm28809, nor any established indirect pathway (e.g., stress\u2011response, splicing, kinase/phosphatase signaling) that connects loss of a kinetochore protein to altered transcription of this specific gene in BMDMs. Consequently, the knockout is unlikely to produce a reproducible, direction\u2011specific change in Gm28809 expression.",
+    "label": "none"
+}

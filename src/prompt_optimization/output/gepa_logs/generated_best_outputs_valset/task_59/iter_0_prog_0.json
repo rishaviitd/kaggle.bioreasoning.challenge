@@ -1,0 +1,4 @@
+{
+    "reasoning": "ARID1A is a core subunit of the SWI/SNF (BAF) chromatin\u2011remodeling complex that acts as an activating scaffold, promoting nucleosome displacement and transcription at NF\u2011\u03baB\u2011responsive promoters. Icam1 is a classic NF\u2011\u03baB\u2011induced adhesion molecule in LPS\u2011stimulated BMDMs, and loss of ARID1A impairs chromatin accessibility at such promoters, leading to reduced transcription. Therefore, ARID1A knockout is expected to decrease Icam1 mRNA levels.",
+    "label": "down"
+}

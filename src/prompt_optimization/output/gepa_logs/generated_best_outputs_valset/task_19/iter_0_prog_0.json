@@ -1,0 +1,4 @@
+{
+    "reasoning": "PHB2 is a mitochondrial inner\u2011membrane protein that does not directly bind DNA; however, its loss causes mitochondrial dysfunction and oxidative stress, which can activate the integrated stress response and the unfolded\u2011protein response, leading to ATF4\u2011mediated transcription. ERO1A is a well\u2011known ATF4 target that is induced during ER stress. Therefore, PHB2 knockout is expected to increase ERO1A expression indirectly via stress\u2011response activation.",
+    "label": "up"
+}

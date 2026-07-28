@@ -1,0 +1,4 @@
+{
+    "reasoning": "Ly96 (MD\u20112) is a co\u2011receptor for TLR4 and functions as a signaling adaptor, not a transcription factor or chromatin modifier; therefore there is no direct regulatory connection to Dag1. Dag1 (dystroglycan 1) is not documented as an NF\u2011\u03baB, AP\u20111, or interferon\u2011stimulated gene in macrophages, and loss of Ly96 mainly attenuates TLR4\u2011driven inflammatory transcription rather than affecting basal structural genes. With no known direct or indirect pathway linking Ly96 to Dag1 expression, the knockout is unlikely to produce a reproducible up\u2011 or down\u2011regulation.",
+    "label": "none"
+}

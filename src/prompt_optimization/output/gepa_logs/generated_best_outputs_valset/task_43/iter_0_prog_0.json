@@ -1,0 +1,4 @@
+{
+    "reasoning": "Psmd13 encodes a non\u2011ATPase subunit of the 19S regulatory particle of the 26S proteasome. Loss of this subunit impairs proteasome\u2011mediated degradation of I\u03baB\u03b1, thereby attenuating NF\u2011\u03baB activation. Plaur (uPAR) is a well\u2011documented NF\u2011\u03baB\u2011responsive gene in LPS\u2011stimulated macrophages, so reduced NF\u2011\u03baB signaling predicts decreased Plaur mRNA levels.",
+    "label": "down"
+}

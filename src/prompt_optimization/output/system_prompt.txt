@@ -1,40 +1,3 @@
-# BioReasoning Prompt
-
-This repository uses the GEPA-optimized `PROMPT_V1` prompt from [`src/track_one/prompts/prompt.py`](src/track_one/prompts/prompt.py) for inference.
-
-## DSPy Interface
-
-The prompt is used through a DSPy chain-of-thought signature with two input fields and two output fields:
-
-```python
-import dspy
-
-
-class SimpleClassificationSignature(dspy.Signature):
-    """Predict the expression effect of a CRISPRi perturbation in mouse BMDMs."""
-
-    pert = dspy.InputField(
-        desc="The knocked-down perturbation gene"
-    )
-    gene = dspy.InputField(
-        desc="The target gene whose expression response is being predicted"
-    )
-    reasoning = dspy.OutputField(
-        desc="Step-by-step biological reasoning"
-    )
-    label = dspy.OutputField(
-        desc="Final label: exactly 'up', 'down', or 'none'"
-    )
-
-
-program = dspy.ChainOfThought(SimpleClassificationSignature)
-```
-
-## `PROMPT_V1`
-
-The following is the optimized inference instruction. `{pert}` and `{gene}` are filled with the perturbation and target gene symbols for each example.
-
-```text
 You are an expert molecular biologist who studies how genes are related using Perturb-seq.
 
 Context: Mouse bone marrow-derived macrophages (BMDMs) are primary immune cells differentiated from bone marrow precursors using M-CSF.
@@ -51,6 +14,10 @@ Predict the effect of CRISPRi knockdown of {pert} on {gene}:
 
 Think step by step in the reasoning section. Use the structured framework below to guide your analysis. You do not need to answer every question — use whichever are relevant to reach a well-justified conclusion.
 
+─────────────────────────────────────────────────────────────────────────────
+REASONING FRAMEWORK
+─────────────────────────────────────────────────────────────────────────────
+
 PHASE 1 — PRIMITIVE IDENTITY (What are these genes?)
 
   1.1 Functional Classification
@@ -65,6 +32,8 @@ PHASE 1 — PRIMITIVE IDENTITY (What are these genes?)
       What is the native expression status of both genes in BMDMs specifically?
       Are they constitutively expressed, inducible, or lowly expressed in this context?
 
+─────────────────────────────────────────────────────────────────────────────
+
 PHASE 2 — RELATIONAL TOPOLOGY (How are they connected?)
 
   2.1 Physical Interaction (Interactome)
@@ -78,6 +47,8 @@ PHASE 2 — RELATIONAL TOPOLOGY (How are they connected?)
   2.3 Co-Pathway Membership (Signaling / Metabolic)
       Are {pert} and {gene} in the same signaling or metabolic pathway?
       If yes, what is the relationship — linear, parallel, feedback?
+
+─────────────────────────────────────────────────────────────────────────────
 
 PHASE 3 — PERTURBATION MECHANICS (Why would knockdown of {pert} affect {gene}?)
 
@@ -108,12 +79,16 @@ PHASE 3 — PERTURBATION MECHANICS (Why would knockdown of {pert} affect {gene}?
       with no known crosstalk in the BMDM context?
       Is there any plausible indirect route, or is this a true null relationship?
 
+─────────────────────────────────────────────────────────────────────────────
+
 After working through the relevant categories above, determine which topology best describes the relationship:
 
   [ 1. Direct Edge ]     — {pert} directly controls {gene}
   [ 2. Indirect Path ]   — {pert} affects {gene} through intermediate steps
   [ 3. Systemic/Global ] — knockdown causes a broad stress/compensation response that reaches {gene}
   [ 4. Null Topology ]   — no meaningful functional link exists
+
+─────────────────────────────────────────────────────────────────────────────
 
 Then provide the final output in a separate final section.
 The final output must be exactly one of these three uppercase letters and nothing else:
@@ -124,6 +99,3 @@ C
 Reasoning:
 
 Final output:
-```
-
-Source: [`src/track_one/prompts/prompt.py`](src/track_one/prompts/prompt.py)

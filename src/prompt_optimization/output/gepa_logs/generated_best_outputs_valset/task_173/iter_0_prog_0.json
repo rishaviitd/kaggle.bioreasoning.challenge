@@ -1,0 +1,4 @@
+{
+    "reasoning": "Gtf2h1 encodes the p62 subunit of the TFIIH complex, a core scaffold that is essential for RNA\u202fPol\u202fII transcription initiation and promoter clearance. Loss of this activating scaffold reduces global Pol\u202fII activity, leading to decreased transcription of typical Pol\u202fII\u2011dependent genes such as Rabac1, for which no specific repressive mechanism is known. Hence the knockout is expected to lower Rabac1 mRNA levels.",
+    "label": "down"
+}

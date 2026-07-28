@@ -1,0 +1,4 @@
+{
+    "reasoning": "Reasoning: Fzr1 (Cdh1) functions as a co\u2011activator of the APC/C ubiquitin ligase and is not a transcription factor; there is no reported ChIP or motif evidence that it directly regulates Dnajc1. No established indirect pathway (e.g., stress\u2011response, splicing, m6A, kinase/phosphatase signaling) links APC/C^Cdh1 activity to the transcriptional control of Dnajc1 in bone\u2011marrow\u2011derived macrophages, and the relevant TFs or chromatin modifiers for Dnajc1 are not known APC/C substrates. Consequently, the knockout of Fzr1 is not expected to produce a reproducible directional change in Dnajc1 expression.",
+    "label": "none"
+}

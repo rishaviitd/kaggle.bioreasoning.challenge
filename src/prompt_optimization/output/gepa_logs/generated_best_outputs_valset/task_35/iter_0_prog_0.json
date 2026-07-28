@@ -1,0 +1,4 @@
+{
+    "reasoning": "RRAGA is a Rag GTPase that positively regulates mTORC1 signaling; mTORC1 activity promotes MYC\u2011driven transcription of Odc1 in many cell types. Loss of RRAGA could therefore reduce Odc1 expression, but the paralog RRAGB can compensate for Rag\u2011A loss, making a consistent transcriptional change unlikely in BMDMs. Hence no reproducible effect is expected.",
+    "label": "none"
+}

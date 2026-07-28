@@ -1,0 +1,4 @@
+{
+    "reasoning": "CHD4 is a central subunit of the NuRD repressive complex that interacts with p53 and limits p53\u2011dependent transcription. Deleting CHD4 relieves this repression, resulting in heightened p53 activity and up\u2011regulation of canonical p53\u2011target genes, including Phlda3. Hence the knockout is expected to increase Phlda3 mRNA.",
+    "label": "up"
+}

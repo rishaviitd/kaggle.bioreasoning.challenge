@@ -1,0 +1,4 @@
+{
+    "reasoning": "IFNAR1 encodes the type\u202fI interferon receptor and does not directly bind DNA; there is no reported ChIP or motif evidence that IFNAR1\u2011mediated signaling directly regulates the Plcd1 promoter. PLC\u03b41 is not a well\u2011characterized interferon\u2011stimulated gene, and loss of IFNAR1\u2011dependent STAT/IRF activation has not been linked to consistent up\u2011 or down\u2011regulation of Plcd1 in macrophages. With no clear direct or indirect mechanism and no known saturation or feedback that would mask an effect, the safest prediction is no reproducible change.",
+    "label": "none"
+}

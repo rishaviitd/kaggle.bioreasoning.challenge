@@ -1,0 +1,4 @@
+{
+    "reasoning": "Tyrobp encodes the DAP12 adaptor, not a transcription factor, so there is no direct binding evidence to the Cd63 promoter. Its loss could dampen Syk\u2011NF\u2011\u03baB signaling, which might reduce expression of NF\u2011\u03baB\u2011responsive genes such as Cd63, but in LPS\u2011stimulated BMDMs the NF\u2011\u03baB pathway is already maximally activated, making additional effects from Tyrobp deficiency unlikely to be detectable. Consequently, there is insufficient mechanistic evidence for a reproducible change.",
+    "label": "none"
+}

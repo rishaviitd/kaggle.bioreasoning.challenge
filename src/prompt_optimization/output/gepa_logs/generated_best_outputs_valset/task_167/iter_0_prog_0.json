@@ -1,0 +1,4 @@
+{
+    "reasoning": "Mapkapk2 (MK2) is a downstream kinase of p38 that phosphorylates and inactivates the RNA\u2011binding protein ZFP36/TTP, thereby stabilizing many AU\u2011rich\u2011element\u2011containing mRNAs that are induced during inflammation. Lrp1 expression in macrophages is up\u2011regulated by inflammatory signaling (e.g., NF\u2011\u03baB/p38) and its mRNA contains AREs that are known TTP targets. Consequently, loss of MK2 re\u2011activates TTP, leading to enhanced decay of Lrp1 transcripts and a decrease in its steady\u2011state level. No direct transcription\u2011factor binding of MK2 to the Lrp1 promoter is reported, so the effect is mediated indirectly through the MK2\u2011TTP axis.",
+    "label": "down"
+}

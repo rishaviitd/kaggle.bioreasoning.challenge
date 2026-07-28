@@ -1,0 +1,4 @@
+{
+    "reasoning": "Eif2s1 encodes the translation initiation factor eIF2\u03b3, which is not a transcription factor or chromatin modifier and has no reported direct binding to the Cyb5r1 promoter.  Although loss of eIF2\u03b3 could trigger a general translation stress and potentially activate the integrated stress response, there is no evidence that ATF4 or other ISR\u2011dependent transcription factors regulate Cyb5r1 in macrophages.  Consequently, no clear mechanistic pathway links Eif2s1 knockout to a reproducible increase or decrease of Cyb5r1 expression.",
+    "label": "none"
+}

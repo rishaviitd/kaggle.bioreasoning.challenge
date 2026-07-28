@@ -1,0 +1,4 @@
+{
+    "reasoning": "Reasoning: INTS9 is a catalytic subunit of the Integrator complex that modulates snRNA 3\u2032\u2011end processing and Pol\u202fII pause release, but there is no known direct binding or published evidence that INTS9 specifically regulates the Pcdh7 promoter in macrophages. No indirect pathway (stress response, splicing\u2011mediated derepression, kinase/phosphatase signaling, m6A, ubiquitin networks, etc.) clearly links loss of INTS9 to altered Pcdh7 transcription, and potential redundancy within the Integrator complex makes a consistent effect unlikely. Hence the effect is indeterminate.",
+    "label": "none"
+}

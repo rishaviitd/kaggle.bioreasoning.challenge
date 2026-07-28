@@ -1,0 +1,4 @@
+{
+    "reasoning": "CHD4 is a core subunit of the NuRD chromatin\u2011remodeling complex that functions mainly as a transcriptional repressor by recruiting HDAC activity to target promoters. Loss of this repressive scaffold generally leads to increased histone acetylation and Pol\u202fII activity at genes normally kept silent, and CHD4 knock\u2011down in macrophages has been shown to de\u2011repress multiple LPS\u2011induced inflammatory genes. Applying the scaffold\u2011repressor rule (Section\u202f2.6), the knockout of CHD4 is expected to relieve repression of the C\u2011type lectin gene\u202fClec4d, resulting in its up\u2011regulation.",
+    "label": "up"
+}

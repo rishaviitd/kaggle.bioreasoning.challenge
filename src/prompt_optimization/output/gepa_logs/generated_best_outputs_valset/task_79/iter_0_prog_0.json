@@ -1,0 +1,4 @@
+{
+    "reasoning": "Paf1 encodes a core subunit of the PAF1 complex, which acts as a transcription\u2011elongation scaffold that promotes activating histone marks (H3K4me3, H2B\u2011ub1) at promoters and gene bodies. Loss of Paf1 reduces these marks and generally diminishes transcription of active genes; Nabp1 is constitutively expressed in macrophages and thus likely depends on this positive chromatin environment. No direct repressive or activating interaction is known, so the expected effect of Paf1 knockout is a decrease in Nabp1 mRNA.",
+    "label": "down"
+}

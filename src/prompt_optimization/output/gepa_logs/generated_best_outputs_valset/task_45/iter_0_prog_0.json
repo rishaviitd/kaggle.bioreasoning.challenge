@@ -1,0 +1,4 @@
+{
+    "reasoning": "CHMP6 is an ESCRT\u2011III component that functions in endosomal membrane scission and does not act as a transcription factor, chromatin modifier, splicing factor, or known regulator of signaling pathways that directly control Clec7a transcription. No direct ChIP or literature evidence links CHMP6 to the Clec7a promoter, and indirect routes (stress\u2011response activation, ISR, scaffold\u2011mediated transcriptional regulation, m6A deposition, ubiquitin\u2011ligase networks) are not established for CHMP6 in macrophages. Consequently, there is insufficient mechanistic support to predict a reproducible increase or decrease in Clec7a mRNA upon CHMP6 knockout.",
+    "label": "none"
+}

@@ -1,0 +1,4 @@
+{
+    "reasoning": "Reasoning: Gins4 encodes a subunit of the GINS replication helicase complex and is not a transcription factor, chromatin modifier, or RNA\u2011binding regulator with known direct binding to the Prdx1 promoter. Its loss may induce replication stress and p53 activation, but Prdx1 is primarily regulated by Nrf2 rather than p53, and no published data link Gins4 to Prdx1 expression in macrophages. Consequently, there is insufficient mechanistic evidence to predict a consistent up\u2011 or down\u2011regulation.",
+    "label": "none"
+}

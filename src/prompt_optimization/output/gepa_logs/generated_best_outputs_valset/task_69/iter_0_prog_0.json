@@ -1,0 +1,4 @@
+{
+    "reasoning": "PHB2 is a mitochondrial inner\u2011membrane scaffold that stabilizes respiratory chain complexes; loss of PHB2 impairs mitochondrial function and triggers retrograde signaling that reduces expression of nuclear\u2011encoded oxidative\u2011phosphorylation genes, including COX subunits such as Cox6a2. No direct TF\u2011binding evidence exists, but the established role of PHB2 in maintaining OXPHOS gene expression predicts a decrease in Cox6a2 mRNA upon PHB2 knockout.",
+    "label": "down"
+}

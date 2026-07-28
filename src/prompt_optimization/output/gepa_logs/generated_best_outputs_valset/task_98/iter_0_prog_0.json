@@ -1,0 +1,4 @@
+{
+    "reasoning": "Abi1 is an adaptor protein in the WAVE regulatory complex and does not function as a transcription factor, chromatin modifier, or RNA\u2011binding regulator of Dbr1; there is no reported direct binding or chromatin recruitment of the Dbr1 promoter by Abi1. Loss of Abi1 does not activate known stress\u2011response axes (p53, ISR, UPR) that would indirectly modulate Dbr1, and Dbr1 is not a documented target of NF\u2011\u03baB, ATF4, or related pathways in macrophages. Consequently, no mechanistic basis exists to predict a reproducible change in Dbr1 expression.",
+    "label": "none"
+}

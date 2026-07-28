@@ -1,0 +1,4 @@
+{
+    "reasoning": "Clp1 encodes a component of the tRNA\u2011splicing/end\u2011processing complex and is not a transcription factor, chromatin modifier, or known regulator of NF\u2011\u03baB/IRF pathways that drive Acod1 (Irg1) expression. No direct ChIP or literature evidence links Clp1 to the Acod1 promoter, and there is no established splicing\u2011sensitive repressor of Acod1 whose mis\u2011splicing upon Clp1 loss would predict a clear up\u2011 or down\u2011regulation. Consequently, the knockout is unlikely to produce a reproducible directional change in Acod1 mRNA levels.",
+    "label": "none"
+}

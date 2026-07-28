@@ -1,0 +1,4 @@
+{
+    "reasoning": "Ifnar1 is the receptor for type\u202fI interferons; its signaling activates STAT1/STAT2/IRF9, which directly induce ISGs such as Ifit2. Knocking out Ifnar1 blocks this autocrine/paracrine IFN\u2011\u03b1/\u03b2 signaling cascade, so the transcriptional activation of Ifit2 is lost, leading to reduced mRNA levels. No compensatory activation is expected in LPS\u2011stimulated BMDMs.",
+    "label": "down"
+}

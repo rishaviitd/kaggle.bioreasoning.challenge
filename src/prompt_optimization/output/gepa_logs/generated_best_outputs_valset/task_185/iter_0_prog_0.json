@@ -1,0 +1,4 @@
+{
+    "reasoning": "Gtf2h1 encodes the p62 subunit of the TFIIH complex, which is essential for RNAP\u202fII transcription initiation and promoter clearance. Loss of this core transcription factor reduces overall RNAP\u202fII activity, including that of NF\u2011\u03baB\u2011driven acute\u2011phase genes such as Saa3, leading to a reproducible decrease in Saa3 mRNA levels. No direct TF\u2011DNA binding evidence exists, so the effect is inferred from the general transcriptional role of TFIIH.",
+    "label": "down"
+}

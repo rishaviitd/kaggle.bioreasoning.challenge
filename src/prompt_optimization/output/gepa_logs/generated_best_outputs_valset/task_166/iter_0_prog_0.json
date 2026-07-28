@@ -1,0 +1,4 @@
+{
+    "reasoning": "ING3 is a PHD\u2011finger protein that functions as a scaffold within the NuA4/TIP60 histone\u2011acetyltransferase complex, promoting transcription of NF\u2011\u03baB\u2011responsive genes by enhancing promoter acetylation. Cblb is an NF\u2011\u03baB\u2011induced E3 ligase in macrophages; loss of the activating scaffold ING3 would be expected to diminish H3K9/14 acetylation at the Cblb promoter and therefore reduce its transcription. No direct ING3\u2011Cblb binding is reported, but the indirect co\u2011activator role predicts a down\u2011regulation.",
+    "label": "down"
+}

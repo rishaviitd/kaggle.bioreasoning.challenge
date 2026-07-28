@@ -1,0 +1,4 @@
+{
+    "reasoning": "Reasoning: ING3 is a component of the TIP60 histone\u2011acetyltransferase complex that generally acts as a transcriptional co\u2011activator, but there is no reported direct binding of ING3 to the Ckb promoter nor evidence that Ckb transcription depends on TIP60/ING3 activity in BMDMs. Loss of ING3 could theoretically reduce acetylation\u2011driven transcription, yet functional redundancy with other ING family members and the lack of a known regulatory link make any directional effect uncertain. Therefore, the knockout is not expected to produce a reproducible up\u2011 or down\u2011regulation of Ckb.",
+    "label": "none"
+}

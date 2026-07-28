@@ -1,0 +1,4 @@
+{
+    "reasoning": "Psmd1 encodes a core 19S proteasome subunit that is essential for proteasomal degradation of I\u03baB\u03b1, a key step for NF\u2011\u03baB activation. In macrophages, Fcgr2b transcription is known to be up\u2011regulated by NF\u2011\u03baB\u2011driven signaling downstream of LPS. Loss of Psmd1 therefore diminishes NF\u2011\u03baB activity, leading to reduced Fcgr2b expression.",
+    "label": "down"
+}

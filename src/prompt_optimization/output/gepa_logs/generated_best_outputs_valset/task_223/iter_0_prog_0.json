@@ -1,0 +1,4 @@
+{
+    "reasoning": "Gins4 is a component of the GINS replication complex and does not function as a transcription factor, chromatin modifier, splicing factor, or signaling scaffold. No direct ChIP or regulatory evidence links Gins4 to the Cd36 promoter, and Cd36 is not a documented target of the stress\u2011response pathways (p53, ISR, UPR) that might be activated by replication stress. Consequently, there is insufficient mechanistic basis to predict a reproducible change in Cd36 expression upon Gins4 knockout.",
+    "label": "none"
+}

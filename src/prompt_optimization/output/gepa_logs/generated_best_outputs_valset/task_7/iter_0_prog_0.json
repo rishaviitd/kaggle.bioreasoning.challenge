@@ -1,0 +1,4 @@
+{
+    "reasoning": "Reasoning: Actr2 encodes a subunit of the ARP2/3 actin\u2011nucleating complex and is not a transcription factor, chromatin modifier, ubiquitin\u2011ligase, or RNA\u2011binding protein with documented binding to the Ppm1k promoter. No established indirect pathway (e.g., actin\u2011mediated NF\u2011\u03baB signaling) links ARP2/3 activity to transcriptional regulation of Ppm1k, and Ppm1k is not a known target of stress\u2011response axes that would be triggered by Actr2 loss. Consequently, there is insufficient mechanistic evidence to predict a reproducible increase or decrease.",
+    "label": "none"
+}

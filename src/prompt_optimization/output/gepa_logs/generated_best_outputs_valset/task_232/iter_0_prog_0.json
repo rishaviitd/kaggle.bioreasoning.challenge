@@ -1,0 +1,4 @@
+{
+    "reasoning": "Rheb is a small GTPase that activates mTORC1 signaling; mTORC1 positively supports NF\u2011\u03baB\u2011driven transcription of pro\u2011inflammatory chemokines such as Cxcl2 in macrophages. Knockout of Rheb diminishes mTORC1 activity, thereby reducing the transcriptional output of NF\u2011\u03baB targets, leading to lower Cxcl2 mRNA levels. No direct TF\u2011DNA link exists, but the indirect pathway predicts down\u2011regulation and is not likely saturated or fully compensated.",
+    "label": "down"
+}

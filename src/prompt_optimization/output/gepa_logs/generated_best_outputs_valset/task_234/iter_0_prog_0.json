@@ -1,0 +1,4 @@
+{
+    "reasoning": "Ly96 (MD\u20112) is a co\u2011receptor for TLR4 and is required for LPS\u2011induced NF\u2011\u03baB and MAPK activation; it does not function as a transcription factor or chromatin modifier, so there is no direct regulatory link to Rabac1. The knockout would mainly diminish NF\u2011\u03baB\u2011driven transcription, but Rabac1 is not documented as an NF\u2011\u03baB\u2011responsive or LPS\u2011induced gene in macrophages, and no other indirect mechanism (splicing, ISR, ubiquitin\u2011mediated, etc.) connects Ly96 to Rabac1. Therefore the evidence is insufficient to assign a consistent direction.",
+    "label": "none"
+}

@@ -1,0 +1,4 @@
+{
+    "reasoning": "Kat8 is a histone\u2011acetyltransferase (MYST1) that generally promotes transcription by depositing H4K16ac, but there is no reported ChIP or motif\u2011based evidence that Kat8 is specifically recruited to the Gadd45g promoter in bone\u2011marrow\u2011derived macrophages. Without a documented direct or indirect link (e.g., dependence of Gadd45g on H4K16ac, a known Kat8\u2011dependent signaling cascade), the effect of Kat8 loss on Gadd45g expression cannot be inferred.",
+    "label": "none"
+}

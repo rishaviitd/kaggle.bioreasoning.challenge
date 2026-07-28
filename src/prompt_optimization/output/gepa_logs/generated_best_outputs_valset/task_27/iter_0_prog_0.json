@@ -1,0 +1,4 @@
+{
+    "reasoning": "Ogt encodes the O\u2011GlcNAc transferase, which modulates transcription indirectly by O\u2011GlcNAcylating transcription factors and chromatin regulators, but there is no documented direct binding of Ogt to the BC051226 promoter nor any established pathway linking Ogt activity to this gene\u2019s expression in BMDMs.  Without evidence that BC051226 is a known NF\u2011\u03baB, STAT3, or other O\u2011GlcNAc\u2011dependent target, the effect of Ogt knockout cannot be inferred.",
+    "label": "none"
+}

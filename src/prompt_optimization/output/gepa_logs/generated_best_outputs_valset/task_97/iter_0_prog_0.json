@@ -1,0 +1,4 @@
+{
+    "reasoning": "Reasoning: MAPKAPK2 (MK2) is a downstream kinase of p38 that mainly modulates inflammatory signaling and mRNA stability of ARE\u2011containing cytokine transcripts via phosphorylation of TTP/ZFP36; there is no evidence that MK2 directly binds the Gbe1 promoter, that Gbe1 is an ARE\u2011containing transcript, or that Gbe1 is a known target of p38\u2011MK2\u2011dependent transcriptional programs in BMDMs. Consequently, loss of Mapkapk2 is unlikely to produce a consistent up\u2011 or down\u2011regulation of Gbe1.",
+    "label": "Label: none"
+}

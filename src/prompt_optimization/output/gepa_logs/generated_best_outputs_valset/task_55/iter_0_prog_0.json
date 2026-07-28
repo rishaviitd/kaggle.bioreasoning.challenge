@@ -1,0 +1,4 @@
+{
+    "reasoning": "Paf1 encodes a core subunit of the PAF1 transcription\u2011elongation complex, which facilitates RNAP\u202fII processivity and deposition of activating histone marks (H3K4me3, H3K36me3).  Although there is no reported direct binding of PAF1 to the Nek10 promoter, loss of this co\u2011activator typically leads to reduced transcription of genes that depend on efficient elongation, and Nek10 is not known to be a stress\u2011induced outlier that would escape this effect.  Therefore the knockout is expected to decrease Nek10 mRNA levels.",
+    "label": "down"
+}

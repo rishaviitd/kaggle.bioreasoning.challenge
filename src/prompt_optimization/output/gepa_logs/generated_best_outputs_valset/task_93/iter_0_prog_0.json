@@ -1,0 +1,4 @@
+{
+    "reasoning": "Psmd1 encodes a non\u2011ATPase subunit of the 19S proteasome regulatory particle; its loss impairs proteasome activity, leading to accumulation of ubiquitinated I\u03baB\u03b1 and consequent attenuation of NF\u2011\u03baB signaling. Nampt is a known NF\u2011\u03baB\u2011responsive gene in LPS\u2011stimulated macrophages, so reduced NF\u2011\u03baB activity predicts decreased Nampt transcription. No direct TF or chromatin\u2011modifier link exists between Psmd1 and Nampt.",
+    "label": "down"
+}

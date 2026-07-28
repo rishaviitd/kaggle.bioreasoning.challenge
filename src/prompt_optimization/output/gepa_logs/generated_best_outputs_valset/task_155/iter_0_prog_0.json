@@ -1,0 +1,4 @@
+{
+    "reasoning": "SFPQ is a core splicing factor and transcriptional co\u2011regulator, but there is no documented ChIP or motif evidence that it directly binds the promoter of D17H6S56E\u20115, nor is D17H6S56E\u20115 known to be a target of a splicing\u2011sensitive repressor whose expression depends on SFPQ. In the absence of any established direct or indirect regulatory link, the effect of Sfpq knockout on this gene cannot be predicted.",
+    "label": "none"
+}

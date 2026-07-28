@@ -1,0 +1,4 @@
+{
+    "reasoning": "Tln1 encodes talin\u20111, a cytoskeletal adaptor that links integrins to actin and promotes integrin\u2011mediated signaling (e.g., FAK/Src\u2011NF\u2011\u03baB). There is no direct TF or chromatin\u2011modifier relationship to Slamf9, and in LPS\u2011stimulated BMDMs NF\u2011\u03baB is already strongly activated, making additional loss of integrin\u2011derived signaling unlikely to produce a reproducible effect; moreover, Talin\u20112 can partially compensate. Hence the knockout is not expected to cause a consistent change in Slamf9 expression.",
+    "label": "none"
+}

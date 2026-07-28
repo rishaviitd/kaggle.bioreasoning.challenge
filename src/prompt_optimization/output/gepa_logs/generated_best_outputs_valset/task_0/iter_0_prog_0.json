@@ -1,0 +1,4 @@
+{
+    "reasoning": "Rraga encodes the RagA GTPase that is essential for amino\u2011acid\u2011driven activation of mTORC1; mTORC1 signaling enhances NF\u2011\u03baB/AP\u20111\u2011mediated transcription of inflammatory chemokines such as Cxcl2 in macrophages. Loss of Rraga therefore diminishes mTORC1 activity, reducing NF\u2011\u03baB\u2011driven Cxcl2 expression. No direct TF\u2011gene binding is known, so the indirect signaling effect predicts a decrease.",
+    "label": "down"
+}

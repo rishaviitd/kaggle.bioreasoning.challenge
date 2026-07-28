@@ -1,0 +1,4 @@
+{
+    "reasoning": "Reasoning: FZR1 (Cdh1) functions as a co\u2011activator of the APC/C ubiquitin ligase and has no known DNA\u2011binding or direct transcriptional role on Pld4; there is no evidence that APC/C^Cdh1 substrates act as specific repressors or activators of the interferon\u2011stimulated Pld4 promoter in macrophages. Indirect mechanisms such as stress\u2011response activation, splicing alterations, or kinase signaling are not associated with FZR1, and the IFN\u2011STAT pathway that drives Pld4 expression is likely already maximally active in LPS\u2011stimulated BMDMs, making any effect of FZR1 loss unlikely to be detectable. Consequently, the knockout is not expected to cause a reproducible up\u2011 or down\u2011regulation of Pld4.",
+    "label": "none"
+}

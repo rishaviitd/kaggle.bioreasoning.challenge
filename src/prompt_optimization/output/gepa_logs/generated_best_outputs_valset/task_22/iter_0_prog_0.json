@@ -1,0 +1,4 @@
+{
+    "reasoning": "CCT4 encodes a subunit of the CCT/TRiC chaperonin complex; it does not function as a transcription factor or direct chromatin modifier, and there is no reported ChIP or motif evidence linking CCT4 to the promoter of 9430091E24Rik. Although loss of CCT4 can induce protein\u2011folding stress and potentially activate UPR/ISR pathways, 9430091E24Rik is not known to be a target of those stress\u2011responsive transcription factors. Consequently, there is insufficient mechanistic evidence to predict a consistent up\u2011 or down\u2011regulation.",
+    "label": "none"
+}

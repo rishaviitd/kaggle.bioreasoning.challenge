@@ -1,0 +1,4 @@
+{
+    "reasoning": "Reasoning: TRAF3 is an adaptor E3 ligase that negatively regulates non\u2011canonical NF\u2011\u03baB (via NIK degradation); its knockout can increase RelB/p52 activity, but there is no documented direct or indirect regulation of Igf1 by this pathway in BMDMs, and canonical NF\u2011\u03baB is already maximally induced by LPS, making additional transcriptional effects on Igf1 unlikely.",
+    "label": "none"
+}

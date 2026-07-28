@@ -1,0 +1,4 @@
+{
+    "reasoning": "Rheb is a small GTPase that activates mTORC1 but does not directly bind DNA, and there is no reported ChIP or literature link showing Rheb (or mTORC1) directly regulates the Lgals1 promoter in BMDMs. Although loss of Rheb would diminish mTORC1 signaling, Lgals1 is not known to be an mTOR\u2011dependent transcriptional target, and mTORC1 activity is already robust in LPS\u2011stimulated macrophages, so any effect is likely buffered by redundancy (e.g., RhebL1). Consequently, a reproducible change in Lgals1 expression is not expected.",
+    "label": "none"
+}

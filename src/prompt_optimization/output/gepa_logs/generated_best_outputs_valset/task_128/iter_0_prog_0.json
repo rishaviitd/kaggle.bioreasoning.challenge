@@ -1,0 +1,4 @@
+{
+    "reasoning": "Reasoning: Tpt1 encodes the translationally\u2011controlled tumor protein, which is not a transcription factor, chromatin modifier, splicing factor, or known regulator of signaling pathways that control Gm42463. There is no documented direct or indirect regulatory link between Tpt1 loss and the expression of the largely uncharacterized gene Gm42463 in BMDMs, and no stress\u2011response or scaffold mechanisms apply. Consequently, a reproducible change in Gm42463 mRNA level is not expected.",
+    "label": "none"
+}

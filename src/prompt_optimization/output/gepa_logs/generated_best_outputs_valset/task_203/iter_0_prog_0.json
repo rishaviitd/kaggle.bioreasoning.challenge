@@ -1,0 +1,4 @@
+{
+    "reasoning": "Eif2s1 encodes the translation initiation factor eIF2\u03b3 and does not act as a transcription factor or chromatin modifier; there is no known direct binding or regulatory interaction with the Chchd10 promoter.  Although loss of a core translation factor can trigger an integrated stress response and ATF4\u2011dependent transcription, Chchd10 is not documented as an ATF4\u2011responsive gene in macrophages.  Consequently, there is insufficient mechanistic evidence to predict a consistent up\u2011 or down\u2011regulation.",
+    "label": "none"
+}

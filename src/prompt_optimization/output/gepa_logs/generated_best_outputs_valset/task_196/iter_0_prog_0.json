@@ -1,0 +1,4 @@
+{
+    "reasoning": "Reasoning: Dnajc8 encodes a Hsp40 co\u2011chaperone and is not a transcription factor, chromatin modifier, or known regulator of NF\u2011\u03baB, IFN\u2011STAT, or ATF4 pathways in macrophages. No direct binding or established indirect mechanism (e.g., splicing\u2011mediated derepression, ISR activation, scaffold function) links Dnajc8 loss to C3 transcription, and redundancy of chaperone systems likely masks any effect. Therefore, the knockout is not expected to cause a reproducible change in C3 mRNA levels.",
+    "label": "none"
+}

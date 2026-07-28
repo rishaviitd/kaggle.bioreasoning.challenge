@@ -1,0 +1,4 @@
+{
+    "reasoning": "NIPBL is not a transcription factor but the cohesin\u2011loading factor that facilitates enhancer\u2011promoter looping; its loss generally weakens chromatin contacts and reduces transcription of genes that depend on such contacts. LIPA expression in macrophages is driven by enhancer\u2011mediated activation (e.g., by LXR/PPAR pathways), so reduced cohesin loading is expected to lower Lipa mRNA levels. No direct regulatory or stress\u2011response link suggests an opposite effect.",
+    "label": "down"
+}

@@ -1,0 +1,4 @@
+{
+    "reasoning": "Hdac3 is a histone deacetylase that represses transcription through deacetylation of promoter chromatin and by supporting NCoR/SMRT corepressor complexes. No published ChIP\u2011seq or motif data indicate a direct Hdac3 binding site at the Btg1 promoter, and Btg1 is not a well\u2011characterized NF\u2011\u03baB or ATF4 target that would be indirectly induced by the heightened inflammatory signaling seen after Hdac3 loss. Because there is no specific mechanistic link between Hdac3 and Btg1, the effect cannot be confidently assigned.",
+    "label": "none"
+}

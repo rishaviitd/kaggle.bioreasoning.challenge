@@ -1,0 +1,4 @@
+{
+    "reasoning": "CCT4 is a subunit of the cytosolic chaperonin CCT/TRiC and does not function as a transcription factor, chromatin modifier, or direct regulator of Klhl5 transcription. No published evidence links CCT4 to the folding or activity of a specific TF that controls Klhl5, and there is no known motif\u2011based indirect pathway (e.g., ISR, NF\u2011\u03baB, m6A) that would predict a consistent change. Consequently, the knockout effect on Klhl5 expression cannot be determined from the available mechanisms.",
+    "label": "none"
+}

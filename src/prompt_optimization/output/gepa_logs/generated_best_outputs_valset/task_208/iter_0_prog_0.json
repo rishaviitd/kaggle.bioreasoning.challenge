@@ -1,0 +1,4 @@
+{
+    "reasoning": "ARID1A is a core subunit of the SWI/SNF (BAF) chromatin\u2011remodeling complex that generally acts as a co\u2011activator by opening chromatin at target promoters. There is no published ChIP\u2011seq or other direct evidence that ARID1A binds the Mllt11 promoter/enhancer in mouse BMDMs, nor is Mllt11 known to be a canonical SWI/SNF\u2011dependent gene in this cell type. Without a documented direct regulatory link or a clear indirect pathway that specifically connects ARID1A loss to altered Mllt11 transcription, the effect cannot be confidently inferred.",
+    "label": "none"
+}

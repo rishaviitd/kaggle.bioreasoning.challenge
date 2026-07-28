@@ -1,0 +1,4 @@
+{
+    "reasoning": "Ing3 is a component of the NuA4/TIP60 histone\u2011acetyltransferase complex that generally acts as a transcriptional co\u2011activator, but there is no published ChIP or motif evidence that it directly binds the Gbe1 promoter in macrophages, nor is Gbe1 known to be a downstream target of p53 or other pathways specifically regulated by ING3.  No relevant indirect mechanism (e.g., splicing\u2011mediated derepression, ISR activation, kinase/phosphatase signaling) links ING3 loss to Gbe1 expression.  Consequently, the knockout is not expected to produce a reproducible directional change.",
+    "label": "none"
+}

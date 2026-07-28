@@ -1,0 +1,4 @@
+{
+    "reasoning": "IRAK4 is a serine/threonine kinase that functions upstream of MyD88\u2011dependent NF\u2011\u03baB and MAPK signaling in TLR/IL\u20111R pathways; it does not bind DNA and has no reported direct transcriptional regulation of Gbf1. Gbf1 (Golgi brefeldin A resistance factor 1) is not documented as an NF\u2011\u03baB, AP\u20111, or stress\u2011response target in macrophages, and no indirect mechanism (splicing, m6A, ubiquitin\u2011ligase, scaffold) links IRAK4 activity to Gbf1 transcription. Consequently, loss of IRAK4 is unlikely to produce a reproducible up\u2011 or down\u2011regulation of Gbf1.",
+    "label": "none"
+}

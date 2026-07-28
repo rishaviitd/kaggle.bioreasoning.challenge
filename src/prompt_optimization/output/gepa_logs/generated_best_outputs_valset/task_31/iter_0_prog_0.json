@@ -1,0 +1,4 @@
+{
+    "reasoning": "RRAGA (RagA) is a small GTPase that regulates mTORC1 signaling in response to amino\u2011acid availability; it does not function as a transcription factor or chromatin modifier and there is no reported ChIP\u2011seq or motif evidence linking RRAGA to the FLRT3 promoter. FLRT3 is not known to be a canonical mTORC1\u2011responsive gene in macrophages, nor is it a documented target of ISR, splicing\u2011mediated derepression, or other indirect routes listed. With no direct or well\u2011supported indirect mechanism, the knockout is expected to produce no reproducible change in FLRT3 mRNA level.",
+    "label": "none"
+}

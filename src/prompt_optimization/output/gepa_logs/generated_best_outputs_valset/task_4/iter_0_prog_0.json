@@ -1,0 +1,4 @@
+{
+    "reasoning": "Egln1 encodes the prolyl\u2011hydroxylase PHD2 that targets HIF\u2011\u03b1 subunits for degradation; its knockout stabilizes HIF1\u03b1, a transcription factor that directly binds HREs in the Saa3 promoter and drives its expression in macrophages. Because Saa3 is a known HIF\u2011responsive acute\u2011phase gene, loss of Egln1 is expected to increase Saa3 transcription. No evidence suggests pathway saturation or compensatory redundancy that would mask this effect.",
+    "label": "up"
+}

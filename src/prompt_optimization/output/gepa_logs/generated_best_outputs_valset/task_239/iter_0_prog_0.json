@@ -1,0 +1,4 @@
+{
+    "reasoning": "Psmd1 encodes a 19S proteasome regulatory subunit and does not act as a transcription factor or chromatin modifier; there is no known direct binding to the Gpnmb promoter. Loss of Psmd1 could impair proteasome activity, potentially triggering stress responses (UPR/ISR) or stabilizing I\u03baB, which might reduce NF\u2011\u03baB\u2011driven transcription, but Gpnmb is not a well\u2011characterized NF\u2011\u03baB or ATF4 target in BMDMs. With no clear direct or indirect regulatory link, the effect on Gpnmb expression is ambiguous.",
+    "label": "none"
+}

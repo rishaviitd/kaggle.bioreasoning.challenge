@@ -1,0 +1,4 @@
+{
+    "reasoning": "Reasoning: Gtf2h1 encodes a core subunit of the TFIIH complex, a general transcription/repair factor, but there is no specific evidence that it directly binds or regulates the promoter of Gm30431. Indirect effects such as global transcription reduction or stress\u2011response activation (e.g., p53) are possible, yet there is no documented p53\u2011responsive element or other TF motif linking Gtf2h1 loss to Gm30431 expression in BMDMs. Consequently, the available data are insufficient to predict a consistent up\u2011 or down\u2011regulation.",
+    "label": "none"
+}

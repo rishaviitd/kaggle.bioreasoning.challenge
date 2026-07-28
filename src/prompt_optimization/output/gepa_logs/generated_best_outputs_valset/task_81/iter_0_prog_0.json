@@ -1,0 +1,4 @@
+{
+    "reasoning": "Srsf1 encodes a core splice\u2011site factor and does not directly bind the Acod1 promoter. In macrophages Acod1 transcription depends on NF\u2011\u03baB and IRF1; loss of Srsf1 is known to cause widespread splicing defects and reduced protein levels of such transcriptional activators, which would blunt the LPS\u2011driven induction of Acod1. No specific splicing\u2011sensitive repressor of Acod1 is documented, so the net effect is expected to be a decrease in Acod1 mRNA.",
+    "label": "down"
+}

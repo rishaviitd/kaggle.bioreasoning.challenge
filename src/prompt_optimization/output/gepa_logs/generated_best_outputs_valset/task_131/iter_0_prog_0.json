@@ -1,0 +1,4 @@
+{
+    "reasoning": "Rheb is a small GTPase that positively regulates mTORC1 signaling but does not act as a transcription factor or chromatin modifier; there is no documented direct or indirect pathway linking mTORC1 activity to transcriptional control of the tubulin \u03b11c gene (Tuba1c) in BMDMs, and other nutrient\u2011sensing mechanisms can compensate for Rheb loss. Consequently, knockout of Rheb is unlikely to produce a consistent up\u2011 or down\u2011regulation of Tuba1c.",
+    "label": "none"
+}

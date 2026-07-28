@@ -1,0 +1,4 @@
+{
+    "reasoning": "Srsf1 is a core splicing factor and not a transcription factor or chromatin modifier, so there is no direct regulatory link to the Hcn1 promoter.  No published data indicate that Hcn1 is a known target of a transcriptional repressor whose mRNA splicing is uniquely dependent on Srsf1, nor is there evidence that Hcn1 itself is specifically destabilized by Srsf1 loss in macrophages.  Without a clear direct or indirect mechanism, the effect of Srsf1 knockout on Hcn1 expression cannot be assigned.",
+    "label": "none"
+}

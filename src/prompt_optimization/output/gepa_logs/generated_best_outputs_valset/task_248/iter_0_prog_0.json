@@ -1,0 +1,4 @@
+{
+    "reasoning": "Dnajc8 encodes a Hsp40 co\u2011chaperone and is not known to bind DNA, modify chromatin, or directly regulate transcription. No literature links Dnajc8 to the promoter or mRNA stability of Gm39469, and there is no established pathway (e.g., UPR, ISR) that would specifically alter Gm39469 expression upon Dnajc8 loss in BMDMs. Consequently, there is insufficient evidence to predict a reproducible up\u2011 or down\u2011regulation.",
+    "label": "none"
+}

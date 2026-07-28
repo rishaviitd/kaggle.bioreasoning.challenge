@@ -1,0 +1,4 @@
+{
+    "reasoning": "Kat8 (MYST1) is a histone acetyltransferase that deposits H4K16ac, a mark associated with open chromatin and active transcription. Loss of Kat8 reduces H4K16ac at promoters, generally decreasing expression of genes that depend on this activation, and Trim30c is an NF\u2011\u03baB\u2011induced gene whose transcription requires an active chromatin state. Therefore, Kat8 knockout is expected to lower Trim30c mRNA levels.",
+    "label": "down"
+}

@@ -1,0 +1,4 @@
+{
+    "reasoning": "Reasoning: There is no known direct binding of ING3 to the Cxcl10 promoter. ING3 functions as a scaffold in the NuA4/TIP60 histone\u2011acetyltransferase complex, so its loss could theoretically reduce promoter acetylation and dampen transcription of NF\u2011\u03baB/STAT\u2011dependent genes such as Cxcl10. However, Cxcl10 is strongly induced by LPS/IFN\u2011\u03b3 in BMDMs, and other ING family members can compensate for loss of ING3, making a reproducible change unlikely.",
+    "label": "none"
+}

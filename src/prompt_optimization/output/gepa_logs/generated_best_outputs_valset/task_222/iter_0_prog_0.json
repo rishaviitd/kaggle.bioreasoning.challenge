@@ -1,0 +1,4 @@
+{
+    "reasoning": "Tardbp encodes the RNA\u2011binding protein TDP\u201143, which primarily influences splicing and mRNA stability rather than acting as a transcription factor or chromatin modifier at the Asns promoter. There is no established ChIP or motif evidence that TDP\u201143 directly regulates Asns transcription, nor a clear mechanistic link (e.g., ISR activation, splicing\u2011mediated derepression of a known Asns repressor) that would predict a consistent up\u2011 or down\u2011regulation. Consequently, the knockout is expected to have no reproducible effect on Asns mRNA levels in BMDMs.",
+    "label": "none"
+}

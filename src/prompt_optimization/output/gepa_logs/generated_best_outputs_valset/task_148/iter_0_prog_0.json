@@ -1,0 +1,4 @@
+{
+    "reasoning": "Paf1 is a core subunit of the PAF1 transcription\u2011elongation complex that promotes Pol\u202fII pause release and deposition of activating histone marks (H3K4me3, H3K36me3) at many immune\u2011responsive promoters. There is no evidence that Paf1 directly binds the Fcgr2b promoter, but Fcgr2b is an NF\u2011\u03baB/STAT\u2011responsive gene whose transcription in LPS\u2011stimulated BMDMs depends on efficient elongation. Loss of Paf1 therefore impairs the transcriptional activation of such targets, leading to reduced Fcgr2b mRNA levels.",
+    "label": "down"
+}

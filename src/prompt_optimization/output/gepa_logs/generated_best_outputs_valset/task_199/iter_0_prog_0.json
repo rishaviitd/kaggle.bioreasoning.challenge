@@ -1,0 +1,4 @@
+{
+    "reasoning": "Eif4a1 encodes a DEAD\u2011box RNA helicase that functions in cap\u2011dependent translation initiation and is not a transcription factor, chromatin modifier, or ubiquitin\u2011regulating protein; therefore there is no direct regulatory link to the Iftap promoter.  Indirectly, loss of eIF4A1 can trigger a general translation stress/ISR that activates ATF4, but Iftap is not documented as an ATF4\u2011responsive gene in macrophages, and no other specific pathway connecting Eif4a1 to Iftap transcription is known.  Consequently, the available evidence is insufficient to predict a reproducible increase or decrease in Iftap mRNA.",
+    "label": "none"
+}

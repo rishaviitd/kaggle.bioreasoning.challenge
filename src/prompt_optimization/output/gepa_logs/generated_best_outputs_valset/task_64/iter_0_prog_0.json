@@ -1,0 +1,4 @@
+{
+    "reasoning": "Becn1 is a core autophagy initiator, not a transcription factor. Its loss blocks autophagic flux, causing accumulation of the selective autophagy receptor p62 (SQSTM1) protein. p62 binds and sequesters KEAP1, leading to NRF2 stabilization and transcriptional activation of NRF2 target genes, among which Sqstm1 itself is a well\u2011documented NRF2\u2011responsive gene. Thus Becn1 knockout is expected to increase Sqstm1 mRNA levels.",
+    "label": "up"
+}

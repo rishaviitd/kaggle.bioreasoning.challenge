@@ -1,0 +1,4 @@
+{
+    "reasoning": "Reasoning: Exosc7 is a core component of the RNA exosome and does not function as a transcription factor, chromatin modifier, or known regulator of IFN\u2011\u03b3/STAT1 signaling that controls Igtp. No direct binding or established indirect pathway (stress\u2011response, splicing\u2011mediated derepression, ISR, ubiquitin or kinase networks) links Exosc7 loss to Igtp transcription, and Igtp is already strongly induced by LPS/IFN in BMDMs, making additional effects likely saturated. Therefore, there is insufficient evidence for a reproducible directional change.",
+    "label": "none"
+}

@@ -1,0 +1,4 @@
+{
+    "reasoning": "Reasoning: Rb1 functions as a corepressor of E2F transcription factors; Pola1 is a known E2F\u2011target gene involved in DNA replication. Loss of Rb1 releases E2F\u2011mediated activation, leading to increased Pola1 transcription in BMDMs, where cell\u2011cycle genes are normally repressed. No evidence of pathway saturation or redundancy overriding this effect.",
+    "label": "up"
+}

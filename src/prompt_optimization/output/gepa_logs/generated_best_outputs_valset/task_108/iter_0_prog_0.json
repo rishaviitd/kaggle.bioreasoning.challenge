@@ -1,0 +1,4 @@
+{
+    "reasoning": "CHMP6 is an ESCRT\u2011III subunit that functions in endosomal sorting and membrane scission; it does not act as a transcription factor or chromatin modifier, and there is no reported direct binding of CHMP6 to the Cck promoter. Loss of CHMP6 can provoke endosomal stress or modest ISR/UPR activation, but Cck is not a known target of ATF4, NF\u2011\u03baB, or other stress\u2011responsive pathways in macrophages. Consequently, there is insufficient mechanistic evidence to predict a reproducible up\u2011 or down\u2011regulation of Cck after CHMP6 knockout.",
+    "label": "none"
+}

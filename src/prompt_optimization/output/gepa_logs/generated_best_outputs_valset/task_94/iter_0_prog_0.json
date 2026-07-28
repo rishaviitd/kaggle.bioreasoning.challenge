@@ -1,0 +1,4 @@
+{
+    "reasoning": "IRF2 is a transcriptional repressor that primarily regulates interferon\u2011stimulated genes via ISRE elements; there is no documented direct binding of IRF2 to the Saa3 promoter, and Saa3 expression in macrophages is driven mainly by NF\u2011\u03baB/AP\u20111 rather than IRF2\u2011controlled pathways. Consequently, loss of IRF2 is unlikely to produce a reproducible change in Saa3 levels, especially under the strong LPS\u2011induced NF\u2011\u03baB activation typical for BMDMs.",
+    "label": "none"
+}

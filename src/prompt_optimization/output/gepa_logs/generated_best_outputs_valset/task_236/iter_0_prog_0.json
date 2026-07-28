@@ -1,0 +1,4 @@
+{
+    "reasoning": "ING3 is a subunit of the TIP60 histone\u2011acetyltransferase complex that acts as a transcriptional co\u2011activator by binding H3K4me3\u2011marked promoters and promoting acetylation.  No direct ChIP or literature link ties ING3 to the Creg1 promoter, but loss of this activating scaffold generally reduces transcription of genes that rely on TIP60\u2011mediated acetylation.  In the absence of ING3, Creg1 expression is therefore expected to decrease.",
+    "label": "down"
+}

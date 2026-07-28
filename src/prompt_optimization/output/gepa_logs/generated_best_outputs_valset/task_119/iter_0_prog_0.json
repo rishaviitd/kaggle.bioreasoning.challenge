@@ -1,0 +1,4 @@
+{
+    "reasoning": "Reasoning: PPP2R3C is a regulatory subunit of the PP2A phosphatase complex and does not directly bind the Sorl1 promoter; there is no reported ChIP or motif evidence linking PPP2R3C to Sorl1 transcription. Although loss of PPP2R3C could alter PP2A\u2011mediated signaling (e.g., MAPK/NF\u2011\u03baB), Sorl1 is not a known target of these pathways in macrophages, and no indirect mechanism reliably predicts a consistent change. Therefore, the effect of PPP2R3C knockout on Sorl1 expression is unclear.",
+    "label": "none"
+}

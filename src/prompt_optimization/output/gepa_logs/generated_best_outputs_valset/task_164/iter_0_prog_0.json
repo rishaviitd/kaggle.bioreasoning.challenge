@@ -1,0 +1,4 @@
+{
+    "reasoning": "Reasoning: PAF1 is a key subunit of the PAF1 complex that facilitates transcription elongation and deposition of activating histone modifications (e.g., H3K4me3, H3K36me3) at NF\u2011\u03baB\u2011responsive promoters such as Saa3 in macrophages; its loss diminishes Pol\u202fII processivity and reduces Saa3 transcription after LPS stimulation. No direct repressive link or saturation effect is known, so the expected change is a decrease.",
+    "label": "down"
+}

@@ -1,0 +1,4 @@
+{
+    "reasoning": "Dr1 (NC2\u03b1) is a general transcriptional co\u2011repressor that interacts with TBP to inhibit initiation, but there is no published ChIP, motif, or functional data showing direct binding of Dr1 to the promoter of Gm26797, nor is Gm26797 known to be a target of a pathway specifically regulated by Dr1.  Dr1 is not a spliceosome component, kinase, ubiquitin\u2011ligase, or chromatin\u2011modifier with a defined link to Gm26797, so none of the indirect mechanisms in \u00a72 apply.  Consequently, the knockout lacks a clear mechanistic basis for a reproducible up\u2011 or down\u2011regulation of Gm26797.",
+    "label": "none"
+}

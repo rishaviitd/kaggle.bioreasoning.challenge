@@ -1,0 +1,4 @@
+{
+    "reasoning": "Prdm1 (Blimp\u20111) functions as a transcriptional repressor in macrophages, directly binding promoters of inflammatory genes and recruiting chromatin\u2011modifying complexes. No published ChIP\u2011seq or literature links Prdm1 to the promoter of Gm56730, and Gm56730 is an uncharacterized mouse gene with no known regulatory relationship to Prdm1. In the absence of direct or well\u2011supported indirect pathways connecting the two, the effect of Prdm1 knockout on Gm56730 expression cannot be inferred.",
+    "label": "none"
+}

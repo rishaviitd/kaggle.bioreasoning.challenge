@@ -1,0 +1,4 @@
+{
+    "reasoning": "SMARCD2 (BAF60b) is a SWI/SNF chromatin\u2011remodeling subunit that generally acts as a co\u2011activator for inflammatory transcription factors, but there is no published ChIP or motif evidence that it directly binds the Lgals1 promoter, nor is Lgals1 known to be a canonical NF\u2011\u03baB or STAT6 target that specifically requires SMARCD2\u2011containing BAF complexes. Given the lack of a direct link and the potential redundancy with other SMARCD paralogs, a reproducible change in Lgals1 mRNA upon SMARCD2 knockout cannot be inferred.",
+    "label": "none"
+}

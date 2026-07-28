@@ -1,0 +1,4 @@
+{
+    "reasoning": "Rb1 functions as a transcriptional corepressor by binding E2F transcription factors; loss of Rb1 releases E2F activity, which up\u2011regulates many S\u2011phase genes. Nasp is a documented E2F\u2011responsive gene involved in nucleosome assembly and is induced during proliferation. Consequently, Rb1 knockout is expected to increase Nasp expression.",
+    "label": "up"
+}

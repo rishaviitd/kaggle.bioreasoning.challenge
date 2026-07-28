@@ -1,0 +1,4 @@
+{
+    "reasoning": "Reasoning: ATP6AP2 is a V\u2011ATPase accessory protein and Wnt/\u03b2\u2011catenin scaffold, not a transcription factor, and there is no known direct binding to the Clec4e promoter. Indirectly, its loss might diminish \u03b2\u2011catenin\u2011mediated repression of NF\u2011\u03baB\u2011driven genes, which could raise Clec4e, but LPS already maximally activates NF\u2011\u03baB in BMDMs, making any additional effect unlikely. Hence, no reproducible change is expected.",
+    "label": "none"
+}

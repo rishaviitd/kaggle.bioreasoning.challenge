@@ -1,0 +1,4 @@
+{
+    "reasoning": "Psmg4 is a proteasome assembly chaperone and does not directly bind DNA or modify chromatin. Its loss may cause proteasome stress and activate general stress pathways (e.g., UPR/ISR), but there is no documented evidence that Prr13 is a target of ATF4, p53, NF\u2011\u03baB, or other stress\u2011responsive transcription factors in BMDMs. Without a known direct or indirect regulatory connection, the effect of Psmg4 knockout on Prr13 expression cannot be predicted.",
+    "label": "none"
+}

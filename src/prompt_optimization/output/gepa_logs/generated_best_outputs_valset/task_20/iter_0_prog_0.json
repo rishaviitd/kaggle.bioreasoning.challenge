@@ -1,0 +1,4 @@
+{
+    "reasoning": "Reasoning: CHMP6 is an ESCRT\u2011III component essential for endosomal trafficking of TLR4, which is required for full TRIF\u2011dependent type\u202fI interferon signaling; loss of CHMP6 impairs IFN\u2011\u03b2 production and consequently reduces ISGF3\u2011driven transcription of the interferon\u2011stimulated gene Cmpk2. No direct TF or chromatin interaction links CHMP6 to Cmpk2, and the IFN pathway is not maximally saturated, so the indirect signaling defect predicts decreased Cmpk2 expression.",
+    "label": "down"
+}

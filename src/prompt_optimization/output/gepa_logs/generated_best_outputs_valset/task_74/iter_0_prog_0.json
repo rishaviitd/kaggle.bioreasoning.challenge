@@ -1,0 +1,4 @@
+{
+    "reasoning": "Top3a encodes a DNA topoisomerase and is not a transcription factor, chromatin modifier, splicing factor, or signaling kinase with a documented direct or indirect regulatory connection to the Ccl2 promoter in macrophages. No established stress\u2011response axis (ribosomal stress\u2011p53, ISR, UPR) or other indirect mechanism listed links Top3a loss to NF\u2011\u03baB\u2011driven Ccl2 expression, and LPS\u2011stimulated BMDMs already have maximal Ccl2 induction, making any subtle effect unlikely to be detectable.  \nTherefore, the knockout is not expected to cause a reproducible change in Ccl2 mRNA level.",
+    "label": "none"
+}

@@ -1,0 +1,4 @@
+{
+    "reasoning": "ING3 is a scaffold subunit of the NuA4/TIP60 histone acetyltransferase complex that promotes promoter acetylation and transcriptional activation. Loss of this activating scaffold typically reduces expression of genes that depend on HAT\u2011mediated chromatin opening, and Aif1 is an NF\u2011\u03baB\u2011responsive gene whose induction in BMDMs requires such promoter activation. Hence Ing3 knockout is expected to lower Aif1 mRNA levels.",
+    "label": "down"
+}

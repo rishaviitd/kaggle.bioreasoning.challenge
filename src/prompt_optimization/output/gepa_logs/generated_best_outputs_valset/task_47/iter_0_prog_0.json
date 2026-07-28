@@ -1,0 +1,4 @@
+{
+    "reasoning": "Top3a is a DNA topoisomerase involved in genome maintenance and does not function as a transcription factor, chromatin modifier, or RNA\u2011binding protein with known direct binding to the Enpp4 promoter. Its loss could trigger a DNA\u2011damage response and p53 activation, but Enpp4 is not documented as a p53\u2011responsive gene in macrophages. With no established direct or indirect regulatory connection, the effect of Top3a knockout on Enpp4 expression cannot be inferred.",
+    "label": "none"
+}

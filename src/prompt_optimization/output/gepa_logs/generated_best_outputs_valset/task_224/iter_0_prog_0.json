@@ -1,0 +1,4 @@
+{
+    "reasoning": "Dpm2 is a subunit of the dolichyl\u2011phosphate\u2011mannose synthase complex; loss of Dpm2 impairs N\u2011glycosylation and triggers endoplasmic\u2011reticulum stress, activating the PERK branch of the unfolded\u2011protein response. PERK\u2011mediated eIF2\u03b1 phosphorylation induces ATF4, and ATF4 has been reported to up\u2011regulate Hilpda (a hypoxia\u2011responsive, lipid\u2011droplet associated gene) in stress conditions. Hence the knockout is expected to increase Hilpda transcription.",
+    "label": "up"
+}

@@ -1,0 +1,4 @@
+{
+    "reasoning": "Reasoning: DAXX functions as a transcriptional corepressor and H3.3 chaperone, but there is no documented direct binding or established repression of the Rilpl1 promoter by DAXX, nor is Rilpl1 a known target of DAXX\u2011dependent pathways (e.g., p53, NF\u2011\u03baB, ISR). Indirect chromatin\u2011mediated effects are possible but lack specific evidence for Rilpl1, and no pathway saturation or redundancy arguments apply. Hence the knockout is unlikely to produce a reproducible directional change.",
+    "label": "none"
+}

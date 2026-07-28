@@ -1,0 +1,4 @@
+{
+    "reasoning": "Tyrobp encodes the DAP12 adaptor that transduces activating signals from receptors (e.g., TREM2) to downstream kinases such as Syk, leading to NF\u2011\u03baB and MAPK activation in macrophages. It is not a transcription factor and there is no reported direct binding of Tyrobp to the promoter of Gm17749. Although loss of Tyrobp can dampen NF\u2011\u03baB\u2011driven transcription, there is no specific evidence that Gm17749 is an NF\u2011\u03baB target in BMDMs; therefore a reproducible directional change cannot be inferred.",
+    "label": "none"
+}

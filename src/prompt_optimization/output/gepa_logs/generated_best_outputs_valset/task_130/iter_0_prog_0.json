@@ -1,0 +1,4 @@
+{
+    "reasoning": "Rb1 functions as a corepressor of E2F transcription factors; its loss releases E2F activity. The Atad2 promoter contains E2F binding sites and ATAD2 is a known E2F\u2011responsive gene in multiple cell types. Consequently, Rb1 knockout is expected to increase Atad2 transcription.",
+    "label": "up"
+}

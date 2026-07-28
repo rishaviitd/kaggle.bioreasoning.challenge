@@ -1,0 +1,4 @@
+{
+    "reasoning": "Axin1 is a scaffold that facilitates \u03b2\u2011catenin degradation; its loss activates Wnt/\u03b2\u2011catenin signaling, which in macrophages antagonizes type\u2011I IFN and NF\u2011\u03baB pathways that induce the ISG\u202fOasl1. No direct TF\u2011DNA interaction between Axin1 and the Oasl1 promoter is known, so the effect is indirect via pathway modulation, leading to reduced Oasl1 transcription.",
+    "label": "down"
+}

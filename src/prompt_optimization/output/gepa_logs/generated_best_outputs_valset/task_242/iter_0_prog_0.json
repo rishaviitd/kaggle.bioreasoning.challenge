@@ -1,0 +1,4 @@
+{
+    "reasoning": "Psmd1 encodes a core non\u2011ATPase subunit of the 19S proteasome regulatory particle. Loss of Psmd1 impairs proteasomal degradation, causing accumulation of I\u03baB\u03b1 and consequently reduced NF\u2011\u03baB nuclear activity in macrophages. Fxyd5 is known to be an NF\u2011\u03baB\u2011responsive gene in immune cells, so diminished NF\u2011\u03baB signaling predicts a decrease in its mRNA level.",
+    "label": "down"
+}

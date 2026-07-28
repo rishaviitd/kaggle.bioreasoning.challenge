@@ -1,0 +1,4 @@
+{
+    "reasoning": "ING3 functions as a scaffold subunit of the TIP60 histone\u2011acetyltransferase complex, generally promoting transcription of genes whose promoters are marked by H3K4me3.  There is no reported direct binding of ING3 (or TIP60) to the *Nes* promoter, nor is *Nes* a known NF\u2011\u03baB, IFN\u2011STAT, or stress\u2011response target in LPS\u2011stimulated bone\u2011marrow\u2011derived macrophages.  Consequently, loss of ING3 lacks a clear mechanistic link to alter *Nes* expression, and any effect would likely be below detection in Perturb\u2011seq.",
+    "label": "none"
+}

@@ -1,0 +1,4 @@
+{
+    "reasoning": "Rheb is a small GTPase that positively regulates mTORC1 signaling; it does not bind DNA and has no reported direct transcriptional control of Vma21.  Loss of Rheb would diminish mTORC1 activity, potentially activating TFEB and other lysosomal\u2011biogenesis programs, but there is no specific evidence that Vma21 is a TFEB/CLEAR\u2011motif target in mouse BMDMs.  Without a documented direct or indirect regulatory link, the effect on Vma21 expression cannot be assigned.",
+    "label": "none"
+}

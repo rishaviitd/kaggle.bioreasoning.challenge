@@ -1,0 +1,4 @@
+{
+    "reasoning": "Rraga encodes the RagA GTPase that positively regulates amino\u2011acid\u2011dependent mTORC1 signaling; it is not a transcription factor and has no known direct binding to the Pola1 promoter. Loss of Rraga could theoretically diminish mTORC1 activity, which may lower expression of replication\u2011associated genes such as Pola1 via reduced Myc/S6K signaling. However, RagB (Rragb) can compensate for RagA loss in many cell types, making the effect on mTORC1\u2014and consequently on Pola1 transcription\u2014likely buffered in BMDMs. Therefore no reproducible directional change is expected.",
+    "label": "none"
+}

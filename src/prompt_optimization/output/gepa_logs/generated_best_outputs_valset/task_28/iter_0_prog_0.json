@@ -1,0 +1,4 @@
+{
+    "reasoning": "IRF2 is a transcription factor that mainly represses type\u202fI IFN\u2011stimulated genes, but there is no reported ChIP\u2011seq or literature evidence that IRF2 directly binds the promoter or enhancer of\u202fRcbtb1. Loss of IRF2 can boost IFN signaling, yet Rcbtb1 is not known to be an interferon\u2011responsive gene, and no indirect pathway linking IRF2 to Rcbtb1 transcription has been documented in BMDMs. Therefore, the knockout is unlikely to produce a reproducible directional change.",
+    "label": "none"
+}

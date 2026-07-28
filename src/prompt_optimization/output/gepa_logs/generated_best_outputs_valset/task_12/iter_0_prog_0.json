@@ -1,0 +1,4 @@
+{
+    "reasoning": "Gtf2h1 encodes a core subunit of TFIIH, which is essential for RNA\u202fPol\u202fII transcription initiation and CTD phosphorylation. Loss of this general transcription factor reduces overall Pol\u202fII\u2011driven transcription, including housekeeping genes such as the proteasome subunit\u202fPsma6, for which no specific activating TF has been reported. Hence the knockout is expected to lower Psma6 mRNA levels.",
+    "label": "down"
+}

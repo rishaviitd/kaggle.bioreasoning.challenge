@@ -1,0 +1,4 @@
+{
+    "reasoning": "Ogt encodes the O\u2011GlcNAc transferase that O\u2011GlcNAcylates several transcription factors (e.g., NF\u2011\u03baB p65, STAT1/3) and enhances their transcriptional activity in macrophages. Cmpk2 is an interferon\u2011 and LPS\u2011induced gene whose promoter is driven by NF\u2011\u03baB/STAT\u2011dependent elements. Loss of Ogt therefore diminishes the activity of these TFs, leading to reduced transcription of Cmpk2. No direct DNA\u2011binding evidence exists, but the indirect positive\u2011regulatory pathway predicts a decrease.",
+    "label": "down"
+}

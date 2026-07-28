@@ -1,0 +1,4 @@
+{
+    "reasoning": "PRDM1 (BLIMP\u20111) is a transcriptional repressor that modulates inflammatory gene programs in macrophages, but there is no reported ChIP\u2011seq or literature evidence that it directly binds the Hspa5 promoter or enhancer, nor is it known to regulate the unfolded\u2011protein response pathway that controls Hspa5. The indirect mechanisms listed (splicing\u2011mediated derepression, ISR activation, ribosomal or kinase scaffolds, m6A, ubiquitin networks) do not involve PRDM1, and no clear feedback loop connects PRDM1 loss to Hspa5 transcription. Consequently, there is insufficient mechanistic support to predict a consistent up\u2011 or down\u2011regulation.",
+    "label": "none"
+}

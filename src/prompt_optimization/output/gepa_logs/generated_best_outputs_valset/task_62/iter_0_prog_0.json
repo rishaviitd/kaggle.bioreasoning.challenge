@@ -1,0 +1,4 @@
+{
+    "reasoning": "Dr1 (NC2\u03b1) is a general transcriptional corepressor that binds TBP and blocks transcription initiation at many promoters. Its loss removes this repression, which typically results in modest up\u2011regulation of genes that are otherwise TBP\u2011dependent, including those without specific Dr1\u2011binding evidence such as Adgb. No direct ChIP or pathway\u2011specific data contradict this, and the transcriptional machinery is not saturated for Adgb in LPS\u2011stimulated BMDMs, so the most likely outcome is increased Adgb mRNA.",
+    "label": "up"
+}

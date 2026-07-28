@@ -1,0 +1,4 @@
+{
+    "reasoning": "Ogt encodes the O\u2011GlcNAc transferase that O\u2011GlcNAcylates several transcription factors involved in type\u2011I IFN signaling (e.g., STAT1, IRF3, NF\u2011\u03baB p65), a modification that generally enhances their DNA\u2011binding and transcriptional activity. Loss of Ogt therefore diminishes activation of IFN\u2011responsive promoters, and Ifit3b is a well\u2011characterized IFN\u2011stimulated gene in macrophages. Consequently, Ogt knockout is expected to reduce Ifit3b mRNA levels.",
+    "label": "down"
+}

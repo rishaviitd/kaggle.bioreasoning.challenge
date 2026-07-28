@@ -1,0 +1,4 @@
+{
+    "reasoning": "Dr1 encodes a transcriptional corepressor that binds TBP and blocks transcription initiation; loss of this repressive scaffold generally relieves repression of TBP\u2011dependent promoters. Acsl5 is a metabolic gene with a typical TBP\u2011driven promoter in BMDMs and is not known to be maximally induced under basal or LPS\u2011stimulated conditions, so removal of Dr1\u2011mediated repression is expected to increase its transcription.",
+    "label": "up"
+}

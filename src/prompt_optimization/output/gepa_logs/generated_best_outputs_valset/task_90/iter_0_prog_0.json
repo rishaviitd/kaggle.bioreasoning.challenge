@@ -1,0 +1,4 @@
+{
+    "reasoning": "Tln1 encodes the cytoskeletal adaptor talin\u202f1, which does not bind DNA or directly modify chromatin, so there is no direct regulatory link to *Ms4a6b*.  Loss of talin\u202f1 can attenuate integrin\u2011mediated signaling that feeds into NF\u2011\u03baB/MAPK pathways, potentially lowering expression of NF\u2011\u03baB\u2011responsive genes; however, *Ms4a6b* is not a well\u2011characterized NF\u2011\u03baB target and macrophages express the paralog Talin\u202f2, which can compensate for talin\u202f1 loss.  Given the lack of specific evidence and possible redundancy, a reproducible change is unlikely.",
+    "label": "none"
+}

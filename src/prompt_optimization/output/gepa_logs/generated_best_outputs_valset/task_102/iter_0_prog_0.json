@@ -1,0 +1,4 @@
+{
+    "reasoning": "Reasoning: ARID1A is a core subunit of the SWI/SNF (BAF) chromatin\u2011remodeling complex that functions as a co\u2011activator for NF\u2011\u03baB\u2011driven inflammatory genes in macrophages, and Il15 transcription is NF\u2011\u03baB dependent. Loss of ARID1A impairs SWI/SNF\u2011mediated promoter accessibility, reducing Il15 transcription. No direct repressive interaction is reported, leading to an expected decrease.",
+    "label": "down"
+}

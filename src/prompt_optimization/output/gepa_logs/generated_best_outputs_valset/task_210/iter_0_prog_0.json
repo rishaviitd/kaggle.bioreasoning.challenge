@@ -1,0 +1,4 @@
+{
+    "reasoning": "INTS9 is a core subunit of the Integrator complex that primarily processes snRNA 3\u2032 ends and modulates enhancer\u2011RNA transcription; there is no reported ChIP\u2011seq or motif\u2011based evidence that INTS9 directly binds the FNIP1 promoter or enhancer, nor is INTS9 known to regulate a transcription factor that controls FNIP1 in macrophages.  No established indirect pathway (e.g., stress\u2011response, splicing\u2011mediated derepression, kinase/phosphatase signaling, m6A, ubiquitin networks) links INTS9 loss to FNIP1 transcription.  Consequently, the knockout is not expected to produce a reproducible directional change in FNIP1 mRNA levels.",
+    "label": "none"
+}

@@ -1,0 +1,4 @@
+{
+    "reasoning": "Rraga encodes the RagA GTPase, a component of the Rag\u2011mTORC1 amino\u2011acid sensing pathway, not a transcription factor or direct chromatin modifier. There is no reported ChIP or motif evidence that RagA binds the S100a11 promoter, nor a known specific mTORC1\u2011dependent transcriptional program that includes S100a11 in bone\u2011marrow\u2011derived macrophages. Consequently, the available data do not support a reproducible up\u2011 or down\u2011regulation of S100a11 upon Rraga knockout.",
+    "label": "none"
+}

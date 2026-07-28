@@ -1,0 +1,4 @@
+{
+    "reasoning": "Actr6 encodes a subunit of the Arp2/3 actin\u2011nucleation complex; loss of Arp2/3 activity impairs actin\u2011dependent trafficking and signaling downstream of TLR4, leading to reduced NF\u2011\u03baB and IRF activation in macrophages. Cxcl10 is a canonical NF\u2011\u03baB/IRF\u2011driven chemokine, so diminished NF\u2011\u03baB signaling after Actr6 knockout is expected to lower its transcription. No direct TF\u2011binding evidence exists, but the indirect signaling effect predicts down\u2011regulation.",
+    "label": "down"
+}

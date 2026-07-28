@@ -1,0 +1,4 @@
+{
+    "reasoning": "Reasoning: Abi1 is an actin\u2011regulatory adaptor protein and not a transcription factor, chromatin modifier, or known direct regulator of Cotl1 transcription. No documented direct binding or indirect signaling pathway (e.g., NF\u2011\u03baB, ISR) connects Abi1 loss to Cotl1 expression in BMDMs, and functional redundancy with Abi2 likely buffers any effect. Therefore, the knockout is not expected to cause a reproducible change.",
+    "label": "none"
+}

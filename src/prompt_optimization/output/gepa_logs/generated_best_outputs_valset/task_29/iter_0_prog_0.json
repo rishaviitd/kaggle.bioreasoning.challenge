@@ -1,0 +1,4 @@
+{
+    "reasoning": "Wdr48 (UAF1) is not a transcription factor but a WD\u2011repeat co\u2011factor that activates the deubiquitinases USP12 and USP46. These DUBs remove activating K63\u2011linked ubiquitin chains from TRAF6, thereby dampening NF\u2011\u03baB signaling. Loss of Wdr48 reduces USP12/46 activity, leading to enhanced TRAF6 ubiquitination and increased NF\u2011\u03baB\u2011driven transcription. Rhoc is a known NF\u2011\u03baB\u2011responsive gene in macrophages, so heightened NF\u2011\u03baB activity is expected to raise Rhoc mRNA levels. No evidence suggests pathway saturation or redundancy that would mask this effect.",
+    "label": "up"
+}

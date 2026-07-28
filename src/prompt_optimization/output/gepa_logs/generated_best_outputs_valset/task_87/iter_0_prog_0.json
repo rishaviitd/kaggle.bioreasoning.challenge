@@ -1,0 +1,4 @@
+{
+    "reasoning": "Trappc1 encodes a subunit of the TRAPP vesicle\u2011tethering complex and is not a transcription factor, chromatin modifier, splicing factor, or known regulator of signaling pathways that directly control Camsap2 transcription. No direct ChIP or literature evidence links TRAPPC1 to the Camsap2 promoter, and indirect routes (e.g., UPR activation, altered cytokine signaling) lack specific support that Camsap2 is a target of those stress\u2011response transcription factors in BMDMs. Consequently, there is insufficient mechanistic basis to predict a reproducible up\u2011 or down\u2011regulation.",
+    "label": "none"
+}

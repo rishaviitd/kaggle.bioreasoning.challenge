@@ -1,0 +1,4 @@
+{
+    "reasoning": "Psmg4 encodes a proteasome\u2011assembly chaperone; its knockout reduces proteasome activity, leading to proteotoxic stress that stabilizes Nrf2 (since KEAP1\u2011mediated degradation is proteasome\u2011dependent). Nrf2 activation drives expression of antioxidant genes that contain AREs, and Mgst1 is a documented Nrf2\u2011responsive gene in macrophages. Therefore loss of Psmg4 is expected to increase Mgst1 mRNA levels.",
+    "label": "up"
+}

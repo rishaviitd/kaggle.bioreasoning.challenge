@@ -1,0 +1,61 @@
+--- Example 1 (Loss of Activator) ---
+Perturbation: Spi1
+Gene of interest: Tlr4
+Predict the effect of CRISPR knockout of Spi1 on Tlr4:
+  A) up-regulated.
+  B) down-regulated.
+  C) no significant effect.
+Reasoning:
+Spi1 encodes the master transcription factor PU.1, which is essential for macrophage lineage determination and activation. Tlr4 is the primary receptor for LPS and a core component of the macrophage inflammatory response. PU.1 is known to directly bind and positively regulate the transcription of Tlr4 and the broader NF-kB signaling cascade. Knocking out the Spi1 (PU.1) master activator removes the positive transcriptional drive for these genes. Therefore, without its required activator, Tlr4 will be down-regulated.
+Final output:
+B
+
+--- Example 2 (Loss of Pathway Regulator) ---
+Perturbation: Gsk3b
+Gene of interest: Ciita
+Predict the effect of CRISPR knockout of Gsk3b on Ciita:
+  A) up-regulated.
+  B) down-regulated.
+  C) no significant effect.
+Reasoning:
+Gsk3b encodes Glycogen synthase kinase-3 beta, a central kinase involved in multiple signaling pathways including macrophage activation. Ciita is the master transactivator for MHC class II genes. In macrophages, the GSK3b pathway is required to positively regulate the expression of Ciita in response to inflammatory stimuli like IFN-g. Knocking out Gsk3b disrupts this essential upstream signaling cascade, preventing the proper activation of Ciita. Therefore, Ciita will be down-regulated.
+Final output:
+B
+
+--- Example 3 (Null Topology) ---
+Perturbation: Mmp9
+Gene of interest: Polr2a
+Predict the effect of CRISPR knockout of Mmp9 on Polr2a:
+  A) up-regulated.
+  B) down-regulated.
+  C) no significant effect.
+Reasoning:
+Mmp9 encodes Matrix metalloproteinase-9, an enzyme secreted into the extracellular matrix to degrade structural proteins during tissue remodeling and inflammation. Polr2a encodes the central catalytic subunit of RNA polymerase II, which resides in the nucleus and is responsible for all mRNA transcription. These two genes operate in entirely different subcellular compartments (extracellular vs. nucleus) and biological modules. Knocking out a secreted protease will have no direct or significant indirect effect on the basal transcription of the core RNA polymerase II subunit. Without a clear mechanism, this is a Null Topology.
+Final output:
+C
+
+--- Example 4 (Compensatory Upregulation / Stress) ---
+Perturbation: Atg5
+Gene of interest: Sqstm1
+Predict the effect of CRISPR knockout of Atg5 on Sqstm1:
+  A) up-regulated.
+  B) down-regulated.
+  C) no significant effect.
+Reasoning:
+Atg5 is an essential core component of the autophagy machinery. Sqstm1 (p62) is an autophagy receptor that targets cargo for degradation and is itself degraded by autophagy. Knocking out Atg5 completely blocks autophagy, leading to the massive accumulation of undegraded proteins and cellular stress. In response to this profound autophagic stress, the cell activates compensatory transcriptional pathways (such as Nrf2) which heavily up-regulate the transcription of Sqstm1 to attempt to overcome the defect. Therefore, Sqstm1 will be up-regulated.
+Final output:
+A
+----------------
+
+Now, answer the following:
+
+Perturbation: {pert}
+Gene of interest: {gene}
+Predict the effect of CRISPR knockout of {pert} on {gene}:
+  A) up-regulated.
+  B) down-regulated.
+  C) no significant effect.
+
+Reasoning:
+
+Final output:"""

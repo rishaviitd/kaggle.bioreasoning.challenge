@@ -1,0 +1,4 @@
+{
+    "reasoning": "Reasoning: PSMD1 is a core non\u2011ATPase subunit of the 26S proteasome; knockout impairs proteasomal degradation, causing stabilization of Nrf2, a transcription factor normally turned over by the proteasome. Elevated Nrf2 drives expression of antioxidant response element\u2011containing genes, including the glutathione\u2011synthesis gene Gclm. Hence PSMD1 loss is expected to increase Gclm transcription.",
+    "label": "up"
+}

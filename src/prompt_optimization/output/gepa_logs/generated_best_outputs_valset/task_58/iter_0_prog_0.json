@@ -1,0 +1,4 @@
+{
+    "reasoning": "IFNAR1 is the receptor for type\u202fI interferons; its signaling activates STAT1/STAT2/IRF9, which bind ISRE elements in the Ifit3 promoter to drive transcription. In BMDMs, LPS induces autocrine IFN\u2011\u03b2, so loss of IFNAR1 diminishes this pathway and reduces Ifit3 mRNA levels. No evidence of compensatory saturation or redundancy suggests a clear down\u2011regulation.",
+    "label": "down"
+}
