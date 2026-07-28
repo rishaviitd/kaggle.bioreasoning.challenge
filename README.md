@@ -13,10 +13,10 @@
 
 | Technology | Role | Stage / Compute |
 | :--- | :--- | :--- |
-| <img src="docs/assets/dspy-logo.png" alt="DSPy" height="22"> DSPy + GEPA | Automated prompt writing and optimization from evaluation feedback | Prompt optimization |
-| <img src="docs/assets/unsloth-logo.png" alt="Unsloth" height="22"> Unsloth | Accelerated supervised fine-tuning | **SFT · NVIDIA T4** |
+| <img src="docs/assets/dspy-logo.png" alt="DSPy" height="22"> | Automated prompt writing and optimization with GEPA from evaluation feedback | Prompt optimization |
+| <img src="docs/assets/unsloth-logo.png" alt="Unsloth" height="22"> | Accelerated supervised fine-tuning | **SFT · NVIDIA T4** |
 | <img src="docs/assets/trl-logo.png" alt="TRL" height="22"> | Group Relative Policy Optimization (GRPO) for task-specific outcome prediction | **Post-training · NVIDIA H100** |
-| <img src="docs/assets/vllm-logo.png" alt="vLLM" height="22"> vLLM | Continuous batching and high-throughput model inference | Inference and rejection sampling |
+| <img src="docs/assets/vllm-logo.png" alt="vLLM" height="22"> | Continuous batching and high-throughput model inference | Inference and rejection sampling |
 
 ## DSPy Interface
 
@@ -164,9 +164,7 @@ up, down, or none
 
 ```mermaid
 flowchart TD
-    P["DSPy prompt program"] --> E["GEPA prompt optimization"]
-    E --> D["6,000 biological questions"]
-    D --> M["Student model generates<br/>on-policy reasoning"]
+    D["6,000 biological questions"] --> M["Student model generates<br/>on-policy reasoning"]
     M --> C{"Correct final label?"}
     C -->|"No"| X["Reject candidate"]
     C -->|"Yes"| T["GPT-OSS-120B teacher<br/>fact-checks and corrects"]
@@ -178,9 +176,6 @@ flowchart TD
     G --> F["Fine-tuned DeepSeek<br/>biology reasoning model"]
     F --> I["High-throughput inference<br/>with vLLM"]
     I --> O["Three-class prediction<br/>up / down / none"]
-
-    M -.-> V["Evaluation feedback"]
-    V -.-> E
 ```
 
 - **On-policy generation:** The student generates reasoning candidates for 6,000 questions.
@@ -189,4 +184,3 @@ flowchart TD
 - **Distribution preservation:** Student-generated traces avoid off-policy distribution shift, teacher-student distribution mismatch, and behavioral cloning of the teacher's reasoning style.
 - **Supervised fine-tuning:** Corrected student traces are used to fine-tune DeepSeek-R1-Distill-Llama-8B with Unsloth on an NVIDIA T4.
 - **GRPO:** After SFT, 1,000 questions are used for task-specific reinforcement learning on an NVIDIA H100.
-- **Prompt optimization:** DSPy with GEPA writes and optimizes the inference prompt from evaluation feedback.
