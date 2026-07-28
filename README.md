@@ -2,29 +2,11 @@
   <img src="docs/assets/kaggle-header.png" alt="MLGenX BioReasoning Challenge" width="100%">
 </p>
 
-<h1 align="center">Sample-Efficient BioReasoning</h1>
-
 <p align="center">
-  <strong>Sample-efficient hybrid-policy fine-tuning</strong><br>
-  On-policy student reasoning + off-policy teacher factual correction
-</p>
-
-<p align="center">
-  <strong>Fine-tuned DeepSeek-R1-Distill-Llama-8B beat its GPT-OSS-120B teacher</strong><br>
-  <strong>0.70 vs 0.63 mean DE/DIR AUROC · 11% relative gain</strong>
-</p>
-
-<p align="center">
+  <strong>Sample-efficient hybrid-policy fine-tuning</strong> · On-policy student reasoning + off-policy teacher factual correction<br>
+  <strong>Fine-tuned DeepSeek-R1-Distill-Llama-8B beat its GPT-OSS-120B teacher</strong> · 0.70 vs 0.63 mean DE/DIR AUROC · <strong>11% relative gain</strong><br>
   Achieved with only <strong>6,000 rejection-sampling questions</strong> and
   <strong>1,000 GRPO questions</strong>.
-</p>
-
-<p align="center">
-  <img src="docs/assets/dspy-logo.png" alt="DSPy" height="52">
-  &nbsp;&nbsp;&nbsp;&nbsp;
-  <img src="docs/assets/unsloth-logo.png" alt="Unsloth" height="52">
-  &nbsp;&nbsp;&nbsp;&nbsp;
-  <img src="docs/assets/vllm-logo.png" alt="vLLM" height="52">
 </p>
 
 ## Technology Stack
@@ -33,7 +15,7 @@
 | :--- | :--- | :--- |
 | <img src="docs/assets/dspy-logo.png" alt="DSPy" height="22"> DSPy + GEPA | Automated prompt writing and optimization from evaluation feedback | Prompt optimization |
 | <img src="docs/assets/unsloth-logo.png" alt="Unsloth" height="22"> Unsloth | Accelerated supervised fine-tuning | **SFT · NVIDIA T4** |
-| TRL + GRPO | Reinforcement learning for task-specific outcome prediction | **GRPO · NVIDIA H100** |
+| <img src="docs/assets/trl-logo.png" alt="TRL" height="22"> | Group Relative Policy Optimization (GRPO) for task-specific outcome prediction | **Post-training · NVIDIA H100** |
 | <img src="docs/assets/vllm-logo.png" alt="vLLM" height="22"> vLLM | Continuous batching and high-throughput model inference | Inference and rejection sampling |
 
 ## DSPy Interface
