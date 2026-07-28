@@ -3,20 +3,18 @@
 </p>
 
 <p align="center">
-  <strong>Sample-efficient hybrid-policy fine-tuning</strong> · On-policy student reasoning + off-policy teacher factual correction<br>
-  <strong>Fine-tuned DeepSeek-R1-Distill-Llama-8B beat its GPT-OSS-120B teacher</strong> · 0.70 vs 0.63 mean DE/DIR AUROC · <strong>11% relative gain</strong><br>
-  Achieved with only <strong>6,000 rejection-sampling questions</strong> and
-  <strong>1,000 GRPO questions</strong>.
+  Sample-efficient hybrid-policy fine-tuning with 6,000 rejection-sampling and 1,000 GRPO questions.<br>
+  Fine-tuned DeepSeek-R1-Distill-Llama-8B: 0.70 mean DE/DIR AUROC vs GPT-OSS-120B: 0.63 (+11%).
 </p>
 
 ## Technology Stack
 
-| Technology | Role | Stage / Compute |
+| Technology | Role | Stage |
 | :--- | :--- | :--- |
-| <img src="docs/assets/dspy-logo.png" alt="DSPy" height="22"> | Automated prompt writing and optimization with GEPA from evaluation feedback | Prompt optimization |
-| <img src="docs/assets/unsloth-logo.png" alt="Unsloth" height="22"> | Accelerated supervised fine-tuning | **SFT · NVIDIA T4** |
-| <img src="docs/assets/trl-logo.png" alt="TRL" height="22"> | Group Relative Policy Optimization (GRPO) for task-specific outcome prediction | **Post-training · NVIDIA H100** |
-| <img src="docs/assets/vllm-logo.png" alt="vLLM" height="22"> | Continuous batching and high-throughput model inference | Inference and rejection sampling |
+| <img src="docs/assets/dspy-logo.png" alt="DSPy" height="22"> | Automated prompt writing and optimization with GEPA from evaluation feedback | Prompting |
+| <img src="docs/assets/unsloth-logo.png" alt="Unsloth" height="22"> | Accelerated supervised fine-tuning | SFT · T4 |
+| <img src="docs/assets/trl-logo.png" alt="TRL" height="22"> | Group Relative Policy Optimization (GRPO) for task-specific outcome prediction | RL · H100 |
+| <img src="docs/assets/vllm-logo.png" alt="vLLM" height="22"> | Continuous batching and high-throughput model inference | Inference |
 
 ## DSPy Interface
 
@@ -149,6 +147,57 @@ You MUST output the final label exactly according to the strict bracketed format
 up, down, or none
 [[ ## completed ## ]]
 ```
+
+## Fine-Tuned Model Prompt
+
+The fine-tuned model uses the shorter system and user prompt shown together below. `{pert}` and `{gene}` are replaced for each gene pair.
+
+```text
+SYSTEM
+
+Your input fields are:
+1. `pert` (str): The knocked-down perturbation gene
+2. `gene` (str): The target gene to predict
+Your output fields are:
+1. `label` (str): Final label: exactly 'up', 'down', or 'none'
+
+All interactions will be structured in the following way, with the appropriate values filled in.
+[[ ## pert ## ]]
+{pert}
+[[ ## gene ## ]]
+{gene}
+[[ ## label ## ]]
+{label}
+[[ ## completed ## ]]
+
+In adhering to this structure, your objective is:
+You are an expert molecular and cellular biology expert analyzing Perturb-seq data from mouse bone-marrow-derived macrophages (BMDMs) stimulated with LPS. Your task is to predict if a CRISPR knockdown of a perturbation gene causes a reproducible increase ('up'), decrease ('down'), or no consistent change ('none') in a target gene. Consider relevant pathways (e.g., cell-type specific biology, ribosome biogenesis, transcription, mitochondrial function, stress response), gene interactions, and cell-specific context.
+
+First, determine if there is any significant, reproducible directional effect between `pert` and `gene` in this cell context; if no clear or direct effect exists, select 'none'.
+If a directional effect is present, then determine whether that effect is an increase ('up') or a decrease ('down') in target gene expression.
+
+You MUST output the final label exactly according to the strict bracketed format `[[ ## label ## ]]` and `[[ ## completed ## ]]` as defined at the top of these instructions.
+
+USER
+
+[[ ## pert ## ]]
+{pert}
+
+[[ ## gene ## ]]
+{gene}
+
+Analyze the regulatory effect of knocking down {pert} on {gene} in single-cell mouse BMDMs using CRISPR interference.
+
+Please reason step by step and respond with the corresponding output fields, starting with the field `[[ ## label ## ]]`, and then ending with the marker for `[[ ## completed ## ]]`.
+```
+
+| Prompt | Input tokens |
+| :--- | ---: |
+| Optimized inference prompt | 1,113 |
+| Fine-tuned model prompt | 415 |
+| Reduction | 698 tokens (62.7%) |
+
+Token counts use the official DeepSeek-R1-Distill-Llama-8B tokenizer with `{pert}` and `{gene}` placeholders. The `SYSTEM` and `USER` headings are presentation labels and are not counted or sent to the model; chat-template control tokens are also excluded. The shorter prompt reduces input-token cost and leaves more context capacity for batching and generation.
 
 ## Model Performance
 
